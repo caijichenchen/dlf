@@ -1,0 +1,48 @@
+<template>
+	<!-- 计算器页面 -->
+	<base-layout>
+		<template v-slot:jsq>
+			<!-- 设计费计算选项 -->
+			<hjyxpjf-counter-meng></hjyxpjf-counter-meng>
+			<!-- 设计费计算按钮 -->
+			<computing v-bind:countData = "countData"></computing>
+			<!-- 设计费计算结果 -->
+			<hjyxpjf-result :title="title"></hjyxpjf-result>
+		</template>
+		
+		<!-- <template v-slot:qfbz>
+			<h1>设计费取费标准</h1>
+		</template> -->
+	</base-layout>
+</template>
+
+<script>
+	import baseLayout from "@/common/base/baseLayout.vue"
+	import hjyxpjfCounterMeng from "./hjyxpj_counter_meng.vue"
+	import computing from "@/common/base/computing.vue"
+	import hjyxpjfResult from "../hjyxpjf_result.vue"
+	export default {
+		data() {
+			return {
+				countData:{
+					url:this.$serverUrl + '/api/hjyxpjMeng',  //api请求
+					count:2  //积分消耗
+				},
+				title:'内蒙古'
+			}
+		},
+		methods: {
+			
+		},
+		components:{
+			hjyxpjfCounterMeng,
+			baseLayout,
+			computing,
+			hjyxpjfResult
+		}
+	}
+</script>
+
+<style>
+
+</style>

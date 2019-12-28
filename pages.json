@@ -1,0 +1,1220 @@
+{
+	"pages": [ 
+				{
+					"path": "pages/index/index",
+					"style": {"navigationBarTitleText": "独立费"}
+				},{
+            "path" : "pages/sousuo/sousuo",
+            "style" : {}
+        },
+		{
+			"path":"pages/sign/sign",
+			"style":{}
+		},
+		{
+			"path" : "pages/sousuo/searchResult",
+			"style" : {}
+		},
+		{
+			"path":"pages/normal/normal",
+			"style":{}
+		}
+        ,{
+            "path" : "pages/registe/registe",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/reg/reg",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/forget/forget",
+            "style" : {}
+        }
+        ,
+		{
+		    "path" : "pages/registe/xgmm",
+		    "style" : {}
+		}
+        ,{
+            "path" : "pages/Calculation/Calculation",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/oneClick/oneClick",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/PersonalCenter/PersonalCenter",
+            "style" : {}
+        },{
+		    "path" : "pages/PersonalCenter/wdtz",
+		    "style" : {
+				"navigationBarTitleText": "我的通知"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/wdhy",
+		    "style" : {
+				"navigationBarTitleText": "我的会员"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/xgzl",
+		    "style" : {
+				"navigationBarTitleText": "修改资料"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/xgmm",
+		    "style" : {
+				"navigationBarTitleText": "修改密码"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/zhaq",
+		    "style" : {
+				"navigationBarTitleText": "账户安全"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/aqmm",
+		    "style" : {
+				"navigationBarTitleText": "安全密码"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/aqmmsz",
+		    "style" : {
+				"navigationBarTitleText": "安全密码设置"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/zxhy",
+		    "style" : {
+				"navigationBarTitleText": "自选会员"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/sfhy",
+		    "style" : {
+				"navigationBarTitleText": "省份会员"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/VIPhy",
+		    "style" : {
+				"navigationBarTitleText": "VIP会员"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/qyhy",
+		    "style" : {
+				"navigationBarTitleText": "企业会员"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/yhj",
+		    "style" : {
+				"navigationBarTitleText": "优惠券"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/jfgm",
+		    "style" : {
+				"navigationBarTitleText": "积分购买"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/jfcx",
+		    "style" : {
+				"navigationBarTitleText": "积分查询"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/wdyhj",
+		    "style" : {
+				"navigationBarTitleText": "我的优惠券"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/msth",
+		    "style" : {
+				"navigationBarTitleText": "密匙兑换"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/wdhb",
+		    "style" : {
+				"navigationBarTitleText": "我的红包"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/wdedingdan",
+		    "style" : {
+				"navigationBarTitleText": "我的订单"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/wdfp",
+		    "style" : {
+				"navigationBarTitleText": "我的发票"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/csshi",
+		    "style" : {
+				"navigationBarTitleText": "我的计算"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/jsym",
+		    "style" : {
+				"navigationBarTitleText": "计算过程"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/grxx",
+		    "style" : {
+				"navigationBarTitleText": "个人信息"
+			}
+		},
+		{
+		    "path" : "pages/PersonalCenter/bdzfb",
+		    "style" : {
+				"navigationBarTitleText": "绑定支付宝"
+			}
+		},
+		{
+		    "path" : "pages/PersonalCenter/hbtx",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/PersonalCenter/wdbz",
+		    "style" : {
+				"navigationBarTitleText": "我的标准"
+			}
+		},{
+		    "path" : "pages/PersonalCenter/mbgl",
+		    "style" : {
+				"navigationBarTitleText": "模板管理"
+			}
+		},
+		{
+		    "path" : "pages/PersonalCenter/wdsc",
+		    "style" : {
+				"navigationBarTitleText": "我的收藏"
+			}
+		},
+		{
+		    "path" : "pages/PersonalCenter/fpsq",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/PersonalCenter/ttgl",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/PersonalCenter/sztt",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/PersonalCenter/qytt",
+		    "style" : {}
+		},
+		{
+		    "path" : "pages/PersonalCenter/grtt",
+		    "style" : {}
+		}
+		,{
+			"path" : "pages/mystandard/mystandard",
+			"style" : {}
+		}
+		,{
+			"path" : "pages/Mycalculation/Mycalculation",
+			"style" : {}
+		}
+		,{
+			"path" : "pages/enterprise/enterprise",
+			"style" : {}
+		}
+		,{
+			"path" : "pages/report/report",
+			"style" : {}
+		}
+		,{
+			"path" : "pages/invite/invite",
+			"style" : {}
+		}
+		,{
+			"path" : "pages/exchange/exchange",
+			"style" : {}
+		},{
+			"path" : "pages/start/start",
+			"style" : {}
+		}
+        ,{
+            "path" : "pages/standard/standard",
+            "style" : {}
+		}	
+    ],
+	"globalStyle": {
+		"navigationStyle": "custom"
+		// "navigationStyle": "default"
+	},
+	"subPackages":[
+		{
+			"root":"pagesC",
+			"pages":[
+				{
+				    "path" : "Calculator/jlflayouts/jlfszh/jlfszh",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfxiang/jlfxiang",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfgszf/jlfgszf",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfqian/jlfqian",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfba/jlfba",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfnanning/jlfnanning",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfjin/jlfjin",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfji/jlfji",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfguo/jlfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfyu/jlfyu",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfwan/jlfwan",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfe/jlfe",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfjilin/jlfjilin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlftianjin/jlftianjin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfmeng/jlfmeng",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlflu/jlflu",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfmin/jlfmin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jlflayouts/jlfgui/jlfgui",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfzhe/jsxmqqgzzxfzhe",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfguo/jsxmqqgzzxfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfgui/jsxmqqgzzxfgui",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfqiong/jsxmqqgzzxfqiong",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfyue/jsxmqqgzzxfyue",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxftianjin/jsxmqqgzzxftianjin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfchuan/jsxmqqgzzxfchuan",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfba/jsxmqqgzzxfba",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfxiang/jsxmqqgzzxfxiang",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfji/jsxmqqgzzxfji",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfyun/jsxmqqgzzxfyun",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfsu/jsxmqqgzzxfsu",
+				    "style" : {}
+				}
+			]
+		},
+		{
+			"root":"pagesA",
+			"pages":[
+				{
+					"path":"Calculator/stbcflayouts/stbcfguo/stbcfguo",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/zbdlflayouts/zbdlfguo/zbdlfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zbdlflayouts/zbdlfmeng/zbdlfmeng",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zbdlflayouts/zbdlfhu/zbdlfhu",
+				    "style" : {}
+				},
+				{
+					"path" : "Calculator/zbdlflayouts/zbdlfsu/zbdlfsu",
+					"style" : {}
+				},
+				{
+				    "path" : "Calculator/zbdlflayouts/zbdlfqiong/zbdlfqiong",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/zbdlflayouts/zbdlfjilin/zbdlfjilin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zbdlflayouts/zbdlfqian/zbdlfqian",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zbdlflayouts/zbdlfxiang/zbdlfxiang",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zbdlflayouts/zbdlfzhe/zbdlfzhe",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zbdlflayouts/zbdlfgui/zbdlfgui",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/zcpgsflayouts/zcpgsfzhe/zcpgsfzhe",
+				    "style" : {}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfguo/zcpgsfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsflu/zcpgsflu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfjin/zcpgsfjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfliao/zcpgsfliao",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfyue/zcpgsfyue",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfwan/zcpgsfwan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfmin/zcpgsfmin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfgui/zcpgsfgui",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfji/zcpgsfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfhei/zcpgsfhei",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfjilin/zcpgsfjilin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfzang/zcpgsfzang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfsu/zcpgsfsu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zcpgsflayouts/zcpgsfxiang/zcpgsfxiang",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/xmzxfwfgflayouts/xmzxfwfgfguo/xmzxfwfgfguo",
+				    "style" : {}
+				},{
+				    "path" : "Calculator/xmjsjjpsfgflayouts/xmjsjjpsfgfguo/xmjsjjpsfgfguo",
+				    "style" : {}
+				},{
+					"path" : "Calculator/gcdebzbzglfgflayouts/gcdebzbzglfgfguo/gcdebzbzglfgfguo",
+					"style" : {}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfguo/zjzxfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfjing/zjzxfjing",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfwan/zjzxfwan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfba/zjzxfba",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfmin/zjzxfmin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfyu/zjzxfyu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfji/zjzxfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfxiang/zjzxfxiang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfjin/zjzxfjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfhu/zjzxfhu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfchangge/zjzxfchangge",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfsu/zjzxfsu",
+					"style":{}
+				},{
+					"path":"Calculator/zjzxflayouts/zjzxfqing/zjzxfqing",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfgan/zjzxfgan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxflu/zjzxflu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfzhe/zjzxfzhe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxftianjin/zjzxftianjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfshan/zjzxfshan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfmeng/zjzxfmeng",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfning/zjzxfning",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfjilin/zjzxfjilin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfliao/zjzxfliao",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfhei/zjzxfhei",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfe/zjzxfe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfqian/zjzxfqian",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfchuan/zjzxfchuan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfxin/zjzxfxin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfzhongjiaxie/zjzxfzhongjiaxie",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfyun/zjzxfyun",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfqiong/zjzxfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfyue/zjzxfyue",
+					"style":{}
+				},
+				{
+					"path":"Calculator/zjzxflayouts/zjzxfgui/zjzxfgui",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfzhe/stbcbcfzhe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfhei/stbcbcfhei",
+					"style":{}        
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfe/stbcbcfe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfsu/stbcbcfsu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfjin/stbcbcfjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfliao/stbcbcfliao",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfmeng/stbcbcfmeng",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcflu/stbcbcflu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfwan/stbcbcfwan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfgui/stbcbcfgui",
+					"style":{}
+				},
+				{
+					"path":"Calculator/stbcbcflayouts/stbcbcfji/stbcbcfji",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/fljcflayouts/fljcfba/fljcfba",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/fljcflayouts/fljcfyu/fljcfyu",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/fljcflayouts/fljcfqiong/fljcfqiong",
+				    "style" : {}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfwan/fljcfwan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfjing/fljcfjing",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfmin/fljcfmin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfjilin/fljcfjilin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfsu/fljcfsu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfmeng/fljcfmeng",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfning/fljcfning",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcflu/fljcflu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfjin/fljcfjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfshan/fljcfshan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfchuan/fljcfchuan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcftianjin/fljcftianjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfyun/fljcfyun",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcflong/fljcflong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfgui/fljcfgui",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfji/fljcfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfzhe/fljcfzhe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfyue/fljcfyue",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfhei/fljcfhei",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fljcflayouts/fljcfzang/fljcfzang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfguo/sgtscfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfchuan/sgtscfchuan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscftianjin/sgtscftianjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfmin/sgtscfmin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfhefei/sgtscfhefei",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfgui/sgtscfgui",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfji/sgtscfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfba/sgtscfba",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfe/sgtscfe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfxiang/sgtscfxiang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfhei/sgtscfhei",
+					"style":{}
+				},
+				{
+					"path":"Calculator/sgtscflayouts/sgtscfsu/sgtscfsu",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/sgtscflayouts/sgtscfqian/sgtscfqian",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sgtscflayouts/sgtscfmeng/sgtscfmeng",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sgtscflayouts/sgtscfzhe/sgtscfzhe",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sgtscflayouts/sgtscfzang/sgtscfzang",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sgtscflayouts/sgtscfjin/sgtscfjin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sgtscflayouts/sgtscfqiong/sgtscfqiong",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sgtscflayouts/sgtscfhu/sgtscfhu",
+				    "style" : {}
+				}
+			]
+		},
+		{
+			"root":"pagesB",
+			"pages":[
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfqiong/fkdxyjjsfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfji/fkdxyjjsfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfjilin/fkdxyjjsfjilin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsflong/fkdxyjjsflong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfmeng/fkdxyjjsfmeng",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfqian/fkdxyjjsfqian",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfsu/fkdxyjjsfsu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfxiang/fkdxyjjsfxiang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfzhe/fkdxyjjsfzhe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ytgcsjlayouts/ytgcsjguo/ytgcsjguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfqian/dzaqpjfqian",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfqiong/dzaqpjfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfhu/dzaqpjfhu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfjing/dzaqpjfjing",
+					"style":{}
+				}, 
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfji/dzaqpjfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfhei/dzaqpjfhei",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptqiong/csjcssptqiong",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptji/csjcssptji",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptjin/csjcssptjin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/csjcssptlayouts/csjcsspthei/csjcsspthei",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptxiang/csjcssptxiang",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/gcjsjlfgflayouts/gcjsjlfgfguo/gcjsjlfgfguo",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/tlsjlayouts/tlsjguo/tlsjguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zsxzsjfyllayouts/zsxzsjfylguo/zsxzsjfylguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jsdwlayouts/jsglfguo/jsglfguo",
+				    "style" : {}
+				},
+				{
+					"path":"Calculator/jsdwlayouts/jsglfxiamen/jsglfxiamen",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/sjflayouts/cbsjpssf/cbsjpssf",
+				    "style" : {}
+				}
+				,{
+					"path":"Calculator/txgckcflayouts/txgckcfguo/txgckcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fwmjchflayouts/fwmjchfqiong/fwmjchfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ybflayouts/ybfguo/ybfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/swdzchflayouts/swdzchfguo/swdzchfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ytgcdzchflayouts/ytgcdzchfguo/ytgcdzchfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/wrdjzflayouts/wrdjzfguo/wrdjzfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/tlkcflayouts/tlkcfguo/tlkcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/tlkcsjsflayouts/tlkcsjsf",
+					"style":{}
+				},{
+					"path":"Calculator/jnpgflayouts/jnpgfhu/jnpgfhu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dlgckclayouts/dlgckcguo/dlgckcguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dlgcqqgzkcflayouts/dlgcqqgzkcfguo/dlgcqqgzkcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/chflayouts/chfguo/chfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/xcjchclsylayouts/xcjchclsyji/xcjchclsyji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/xcjchclsylayouts/xcjchclsyyue/xcjchclsyyue",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ywcslayouts/ywcs",
+					"style":{}
+				},
+				{
+					"path":"Calculator/hjjcflayouts/hjjcfchuan/hjjcfchuan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/hjjcflayouts/hjjcfwan/hjjcfwan",
+					"style":{}
+				},
+				{
+					"path":"Calculator/hjjcflayouts/hjjcfliao/hjjcfliao",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jzmqmcjcflayouts/jzmqmcjcfqiong/jzmqmcjcfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/cbsjpssflayouts/cbsjpssfguo/cbsjpssfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jzzssjsflayouts/jzzssjsfguo/jzzssjsfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ldaqwspslayouts/ldaqwspsguo/ldaqwspsguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ytgcjiancelayouts/ytgcjianceguo/ytgcjianceguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ytgcjclayouts/ytgcjcguo/ytgcjcguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzzhlayouts/dzzhguo/dzzhguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/csghlayouts/csghyue/csghyue",
+					"style":{}
+				},
+				{
+					"path":"Calculator/glgckcflayouts/glgckcfguo/glgckcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/gcqtclsflayouts/gcqtclsfguo/gcqtclsfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsxmbjflayouts/jsxmbjfchuan/jsxmbjfchuan",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/jsxmbjflayouts/jsxmbjfzhuzhou/jsxmbjfzhuzhou",
+				    "style" : {}
+				},
+				{
+					"path":"Calculator/gcsyclsflayouts/gcsyclsfguo/gcsyclsfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/gcdmclsflayouts/gcdmclsfguo/gcdmclsfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dsclsflayouts/dsclsfguo/dsclsfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dxgxclsflayouts/dxgxclsfguo/dxgxclsfguo",
+					"style":{}
+				}
+				,{
+				    "path" : "Calculator/jsqlxlayouts/jsqlx/jsqlx",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/xmdjflayouts/xmdjfxiang/xmdjfxiang",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/xmdjflayouts/xmdjfhu/xmdjfhu",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/pdldzjlayouts/pdldzjguo/pdldzjguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/byfzflayouts/byfzfzhe/byfzfzhe",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/jnpgflayouts/jnpgfzhe/jnpgfzhe",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/gcjsglgflayouts/gcjsglgfguo/gcjsglgfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/gczljcjcfgflayouts/gczljcjcfgfguo/gczljcjcfgfguo",
+				    "style" : {}
+				}
+				,{
+					"path" : "Calculator/xmysfgflayouts/xmysfgfguo/xmysfgfguo",
+					"style" : {}
+				}
+				,{
+					"path" : "Calculator/gcbxfgflayouts/gcbxfgfguo/gcbxfgfguo",
+					"style" : {}
+				}
+				,{
+				    "path" : "Calculator/sczbflayouts/sczbfgfguo/sczbfgfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zsxzsjfszlayouts/zsxzsjfszguo/zsxzsjfszguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/zsxzsjflayouts/zsxzsjfguo/zsxzsjfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/sjflayouts/sjfgui/sjfgui",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/hjyxpjlayouts/hjyxpjguo/hjyxpjguo",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/hjyxpjlayouts/hjyxpjzang/hjyxpjzang",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/hjyxpjlayouts/hjyxpjmeng/hjyxpjmeng",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/hjyxpjlayouts/hjyxpjzhe/hjyxpjzhe",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/hjyxpjlayouts/hjyxpjgui/hjyxpjgui",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/gcbxflayouts/gcbxfguo/gcbxfguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/cdzblayouts/cdzbguo/cdzbguo",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/pppxmzxlayouts/pppxmzxyue/pppxmzxyue",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/pppxmzxlayouts/pppxmzxchuan/pppxmzxchuan",
+				    "style" : {}
+				},
+				{
+					"path" : "Calculator/pppxmzxlayouts/pppxmzxqingdao/pppxmzxqingdao",
+					"style" : {}
+				}
+				,{
+				    "path" : "Calculator/pppxmzxlayouts/pppxmzxjin/pppxmzxjin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/shwdfxpglayouts/shwdfxpghu/shwdfxpghu",
+				    "style" : {}
+				}
+			]
+		}
+	],
+	"tabBar":{
+		"color" : "#8a8a8a",
+		"selectedColor":"#00a0ea",
+		"list":[
+			{
+			"pagePath":"pages/index/index",
+			"text":"首页",
+			"iconPath":"static/tabbar/shouye.png",
+			"selectedIconPath":"static/tabbar/shouye-a.png"
+			},
+			{
+			"pagePath":"pages/Calculation/Calculation",
+			"text":"计算器",
+			"iconPath":"static/tabbar/Calculation.png",
+			"selectedIconPath":"static/tabbar/Calculation-a.png"
+			},
+			{
+			"pagePath":"pages/oneClick/oneClick",
+			"text":"一键计算",
+			"iconPath":"static/tabbar/oneClick.png",
+			"selectedIconPath":"static/tabbar/oneClick-a.png"
+			},
+			{
+			"pagePath":"pages/standard/standard",
+			"text":"标准",
+			"iconPath":"static/tabbar/txt.png",
+			"selectedIconPath":"static/tabbar/txt-a.png"
+			},{
+			"pagePath":"pages/PersonalCenter/PersonalCenter",
+			"text":"我的",
+			"iconPath":"static/tabbar/personalcenter.png",
+			"selectedIconPath":"static/tabbar/personalcenter-a.png"
+			}
+		]
+	}
+}

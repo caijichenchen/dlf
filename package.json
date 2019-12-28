@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^12.3.1",
+    "@ckeditor/ckeditor5-vue": "^1.0.0-beta.2",
+    "@dcloudio/uni-h5": "^2.0.0-23320190923002",
+    "@dcloudio/uni-mp-alipay": "^2.0.0-23320190923002",
+    "@dcloudio/uni-mp-baidu": "^2.0.0-23320190923002",
+    "@dcloudio/uni-mp-toutiao": "^2.0.0-23320190923002",
+    "@dcloudio/uni-mp-weixin": "^2.0.0-23320190923002",
+    "@dcloudio/uni-ui": "^1.0.4",
+    "vue-bus": "^1.2.1"
+  },
+  "name": "dlfuniapp",
+  "description": "独立费前台uniapp文件",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/tanzhikeji/dlf-uniapp"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
