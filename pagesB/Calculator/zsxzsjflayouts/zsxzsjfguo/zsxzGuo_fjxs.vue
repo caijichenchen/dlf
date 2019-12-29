@@ -1,30 +1,28 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">中设协字[2016]89号工程复杂程度</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
-			<view class="padding-xl border border-blue m-1">
-				<!-- <view class="dlf-group" v-for="(item, index) in fjxsList" :key="index" @tap="clickFjxs(index)">
-					<view class="ml-2 my-1 text-blue">{{ item.name }}</view>
-					<view class="dlf-li ml-2 font" v-for="(v, index) in item.data" :key="index">
-						<text style="word-break: break-all;">{{index+1}}:{{v.show}}</text>
-						{{ index + 1 }}:{{ v.show }}
-					</view>
-				</view> -->
-				<view  class="dlf-group">
-					<view class="w-100 dlf-li font lt" 
-					v-for="(item, index) in fjxsList" :key="index" >
-						<view style="width: 595upx;white-space: pre-wrap;float: left;">
-							{{item.value}}
+			<view class="padding-xl m-1">
+					<view class="dlf-group lt">
+						<view class="w-100 dlf-li font lt border-b" 
+									v-for="(item, index) in fjxsList" 
+									:key="index" 
+									@tap="assignment" 
+									:data-val="item.xs"
+									:data-key="index"
+									>
+							<view class="lt" style="width: 87%; white-space: pre-wrap;">
+								{{item.value}}
+							</view>
+							<span class="spbtn text-white px-1 bg-blue rt" >
+								{{item.xs}}
+							</span>
 						</view>
-						<span class="text-blue lt">
-							{{item.xs}}
-						</span>
 					</view>
-				</view>
 				<view class="my-2 ml-1 font text-left" style="white-space: pre-wrap;">
 					注: 超大型建筑工程指80001平方米以上的单体建筑，大型建筑工程指20001-80000平方米的单体建筑，中型指5001-20000平方米的单体建筑，小型指5000&nbsp;平方米以下的单体建筑
 				</view>
@@ -45,12 +43,12 @@ export default {
 	},
 	data() {
 		return {
-			modalName: 'zsxzGuo_fjxs',
+			modalName: 'zsxzsjfGuo_fjxs',
 			fjxs: '',
 			fjxsList: [
-				{value:" 项目不符合下列任何一项的情况，附加系数默认的为0 ",xs:"0"},
+				{value:"  项目不符合下列任何一项的情况，附加系数默认的为0 ",xs:"0"},
 				{value:"  1.总体设计 ",xs:"0.1"},
-				{value:" 2.设计总包服务、主体设计协调 附加调整系数为0.1~0.2 ",xs:"0.15"},
+				{value:"  2.设计总包服务、主体设计协调 附加调整系数为0.1~0.2 ",xs:"0.15"},
 				{value:"  3-1.绿色建筑设计一星",xs:"0.05"},
 				{value:"  3-2.绿色建筑设计二星",xs:"0.15"},
 				{value:"  3-3.绿色建筑设计三星",xs:"0.30"},

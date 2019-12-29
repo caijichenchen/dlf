@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">福建省建设交易服务费</text>
@@ -8,7 +7,7 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.jsjyfwfMin_province">
 				<view class="title">省份</view>
-					<view class="title">
+					<view class="title m-left">
 						{{multiSelector.jsjyfwfMin_province[pickerIndex.jsjyfwfMin_province]}}
 					</view>
 			</view>
@@ -17,7 +16,7 @@
 					<view class="title" v-model="needVal.jsjyfwfMin_standard">
 						{{multiSelector.jsjyfwfMin_standard[pickerIndex.jsjyfwfMin_standard]}}
 					</view>
-					<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfMin_standard">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="checkDeatil(1680,multiSelector.jsjyfwfMin_standard[pickerIndex.jsjyfwfMin_standard])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jsjyfwfMin_category">
 				<view class="title">收费项目</view>
@@ -127,18 +126,6 @@
 			jsjyfwfMinFjtz
 		},
 		methods:{
-			PickerChange(e) {
-				this.index = e.detail.value
-				// this.afterPicker(this.index)
-				console.log(this.index)
-				if(this.index == 1){
-					this.needVal.jsjyfwfMin_graded = "0|20|50|100|200"
-					this.needVal.jsjyfwfMin_category= "勘察设计、监理、咨询、检测及其他工程服务类招标投标的"
-				}else{
-					this.needVal.jsjyfwfMin_graded = "0|200|500|1000|5000|10000"
-					this.needVal.jsjyfwfMin_category= "建设工程施工、专项材料设备、EPC总承包和PPP等项目招标投标的"
-				}
-			},
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target)
 				this.$bus.emit('modalData', this.modalData )

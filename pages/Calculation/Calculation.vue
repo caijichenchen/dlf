@@ -1,5 +1,5 @@
 <template>
-	<view :style="'height:'+windowHeight+'px'" class="aaa">
+	<view :style="'height:'+windowHeight+'px'" >
 		<cu-custom bgColor="bg-gradual-blue" >
 		    <block slot="content">计算器分类</block>
 			<block slot="right" @click="goSearch" >
@@ -56,7 +56,7 @@
 		data() {
 			return {
 					provinceLists: ['全国','海南','广东','广西','北京','天津','河北','山西','辽宁','吉林','黑龙江','内蒙古','上海','浙江','江苏','山东','安徽','福建','湖南','湖北','河南','江西','四川','重庆','贵州','云南','陕西','甘肃','宁夏','青海','新疆'],
-					proCalList:[],
+					proCalList:{},
 					filterList: [],
 					clickPro: '',
 					clickFilter: '',
@@ -78,14 +78,14 @@
 		mounted() {
 			const res = uni.getSystemInfoSync()
 			this.windowHeight = res.windowHeight
-			$req.request({
-				url:'/api/xcx/getCalculatorByProvince?state=1&province=海南'
-			}).then(res=>{
-				this.proCalList = res.data.message
-				console.log(res)
-			}).catch(err=>{
-				console.log(err)
-			})
+			// $req.request({
+			// 	url:'/api/xcx/getCalculatorByProvince?state=1&province=海南'
+			// }).then(res=>{
+			// 	this.proCalList = res.data.message
+			// 	console.log(res)
+			// }).catch(err=>{
+			// 	console.log(err)
+			// })   
 			this.getFilterAll()
 		},
 		methods: {
@@ -95,12 +95,29 @@
 				});
 			},
 			getCal(e){
+				let url = '/api/xcx/getCalculatorByProvince'
 				if(this.clickPro == e.currentTarget.dataset.name){
 					this.clickPro = ''
+					// if(this.clickFilter){
+					// 	let data = {
+					// 		state: 1,
+					// 		calculator_type: this.clickFilter
+					// 	}
+					// }
+					// $req.request({
+					// 	url:url,
+					// 	data:data
+					// }).then(res=>{
+					// 	let result = res.data.message
+					// 	this.proCalList = result.filter(item=>{
+					// 		return item.name
+					// 	})
+					// }).catch(err=>{
+					// 	console.log(err)
+					// })
 					return
 				}
 				this.clickPro = e.currentTarget.dataset.name
-				let url = '/api/xcx/getCalculatorByProvince' 
 				let data = {
 					state: 1,
 					province:this.clickPro 
@@ -112,10 +129,13 @@
 						calculator_type: this.clickFilter
 					}
 				}
+				
 				$req.request({
 					url:url,
 					data:data
 				}).then(res=>{
+					this.proCalList={}
+					// let result = res.data.message
 					this.proCalList = res.data.message
 					console.log(res)
 				}).catch(err=>{
@@ -149,12 +169,19 @@
 						calculator_type: this.clickFilter
 					}
 				}
+				// this.proCalList={}
 				$req.request({
 					url: url,
 					data:data
 				}).then(res=>{
-					this.proCalList = res.data.message
-					console.log(res)
+					let result = res.data.message
+					this.proCalList = {}
+					for(let key in result){
+						// this.proCalList[key] = result[key]
+						this.$set(this.proCalList,key,result[key])
+					}
+					// this.proCalList = res.data.message
+					console.log(this.proCalList)
 				}).catch(err=>{
 					console.log(err)
 				})

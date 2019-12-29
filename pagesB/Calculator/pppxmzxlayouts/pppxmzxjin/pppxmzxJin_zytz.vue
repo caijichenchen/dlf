@@ -1,25 +1,30 @@
 <template>
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName == modalName ? 'show' : ''" >
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
-				<view class="content">收费附加系数</view>
+				<view class="content">山西省PPP项目咨询费复杂程度调整系数</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
-			<view class="padding-xl m-1">
-				<view  class="dlf-group" style="height: 597upx;">
-					<view class="w-100 dlf-li font lt" 
-						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-val="item.xs"> 
-						<view style="width: 595upx;white-space: pre-wrap;float: left;">
-							{{item.value}}
+			<view class="padding-xl border border-blue m-1">
+					<view class="dlf-group lt">
+						<view class="w-100 dlf-li font lt border-b" 
+									v-for="(item, index) in fjxsList" 
+									:key="index" 
+									@tap="assignment" 
+									:data-val="item.xs"
+									:data-key="index"
+									>
+							<view class="lt" style="width: 87%; white-space: pre-wrap;">
+								{{item.value}}
+							</view>
+							<span class="spbtn text-white px-1 bg-blue rt" >
+								{{item.xs}}
+							</span>
 						</view>
-						<span class="text-blue lt">
-							{{item.xs}}
-						</span>
-					</view>
-					<view class="pl-1 my-2 lt font white-space">
-						<view>注:</view>
-						<view>以上为一般复杂项目，对于特殊复杂项目，则根据工作内容采取一事一议的方式由双方另行协商咨询服务费。</view>
-					</view>
+						<view class="pl-1 my-2 lt font white-space">
+							<view>注:</view>
+							<view>以上为一般复杂项目，对于特殊复杂项目，则根据工作内容采取一事一议的方式由双方另行协商咨询服务费。</view>
+						</view>
 				</view>
 			</view>
 		</view>

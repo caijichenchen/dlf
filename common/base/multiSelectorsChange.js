@@ -90,7 +90,6 @@ export const MultiSelectorsChangeMixin = {
 					this.sun.push(item['n'])
 				}
 			}
-			console.log(this.sun)
 		}
 	},
 

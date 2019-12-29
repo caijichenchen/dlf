@@ -1,63 +1,61 @@
 <template>
 	<view>
-			<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
-			<div class="sjf_title w-100 mt-2" style="height: 60upx;">
-				<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-				<text class="text-blue lt pl-2 " style="margin-top: 5upx;">广东省ppp咨询费</text>
-			</div>
-			<form>
-				<view class="cu-form-group" v-show="showSelector.pppxmzxYue1">
-					<view class="title">选择区域</view>
-					<view class="title">{{multiSelector.pppxmzxYue1[pickerIndex.pppxmzxYue1]}}</view>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">工程造价</view>
-					<input name="pppxmzxYue_gczj" v-model="needVal.pppxmzxYue_gczj" /></input>
-					<uni-tag text="亿元" type="defult"></uni-tag>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">计算依据</view>
-					<picker class="select" @change="PickerChange"  data-name="pppxmzxYue_standard" :value="pickerIndex.pppxmzxYue_standard"
-					 :range="multiSelector.pppxmzxYue_standard">
-						<view class="picker">
-							{{multiSelector.pppxmzxYue_standard[pickerIndex.pppxmzxYue_standard]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_standard">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">项目类别</view>
-					<picker class="select" @change="PickerChange"  data-name="pppxmzxYue_category" :value="pickerIndex.pppxmzxYue_category"
-					 :range="multiSelector.pppxmzxYue_category">
-						<view class="picker">
-							{{multiSelector.pppxmzxYue_category[pickerIndex.pppxmzxYue_category]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">专业领域数量的调整系数</view>
-					<input v-model="needVal.pppxmzxYue_zytzxs" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_zytzxs">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">收费附加</view>
-					<input v-model="needVal.pppxmzxYue_sffd" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_sffd">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">优惠折扣</view>
-					<input v-model="needVal.pppxmzxYue_discount" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
-				</view>
-			</form>
-			<!-- 查看说明 --> 
-			<explain></explain>
-			<zytzxs-chuan :showModalName="showModalName" v-on:hideModal="hideModal"></zytzxs-chuan>
-			<sffd-chuan :showModalName="showModalName" v-on:hideModal="hideModal"></sffd-chuan>
+		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
+			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">广东省ppp咨询费</text>
+		</div>
+		<form>
+			<view class="cu-form-group" v-show="showSelector.pppxmzxYue1">
+				<view class="title">选择区域</view>
+				<view class="title m-left">{{multiSelector.pppxmzxYue1[pickerIndex.pppxmzxYue1]}}</view>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">工程造价</view>
+				<input name="pppxmzxYue_gczj" v-model="needVal.pppxmzxYue_gczj" /></input>
+				<uni-tag text="亿元" type="defult"></uni-tag>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">计算依据</view>
+				<picker class="select" @change="PickerChange"  data-name="pppxmzxYue_standard" :value="pickerIndex.pppxmzxYue_standard"
+				 :range="multiSelector.pppxmzxYue_standard">
+					<view class="picker">
+						{{multiSelector.pppxmzxYue_standard[pickerIndex.pppxmzxYue_standard]}}
+					</view>
+				</picker>
+				<button class="m-r" type="primary" size="mini" @tap="checkDeatil(132,multiSelector.pppxmzxYue_standard[pickerIndex.pppxmzxYue_standard])" >点击查看</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">项目类别</view>
+				<picker class="select" @change="PickerChange"  data-name="pppxmzxYue_category" :value="pickerIndex.pppxmzxYue_category"
+				 :range="multiSelector.pppxmzxYue_category">
+					<view class="picker">
+						{{multiSelector.pppxmzxYue_category[pickerIndex.pppxmzxYue_category]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">专业领域数量的调整系数</view>
+				<input v-model="needVal.pppxmzxYue_zytzxs" /></input>
+				<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_zytzxs">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">收费附加</view>
+				<input v-model="needVal.pppxmzxYue_sffd" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_sffd">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">优惠折扣</view>
+				<input v-model="needVal.pppxmzxYue_discount" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
+			</view>
+		</form>
+		<!-- 查看说明 --> 
+		<explain></explain>
+		<zytzxs-chuan :showModalName="showModalName" v-on:hideModal="hideModal"></zytzxs-chuan>
+		<sffd-chuan :showModalName="showModalName" v-on:hideModal="hideModal"></sffd-chuan>
 	</view>
 </template>
 

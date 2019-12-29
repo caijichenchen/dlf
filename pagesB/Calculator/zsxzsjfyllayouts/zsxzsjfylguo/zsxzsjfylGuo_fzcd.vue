@@ -1,15 +1,15 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">园林景观复杂程度表</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
 			<view class="padding-xl border border-blue m-1">
-				<view class="dlf-group" v-for="(item, index) in fzcdList" :key="index" @tap="assignment" :data-key="index" :data-val="item.name">
+				<view class="dlf-group" v-for="(item, index) in fzcdList" :key="index" @tap="assignment" data-index="index0" :data-key="index" :data-val="item.name">
 					<view class="ml-2 my-1 text-blue">{{ item.name }}</view>
-					<view class="dlf-li ml-2 font" v-for="(v, index) in item.data" :key="index">
+					<view class="dlf-li ml-2 font" v-for="(v, k) in item.data" :key="k">
 						<!-- <text style="word-break: break-all;">{{index+1}}:{{v.show}}</text> -->
 						{{ v.show }}
 					</view>

@@ -1,6 +1,5 @@
 <template>
-			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">市政工程设计收费专业调整系数</view>
@@ -9,14 +8,22 @@
 				</view>
 			</view>
 			<view class="padding-xl">
-				<uni-collapse animation="outer">
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
-						<view class="lt">
-							<view class="white-space text-left" >
-								<p  v-for="(v,k) in item.list" :key="k"
-								 @tap="assignment" :data-val="v.val" class="w-100 wupx font p-2 border-bottom border-blue lt mb-1">
-									<view class="dlfxs lt">{{v.content}}</view>
-									<text class="bg-blue p-1 rt bradius">{{v.val}}</text> </p>
+						<view class="dlf-group lt">
+							<view class="w-100 dlf-li font lt border-b"
+										v-for="(i, k) in item.list" 
+										:key="k" 
+										@tap="assignment" 
+										:data-val="i.val"
+										:data-key="k"
+										>
+								<view class="lt" style="width: 87%; white-space: pre-wrap;">
+									{{i.content}}
+								</view>
+								<span class="spbtn text-white px-1 bg-blue rt" >
+									{{i.val}}
+								</span>
 							</view>
 						</view>
 					</uni-collapse-item>

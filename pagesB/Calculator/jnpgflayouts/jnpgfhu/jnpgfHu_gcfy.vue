@@ -8,7 +8,7 @@
 					<text class="cuIcon-close text-red"></text>
 				</view>
 			</view>
-			<view class="lt" style="width: 87%; white-space: pre-wrap">
+			<view style=" white-space: pre-wrap">
 				主要包括建设安装工程费用和设备购置费等，不含土地费用
 			</view>
 		</view>

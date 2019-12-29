@@ -10,7 +10,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 						v-for="(item, index) in tzxsList" :key="index" @tap="assignment" :data-val="item.xs">
 							<view class="lt" style="width: 87%; white-space: pre-wrap;">
 								{{item.value}}

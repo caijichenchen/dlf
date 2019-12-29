@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="1727">
 		<template v-slot:jsq>
 			<!-- 设计费计算选项 -->
 			<jsjyfwf-counter-long></jsjyfwf-counter-long>
@@ -26,7 +26,7 @@
 			return {
 				countData:{
 					url:this.$serverUrl + '/api/jsjyfwfLong',  //api请求
-					count:2  //积分消耗
+					count:1  //积分消耗
 				},
 				title:'甘肃'
 			}

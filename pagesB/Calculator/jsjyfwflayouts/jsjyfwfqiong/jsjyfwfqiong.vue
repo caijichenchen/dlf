@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="1695">
 		<template v-slot:jsq>
 			<!-- 设计费计算选项 -->
 			<jsjyfwf-counter-qiong></jsjyfwf-counter-qiong>
@@ -17,16 +17,16 @@
 </template>
 
 <script>
-	import baseLayout from "@/pagesCommon/base/baseLayout.vue"
+	import baseLayout from "@/common/base/baseLayout.vue"
 	import jsjyfwfCounterQiong from "./jsjyfwf_counter_qiong.vue"
-	import computing from "@/pagesCommon/base/computing.vue"
+	import computing from "@/common/base/computing.vue"
 	import jsjyfwfResult from "../jsjyfwf_result.vue"
 	export default {
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jsjyfwfQiong',  //api请求
-					count:2  //积分消耗
+					count:1  //积分消耗
 				},
 				title:'海南'
 			}

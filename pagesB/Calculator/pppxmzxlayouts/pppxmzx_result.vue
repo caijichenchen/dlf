@@ -3,7 +3,7 @@
 			<view class="sjfjsjg">
 				<view class="sjftable">
 					<img src="/static/img/tel.jpg">
-					<text class="text-blue">四川省PPP项目咨询服务收费计算结果</text>
+					<text class="text-blue">{{title}}PPP项目咨询服务收费计算结果</text>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">{{config.menuText[0]}}</view>
@@ -36,7 +36,7 @@
 		props:{
 			title:{
 				type:String,
-				default:null
+				default:''
 			}
 		},
 		mixins: [resultMixin],

@@ -1,74 +1,73 @@
 <template>
 	<view>
-			<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
-			<div class="sjf_title w-100 mt-2" style="height: 60upx;">
-				<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-				<text class="text-blue lt pl-2 " style="margin-top: 5upx;">湖南省建设交易服务费</text>
-			</div>
-			<form>
-				<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang1">
-					<view class="title">省份</view>
-						<view class="title" >
-							{{multiSelector.jsjyfwfXiang1[pickerIndex.jsjyfwfXiang1]}}
-						</view>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_standard">
-					<view class="title">选择标准</view>
-						<view class="title" v-model="needVal.jsjyfwfXiang_standard">
-							{{multiSelector.jsjyfwfXiang_standard[pickerIndex.jsjyfwfXiang_standard]}}
-						</view>
-					<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfXiang_standard">点击查看</button>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_category">
-					<view class="title">分类</view>
-					<picker class="select" @change="PickerChange" data-name="jsjyfwfXiang_category" :value="pickerIndex.jsjyfwfXiang_category"
-					 :range="multiSelector.jsjyfwfXiang_category">
-						<view class="picker" >
-							{{multiSelector.jsjyfwfXiang_category[pickerIndex.jsjyfwfXiang_category]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_sfxm">
-					<view class="title">收费项目</view>
-					<picker class="select" @change="PickerChange" data-name="jsjyfwfXiang_sfxm" :value="pickerIndex.jsjyfwfXiang_sfxm"
-					 :range="multiSelector.jsjyfwfXiang_sfxm">
-						<view class="picker" >
-							{{multiSelector.jsjyfwfXiang_sfxm[pickerIndex.jsjyfwfXiang_sfxm]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_jtfl">
-					<view class="title">具体分类</view>
-					<picker class="select" @change="PickerChange" data-name="jsjyfwfXiang_jtfl" :value="pickerIndex.jsjyfwfXiang_jtfl"
-					 :range="multiSelector.jsjyfwfXiang_jtfl">
-						<view class="picker" >
-							{{multiSelector.jsjyfwfXiang_jtfl[pickerIndex.jsjyfwfXiang_jtfl]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">中标额</view>
-					<input type="text" v-model="needVal.jsjyfwfXiang_zbj"></input>
-					<uni-tag  text="万元" type="defult"></uni-tag>
-				</view>
-				<view class="cu-form-group" style="border-top: 1upx solid #eee;">
-					<view class="title">收取分配</view>
-					<input type="text" v-model="needVal.jsjyfwfXiang_qfbl"></input>
-					<uni-tag  text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfXiang_qfbl">点击选择</button>
-				</view>
-				<view class="cu-form-group" style="border-top: 1upx solid #eee;">
-					<view class="title">打折折扣</view>
-					<input type="text" v-model="needVal.jsjyfwfXiang_discount"></input>
-					<uni-tag  text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
-				</view>
-			</form>
-			<explain></explain>
-			<qfbl-xiang :showModalName="showModalName" v-on:hideModal="hideModal" :jsjyfwfXiang8="multiSelector.jsjyfwfXiang8"></qfbl-xiang>
+		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
+			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">湖南省建设交易服务费</text>
+		</div>
+		<form>
+			<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang1">
+				<view class="title">省份</view>
+					<view class="title" >
+						{{multiSelector.jsjyfwfXiang1[pickerIndex.jsjyfwfXiang1]}}
+					</view>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_standard">
+				<view class="title">选择标准</view>
+					<view class="title" v-model="needVal.jsjyfwfXiang_standard">
+						{{multiSelector.jsjyfwfXiang_standard[pickerIndex.jsjyfwfXiang_standard]}}
+					</view>
+				<button class="m-r" type="primary" size="mini" @tap="checkDeatil(1691,multiSelector.jsjyfwfXiang_standard[pickerIndex.jsjyfwfXiang_standard])">点击查看</button>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_category">
+				<view class="title">分类</view>
+				<picker class="select" @change="PickerChange" data-name="jsjyfwfXiang_category" :value="pickerIndex.jsjyfwfXiang_category"
+				 :range="multiSelector.jsjyfwfXiang_category">
+					<view class="picker" >
+						{{multiSelector.jsjyfwfXiang_category[pickerIndex.jsjyfwfXiang_category]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_sfxm">
+				<view class="title">收费项目</view>
+				<picker class="select" @change="PickerChange" data-name="jsjyfwfXiang_sfxm" :value="pickerIndex.jsjyfwfXiang_sfxm"
+				 :range="multiSelector.jsjyfwfXiang_sfxm">
+					<view class="picker" >
+						{{multiSelector.jsjyfwfXiang_sfxm[pickerIndex.jsjyfwfXiang_sfxm]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.jsjyfwfXiang_jtfl">
+				<view class="title">具体分类</view>
+				<picker class="select" @change="PickerChange" data-name="jsjyfwfXiang_jtfl" :value="pickerIndex.jsjyfwfXiang_jtfl"
+				 :range="multiSelector.jsjyfwfXiang_jtfl">
+					<view class="picker" >
+						{{multiSelector.jsjyfwfXiang_jtfl[pickerIndex.jsjyfwfXiang_jtfl]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">中标额</view>
+				<input type="text" v-model="needVal.jsjyfwfXiang_zbj"></input>
+				<uni-tag  text="万元" type="defult"></uni-tag>
+			</view>
+			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+				<view class="title">收取分配</view>
+				<input type="text" v-model="needVal.jsjyfwfXiang_qfbl"></input>
+				<uni-tag  text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfXiang_qfbl">点击选择</button>
+			</view>
+			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+				<view class="title">打折折扣</view>
+				<input type="text" v-model="needVal.jsjyfwfXiang_discount"></input>
+				<uni-tag  text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
+			</view>
+		</form>
+		<explain></explain>
+		<qfbl-xiang :showModalName="showModalName" v-on:hideModal="hideModal" :jsjyfwfXiang8="multiSelector.jsjyfwfXiang8"></qfbl-xiang>
 	</view>
 </template>
 	

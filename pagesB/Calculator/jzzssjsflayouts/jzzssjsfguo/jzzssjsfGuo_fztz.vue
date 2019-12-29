@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">建筑装饰设计相关工程的附加系数表</view>
@@ -10,7 +10,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 									v-for="(item, index) in tzxsList" 
 									:key="index" 
 									@tap="assignment" 
@@ -24,10 +24,12 @@
 							</span>
 						</view>
 					</view>
-					<!-- <view class="lt font p-1 text-left" style="white-space: pre-wrap;">
+					<view class="lt font p-1 text-left" style="white-space: pre-wrap;">
 						<view>注:</view>
-							<view>附加调整系数为两个或两个以上的, 附加调整系数相加。</view>
-					</view> -->
+						<view>1.古建筑、仿古建筑、保护性建筑等,根据具体情况,附加调整系数为1.3~1.6</view>
+						<view>2.智能建筑弱电系统设计,以弱电系统设计概算为计费额,附加调整系数为1.3</view>
+						<view>3.特殊声学装修设计,以声学装修的设计概算为计费额,附加调整系数为2.0</view>
+					</view>
 				</view>
 				
 			</view>
@@ -52,7 +54,7 @@
 		},
 		data() {
 			return {
-				modalName:'jzzssjsfGuo_fztz',
+				modalName:'jzzssjsfGuo_fjtz',
 				tzxsList:[
 					{content:"建筑装饰设计",val:"1.5"},
 					{content:"机电设备专业二次深化设计",val:"1.25"},

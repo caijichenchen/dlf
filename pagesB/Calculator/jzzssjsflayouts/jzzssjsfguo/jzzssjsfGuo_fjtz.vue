@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">岩土工程勘探地层复杂程度表</view>
@@ -10,11 +10,13 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 									v-for="(item, index) in tzxsList" 
 									:key="index" 
 									@tap="assignment" 
 									:data-val="item.val"
+									:data-key="index"
+									data-index="index"
 									>
 							<view class="lt" style="width: 87%; white-space: pre-wrap;">
 								{{item.content}}
@@ -55,7 +57,7 @@
 		},
 		data() {
 			return {
-				modalName:'jzzssjsfGuo_fjtz',
+				modalName:'jzzssjsfGuo_fztz',
 				tzxsList:[
 					{content:"1.功能单一、技术要求简单的小型公共建筑的建筑装饰工程,如:相当于二星级酒店及以下标准的佳宅。办公楼,商,图书馆,餐厅等 2.简单的设备用房及其他配套用房工程3.简单的建筑室外装饰工程",val:"I级"},
 					{content:"1.大中型公共建筑的建筑装饰工程,如:相当于三星级酒店标准的高档住宅、酒店、办公楼、影剧院、游乐场、商场、图书馆、咖啡厅等2.技术要求较复杂或有地区性意义的小型公共建筑工程3.仿古建筑、一般标准的古建筑、保护性建筑以及地下建筑工程4.一般标准的建筑室外装饰工程",val:"II级"},

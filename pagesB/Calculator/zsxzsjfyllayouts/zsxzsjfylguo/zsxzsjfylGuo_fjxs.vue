@@ -1,16 +1,16 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName == modalName ? 'show' : ''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">园林和景观设计附加系数信息表</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
 			<view class="padding-xl border border-blue m-1">
-				<view  class="dlf-group lt">
-					<view class="w-100 dlf-li font lt" 
-					v-for="(item, index) in fjcdList" :key="index" @tap="assignment" :data-val="item.xs">
-						<view class="lt" style="width: 88%; white-space: pre-wrap;">
+				<view class="dlf-group lt">
+					<view class="w-100 dlf-li font lt border-b" 
+					v-for="(item, index) in fjxsList" :key="index" @tap="assignment" :data-val="item.xs">
+						<view class="lt" style="width: 87%; white-space: pre-wrap;">
 							{{item.value}}
 						</view>
 						<span class="spbtn text-white px-1 bg-blue rt" >
@@ -43,7 +43,7 @@ export default {
 		return {
 			modalName: 'zsxzsjfylGuo_fjxs',
 			fjxs: '',
-			fjcdList: [
+			fjxsList: [
 				{value:" 景观建筑、仿古建筑（系数范围：0.3 - 0.6） ",xs:"0.45"},
 				{value:" 改扩建和综合整治项目（系数范围：0.3 - 0.6） ",xs:"0.45"},
 				{value:" 总体设计 ",xs:"0.1"},

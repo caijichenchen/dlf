@@ -1,5 +1,5 @@
 <template>
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">会员协议</view>

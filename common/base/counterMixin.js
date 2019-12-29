@@ -26,14 +26,12 @@ export const counterMixin = {
     	},
     	changeVal(name, e) {
 			let val = e.currentTarget.dataset.val;
+			let cIndex = e.currentTarget.dataset.index
 			if(isNaN(val)){
-				val = e.currentTarget.dataset.key
-				// this.index = val
-				// this.needVal[name] = this.picker2[val];
-				// console.log(name)
-				// console.log(val)
-				// this.afterPicker(val)
-				this.needVal[name] = e.currentTarget.dataset.val;
+				if(cIndex){
+					this[cIndex] = e.currentTarget.dataset.key
+				}
+				this.needVal[name] = e.currentTarget.dataset.val
 				if(name === 'wrdjzfGuo_ydlx'){
 					this.needVal[name] = this.wrdjzfGuo_ydlx[val]
 					this.index3 = val

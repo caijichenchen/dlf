@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">浙江省节能评估费</text>
@@ -8,12 +7,12 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.jnpgfZhe_xzsf">
 				<view class="title">选择省份</view>
-				<view class="title" v-model="needVal.jnpgfZhe_xzsf">{{multiSelector.jnpgfZhe_xzsf[pickerIndex.jnpgfZhe_xzsf]}}</view>
+				<view class="title m-left" v-model="needVal.jnpgfZhe_xzsf">{{multiSelector.jnpgfZhe_xzsf[pickerIndex.jnpgfZhe_xzsf]}}</view>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jnpgfZhe_xzbz">
 				<view class="title">选择标准</view>
 				<view class="title" v-model="needVal.jnpgfZhe_xzbz">{{multiSelector.jnpgfZhe_xzbz[pickerIndex.jnpgfZhe_xzbz]}}</view>
-				<button type="primary" size="mini" @tap="showModel" data-target="jnpgfZhe_xzbz">点击查看</button>
+				<button class="m-r" type="primary" size="mini" @tap="checkDeatil(1045,multiSelector.jnpgfZhe_xzbz[pickerIndex.jnpgfZhe_xzbz])">点击查看</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jnpgfZhe_category">
 				<view class="title">选择项目</view>

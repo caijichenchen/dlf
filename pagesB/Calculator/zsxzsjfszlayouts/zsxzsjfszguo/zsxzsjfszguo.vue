@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="1894">
 		<template v-slot:jsq>
 			<!-- 设计费计算选项 -->
 			<zsxzsjfsz-counter-guo></zsxzsjfsz-counter-guo>

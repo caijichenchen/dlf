@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">建设交易服务费收取比例</view>
@@ -9,16 +9,15 @@
 				</view>
 			</view>
 			<view class="padding-xl border border-blue m-1">
-					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
-						v-for="(item, index) in tzxsList" :key="index" @tap="assignment" :data-val="item.xs">
-							<view class="lt" style="width: 87%; white-space: pre-wrap;">
-								{{item.value}}
-							</view>
-							<span class="spbtn text-white px-1 bg-blue rt" >
-								{{item.xs}}
-							</span>
+				<view class="dlf-group lt">
+					<view class="w-100 dlf-li font lt border-b" 
+					v-for="(item, index) in tzxsList" :key="index" @tap="assignment" :data-val="item.xs">
+						<view class="lt" style="width: 87%; white-space: pre-wrap;">
+							{{item.value}}
 						</view>
+						<span class="spbtn text-white px-1 bg-blue rt" >
+							{{item.xs}}
+						</span>
 					</view>
 				</view>
 			</view>

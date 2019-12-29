@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">全国建筑装饰设计收费计算器</text>
@@ -16,7 +15,7 @@
 				 :range="multiSelector.jzzssjsfGuo_standard">
 					<view class="picker" >{{multiSelector.jzzssjsfGuo_standard[pickerIndex.jzzssjsfGuo_standard]}}</view>
 				</picker>
-				<button type="primary" size="mini" @tap="showModal" data-target="jzzssjsfGuo_standard">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="checkDeatil(1781,multiSelector.jzzssjsfGuo_standard[pickerIndex.jzzssjsfGuo_standard])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jzzssjsfGuo_category">
 				<view class="title">建筑项目收费类别</view>

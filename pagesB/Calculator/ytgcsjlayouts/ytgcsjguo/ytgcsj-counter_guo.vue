@@ -6,15 +6,15 @@
 		</div>
 		<form>
 			<view class="cu-form-group" >
-				<view class="title">实物工作量</view>
+				<view class="title">岩土工程概算额</view>
 				<input v-model="needVal.ytgcsjGuo_gse"/></input>
 				<uni-tag text="万元" type="defult" ></uni-tag>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="index" :range="fzcd">
+				<picker class="select" @change="PickerChanges" :value="index" :range="ytgcsjGuo_fzcd">
 					<view class="picker">
-						{{fzcd[index]}}
+						{{ytgcsjGuo_fzcd[index]}}
 					</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showModal" data-target="ytgcsjGuo_fzcd">查看说明</button>
@@ -23,13 +23,13 @@
 				<view class="title">浮动幅度</view>
 				<input v-model="needVal.ytgcsjGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
 				<input v-model="needVal.ytgcsjGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[5])">查看说明</button>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 		</form>
 		<explain></explain>
@@ -61,7 +61,7 @@
 					ytgcsjGuo_nums: '',
 					type: 'ytgcsjGuo'
 				},
-				fzcd:['I级','II级','III级'],
+				ytgcsjGuo_fzcd:['I级','II级','III级'],
 				sfjj:['0.64|2.8|5.4|23|43|78','0.75|3.3|6.3|27|50|92','0.86|3.8|7.2|31|58|106'],
 				index: 0,
 				showModalName: null,
@@ -87,9 +87,8 @@
 		},
 		methods:{
 			PickerChanges(e) {
-				console.log(e)
 				this.index = e.detail.value
-				this.needVal.ytgcsjGuo_fzcd = this.fzcd[this.index]
+				this.needVal.ytgcsjGuo_fzcd = this.ytgcsjGuo_fzcd[this.index]
 				this.needVal.ytgcsjGuo_sfjj = this.sfjj[this.index]
 			},
 			showdzzk(e) {

@@ -7,31 +7,29 @@
 		<form>
 			<view class="cu-form-group">
 				<view class="title">选择标准</view>
-				<picker class="select" v-model="needVal.sjfGui_standard" :range="picker1">
-					<view class="picker" name="sjfGui_standard">
+					<view class="picker m-left" v-model="needVal.sjfGui_standard">
 						桂建标[2018]37号
 					</view>
-				</picker>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">工程造价</view>
-				<input type="text" name="sjfGuo_gczj" id="sjf" v-model="needVal.sjfGuo_gczj"></input>
+				<input type="text" v-model="needVal.sjfGui_gczj"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
+				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">专业调整</view>
-				<input name="sjfGuo_zytz" v-model="needVal.sjfGui_zytz"></input>
+				<input v-model="needVal.sjfGui_zytz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="sjfGui_zytz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂程度</view>
-				<picker class="select" @change="PickerChange" v-model="needVal.sjfGui_fztz" :range="picker2">
-					<view class="picker" name="sjfGui_fztz">
-						{{index>-1?picker2[index]:'简单工程'}}
+				<picker class="select" @change="PickerChanges" :value="index0" :range="sjfGui_fzcd">
+					<view class="picker">
+						{{sjfGui_fzcd[index0]}}
 					</view>
 				</picker>
-				<button type="primary" size="mini" @tap="showModal" data-target="sjfGui_fztz">点击选择</button>
+				<button type="primary" size="mini" @tap="showModal" data-target="sjfGui_fzcd">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
@@ -72,18 +70,14 @@
 					sjfGui_discount: "100",
 					sjfGui_fjtz: "0",
 					sjfGui_fzcd: "简单",
-					sjfGui_gczj: "100",
+					sjfGui_gczj: "",
 					sjfGui_standard: "桂建标[2018]37号",
 					sjfGui_zytz: "1.0",
 					type: "sjfGui"
 				},
 				showModalName: null,
-				radio: 'radio1',
-				selected: 'A',
-				shows: 1,
-				picker1:['桂建标[2018]37号'],
-				picker2: ['简单', '一般', '复杂','特别复杂'],
-				index:'0',
+				sjfGui_fzcd: ['简单', '一般', '复杂','特别复杂'],
+				index0:'0',
 				explain: [
 					{
 						title:'广西工程设计收费计费额',
@@ -105,14 +99,9 @@
 			uniTag
 		},
 		methods:{
-			PickerChange(e) {
-				this.index = e.detail.value
-				this.afterPicker(this.index)
-			},
-			afterPicker(index){
-				this.index = index
-				this.needVal.sjfGui_fzcd = this.picker2[index]
-				console.log(this.needVal.sjfGui_fzcd );
+			PickerChanges(e) {
+				this.index0 = e.detail.value
+				this.needVal.sjfGui_fzcd = this.sjfGui_fzcd[this.index0]
 			},
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target)

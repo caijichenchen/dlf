@@ -2,35 +2,33 @@
 	<view>
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">中设协字[2016]89号设计费</text>
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">园林景观设计费</text>
 		</div>
 		<form>
 			<view class="cu-form-group">
 				<view class="title">计算依据</view>
-				<picker class="select"  v-model="needVal.zsxzsjfylGuo_standard" :range="picker1" >
-					<view class="picker" >
+					<view class="picker m-left" >
 						中设协字[2018]119号
 					</view>
-				</picker>
 				<!-- <button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfylGuo_standard">点击查看</button> -->
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">项目建安费额</view>
-				<input type="text" id="sjf" v-model="needVal.zsxzsjfylGuo_gczj"></input>
+				<input type="text" v-model="needVal.zsxzsjfylGuo_gczj"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">工作比例表</view>
-				<input type="text" id="sjf" v-model="needVal.zsxzsjfylGuo_blb"></input>
+				<input type="text" v-model="needVal.zsxzsjfylGuo_blb"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfylGuo_blb">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程复杂程度</view>
-				<picker class="select" @change="PickerChange" v-model="needVal.zsxzsjfylGuo_fzcd" :range="picker2">
+				<picker class="select" @change="PickerChanges" :value="index0" :range="zsxzsjfylGuo_fzcd">
 					<view class="picker" >
-						<view class="uni-input">{{picker2[index]}}</view>
+						<view class="uni-input">{{zsxzsjfylGuo_fzcd[index0]}}</view>
 					</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfylGuo_fzcd">点击查看</button>
@@ -75,14 +73,9 @@
 					zsxzsjfylGuo_yhzk: "100"
 				},
 				showModalName: null,
-				// modalData: null,
-				radio: 'radio1',
-				selected: 'A',
-				shows: 1,
-				picker1: ['中设协字[2018]119号'],
-				picker2: ['I级','II级','III级','IV级'],
-				index:'0',
-				index1:'0',
+				modalData: null,
+				zsxzsjfylGuo_fzcd: ['I级','II级','III级','IV级'],
+				index0:'0',
 				explain: [{
 						"id": "1",
 						"title": "项目建安费额",
@@ -91,7 +84,7 @@
 					{
 						"id": "2",
 						"title": "打折折扣",
-						"text": "目前市场行情采用较多折扣为50%，各地区取值略有不同"
+						"text": "目前市场行情不同，各地区取值略有不同"
 					}
 				]
 			}
@@ -104,13 +97,9 @@
 			explain
 		},
 		methods:{
-			PickerChange(e) {
-				this.index = e.detail.value
-				this.afterPicker(this.index)
-			},
-			afterPicker(index){
-				this.index = index
-				this.needVal.zsxzsjfylGuo_fzcd = this.picker2[index]
+			PickerChanges(e) {
+				this.index0 = e.detail.value
+				this.needVal.zsxzsjfylGuo_fzcd = this.zsxzsjfylGuo_fzcd[this.index0]
 			},
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target)

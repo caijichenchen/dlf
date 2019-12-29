@@ -1,55 +1,54 @@
 <template>
 	<view>
-			<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
-			<div class="sjf_title w-100 mt-2" style="height: 60upx;">
-				<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-				<text class="text-blue lt pl-2 " style="margin-top: 5upx;">湖南省项目代建费计算器</text>
-			</div>
-			<form>
-				<view class="cu-form-group">
-					<view class="title">选择区域</view>
-					<picker class="select" v-model="needVal.xmdjfXiang_xzsf" :range="picker">
-						<view class="picker" name="xmdjfXiang_xzsf">
-							湖南省
-						</view>
-					</picker>
-				</view>
-				<view class="cu-form-group" style="border-top: 1upx solid #eee;">
-					<view class="title">计费额</view>
-					<input type="text"  id="sjf" v-model="needVal.xmdjfXiang_jfe"></input>
-					<uni-tag text="万元" type="defult"></uni-tag>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">计算依据</view>
-					<picker class="select" v-model="needVal.xmdjfXiang_standard" :range="picker1">
-						<view class="picker" name="xmdjfXiang_standard">
-							湘发改价服[2015]744号
-						</view>
-					</picker>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">专业调整</view>
-					<input name="xmdjfXiang_zytz" v-model="needVal.xmdjfXiang_zytz" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="xmdjfXiang_zytz">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">阶段调整系数</view>
-					<input name="xmdjfXiang_jdtzxs" v-model="needVal.xmdjfXiang_jdtzxs" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="xmdjfXiang_jdtzxs">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">优惠折扣</view>
-					<input name="xmdjfXiang_discount" v-model="needVal.xmdjfXiang_discount" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[0]">查看说明</button>
-				</view>
-			</form>
-			<!-- 查看说明 --> 
-			<explain></explain>
-			<xmdjf-xiang-zytz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></xmdjf-xiang-zytz>
-			<xmdjf-xiang-jdtzxs v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></xmdjf-xiang-jdtzxs>
+		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
+			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">湖南省项目代建费计算器</text>
+		</div>
+		<form>
+			<view class="cu-form-group">
+				<view class="title">选择区域</view>
+				<picker class="select" v-model="needVal.xmdjfXiang_xzsf" :range="picker">
+					<view class="picker" name="xmdjfXiang_xzsf">
+						湖南省
+					</view>
+				</picker>
+			</view>
+			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+				<view class="title">计费额</view>
+				<input type="text"  id="sjf" v-model="needVal.xmdjfXiang_jfe"></input>
+				<uni-tag text="万元" type="defult"></uni-tag>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">计算依据</view>
+				<picker class="select" v-model="needVal.xmdjfXiang_standard" :range="picker1">
+					<view class="picker" name="xmdjfXiang_standard">
+						湘发改价服[2015]744号
+					</view>
+				</picker>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">专业调整</view>
+				<input name="xmdjfXiang_zytz" v-model="needVal.xmdjfXiang_zytz" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showModal" data-target="xmdjfXiang_zytz">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">阶段调整系数</view>
+				<input name="xmdjfXiang_jdtzxs" v-model="needVal.xmdjfXiang_jdtzxs" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showModal" data-target="xmdjfXiang_jdtzxs">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">优惠折扣</view>
+				<input name="xmdjfXiang_discount" v-model="needVal.xmdjfXiang_discount" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+			</view>
+		</form>
+		<!-- 查看说明 --> 
+		<explain></explain>
+		<xmdjf-xiang-zytz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></xmdjf-xiang-zytz>
+		<xmdjf-xiang-jdtzxs v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></xmdjf-xiang-jdtzxs>
 	</view>
 </template>
 
@@ -101,7 +100,7 @@
 			},
 			//查看说明
 			showdzzk(e) {
-				this.modalData = e.currentTarget.dataset.target
+				this.modalData = JSON.parse(e.currentTarget.dataset.target)
 				this.$bus.emit('modalData', this.modalData )
 			},
 		}

@@ -36,7 +36,7 @@
 		props:{
 			title:{
 				type:String,
-				default:null
+				default:''
 			}
 		},
 		mixins: [resultMixin],

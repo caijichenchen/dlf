@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">海南省建设交易服务费</text>
@@ -8,53 +7,53 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.jsjyfwfQiong_province">
 				<view class="title">选择省份</view>
-				<picker class="select" @change="PickerChange" data-index='index0' data-name="jsjyfwfQiong_province" :value="pickerIndex.index0"
+				<picker class="select" @change="PickerChange" data-name="jsjyfwfQiong_province" :value="pickerIndex.jsjyfwfQiong_province"
 				 :range="multiSelector.jsjyfwfQiong_province">
 					<view class="picker">
-						{{pickerIndex.index0 >-1?multiSelector.jsjyfwfQiong_province[pickerIndex.index0]:'海南省'}}
+						{{multiSelector.jsjyfwfQiong_province[pickerIndex.jsjyfwfQiong_province]}}
 					</view>
 				</picker>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jsjyfwfQiong_standard">
 				<view class="title">选择标准</view>
-				<picker class="select" @change="PickerChange" data-index='index1' data-name="jsjyfwfQiong_standard" :value="pickerIndex.index1"
+				<picker class="select" @change="PickerChange" data-name="jsjyfwfQiong_standard" :value="pickerIndex.jsjyfwfQiong_standard"
 				 :range="multiSelector.jsjyfwfQiong_standard">
 					<view class="picker">
-						{{pickerIndex.index1>-1?multiSelector.jsjyfwfQiong_standard[pickerIndex.index1]:'琼价费管〔2012〕41号'}}
+						{{multiSelector.jsjyfwfQiong_standard[pickerIndex.jsjyfwfQiong_standard]}}
 					</view>
 				</picker>
-			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
-				<view class="title">中标价</view>
-				<input type="text" id="sjf" v-model="needVal.jsjyfwfQiong_zbj"></input>
-				<uni-tag text="㎡" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[0]">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="checkDeatil(1695,multiSelector.jsjyfwfQiong_standard[pickerIndex.jsjyfwfQiong_standard])">点击查看</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jsjyfwfQiong_category">
-				<input type="hidden" v-show='false' v-model="needVal.jsjyfwfQiong_graded">
-				<view class="title">计算类别</view>
-				<picker class="select" @change="PickerChange" data-index='index2' data-name="jsjyfwfQiong_category" :value="pickerIndex.index2"
+				<view class="title">收费项目</view>
+				<picker class="select" @change="PickerChange" data-name="jsjyfwfQiong_category" :value="pickerIndex.jsjyfwfQiong_category"
 				 :range="multiSelector.jsjyfwfQiong_category">
 					<view class="picker">
-						{{multiSelector.jsjyfwfQiong_category[pickerIndex.index2]}}
+						{{multiSelector.jsjyfwfQiong_category[pickerIndex.jsjyfwfQiong_category]}}
 					</view>
 				</picker>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[1]">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+			</view>
+			<view class="cu-form-group" >
+				<view class="title">中标价</view>
+				<input type="text" id="sjf" v-model="needVal.jsjyfwfQiong_zbj"></input>
+				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">收取分配</view>
 				<input v-model="needVal.jsjyfwfQiong_qfbl" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[2]">查看说明</button>
+				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfQiong_qfbl">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
 				<input v-model="needVal.jsjyfwfQiong_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[2]">查看说明</button>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 		</form>
 		<explain></explain>
+		<qfbl :showModalName="showModalName" v-on:hideModal="hideModal" ></qfbl>
 	</view>
 </template>
 
@@ -66,6 +65,7 @@
 	import {counterMixin} from "@/common/base/counterMixin"
 	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import explain from '@/common/base/explain.vue'
+	import qfbl from './jsjyfwfQiong_qfbl.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -83,14 +83,14 @@
 				multiSelector: {
 					jsjyfwfQiong_province: [],
 					jsjyfwfQiong_standard: [],
+					jsjyfwfQiong_graded: '',
 					jsjyfwfQiong_category: [],
 					jsjyfwfQiong_fl: '',
-
 				},
 				pickerIndex: {
-					index0: 0,
-					index1: 0,
-					index2: 0,
+					jsjyfwfQiong_province: 0,
+					jsjyfwfQiong_standard: 0,
+					jsjyfwfQiong_category: 0,
 				},
 				showSelector: {
 					jsjyfwfQiong_standard: true,
@@ -100,15 +100,12 @@
 				},
 				datajson:datajson,
 				modalData: null,
-				explain: [{
-						"id": "1",
-						"title": "建设面积",
-						"text": "请选择对应的项目"
-					},
+				showModalName: null,
+				explain: [
 					{
 						"id": "2",
-						"title": "计算区域",
-						"text": "不同市县可能标准不一样"
+						"title": "收费项目",
+						"text": "选择交易服务收费类别"
 					},
 					{
 						"id": "3",
@@ -118,9 +115,10 @@
 				]
 			}
 		},
-		components: {
+		components:{
 			uniTag,
-			explain
+			explain,
+			qfbl
 		},
 		methods:{
 			// PickerChange(e) {
@@ -134,7 +132,7 @@
 			// 	}
 			// },
 			showdzzk(e) {
-				this.modalData = e.currentTarget.dataset.target
+				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
 				this.$bus.emit('modalData', this.modalData )
 			},
 		}

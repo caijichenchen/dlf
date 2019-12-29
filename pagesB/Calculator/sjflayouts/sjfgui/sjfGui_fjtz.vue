@@ -1,6 +1,6 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName == modalName ? 'show' : ''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">设计收费专业调整系数</view>
@@ -8,7 +8,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 				<view class="dlf-group lt">
-					<view class="w-100 dlf-li font lt" 
+					<view class="w-100 dlf-li font lt border-b" 
 					v-for="(item, index) in fjcdList" :key="index" @tap="assignment" :data-val="item.xs">
 						<view class="lt" style="width: 87%; white-space: pre-wrap;">
 							{{item.value}}
@@ -60,22 +60,4 @@ export default {
 
 <style>
 
-.dlf-group {
-	width: 100%;
-	font-size: 30upx;
-	text-align: left;
-	border-left: 1upx solid #00a0e0;
-	border-right: 1upx solid #00a0e0;
-	border-top: 1upx solid #00a0e0;
-}
-.dlf-group .dlf-li {
-	line-height: 45upx;
-	padding: 10upx; 
-	white-space: pre-line;
-	border-bottom: 1upx solid #00a0ea;
-}
-.spbtn{
-	display: inline-block;
-	border-radius: 15upx;
-}
 </style>

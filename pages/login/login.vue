@@ -1,8 +1,6 @@
 <template>
 	<view>
-		<cu-custom>
-		    <block slot="content"></block>
-		</cu-custom>
+		<view :style="'margin-top:'+CustomBar+ 'px'"></view>
 		<view class="text-center">
 			<view class="dlf-title">独立费</view>
 			<view class="dlf-content">轻松计算 无价时间</view>

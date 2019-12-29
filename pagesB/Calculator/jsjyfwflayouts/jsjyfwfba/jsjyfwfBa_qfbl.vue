@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">建设交易服务费收取比例</view>
@@ -20,7 +20,6 @@
 							</span>
 						</view>
 					</view>
-				</view>
 			</view>
 		</view>
 	</view>

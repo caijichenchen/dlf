@@ -1,6 +1,6 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">市政工程设计其他服务成本附加系数</view>
