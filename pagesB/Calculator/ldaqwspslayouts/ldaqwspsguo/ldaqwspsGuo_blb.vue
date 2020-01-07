@@ -1,5 +1,5 @@
 <template>
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">劳动安全卫生评审费比例系数</view>
@@ -7,12 +7,12 @@
 			</view>
 			<view class="padding-xl m-1">
 				<view  class="dlf-group" style="height: 324upx;">
-					<view class="w-100 dlf-li font lt"
+					<view class="w-100 dlf-li font lt border-b"
 						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-val="item.xs"> 
-						<view style="width: 595upx;white-space: pre-wrap;float: left;">
+						<view style="width:87%;white-space: pre-wrap;float: left;">
 							{{item.value}}
 						</view>
-						<span class="text-blue lt">
+						<span class="spbtn text-white px-1 bg-blue rt">
 							{{item.xs}}
 						</span>
 					</view>

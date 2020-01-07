@@ -10,7 +10,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 									v-for="(item, index) in tzxsList" 
 									:key="index" 
 									@tap="assignment" 
@@ -53,7 +53,7 @@
 			}, // 弹框可见标志
 			title: {
 				type: String,
-				default: null
+				default: ''
 			},
 			modalName: {
 				type: String,

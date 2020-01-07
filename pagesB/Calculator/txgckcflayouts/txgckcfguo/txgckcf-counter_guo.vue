@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">通信工程勘察费</text>
@@ -54,8 +53,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChanges" v-model="needVal.txgckcfGuo_qwfjtz" :value="index3"
-				 :range="txgckcfGuo_qwfjtz">
+				<picker class="select" @change="PickerChanges" :value="index3" :range="txgckcfGuo_qwfjtz">
 					<view class="picker">
 						{{txgckcfGuo_qwfjtz[index3]}}
 					</view>

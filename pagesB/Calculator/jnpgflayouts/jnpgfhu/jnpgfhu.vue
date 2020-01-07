@@ -25,7 +25,7 @@
 		data() {
 			return {
 				countData:{
-					url: this.$serverUrl + '/api/jnpgfZhe',  //api请求
+					url: this.$serverUrl + '/api/jnpgfHu',  //api请求
 					count:2  //积分消耗
 				}
 			}

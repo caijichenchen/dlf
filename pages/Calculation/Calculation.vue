@@ -95,52 +95,12 @@
 				});
 			},
 			getCal(e){
-				let url = '/api/xcx/getCalculatorByProvince'
 				if(this.clickPro == e.currentTarget.dataset.name){
 					this.clickPro = ''
-					// if(this.clickFilter){
-					// 	let data = {
-					// 		state: 1,
-					// 		calculator_type: this.clickFilter
-					// 	}
-					// }
-					// $req.request({
-					// 	url:url,
-					// 	data:data
-					// }).then(res=>{
-					// 	let result = res.data.message
-					// 	this.proCalList = result.filter(item=>{
-					// 		return item.name
-					// 	})
-					// }).catch(err=>{
-					// 	console.log(err)
-					// })
-					return
+				}else{
+					this.clickPro = e.currentTarget.dataset.name
 				}
-				this.clickPro = e.currentTarget.dataset.name
-				let data = {
-					state: 1,
-					province:this.clickPro 
-				}
-				if(this.clickFilter){
-					data = {
-						state: 1,
-						province:this.clickPro,
-						calculator_type: this.clickFilter
-					}
-				}
-				
-				$req.request({
-					url:url,
-					data:data
-				}).then(res=>{
-					this.proCalList={}
-					// let result = res.data.message
-					this.proCalList = res.data.message
-					console.log(res)
-				}).catch(err=>{
-					console.log(err)
-				})
+				this.getCalculate(this.clickPro,this.clickFilter)
 			},
 			getFilterAll(){
 				$req.request({
@@ -154,40 +114,51 @@
 			getFilter(e) {
 				if(this.clickFilter == e.currentTarget.dataset.filter){
 					this.clickFilter = ''
-					return
+					
+				}else{
+					this.clickFilter = e.currentTarget.dataset.filter
 				}
-				this.clickFilter = e.currentTarget.dataset.filter
-				let url = '/api/xcx/getCalculatorByProvince'
-				let data = {
-					state:1,
-					calculator_type:this.clickFilter
-				}
-				if(this.clickPro){
+				this.getCalculate(this.clickPro,this.clickFilter)
+			},
+			getCalculate(pro,category){
+				const url = '/api/xcx/getCalculatorByProvince'
+				let data = {}
+				if(pro && !category){ // 只有省份时
 					data = {
 						state: 1,
-						province:this.clickPro,
-						calculator_type: this.clickFilter
+						province:pro
+					}
+				}else if(!pro && category){ //只有分类
+					data = {
+						state: 1,
+						calculator_type: category
+					}
+				}else { //省份分类
+					data = {
+						state: 1,
+						province:pro,
+						calculator_type: category
 					}
 				}
-				// this.proCalList={}
+				this.proCalList = {}
 				$req.request({
-					url: url,
+					url:url,
 					data:data
 				}).then(res=>{
-					let result = res.data.message
 					this.proCalList = {}
-					for(let key in result){
-						// this.proCalList[key] = result[key]
-						this.$set(this.proCalList,key,result[key])
+					const data = res.data.message
+					for(let key in data){
+						this.$set(this.proCalList,key,data[key])
 					}
 					// this.proCalList = res.data.message
-					console.log(this.proCalList)
 				}).catch(err=>{
-					console.log(err)
+					uni.showToast({
+						icon:'none',
+						title:'获取数据失败，请稍后重试'
+					})
 				})
 			},
 			navigateto(e) {
-				console.log(e.currentTarget.dataset.name)
 				const url = e.currentTarget.dataset.url
 				const type = e.currentTarget.dataset.type
 				let urlArr = url.split('/')
@@ -206,7 +177,7 @@
 					return arr
 				}
 				return removepro(this.provinceLists,'海南')
-			}
+			},
 		}
 	}
 </script>

@@ -1,14 +1,14 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">施工监理服务收费服务质量系数</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
-			<view class="padding-xl border border-blue m-1">
+			<view class="border border-blue m-1">
 				<view class="dlf-group lt">
-					<view class="w-100 dlf-li font lt" 
+					<view class="w-100 dlf-li font lt p-2" 
 					v-for="(item, index) in fjcdList" :key="index" @tap="assignment" :data-val="item.xs">
 						<view class="lt" style="width: 87%; white-space: pre-wrap;">
 							{{item.value}}

@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">勘察费-勘察复杂程度表</view>
@@ -9,21 +9,21 @@
 				</view>
 			</view>
 			<view class="title-box">
-				<view class="title"
+				<view class="title font"
 						v-for="(item,index) in dataList"
 						:key="index"
 						:class="isactive === index ? 'active' : ''"
 						@click="addClass(index)"
 				>
-					<view style="font-size: 0.5rem; color: #666;">{{item.title}}</view>
+					<view >{{item.title}}</view>
 				</view>
 			</view>
 			<view class="lt" v-if="show">
-				<uni-collapse animation="outer">
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(m,k) in dataList[isactive].itemList" :key="k" :title="m.itemtitle">
 						<view class="dlf-group lt">
 							<radio-group style="width:100%">
-									<label class="w-100 dlf-li font lt" style="width:100%;display: flex;"
+									<label class="w-100 dlf-li font lt border-b" style="width:100%;display: flex;"
 											v-for="(i, j) in m.list" 
 											:key="j" 
 											:data-val="i.val"
@@ -31,24 +31,24 @@
 											@click="radioChange" 
 										>
 											<view>
-													<radio :value="i.val" :checked="j == 0" style="transform:scale(0.5)" />
+												<radio :value="i.val" :checked="j == 0" style="transform:scale(0.5)" />
 											</view>
 											<view class="lt" style="width: 87%; white-space: pre-wrap;" >
 												{{i.content}}---{{i.val}}
 											</view>
-											<span class="spbtn text-white px-1 bg-blue rt" style="width:60upx">
+											<text class="spbtn text-white px-1 bg-blue rt" style="width:13%">
 												{{i.name}}
-											</span>
+											</text>
 									</label>
 							</radio-group>
 						</view>
 					</uni-collapse-item>
-					<button @tap="computeval" :data-val="lastval">计算</button>
+					<view class="py-2 font-md iconWhite backBlue" style="width: 100%;" @tap="computeval" :data-val="lastval">计算</view >
 				</uni-collapse>
 			</view>
 			<view class="lt" v-else>
 				<view class="dlf-group lt">
-					<view class="w-100 dlf-li font lt"
+					<view class="w-100 dlf-li font lt border-b"
 								v-for="(i, index) in dataList[isactive].itemList" 
 								:key="index" 
 								@tap="computeval" 

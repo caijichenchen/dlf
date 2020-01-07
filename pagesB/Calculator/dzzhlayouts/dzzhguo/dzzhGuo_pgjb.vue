@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">地质灾害危害评估费建设项目重要性</view>
@@ -32,7 +32,7 @@
 				modalName:'dzzhGuo_pgjb',
 				columns:[
 					{
-						title:"复杂程度</br>评估分级 项目重要性",
+						title:"复杂程度 评估分级 项目重要性",
 						key:"cd",
 						width:370
 					},

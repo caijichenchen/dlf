@@ -61,9 +61,9 @@
 			};
 		},
 		mounted() {
-			var phone = uni.getStorageSync('phone')
-			var pwd = uni.getStorageSync('pwd')
-			if(phone){
+			const phone = uni.getStorageSync('phone')
+			const pwd = uni.getStorageSync('pwd')
+			if(phone && pwd){
 				this.know = true
 				this.phoneno = phone
 				this.password = pwd
@@ -72,7 +72,7 @@
 		methods: {
 			...mapMutations(['login','getUserInfo']),
 			bindLogin(e) {
-				var regPhone = /^1[3456789]\d{9}$/
+				const regPhone = /^1[3456789]\d{9}$/
 				if(!this.phoneno){
 					return uni.showToast({
 						icon: 'none',
@@ -107,6 +107,10 @@
 						title: '登录成功'
 					});
 					this.getUserData()
+					if(this.know){ //如果用户改过密码但没有操作记住按钮从新定义密码
+						uni.setStorageSync('phone',this.phoneno)
+						uni.setStorageSync('pwd',this.password)
+					}
 					uni.switchTab({
 					    url: '/pages/index/index'
 					});

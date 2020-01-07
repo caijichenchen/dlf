@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">城市规划设计收费</text>
@@ -8,7 +7,7 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.csghYue_xzqy">
 				<view class="title">选择区域</view>
-				<view class="title">{{multiSelector.csghYue_xzqy[pickerIndex.csghYue_xzqy]}}</view>
+				<view class="title m-left">{{multiSelector.csghYue_xzqy[pickerIndex.csghYue_xzqy]}}</view>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.csghYue_ghbz">
 				<view class="title">规划标准</view>
@@ -28,7 +27,7 @@
 						{{multiSelector.csghYue_ghlx[pickerIndex.csghYue_ghlx]}}
 					</view>
 				</picker>
-				<button type="primary" size="mini" @tap="showModal" data-target="csghYue_ghlx">查看说明</button>
+				<button type="primary" size="mini" @tap="showModal" data-target="csghYue_ghlx">点击选择</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.csghYue_xflx">
 				<view class="title" >细分类型</view>

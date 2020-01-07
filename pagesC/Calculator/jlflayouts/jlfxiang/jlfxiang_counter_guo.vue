@@ -37,6 +37,7 @@
 		<explain></explain>
 		<jlfxiang-fjtz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></jlfxiang-fjtz>
 		<jlfxiang-fztz v-bind:showModalName="showModalName" v-on:hideModal='hideModal' :modalName="modalName"></jlfxiang-fztz>
+		<jfe v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></jfe>
 	</view>
 </template>
 	
@@ -46,6 +47,7 @@
 	import explain from '@/common/base/explain.vue'
 	import jlfxiangFjtz from "./jlfXiang_fjtz.vue"
 	import jlfxiangFztz from "../jlf_fztz.vue"
+	import jfe from './jlfXiang_jfe.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -76,6 +78,7 @@
 			explain,
 			jlfxiangFjtz,
 			jlfxiangFztz,
+			jfe
 		},
 		methods:{
 			showdzzk(e) {

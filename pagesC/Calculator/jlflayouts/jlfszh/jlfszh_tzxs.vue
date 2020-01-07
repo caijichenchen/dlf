@@ -1,5 +1,5 @@
 <template>
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">苏浙沪监理难度调整系数</view>
@@ -8,7 +8,7 @@
 				</view>
 			</view>
 			<view class="lt">
-				<uni-collapse animation="outer">
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
 							<view class="w-100 dlf-li font lt border-b"

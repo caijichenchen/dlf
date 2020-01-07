@@ -250,6 +250,14 @@
 			"root":"pagesC",
 			"pages":[
 				{
+				    "path" : "Calculator/gcjsjlfgflayouts/gcjsjlfgfguo/gcjsjlfgfguo",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/jlflayouts/jlfchuan/jlfchuan",
+				    "style" : {}
+				},
+				{
 				    "path" : "Calculator/jlflayouts/jlfszh/jlfszh",
 				    "style" : {}
 				}
@@ -833,6 +841,34 @@
 			"root":"pagesB",
 			"pages":[
 				{
+					"path":"Calculator/hyjzflayouts/hyjzfguo/hyjzfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/ytgckcsflayouts/ytgckcsfliao/ytgckcsfliao",
+					"style":{}
+				},
+				{
+					"path":"Calculator/slsdqqgzkcflayouts/slsdqqgzkcfguo/slsdqqgzkcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/gckcflayouts/gckcfguo/gckcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/slsdgckclayouts/slsdgckcguo/slsdgckcguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/csgdgckcflayouts/csgdgckcfguo/csgdgckcfguo",
+					"style":{}
+				},
+				{
+					"path":"Calculator/qtsssysflayouts/qtsssysfguo/qtsssysfguo",
+					"style":{}
+				},
+				{
 					"path":"Calculator/jsjyfwflayouts/jsjyfwfba/jsjyfwfba",
 					"style":{}
 				},
@@ -965,10 +1001,6 @@
 				    "style" : {}
 				},
 				{
-				    "path" : "Calculator/gcjsjlfgflayouts/gcjsjlfgfguo/gcjsjlfgfguo",
-				    "style" : {}
-				},
-				{
 				    "path" : "Calculator/tlsjlayouts/tlsjguo/tlsjguo",
 				    "style" : {}
 				}
@@ -977,15 +1009,19 @@
 				    "style" : {}
 				}
 				,{
-				    "path" : "Calculator/jsdwlayouts/jsglfguo/jsglfguo",
+				    "path" : "Calculator/jsdwgllayouts/jsdwglguo/jsdwglguo",
 				    "style" : {}
 				},
 				{
-					"path":"Calculator/jsdwlayouts/jsglfxiamen/jsglfxiamen",
+					"path":"Calculator/jsdwgllayouts/jsdwglxiamen/jsdwglxiamen",
 					"style":{}
 				},
 				{
-				    "path" : "Calculator/sjflayouts/cbsjpssf/cbsjpssf",
+					"path":"Calculator/cwjlflayouts/cwjlfhu/cwjlfhu",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/sjflayouts/sjfguo/sjfguo",
 				    "style" : {}
 				}
 				,{
@@ -1017,7 +1053,7 @@
 					"style":{}
 				},
 				{
-					"path":"Calculator/tlkcsjsflayouts/tlkcsjsf",
+					"path":"Calculator/tlkcsjsflayouts/tlkcsjsfguo/tlkcsjsfguo",
 					"style":{}
 				},{
 					"path":"Calculator/jnpgflayouts/jnpgfhu/jnpgfhu",
@@ -1124,7 +1160,7 @@
 					"style":{}
 				}
 				,{
-				    "path" : "Calculator/jsqlxlayouts/jsqlx/jsqlx",
+				    "path" : "Calculator/jsqlxlayouts/jsqlxguo/jsqlxguo",
 				    "style" : {}
 				}
 				,{
@@ -1132,7 +1168,7 @@
 				    "style" : {}
 				}
 				,{
-				    "path" : "Calculator/xmdjflayouts/xmdjfhu/xmdjfhu",
+				    "path" : "Calculator/djglflayouts/djglfhu/djglfhu",
 				    "style" : {}
 				}
 				,{
@@ -1246,12 +1282,12 @@
 			"iconPath":"static/tabbar/Calculation.png",
 			"selectedIconPath":"static/tabbar/Calculation-a.png"
 			},
-			{
-			"pagePath":"pages/oneClick/oneClick",
-			"text":"一键计算",
-			"iconPath":"static/tabbar/oneClick.png",
-			"selectedIconPath":"static/tabbar/oneClick-a.png"
-			},
+			// {
+			// "pagePath":"pages/oneClick/oneClick",
+			// "text":"一键计算",
+			// "iconPath":"static/tabbar/oneClick.png",
+			// "selectedIconPath":"static/tabbar/oneClick-a.png"
+			// },
 			{
 			"pagePath":"pages/standard/standard",
 			"text":"标准",

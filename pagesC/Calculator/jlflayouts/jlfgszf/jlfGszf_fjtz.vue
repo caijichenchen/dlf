@@ -7,21 +7,22 @@
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
 			<view class="padding-xl border border-blue m-1">
-				<view class="dlf-group lt">
-					<view class="w-100 dlf-li font lt" 
-					v-for="(item, index) in fjcdList" :key="index" @tap="assignment" :data-val="item.xs">
-						<view class="lt" style="width: 87%; white-space: pre-wrap;">
-							{{item.value}}
+					<view class="dlf-group lt">
+						<view class="w-100 dlf-li font lt border-b" 
+									v-for="(item, index) in fjxsList" 
+									:key="index" 
+									@tap="assignment" 
+									:data-val="item.xs"
+									>
+							<view class="lt" style="width: 87%; white-space: pre-wrap;">
+								{{item.value}}
+							</view>
+							<span class="spbtn text-white px-1 bg-blue rt" >
+								{{item.xs}}
+							</span>
 						</view>
-						<span class="spbtn text-white px-1 bg-blue rt" >
-							{{item.xs}}
-						</span>
 					</view>
 				</view>
-			<!-- 	<view class="lt font p-1 text-left" style="white-space: pre-wrap;">
-					<view>注:</view>
-						<view>附加调整系数为两个或两个以上的, 附加调整系数相加。</view>
-				</view> -->
 			</view>
 		</view>
 	</view>
@@ -41,7 +42,7 @@ export default {
 		return {
 			modalName: 'jlfGszf_fjtz',
 			fjxs: '',
-			fjcdList: [
+			fjxsList: [
 				{value:"建设单位如果将保修阶段的监理相关服务连同工程监理一并委托给监理单位的，保修阶段监理服务的工程监理费用则应增加工程监理费的",xs:"1.05"},
 			]
 		};

@@ -23,7 +23,7 @@
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
 				<picker class="select" @change="PickerChanges" :value="index" :range="jlfGuo_fztz">
-					<view class="picker" name="sjfGui_fztz">
+					<view class="picker">
 						{{jlfGuo_fztz[index]}}
 					</view>
 				</picker>
@@ -51,6 +51,7 @@
 		<gczj v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></gczj>
 		<zytz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></zytz>
 		<gctz v-bind:showModalName="showModalName" v-on:hideModal='hideModal' :modalName="modalName" :title="title"></gctz>
+		<fztz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></fztz>
 	</view>
 </template>
 	
@@ -61,6 +62,7 @@
 	import gczj from './jlfGuo_gczj.vue'
 	import zytz from './jlfGuo_zytz.vue'
 	import gctz from '@/common/base/gctz.vue'
+	import fztz from './sjfGui_fztz.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -100,7 +102,8 @@
 			explain,
 			gczj,
 			zytz,
-			gctz
+			gctz,
+			fztz
 		},
 		methods:{
 			PickerChanges(e) {

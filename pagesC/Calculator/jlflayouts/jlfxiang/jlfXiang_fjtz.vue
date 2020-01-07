@@ -1,6 +1,6 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName == modalName ? 'show' : ''" >
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">湖南省监理收费附加调整系数</view>

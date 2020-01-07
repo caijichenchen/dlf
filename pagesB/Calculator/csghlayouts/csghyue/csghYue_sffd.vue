@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">城市规划设计收费浮动比例系数</view>
@@ -10,7 +10,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 									v-for="(item, index) in tzxsList" 
 									:key="index" 
 									@tap="assignment" 
@@ -54,9 +54,11 @@
 			return {
 				modalName:'csghYue_sffd',
 				tzxsList:[
-					{content:"默认系数100",val:"100"},
-					{content:"概念规划：不同阶段的概念规划按照相应阶段规划收费标准的40%~60%计费",val:"50"},
-					{content:"景观规划：按照相应项目规划设计收费标准的30~40%收取",val:"30"}
+					// {content:"默认系数100",val:"100"},
+					// {content:"概念规划：不同阶段的概念规划按照相应阶段规划收费标准的40%~60%计费",val:"50"},
+					// {content:"景观规划：按照相应项目规划设计收费标准的30~40%收取",val:"30"},
+					{content:"单独编制城市规划纲要，按总体规划收费标准的45%收费",val:"45"},
+					{content:"城市设计-单独编制城市设计收费标准：总体规划按其相应规划设计收费标准的40%~50%收取",val:"45"}
 				]
 			}
 		},

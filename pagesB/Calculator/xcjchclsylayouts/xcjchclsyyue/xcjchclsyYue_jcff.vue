@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">备注</view>
@@ -8,7 +8,7 @@
 					<text class="cuIcon-close text-red"></text>
 				</view>
 			</view>
-			<view class="lt" style="width: 87%; white-space: pre-wrap">
+			<view class="lt" style=" white-space: pre-wrap">
 				{{xcjchclsyYue11}}
 			</view>
 		</view>

@@ -1,7 +1,6 @@
 export const counterMixin = {
 		data() {
 			return {
-				wrdjzfGuo_ydlx: ['旅游娱乐用岛','交通运输用岛','工业仓储用岛','渔业用岛','农林牧业用岛','可再生能源用岛','城乡建设用岛'],
 				fzcdList: ['简单','中等','复杂']
 			}
 		},
@@ -18,30 +17,31 @@ export const counterMixin = {
 				url:`/pages/normal/normal?id=${detailId}&title=${title}`
 			})
 		},
-		switchTab(){
-			uni.$emit('switch',{msg:true})
-		},
     	checkpercentage(e) {
     		this.showModalName = null
     	},
     	changeVal(name, e) {
 			let val = e.currentTarget.dataset.val;
 			let cIndex = e.currentTarget.dataset.index
+			let ckey = e.currentTarget.dataset.key
 			if(isNaN(val)){
 				if(cIndex){
 					this[cIndex] = e.currentTarget.dataset.key
 				}
 				this.needVal[name] = e.currentTarget.dataset.val
-				if(name === 'wrdjzfGuo_ydlx'){
-					this.needVal[name] = this.wrdjzfGuo_ydlx[val]
-					this.index3 = val
-					this.showModalName = null
-					return
-				}
-				if(this.multiSelector){
-					this.afterPicker(val,name)
+				// if(name === 'wrdjzfGuo_ydlx'){
+				// 	this.needVal[name] = this.wrdjzfGuo_ydlx[val]
+				// 	this.index3 = val
+				// 	this.showModalName = null
+				// 	return
+				// }
+				if(this.multiSelector[name]){
+					this.afterPicker(ckey,name)
 					// this.multiSelectorChange(this.datajson,name)
 				}
+			}else if(!isNaN(val) && cIndex){ //数值下拉选项且不为联动时
+				this[cIndex] = e.currentTarget.dataset.key
+				this.needVal[name] = e.currentTarget.dataset.val
 			}else{
 				this.needVal[name] = val;
 			}

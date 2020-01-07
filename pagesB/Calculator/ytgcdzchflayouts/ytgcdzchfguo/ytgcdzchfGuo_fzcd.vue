@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">岩土工程地质测绘复杂程度</view>
@@ -8,11 +8,11 @@
 					<text class="cuIcon-close text-red"></text>
 				</view>
 			</view>
-			<view class="lt">
-				<uni-collapse animation="outer">
+			<view >
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
-							<view class="w-100 dlf-li font lt"
+							<view class="w-100 dlf-li font lt border-b"
 										v-for="(i, index) in item.list" 
 										:key="index" 
 										@tap="assignment" 

@@ -191,6 +191,7 @@
 	
 		.sjfjsjg .sjftable text {
 			float: left;
+			color: #00a0e0;
 			margin-top: 5upx;
 			margin-left: 15upx;
 		}
@@ -231,6 +232,7 @@
 			font-size: 30upx;
 			text-align: left;
 			border: 2rpx solid #00a0e0;
+			border-bottom: none;
 			margin-bottom: 28upx;
 		}
 		.dlf-group .dlf-li {

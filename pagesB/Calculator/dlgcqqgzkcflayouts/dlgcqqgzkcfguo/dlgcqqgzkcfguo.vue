@@ -1,18 +1,10 @@
 <template>
-	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="1520">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<dlgcqqgzkcf-counter-guo></dlgcqqgzkcf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<dlgcqqgzkcf-result></dlgcqqgzkcf-result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
@@ -26,7 +18,7 @@
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/dlgcqqgzkcfGuo',  //api请求
-					count:2  //积分消耗
+					count:4  //积分消耗
 				}
 			}
 		},

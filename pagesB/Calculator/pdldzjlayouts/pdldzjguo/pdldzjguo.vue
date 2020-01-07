@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="1519">
 		<template v-slot:jsq>
 			<!-- 设计费计算选项 -->
 			<pdldzj-counter-guo></pdldzj-counter-guo>
@@ -26,7 +26,7 @@
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/pdldzjGuo',  //api请求
-					count:2  //积分消耗
+					count:1  //积分消耗
 				}
 			}
 		},

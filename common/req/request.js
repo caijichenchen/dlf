@@ -3,7 +3,7 @@ import $store from '@/store/index.js'
 export default {
 	//全局配置
 	common: {
-		baseUrl: 'http://dlf.test',
+		baseUrl: 'https://www.dulifei.com',
 		data: {},
 		method:'GET',
 		dataType:'json'
@@ -25,25 +25,28 @@ export default {
 		options.data = options.data || this.common.data
 		options.method = options.method || this.common.method
 		options.dataType = options.dataType || this.common.dataType
-		// if(options.token == 'none'){
-		// 	options.header = 
-		// }
 		return new Promise((res,rej)=>{
 			uni.request({
 				...options,
 				success:(result) => {
 					if(result.statusCode !== 200){
-						uni.showToast({
-							icon:'none',
-							title: '获取数据失败,请稍后重试'
-						})
+						if(result.data.message){
+							uni.showToast({
+								icon:'none',
+								title: result.data.message
+							})
+						}else{
+							uni.showToast({
+								icon:'none',
+								title: '获取数据失败,请稍后重试'
+							})
+						}
 						return rej()
 					}
 					let data = result
 					res(data)
 				},
 				fail:(err) => {
-					console.log(err)
 					uni.showToast({
 						icon:'none',
 						title:'获取数据失败,请稍后重试'

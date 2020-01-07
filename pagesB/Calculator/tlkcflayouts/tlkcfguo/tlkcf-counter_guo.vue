@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">铁路勘察费</text>
@@ -8,7 +7,7 @@
 		<form>
 			<view class="cu-form-group" >
 				<view class="title">计算依据</view>
-					<view class="title">
+					<view class="title m-left">
 						{{tlkcfGuo_jsyj[index0]}}
 					</view>
 			</view>
@@ -56,13 +55,13 @@
 				<view class="title">浮动幅度</view>
 				<input v-model="needVal.tlkcfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">点击选择</button>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
 				<input v-model="needVal.tlkcfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">点击选择</button>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			
 		</form>

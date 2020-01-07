@@ -22,12 +22,12 @@
 						{{jlfJi_fztz[index0]}}
 					</view>
 				</picker>
+				<button type="primary" size="mini" @tap="showModal" data-target="jlfJi_fztz">查看说明</button>
 			</view>
-			
 			<view class="cu-form-group">
 				<view class="title">专业调整</view>
 				<input type="text" v-model="needVal.jlfJi_zytz"></input>
-				<button type="primary" size="mini" @tap="showModal" data-target="jlfJin_fztz">查看说明</button>
+				<button type="primary" size="mini" @tap="showModal" data-target="jlfJi_zytz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
@@ -37,6 +37,9 @@
 			</view>
 			<!-- 查看说明 -->
 			<explain></explain>
+			<fztz :showModalName="showModalName" v-on:hideModal="hideModal"></fztz>
+			<zytz :showModalName="showModalName" v-on:hideModal="hideModal"></zytz>
+			<jfe :showModalName="showModalName" v-on:hideModal="hideModal"></jfe>
 		</form>
 	</view>
 </template>
@@ -46,6 +49,9 @@
 	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/sxsjlfs/sxsjlfs.json'
+	import zytz from './jlfJi_zytz.vue'
+	import fztz from './jlfJi_fztz.vue'
+	import jfe from './jlfJi_jfe.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -64,7 +70,7 @@
 					type:'jlfJi'
 				},
 				jlfJi_fztz: ['I级','II级','III级','II级双线','铁路III级','穿II级','穿III级'],
-				index: 0,
+				index0: 0,
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [
@@ -79,11 +85,14 @@
 		components: {
 			uniTag,
 			explain,
+			zytz,
+			fztz,
+			jfe
 		},
 		methods:{
 			PickerChanges(e){
-				this.index = e.target.value
-				this.needVal.jlfJi_fztz = this.jlfJi_fztz[this.index]
+				this.index0 = e.target.value
+				this.needVal.jlfJi_fztz = this.jlfJi_fztz[this.index0]
 			},
 			//查看说明
 			showdzzk(e) {

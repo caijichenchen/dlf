@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">通信工程工作量比例表</view>
@@ -8,19 +8,19 @@
 					<text class="cuIcon-close text-red"></text>
 				</view>
 			</view>
-			<view class="lt">
-				<uni-collapse animation="outer">
+			<view>
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
-						<view class="lt">
+						<view>
 							<view class="white-space text-left" >
-								<p v-for="(v,k) in item.list" 
-									:key="k"
-									class="font p-2 border-tlr border-blue lt mb-1"
+								<view v-for="(v,k) in item.list" 
+									:key="'0'+k"
+									class="font border-tlr mb-2 row"
 									@click="addClass(k)"
-									:class="isactive===k ? 'activeclass':''"
+									:class="isactive == k ? 'activeclass':''"
 									>
 									<view class="dlfxs lt">{{v.content}}</view>
-								</p>
+								</view>
 								<view class="wupx font p-2 border border-blue lt mb-1" @tap="assignment" :data-val="item.list[isactive].val" :key="isactive">
 									<view class="val" >{{item.list[isactive].val}}</view><br/>
 									<view>{{item.list[isactive].introduction}}</view>
@@ -108,6 +108,9 @@
 		},
 		methods: {
 			addClass(k) {
+				if(this.isactive == k){
+					return
+				}
 				this.isactive = k
 			}
 		}
@@ -124,9 +127,9 @@
 		color: #007AFF;
 	}
 	.border-tlr{
-		border-top: 1upx solid blue;
-		border-left: 1upx solid blue;
-		border-right: 1upx solid blue;
-		padding: 8upx;
+		border-top: 1upx solid #00a0e0;
+		border-left: 1upx solid #00a0e0;
+		border-right: 1upx solid #00a0e0;
+		padding: 22rpx 8rpx;
 	}
 </style>

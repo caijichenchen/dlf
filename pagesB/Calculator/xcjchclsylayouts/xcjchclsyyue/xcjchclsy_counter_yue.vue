@@ -1,79 +1,78 @@
 <template>
 	<view>
-			<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
-			<div class="sjf_title w-100 mt-2" style="height: 60upx;">
-				<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-				<text class="text-blue lt pl-2 " style="margin-top: 5upx;">现场检测和材料试验收费</text>
-			</div>
-			<form>
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzsf">
-					<view class="title">选择省份</view>
-					<view class="title" v-model="needVal.xcjchclsyYue_xzsf">{{multiSelector.xcjchclsyYue_xzsf[pickerIndex.xcjchclsyYue_xzsf]}}</view>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzbz">
-					<view class="title">选择标准</view>
-					<view class="title" v-model="needVal.xcjchclsyYue_xzbz">{{multiSelector.xcjchclsyYue_xzbz[pickerIndex.xcjchclsyYue_xzbz]}}</view>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzdl">
-					<view class="title">选择大类</view>
-					<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_xzdl" :value="pickerIndex.xcjchclsyYue_xzdl"
-					 :range="multiSelector.xcjchclsyYue_xzdl">
-						<view class="picker">
-							{{multiSelector.xcjchclsyYue_xzdl[pickerIndex.xcjchclsyYue_xzdl]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzfl">
-					<view class="title">选择分类</view>
-					<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_xzfl" :value="pickerIndex.xcjchclsyYue_xzfl"
-					 :range="multiSelector.xcjchclsyYue_xzfl">
-						<view class="picker">
-							{{multiSelector.xcjchclsyYue_xzfl[pickerIndex.xcjchclsyYue_xzfl]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue4 || showSelector.xcjchclsyYue_jcxm">
-					<view class="title">{{multiSelector.xcjchclsyYue4}}</view>
-					<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_jcxm" :value="pickerIndex.xcjchclsyYue_jcxm"
-					 :range="multiSelector.xcjchclsyYue_jcxm">
-						<view class="picker">
-							{{multiSelector.xcjchclsyYue_jcxm[pickerIndex.xcjchclsyYue_jcxm]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
-				</view>
+		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
+			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">现场检测和材料试验收费</text>
+		</div>
+		<form>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzsf">
+				<view class="title">选择省份</view>
+				<view class="title m-left" v-model="needVal.xcjchclsyYue_xzsf">{{multiSelector.xcjchclsyYue_xzsf[pickerIndex.xcjchclsyYue_xzsf]}}</view>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzbz">
+				<view class="title">选择标准</view>
+				<view class="title m-left" v-model="needVal.xcjchclsyYue_xzbz">{{multiSelector.xcjchclsyYue_xzbz[pickerIndex.xcjchclsyYue_xzbz]}}</view>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzdl">
+				<view class="title">选择大类</view>
+				<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_xzdl" :value="pickerIndex.xcjchclsyYue_xzdl"
+				 :range="multiSelector.xcjchclsyYue_xzdl">
+					<view class="picker">
+						{{multiSelector.xcjchclsyYue_xzdl[pickerIndex.xcjchclsyYue_xzdl]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue_xzfl">
+				<view class="title">选择分类</view>
+				<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_xzfl" :value="pickerIndex.xcjchclsyYue_xzfl"
+				 :range="multiSelector.xcjchclsyYue_xzfl">
+					<view class="picker">
+						{{multiSelector.xcjchclsyYue_xzfl[pickerIndex.xcjchclsyYue_xzfl]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue4 || showSelector.xcjchclsyYue_jcxm">
+				<view class="title">{{multiSelector.xcjchclsyYue4}}</view>
+				<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_jcxm" :value="pickerIndex.xcjchclsyYue_jcxm"
+				 :range="multiSelector.xcjchclsyYue_jcxm">
+					<view class="picker">
+						{{multiSelector.xcjchclsyYue_jcxm[pickerIndex.xcjchclsyYue_jcxm]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
+			</view>
 
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue6 || showSelector.xcjchclsyYue_jcff">
-					<view class="title">{{multiSelector.xcjchclsyYue6}}</view>
-					<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_jcff" :value="pickerIndex.xcjchclsyYue_jcff"
-					 :range="multiSelector.xcjchclsyYue_jcff">
-						<view class="picker">
-							{{multiSelector.xcjchclsyYue_jcff[pickerIndex.xcjchclsyYue_jcff]}}
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showModal" data-target="xcjchclsyYue_jcff">点击查看</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">工程量</view>
-					<input v-model="needVal.xcjchclsyYue_gcl" /></input>
-					<uni-tag :text="multiSelector.xcjchclsyYue_dw" type="defult" v-model="needVal.xcjchclsyYue_dw"></uni-tag>
-				</view>
-				<view class="cu-form-group" v-show="showSelector.xcjchclsyYue13">
-					<view class="title">{{multiSelector.xcjchclsyYue13}}</view>
-					<input v-model="needVal.xcjchclsyYue_qzxs" /></input>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">打折折扣</view>
-					<input name="xcjchclsyYue_dzzk" v-model="needVal.xcjchclsyYue_dzzk" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
-				</view>
-			</form>
-			<!-- 查看说明 --> 
-			<explain></explain>
-			<xcjchclsy-yue-jcff :showModalName="showModalName" v-on:hideModal="hideModal" :xcjchclsyYue11="multiSelector.xcjchclsyYue11"></xcjchclsy-yue-jcff>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue6 || showSelector.xcjchclsyYue_jcff">
+				<view class="title">{{multiSelector.xcjchclsyYue6}}</view>
+				<picker class="select" @change="PickerChange" data-name="xcjchclsyYue_jcff" :value="pickerIndex.xcjchclsyYue_jcff"
+				 :range="multiSelector.xcjchclsyYue_jcff">
+					<view class="picker">
+						{{multiSelector.xcjchclsyYue_jcff[pickerIndex.xcjchclsyYue_jcff]}}
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showModal" data-target="xcjchclsyYue_jcff">点击查看</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">工程量</view>
+				<input v-model="needVal.xcjchclsyYue_gcl" /></input>
+				<uni-tag :text="multiSelector.xcjchclsyYue_dw" type="defult" v-model="needVal.xcjchclsyYue_dw"></uni-tag>
+			</view>
+			<view class="cu-form-group" v-show="showSelector.xcjchclsyYue13">
+				<view class="title">{{multiSelector.xcjchclsyYue13}}</view>
+				<input v-model="needVal.xcjchclsyYue_qzxs" /></input>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">打折折扣</view>
+				<input name="xcjchclsyYue_dzzk" v-model="needVal.xcjchclsyYue_dzzk" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
+			</view>
+		</form>
+		<!-- 查看说明 --> 
+		<explain></explain>
+		<xcjchclsy-yue-jcff :showModalName="showModalName" v-on:hideModal="hideModal" :xcjchclsyYue11="multiSelector.xcjchclsyYue11"></xcjchclsy-yue-jcff>
 	</view>
 </template>
 

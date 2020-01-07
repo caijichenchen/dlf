@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="10">
 		<template v-slot:jsq>
 			<tlsj-counter></tlsj-counter>
 			<tlsj-result></tlsj-result>

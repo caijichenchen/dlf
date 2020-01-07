@@ -17,12 +17,14 @@
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</view>
-				<view style="margin-left: auto;">{{userInfo.userInfo.user_name}}</view>
+				<view style="margin-left: auto;" v-if="userInfo.userInfo.user_name">{{userInfo.userInfo.user_name}}</view>
+				<view style="margin-left: auto;" v-else>您还没有填写个人信息</view>
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</view>
 				<view style="margin-left: auto;" v-if="userInfo.userInfo.sex == 1">女</view>
-				<view style="margin-left: auto;" v-if="userInfo.userInfo.sex == 0">男</view>
+				<view style="margin-left: auto;" v-else-if="userInfo.userInfo.sex == 0">男</view>
+				<view style="margin-left: auto;" v-else>您还没有填写个人信息</view>
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >验证手机:</view>
@@ -36,7 +38,7 @@
 				<view >会员信息:</view>
 				<view style="margin-left: auto;">会员等级:{{userInfo.vipInfo.type}}</view>
 			</view>
-			<view class="p-3 row border-bottom font-md">
+			<view class="p-3 row border-bottom font-md" v-if="userInfo.vipInfo.type != '普通会员'">
 				<view >会员期限:</view>
 				<view style="margin-left: auto;">{{userInfo.vipInfo.expireDate}}</view>
 			</view>

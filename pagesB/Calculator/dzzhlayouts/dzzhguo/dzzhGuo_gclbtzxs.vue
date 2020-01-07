@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">地质灾害评估收费工程类别调整系数</view>
@@ -9,10 +9,10 @@
 				</view>
 			</view>
 			<view class="lt">
-				<uni-collapse animation="outer">
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
-							<view class="w-100 dlf-li font lt"
+							<view class="w-100 dlf-li font lt border-b"
 										v-for="(i, index) in item.list" 
 										:key="index" 
 										@tap="assignment" 

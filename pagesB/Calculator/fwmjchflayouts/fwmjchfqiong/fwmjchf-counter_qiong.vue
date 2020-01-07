@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">房屋面积测绘费</text>
@@ -8,13 +7,13 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.fwmjchfQiong_xzsf">
 				<view class="title">选择省份</view>
-				<view class="title">{{multiSelector.fwmjchfQiong_xzsf[pickerIndex.fwmjchfQiong_xzsf]}}</view>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+				<view class="title m-left">{{multiSelector.fwmjchfQiong_xzsf[pickerIndex.fwmjchfQiong_xzsf]}}</view>
+				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">选择标准</view>
 				<view class="title">{{needVal.fwmjchfQiong_xzbz}}</view>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fwmjchfQiong_jslx">
 				<view class="title">计算类型</view>

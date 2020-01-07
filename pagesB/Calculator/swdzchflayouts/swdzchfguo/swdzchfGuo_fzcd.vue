@@ -1,20 +1,20 @@
 <template>
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" @touchmove.stop.prevent="moveHandle" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">水文地质测绘复杂程度分类</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
 			<view class="padding-xl m-1">
-				<view  class="dlf-group" style="height: 316upx;">
-					<view class="w-100 dlf-li font lt" 
-						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-key="index" :data-val="item.xs"> 
-						<view style="width: 595upx;white-space: pre-wrap;float: left;">
+				<view  class="dlf-group" >
+					<view class="w-100 dlf-li font lt border-b" 
+						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-key="index" :data-val="item.xs">
+						 <span class="font-mb text-blue lt">
+						 	{{item.xs}}
+						 </span>
+						<view style="white-space: pre-wrap;float: left;">
 							{{item.value}}
 						</view>
-						<span class="text-blue lt">
-							{{item.xs}}
-						</span>
 					</view>
 				</view>
 			</view>

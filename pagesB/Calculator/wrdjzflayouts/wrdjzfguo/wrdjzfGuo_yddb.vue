@@ -1,16 +1,16 @@
 <template>
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">无人居住岛</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
-			<view class="search">
+			<!-- <view class="search">
 				<input type="text" class="search-input" v-model="searchResult" >
 				<button class="search-btn" @click="inval">搜索</button>
-			</view>
+			</view> -->
 			<view class="padding-xl">
-				<view class="dlf-group" v-for="(item, index) in fzcdList" :key="index" @tap="assignment" :data-key="index" :data-val="item.name">
+				<view class="dlf-group" v-for="(item, index) in dataList" :key="index" @tap="assignment" :data-key="index" :data-val="item.name">
 					<view class="ml-2 my-1 textblue" v-html="item.name"></view>
 					<view class="dlf-li ml-2 font" >
 						<view
@@ -41,6 +41,7 @@ export default {
 			modalName: 'wrdjzfGuo_yddb',
 			fzcd: '',
 			searchResult: '',
+			dataList:[],
 			fzcdList: [
 				{
 					name: '一等',
@@ -97,20 +98,27 @@ export default {
 			]
 		};
 	},
+	mounted() {
+		this.dataList=this.fzcdList
+	},
 	methods: {
 		inval() {
-			const { fzcdList,searchResult } = this
-			var regExp = new RegExp(searchResult, 'g');
-			for(let i in fzcdList){
-				if(fzcdList[i].name.indexOf(searchResult) !== -1){
-					console.log(fzcdList[i].name)
-					fzcdList[i].name.replace(regExp,'<view style="color:red;background:yellow">'+fzcdList[i].name+"</view>")
-					console.log(fzcdList[i].name)
-				}
-				for(let j in fzcdList[i].data){
-					// console.log("111111",fzcdList[i].data[j])
-				}
-			}
+			const { fzcdList,searchResult,dataList } = this
+			const regExp = new RegExp(searchResult, 'g');
+			// let dataList = fzcdList
+			// for(let i in fzcdList){
+			// 	if(fzcdList[i].name.indexOf(searchResult) !== -1){
+			// 		fzcdList[i].name.replace(regExp,'<view style="color:red;background:yellow">'+fzcdList[i].name+"</view>")
+			// 	}
+			// }
+			// dataList.forEach(item=>{
+			// 	item.data.forEach(val=>{
+			// 		if(val.search(searchResult) != -1){
+			// 			const index = val.indexOf(searchResult)
+			// 			val = val.replace(regExp,'<view style="color:red;background:yellow">'+searchResult+"</view>")
+			// 		}
+			// 	})
+			// })
 		},
 	},
 	components: {
@@ -118,15 +126,7 @@ export default {
 		uniCollapseItem,
 	},
 	computed: {
-		// titleList:function() {
-		// 	let titleList
-		// 	for(let i = 0;i<this.fzcdList.length;i++){
-		// 		titleList += i.name
-		// 	}
-		// 	console.log("11111111",titleList)
-		// 	return titleList
-		// }
-	}
+	},
 }
 </script>
 

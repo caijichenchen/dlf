@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="273">
 		<template v-slot:jsq>
 			<!-- 设计费计算选项 -->
 			<fwmjchf-counter-qiong></fwmjchf-counter-qiong>
@@ -25,7 +25,7 @@
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/fwmjchfQiong',  //api请求
-					count:2  //积分消耗
+					count:3  //积分消耗
 				}
 			}
 		},

@@ -1,6 +1,5 @@
 <template>
-			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">火电、长输管道、铁路、公路工程勘察复杂程度赋分表</view>
@@ -13,7 +12,7 @@
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
 							<radio-group style="width:100%">
-									<label class="w-100 dlf-li font lt" style="width:100%;display: flex;"
+									<label class="w-100 dlf-li font lt border-b" style="width:100%;display: flex;"
 											v-for="(i, k) in item.list"
 											:key="k" 
 											@click="getval" 
@@ -21,14 +20,14 @@
 											:data-key="index"
 										>
 											<view>
-													<radio :value="i.val" :checked="k == 0" style="transform:scale(0.5)" />
+												<radio :value="i.val" :checked="k == 0" style="transform:scale(0.5)" />
 											</view>
 											<view class="lt" style="width: 87%; white-space: pre-wrap;" >
 												{{i.content}}
 											</view>
-											<span class="spbtn text-white px-1 bg-blue rt" style="width:280upx">
+											<text class="spbtn text-white px-1 bg-blue rt" style="width:13%">
 												{{i.text}}
-											</span>
+											</text>
 									</label>
 							</radio-group>
 						</view>
@@ -38,7 +37,7 @@
 								<view>1.其他不具备本表特征的工程项目，工程难度系数按 1.00 计算；</view>
 								<view>2.当工程特征适用两个及以上难度系数时，取其中最大值。</view>
 						</view> -->
-						<button @tap="assignment" :data-val="lastval">计算</button>
+						<view class="py-2 font-md iconWhite backBlue" style="width: 100%;" @tap="assignment" :data-val="lastval">计算</view>
 				</uni-collapse>
 			</view>
 		</view>
@@ -240,7 +239,6 @@
 					return fzval
 				}
 				this.lastval = sum(this.resultval)
-				console.log(this.lastval)
 			}
 		}
 	}

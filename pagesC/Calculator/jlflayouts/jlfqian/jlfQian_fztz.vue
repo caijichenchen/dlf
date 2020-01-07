@@ -1,5 +1,5 @@
 <template>
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">监理费工程复杂程度专业调整系数</view>
@@ -17,6 +17,7 @@
 										@tap="assignment" 
 										:data-val="i.val"
 										:data-key="index"
+										data-index="index0"
 										>
 								<view class="lt" style="width: 87%; white-space: pre-wrap;">
 									{{i.content}}

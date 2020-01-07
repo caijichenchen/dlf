@@ -4,8 +4,8 @@
 			<view v-if="thumb" class="uni-collapse-cell__title-extra">
 				<image :src="thumb" class="uni-collapse-cell__title-img" />
 			</view>
-			<view class="uni-collapse-cell__title-inner">
-				<view class="uni-collapse-cell__title-text">{{ title }}</view>
+			<view style="white-space: normal;" class="uni-collapse-cell__title-inner">
+				<view style="white-space: normal;" class="uni-collapse-cell__title-text">{{ title }}</view>
 			</view>
 			<view :class="{'uni-active':isOpen,'uni-collapse-cell--animation':showAnimation===true}" class="uni-collapse-cell__title-arrow">
 				<uni-icon color="#bbb" size="20" type="arrowdown" />
@@ -206,7 +206,7 @@
 		white-space: nowrap;
 		color: inherit;
 		line-height: 1.5;
-		overflow: hidden
+		overflow: hidden;
 	}
 
 	.uni-collapse-cell__content {

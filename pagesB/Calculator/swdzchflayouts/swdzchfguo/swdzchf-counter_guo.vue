@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">水文地质测绘费</text>
@@ -86,7 +85,7 @@
 			
 		</form>
 		<explain></explain>
-		<gctz-guo :showModalName="showModalName" v-on:hideModal="hideModal" :title="title" :modalName="modalName"></gctz-guo>
+		<gctz-guo :showModalName="showModalName" v-on:hideModal="hideModal" :modalName="modalName"></gctz-guo>
 		<fzcd :showModalName="showModalName" v-on:hideModal="hideModal"></fzcd>
 		<fjtz :showModalName="showModalName" v-on:hideModal="hideModal"></fjtz>
 	</view>

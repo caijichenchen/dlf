@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">勘察费-水域测量复杂程度表</view>
@@ -9,36 +9,31 @@
 				</view>
 			</view>
 			<view class="lt">
-				<uni-collapse animation="outer">
+				<uni-collapse animation="outer" accordion="true">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
-									<radio-group style="width:100%">
-											<label class="w-100 dlf-li font lt" style="width:100%;display: flex;"
-													v-for="(i, j) in item.list" 
-													:key="j" 
-													:data-val="i.val"
-													:data-key="index"
-													@click="radioChange" 
-												>
-													<view>
-															<radio :value="i.val" :checked="j == 0" style="transform:scale(0.5)" />
-													</view>
-													<view class="lt" style="width: 87%; white-space: pre-wrap;" >
-														{{i.content}} 
-													</view>
-													<span class="spbtn text-white px-1 bg-blue rt" style="width:60upx">
-														{{i.name}}
-													</span>
-											</label>
-									</radio-group>
+							<radio-group style="width:100%">
+									<label class="w-100 dlf-li font lt border-b" style="width:100%;display: flex;"
+											v-for="(i, j) in item.list" 
+											:key="j" 
+											:data-val="i.val"
+											:data-key="index"
+											@click="radioChange" 
+										>
+											<view>
+													<radio :value="i.val" :checked="j == 0" style="transform:scale(0.5)" />
+											</view>
+											<view class="lt" style="width: 87%; white-space: pre-wrap;" >
+												{{i.content}} 
+											</view>
+											<span class="spbtn text-white px-1 bg-blue rt" style="width:13%">
+												{{i.name}}
+											</span>
+									</label>
+							</radio-group>
 						</view>
 					</uni-collapse-item>
-						<!-- <view class="lt font p-2 text-left" style="white-space: pre-wrap;">
-							<view>注:</view>
-								<view>1.其他不具备本表特征的工程项目，工程难度系数按 1.00 计算；</view>
-								<view>2.当工程特征适用两个及以上难度系数时，取其中最大值。</view>
-						</view> -->
-						<button @tap="computeval" :data-val="lastval">计算</button>
+						<view class="py-2 font-md iconWhite backBlue" style="width: 100%;" @tap="computeval" :data-val="lastval">计算</view>
 				</uni-collapse>
 			</view>
 		</view>

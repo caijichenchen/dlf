@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">城市规划设计收费调整系数</view>
@@ -10,7 +10,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 									v-for="(item, index) in tzxsList" 
 									:key="index" 
 									@tap="assignment" 
@@ -54,11 +54,13 @@
 			return {
 				modalName:'csghYue_tzxs',
 				tzxsList:[
-					{content:"默认系数1",val:"1"},
-					{content:"1.规划期末城镇化水平（%）≤50",val:"1.0"},
-					{content:"2.规划期末城镇化水平（%） 51~60",val:"1.1"},
-					{content:"3．规划期末城镇化水平（%） 61~70",val:"1.3"},
-					{content:"4．规划期末城镇化水平（%） >70",val:"1.4"},
+					// {content:"默认系数1",val:"1"},
+					// {content:"1.规划期末城镇化水平（%）≤50",val:"1.0"},
+					// {content:"2.规划期末城镇化水平（%） 51~60",val:"1.1"},
+					// {content:"3．规划期末城镇化水平（%） 61~70",val:"1.3"},
+					// {content:"4．规划期末城镇化水平（%） >70",val:"1.4"},
+					{content:"“村镇总体规划”收费，参照本标准执行。",val:"1"},
+					{content:"中心镇总体规划收费乘以1.3系数。",val:"1.3"},
 				]
 			}
 		},

@@ -1,6 +1,6 @@
 <template>
 	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="997">
 		<template v-slot:jsq>
 			<!-- 设计费计算选项 -->
 			<xmdjf-counter-xiang></xmdjf-counter-xiang>

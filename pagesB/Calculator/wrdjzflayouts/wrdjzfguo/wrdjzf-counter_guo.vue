@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">无人岛金征费</text>
@@ -8,7 +7,7 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.wrdjzfGuo_jsyj">
 				<view class="title">计算依据</view>
-				<view class="title" v-model="needVal.wrdjzfGuo_jsyj">{{multiSelector.wrdjzfGuo_jsyj[pickerIndex.wrdjzfGuo_jsyj]}}</view>
+				<view class="title m-left" v-model="needVal.wrdjzfGuo_jsyj">{{multiSelector.wrdjzfGuo_jsyj[pickerIndex.wrdjzfGuo_jsyj]}}</view>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.wrdjzfGuo_yddb">
 				<view class="title">无人居住岛</view>

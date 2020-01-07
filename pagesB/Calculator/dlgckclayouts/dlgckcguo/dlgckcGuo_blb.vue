@@ -1,6 +1,5 @@
 <template>
-			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">勘察费-勘察复杂程度表</view>
@@ -8,7 +7,29 @@
 					<text class="cuIcon-close text-red"></text>
 				</view>
 			</view>
-			<view class="title-box">
+			<view>
+				<uni-collapse animation="outer" accordion="true">
+					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title" >
+						<view class="dlf-group lt">
+								<view class="w-100 dlf-li font lt border-b"
+										v-for="(i, j) in item.itemlist" 
+										:key="j" 
+										:data-val="i.val"
+										:data-key="index"
+										@tap="assignment"
+									>
+										<view class="rt" style="width: 87%; white-space: pre-wrap;" >
+											{{i.content}} 
+										</view>
+										<span class="font-mb iconBLue lt" style="width:13%">
+											{{i.val}}
+										</span>
+								</view>
+						</view>
+					</uni-collapse-item>
+				</uni-collapse>
+			</view>
+			<!-- <view class="title-box">
 				<view class="title"
 						v-for="(item,index) in dataList"
 						:key="index"
@@ -34,7 +55,7 @@
 						</span>
 					</view>
 				</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>

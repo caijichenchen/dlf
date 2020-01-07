@@ -6,16 +6,21 @@
 				<view class="content">监理费工作比例表</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
-			<view class=" border m-1">
-				<view class="dlf-group lt">
-					<view class="w-100 dlf-li font lt" 
-					v-for="(item, index) in fjcdList" :key="index" @tap="assignment" :data-val="item.xs">
-						<view class="lt" style="width: 87%; white-space: pre-wrap;">
-							{{item.value}}
+			<view class="padding-xl border border-blue m-1">
+					<view class="dlf-group lt">
+						<view class="w-100 dlf-li font lt border-b" 
+									v-for="(item, index) in fjxsList" 
+									:key="index" 
+									@tap="assignment" 
+									:data-val="item.xs"
+									>
+							<view class="lt" style="width: 87%; white-space: pre-wrap;">
+								{{item.value}}
+							</view>
+							<span class="spbtn text-white px-1 bg-blue rt" >
+								{{item.xs}}
+							</span>
 						</view>
-						<span class="spbtn text-white px-1 bg-blue rt" >
-							{{item.xs}}
-						</span>
 					</view>
 				</view>
 			</view>
@@ -36,7 +41,7 @@ export default {
 	data() {
 		return {
 			modalName: 'jlfGszf_gzlbl',
-			fjcdList: [
+			fjxsList: [
 				{value:"计算工程监理费质量",xs:"0.4"},
 				{value:"计算工程监理费造价",xs:"0.1"},
 				{value:"计算工程监理费进度控制",xs:"0.1"},

@@ -1,6 +1,6 @@
 <template>
 			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" @touchmove.stop.prevent="moveHandle" :class="showModalName== modalName ?'show':''" :style="'margin-top:'+CustomBar+ 'px'">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">公路工程附加调整系数</view>
@@ -10,7 +10,7 @@
 			</view>
 			<view class="padding-xl border border-blue m-1">
 					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt" 
+						<view class="w-100 dlf-li font lt border-b" 
 									v-for="(item, index) in tzxsList" 
 									:key="index" 
 									@tap="assignment" 
@@ -24,10 +24,6 @@
 							</span>
 						</view>
 					</view>
-					<!-- <view class="lt font p-1 text-left" style="white-space: pre-wrap;">
-						<view>注:</view>
-							<view>附加调整系数为两个或两个以上的, 附加调整系数相加。</view>
-					</view> -->
 				</view>
 			</view>
 		</view>

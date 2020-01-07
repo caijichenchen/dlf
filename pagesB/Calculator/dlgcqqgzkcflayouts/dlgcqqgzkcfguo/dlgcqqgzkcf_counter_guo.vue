@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">电力工程建设项目前期工作勘察费</text>
@@ -8,12 +7,12 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.dlgcqqgzkcfGuo1">
 				<view class="title">省份</view>
-				<view class="title">{{multiSelector.dlgcqqgzkcfGuo1[pickerIndex.dlgcqqgzkcfGuo1]}}</view>
+				<view class="title m-left">{{multiSelector.dlgcqqgzkcfGuo1[pickerIndex.dlgcqqgzkcfGuo1]}}</view>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.dlgcqqgzkcfGuo_standard">
 				<view class="title">选择标准</view>
 				<view class="title">{{multiSelector.dlgcqqgzkcfGuo_standard[pickerIndex.dlgcqqgzkcfGuo_standard]}}</view>
-				<button type="primary" size="mini" @tap="showModal" data-target="dlgcqqgzkcfGuo_standard">查看说明</button>
+				<button type="primary" size="mini" @tap="checkDeatil(1520)">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.dlgcqqgzkcfGuo_gclb">
 				<view class="title">工程类别</view>
@@ -80,7 +79,7 @@
 			
 		</form>
 		<explain></explain>
-		<fzcd :showModalName="showModalName" v-on:hideModal="hideModal"></fzcd>
+		<fzcd :showModalName="showModalName" v-on:hideModal="hideModal" :gclbindex="pickerIndex.dlgcqqgzkcfGuo_gclb"></fzcd>
 		<fjtz :showModalName="showModalName" v-on:hideModal="hideModal"></fjtz>
 		<gctz :showModalName="showModalName" v-on:hideModal="hideModal" :title="title" :modalName="modeName"></gctz>
 	</view>

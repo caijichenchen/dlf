@@ -39,16 +39,18 @@
 			}
 		},
 		mounted() {
-			let nowHour = new Date().getHours()
-			const signMsg = uni.getStorageSync('signStatus')
-			if(nowHour == 0){
-				this.showSign = true
-			}else if(!signMsg || signMsg.status != 'sign'){
-				this.showSign = true
-			}else {
-				this.showSign = false
-				this.userIntegral = signMsg.scope
-			}
+			$req.request({
+				url:'/api/xcx/verifySignIn',
+				method:'POST'
+			}).then(res=>{
+				console.log(res)
+				if(res.data.message == '已签到'){
+					this.showSign = false
+					this.userIntegral = res.data.integral
+				}
+			}).catch(err=>{
+				
+			})
 		},
 		methods:{
 			goInvite(){
@@ -57,7 +59,6 @@
 				})
 			},
 			getSign(){
-				console.log('qqqq')
 				$req.request({
 					url: '/api/xcx/sign',
 					method:'POST'
@@ -103,6 +104,7 @@
 		height: 200rpx;
 		background: #FFFFFF;
 		border-radius: 50%;
+		text-align: center;
 	}
 	.sign-content{
 		height: 120rpx;

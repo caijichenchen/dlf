@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">建筑幕墙和门窗检测费</text>
@@ -11,7 +10,7 @@
 					<view class="title">
 						{{multiSelector.jzmqmcjcfQiong_xzsf[pickerIndex.jzmqmcjcfQiong_xzsf]}}
 					</view>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jzmqmcjcfQiong_xzbz">
 				<view class="title">选择标准</view>

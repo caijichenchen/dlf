@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">预备费</text>
@@ -8,12 +7,12 @@
 		<form>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo1">
 				<view class="title">范围</view>
-				<view class="title">{{multiSelector.ybfGuo1[pickerIndex.ybfGuo1]}}</view>
+				<view class="title m-left">{{multiSelector.ybfGuo1[pickerIndex.ybfGuo1]}}</view>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo_standard">
 				<view class="title">取费标准</view>
 				<view class="title" v-model="needVal.ybfGuo_standard">{{multiSelector.ybfGuo_standard[pickerIndex.ybfGuo_standard]}}</view>
-				<button type="primary" size="mini" @tap="showModal" data-target="ybfGuo_standard">点击查看</button>
+				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="ybfGuo_standard">点击查看</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo_category">
 				<view class="title">计算分类</view>

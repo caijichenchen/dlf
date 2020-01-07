@@ -1,19 +1,19 @@
 <template>
 	<!-- 设计费 复杂调整 模态框 -->
-	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''">
+	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">工程保险费比例系数</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
 			<view class="padding-xl m-1">
-				<view  class="dlf-group" style="height: 87upx;">
-					<view class="w-100 dlf-li font lt" 
+				<view  class="dlf-group">
+					<view class="w-100 dlf-li font lt border-b" 
 						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-val="item.xs"> 
-						<view style="width: 540upx;white-space: pre-wrap;float: left;">
+						<view style="width: 87%;white-space: pre-wrap;float: left;">
 							{{item.value}}
 						</view>
-						<span class="text-blue lt">
+						<span class="spbtn text-white px-1 bg-blue rt">
 							{{item.xs}}
 						</span>
 					</view>

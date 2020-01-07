@@ -1,71 +1,67 @@
 <template>
 	<view>
-			<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
-			<div class="sjf_title w-100 mt-2" style="height: 60upx;">
-				<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-				<text class="text-blue lt pl-2 " style="margin-top: 5upx;">社会稳定风险评估收费</text>
-			</div>
-			<form>
-				<view class="cu-form-group">
-					<view class="title">计算依据</view>
-					<picker class="select" v-model="needVal.shwdfxpgHu_jsyj" :range="picker1">
-						<view class="picker" name="shwdfxpgHu_jsyj">
-							沪发改投〔2012〕130号
-						</view>
-					</picker>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[0]">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">咨询服务项目</view>
-					<picker class="select" @change="PickerChange" v-model="needVal.shwdfxpgHu_zxfwxm" :range="picker2">
-						<view class="picker" name="shwdfxpgHu_zxfwxm">
-							{{index>-1?picker2[index]:'编制建设项目社会稳定风险评估报告'}}
-						</view>
-					</picker>
-					<!-- <button type="primary" size="mini" @tap="showdzzk" :data-target="explain[1]">查看说明</button> -->
-				</view>
-				<view class="cu-form-group" style="border-top: 1upx solid #eee;">
-					<view class="title">估算投资额</view>
-					<input type="text"  id="sjf" v-model="needVal.shwdfxpgHu_gstze"></input>
-					<uni-tag text="亿元" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[1]">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">行业调整系数</view>
-					<input name="shwdfxpgHu_hytzxs" v-model="needVal.shwdfxpgHu_hytzxs" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_hytzxs">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">社会风险程度调整系数</view>
-					<input name="shwdfxpgHu_fxmgcdtz" v-model="needVal.shwdfxpgHu_fxmgcdtz" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_fxmgcdtz">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">区域范围调整系数</view>
-					<input name="shwdfxpgHu_qyfwtz" v-model="needVal.shwdfxpgHu_qyfwtz" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_qyfwtz">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">浮动</view>
-					<input name="shwdfxpgHu_fd" v-model="needVal.shwdfxpgHu_fd" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[2]">查看说明</button>
-				</view>
-				<view class="cu-form-group">
-					<view class="title">优惠折扣</view>
-					<input name="shwdfxpgHu_yhzk" v-model="needVal.shwdfxpgHu_yhzk" /></input>
-					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showdzzk" :data-target="explain[3]">查看说明</button>
-				</view>
-			</form>
-			<!-- 查看说明 --> 
-			<explain></explain>
-			<shwdfxpg-hu-hytz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></shwdfxpg-hu-hytz>
-			<shwdfxpg-hu-qyfwtz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></shwdfxpg-hu-qyfwtz>
-			<shwdfxpg-hu-wdfxtz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></shwdfxpg-hu-wdfxtz>
+		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
+			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">社会稳定风险评估收费</text>
+		</div>
+		<form>
+			<view class="cu-form-group">
+				<view class="title">计算依据</view>
+				<picker class="select" v-model="needVal.shwdfxpgHu_jsyj" :range="picker1">
+					<view class="picker" name="shwdfxpgHu_jsyj">
+						沪发改投〔2012〕130号
+					</view>
+				</picker>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">咨询服务项目</view>
+				<picker class="select" @change="PickerChange" v-model="needVal.shwdfxpgHu_zxfwxm" :range="picker2">
+					<view class="picker" name="shwdfxpgHu_zxfwxm">
+						{{index>-1?picker2[index]:'编制建设项目社会稳定风险评估报告'}}
+					</view>
+				</picker>
+				<!-- <button type="primary" size="mini" @tap="showdzzk" :data-target="explain[1]">查看说明</button> -->
+			</view>
+			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+				<view class="title">估算投资额</view>
+				<input type="text"  id="sjf" v-model="needVal.shwdfxpgHu_gstze"></input>
+				<uni-tag text="亿元" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">行业调整系数</view>
+				<input name="shwdfxpgHu_hytzxs" v-model="needVal.shwdfxpgHu_hytzxs" /></input>
+				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_hytzxs">点击选择</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">社会稳定风险敏感程度调整系数</view>
+				<input name="shwdfxpgHu_fxmgcdtz" v-model="needVal.shwdfxpgHu_fxmgcdtz" /></input>
+				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_fxmgcdtz">点击选择</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">区域范围调整系数</view>
+				<input name="shwdfxpgHu_qyfwtz" v-model="needVal.shwdfxpgHu_qyfwtz" /></input>
+				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_qyfwtz">点击选择</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">浮动</view>
+				<input name="shwdfxpgHu_fd" v-model="needVal.shwdfxpgHu_fd" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
+			</view>
+			<view class="cu-form-group">
+				<view class="title">优惠折扣</view>
+				<input name="shwdfxpgHu_yhzk" v-model="needVal.shwdfxpgHu_yhzk" /></input>
+				<uni-tag text="%" type="defult"></uni-tag>
+				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
+			</view>
+		</form>
+		<!-- 查看说明 --> 
+		<explain></explain>
+		<shwdfxpg-hu-hytz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></shwdfxpg-hu-hytz>
+		<shwdfxpg-hu-qyfwtz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></shwdfxpg-hu-qyfwtz>
+		<shwdfxpg-hu-wdfxtz v-bind:showModalName="showModalName" v-on:hideModal='hideModal'></shwdfxpg-hu-wdfxtz>
 	</view>
 </template>
 
@@ -157,7 +153,7 @@
   			},
 			//查看说明
 			showdzzk(e) {
-				this.modalData = e.currentTarget.dataset.target
+				this.modalData = JSON.parse(e.currentTarget.dataset.target)
 				this.$bus.emit('modalData', this.modalData )
 			},
 		}
