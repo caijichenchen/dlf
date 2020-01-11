@@ -66,9 +66,7 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
 		import {counterMixin} from "@/common/base/counterMixin"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 		import hjyxpjfZangHytzxs from "./hjyxpjZang_hytzxs.vue"
 		import hjyxpjfZangHjmgxs from "./hjyxpjZang_hjmgxs.vue"
 		import hjyxpjfZangDqtzxs from "./hjyxpjZang_dqtzxs.vue"
@@ -119,11 +117,9 @@
 				}
 			},
 			components: {
-				uniTag,
 				hjyxpjfZangHytzxs,
 				hjyxpjfZangHjmgxs,
 				hjyxpjfZangDqtzxs,
-				explain
 			},
 			methods:{
 				PickerChange1(e) {

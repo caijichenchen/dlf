@@ -100,8 +100,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import {counterMixin} from "@/common/base/counterMixin"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import datajson from '@/common/json/qtsssysfs/qtsssysfs.json'
 	import gctz from '@/common/base/gctz.vue'
 	import fjtz from './qtsssysfGuo_fjtz.vue'
@@ -200,8 +198,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			gctz,
 			fjtz
 		},

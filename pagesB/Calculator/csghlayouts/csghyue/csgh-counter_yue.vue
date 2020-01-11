@@ -93,8 +93,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/csghs.json'
 	import sffdYue from './csghYue_sffd.vue'
 	import fzxsYue from './csghYue_fzxs.vue'
@@ -185,8 +183,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			sffdYue,
 			fzxsYue,
 			tzxsYue,

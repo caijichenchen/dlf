@@ -41,8 +41,6 @@
 	import {counterMixin} from "@/common/base/counterMixin"
 	import zsxzGuoFzcd from "./zsxzGuo_fzcd.vue"
 	import zsxzGuoFjxs from "./zsxzGuo_fjxs.vue"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -70,8 +68,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			zsxzGuoFzcd,
 			zsxzGuoFjxs
 		},

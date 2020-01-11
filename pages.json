@@ -173,6 +173,10 @@
 		    "style" : {}
 		},
 		{
+		    "path" : "pages/PersonalCenter/bindEmail",
+		    "style" : {}
+		},
+		{
 		    "path" : "pages/PersonalCenter/wdbz",
 		    "style" : {
 				"navigationBarTitleText": "我的标准"
@@ -376,6 +380,134 @@
 				,{
 				    "path" : "Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfsu/jsxmqqgzzxfsu",
 				    "style" : {}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfba/jsjyfwfba",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfjing/jsjyfwfjing",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwflong/jsjyfwflong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfmin/jsjyfwfmin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfqiong/jsjyfwfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfsu/jsjyfwfsu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfxiang/jsjyfwfxiang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfzhe/jsjyfwfzhe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfe/jsjyfwfe",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwftianjin/jsjyfwftianjin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfliao/jsjyfwfliao",
+					"style":{}
+				},
+				{
+					"path":"Calculator/jsjyfwflayouts/jsjyfwfji/jsjyfwfji",
+					"style":{}
+				},
+				{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptqiong/csjcssptqiong",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptji/csjcssptji",
+				    "style" : {}
+				},
+				{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptjin/csjcssptjin",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/csjcssptlayouts/csjcsspthei/csjcsspthei",
+				    "style" : {}
+				}
+				,{
+				    "path" : "Calculator/csjcssptlayouts/csjcssptxiang/csjcssptxiang",
+				    "style" : {}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfqian/dzaqpjfqian",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfqiong/dzaqpjfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfhu/dzaqpjfhu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfjing/dzaqpjfjing",
+					"style":{}
+				}, 
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfji/dzaqpjfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/dzaqpjflayouts/dzaqpjfhei/dzaqpjfhei",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfqiong/fkdxyjjsfqiong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfji/fkdxyjjsfji",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfjilin/fkdxyjjsfjilin",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsflong/fkdxyjjsflong",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfmeng/fkdxyjjsfmeng",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfqian/fkdxyjjsfqian",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfsu/fkdxyjjsfsu",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfxiang/fkdxyjjsfxiang",
+					"style":{}
+				},
+				{
+					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfzhe/fkdxyjjsfzhe",
+					"style":{}
 				}
 			]
 		},
@@ -841,6 +973,10 @@
 			"root":"pagesB",
 			"pages":[
 				{
+					"path":"Calculator/ytgcktlayouts/ytgcktguo/ytgcktguo",
+					"style":{}
+				},
+				{
 					"path":"Calculator/hyjzflayouts/hyjzfguo/hyjzfguo",
 					"style":{}
 				},
@@ -869,137 +1005,10 @@
 					"style":{}
 				},
 				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfba/jsjyfwfba",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfjing/jsjyfwfjing",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwflong/jsjyfwflong",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfmin/jsjyfwfmin",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfqiong/jsjyfwfqiong",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfqiong/fkdxyjjsfqiong",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfsu/jsjyfwfsu",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfxiang/jsjyfwfxiang",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfzhe/jsjyfwfzhe",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfe/jsjyfwfe",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwftianjin/jsjyfwftianjin",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfliao/jsjyfwfliao",
-					"style":{}
-				},
-				{
-					"path":"Calculator/jsjyfwflayouts/jsjyfwfji/jsjyfwfji",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfji/fkdxyjjsfji",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfjilin/fkdxyjjsfjilin",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsflong/fkdxyjjsflong",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfmeng/fkdxyjjsfmeng",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfqian/fkdxyjjsfqian",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfsu/fkdxyjjsfsu",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfxiang/fkdxyjjsfxiang",
-					"style":{}
-				},
-				{
-					"path":"Calculator/fkdxyjjsflayouts/fkdxyjjsfzhe/fkdxyjjsfzhe",
-					"style":{}
-				},
-				{
 					"path":"Calculator/ytgcsjlayouts/ytgcsjguo/ytgcsjguo",
 					"style":{}
 				},
-				{
-					"path":"Calculator/dzaqpjflayouts/dzaqpjfqian/dzaqpjfqian",
-					"style":{}
-				},
-				{
-					"path":"Calculator/dzaqpjflayouts/dzaqpjfqiong/dzaqpjfqiong",
-					"style":{}
-				},
-				{
-					"path":"Calculator/dzaqpjflayouts/dzaqpjfhu/dzaqpjfhu",
-					"style":{}
-				},
-				{
-					"path":"Calculator/dzaqpjflayouts/dzaqpjfjing/dzaqpjfjing",
-					"style":{}
-				}, 
-				{
-					"path":"Calculator/dzaqpjflayouts/dzaqpjfji/dzaqpjfji",
-					"style":{}
-				},
-				{
-					"path":"Calculator/dzaqpjflayouts/dzaqpjfhei/dzaqpjfhei",
-					"style":{}
-				},
-				{
-				    "path" : "Calculator/csjcssptlayouts/csjcssptqiong/csjcssptqiong",
-				    "style" : {}
-				}
-				,{
-				    "path" : "Calculator/csjcssptlayouts/csjcssptji/csjcssptji",
-				    "style" : {}
-				},
-				{
-				    "path" : "Calculator/csjcssptlayouts/csjcssptjin/csjcssptjin",
-				    "style" : {}
-				}
-				,{
-				    "path" : "Calculator/csjcssptlayouts/csjcsspthei/csjcsspthei",
-				    "style" : {}
-				}
-				,{
-				    "path" : "Calculator/csjcssptlayouts/csjcssptxiang/csjcssptxiang",
-				    "style" : {}
-				},
+				
 				{
 				    "path" : "Calculator/tlsjlayouts/tlsjguo/tlsjguo",
 				    "style" : {}

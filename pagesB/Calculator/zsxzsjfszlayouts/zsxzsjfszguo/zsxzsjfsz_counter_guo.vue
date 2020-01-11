@@ -66,13 +66,11 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import zsxzsjfszGuoFjxs from "./zsxzsjfszGuo_fjxs.vue"
 	import zsxzsjfszGuoBlb from "./zsxzsjfszGuo_blb.vue"
 	import zsxzsjfszGuoFzcd from "./zsxzsjfszGuo_fzcd"
 	import zsxzsjfszGuoZytz from "./zsxzsjfszGuo_zyxs"
 	import zsxzsjfszGuoFwxs from "./zsxzsjfszGuo_qtfjxs"
-	import explain from '@/common/base/explain.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -106,13 +104,11 @@
 			}
 		},
 		components: {
-			uniTag,
 			zsxzsjfszGuoFjxs,
 			zsxzsjfszGuoBlb,
 			zsxzsjfszGuoFzcd,
 			zsxzsjfszGuoFwxs,
 			zsxzsjfszGuoZytz,
-			explain
 		},
 		methods:{
 			PickerChanges(e) {

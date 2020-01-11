@@ -44,9 +44,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		mixins: [resultMixin],
 		data() {
@@ -65,9 +62,6 @@
 					menuText: ['勘察实物工作收费:', '勘察技术工作收费:','勘察收费基准价:','折前勘察收费:','折后勘察收费:','计算过程:'],
 				},
 			};
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

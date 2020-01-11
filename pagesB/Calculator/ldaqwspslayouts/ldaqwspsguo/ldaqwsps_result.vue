@@ -29,9 +29,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		mixins: [resultMixin],
 		data() {
@@ -47,9 +44,6 @@
 					menuText: ['折前劳动安全卫生评审费:', '折后劳动安全卫生评审费:', '计算过程'],
 				},
 			};
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

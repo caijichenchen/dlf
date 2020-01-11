@@ -6,7 +6,7 @@
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
 			<view class="padding-xl m-1">
-				<view  class="dlf-group" style="height: 324upx;">
+				<view  class="dlf-group">
 					<view class="w-100 dlf-li font lt border-b"
 						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-val="item.xs"> 
 						<view style="width:87%;white-space: pre-wrap;float: left;">

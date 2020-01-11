@@ -41,8 +41,6 @@
 	import {
 		counterMixin
 	} from "@/common/base/counterMixin"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import blxs from './gckcfGuo_blxs.vue'
 	export default {
 		mixins: [counterMixin],
@@ -73,8 +71,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			blxs
 		},
 		methods:{

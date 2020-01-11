@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<cbsjpssf-counter-guo></cbsjpssf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<cbsjpssf-result></cbsjpssf-result>
 		</template>
 		<template v-slot:qfbz>
@@ -17,9 +13,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import cbsjpssfCounterGuo from "./cbsjpssf-counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import cbsjpssfResult from "./cbsjpssf_result.vue"
 	export default {
 		data() {
@@ -38,8 +32,6 @@
 		},
 		components:{
 			cbsjpssfCounterGuo,
-			baseLayout,
-			computing,
 			cbsjpssfResult
 		}
 	}

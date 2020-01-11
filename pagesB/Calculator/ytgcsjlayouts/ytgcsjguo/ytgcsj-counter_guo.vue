@@ -44,8 +44,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import fzcd from './ytgcsjGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -81,8 +79,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			fzcd
 		},
 		methods:{

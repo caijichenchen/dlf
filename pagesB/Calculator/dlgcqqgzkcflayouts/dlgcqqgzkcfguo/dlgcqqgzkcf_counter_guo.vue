@@ -93,8 +93,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/dlgcqqgzkcf/dlgcqqgzkcf-guo.json'
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import fzcd from './dlgcqqgzkcfGuo_fzcd.vue'
 	import fjtz from './dlgcqqgzkcfGuo_fjtz.vue'
 	import gctz from '@/common/base/gctz.vue'
@@ -178,8 +176,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			fzcd,
 			fjtz,
 			gctz

@@ -52,8 +52,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import datajson from '@/common/json/jsxmbjfs/jsxmbjfs-chuan.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -95,10 +93,6 @@
 					}
 				]
 			}
-		},
-		components: {
-			uniTag,
-			explain
 		},
 		methods:{
 			//查看说明

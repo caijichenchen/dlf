@@ -1,19 +1,14 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="10">
 		<template v-slot:jsq>
 			<tlsj-counter></tlsj-counter>
+			<computing v-bind:countData = "countData"></computing>
 			<tlsj-result></tlsj-result>
-		</template>
-		<template v-slot:qfbz>
-			<!-- <h1>设计费取费标准</h1> -->
 		</template>
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
-	import computing from "@/common/base/computing.vue"
 	import tlsjCounter from './tlsj-counter.vue'
 	import tlsjResult from './tlsj-result.vue'
 	export default {
@@ -29,8 +24,6 @@
 			
 		},
 		components:{
-			baseLayout,
-			computing,
 			tlsjResult,
 			tlsjCounter
 		}

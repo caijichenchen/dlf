@@ -84,8 +84,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import fjtz from './slsdqqgzkcfGuo_fjtz.vue'
 	import lxtz from './slsdqqgzkcfGuo_lxtz.vue'
 	import fzcd from './slsdqqgzkcfGuo_fzcd.vue'
@@ -132,8 +130,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			fjtz,
 			lxtz,
 			fzcd,

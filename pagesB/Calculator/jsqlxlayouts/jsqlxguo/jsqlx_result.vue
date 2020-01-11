@@ -43,9 +43,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		props:{
 			title:{
@@ -70,9 +67,6 @@
 					menuText: ['贷款总额:', '还款总额:','利息总和:','年均还款:','还款明细:' ,'计算过程:'],
 				},
 			};
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

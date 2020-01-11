@@ -98,8 +98,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import datajson from "@/common/json/hjjcfs/hjjcfs-liao.json"
 	import tzxsLiao from './hjjcfLiao_tzxs.vue'
 	export default {
@@ -158,8 +156,6 @@
 				datajson:datajson,
 				modalData: null,  //查看说明
 				showModalName: null,
-				selected: 'A',
-				shows: 1,
 				explain: [
 					{
 						"id": "1",
@@ -180,8 +176,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			tzxsLiao
 		},
 		methods:{

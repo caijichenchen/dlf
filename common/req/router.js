@@ -3,7 +3,7 @@ function calRouter(type,urlArr){
 		uni.navigateTo({
 			url: `/pagesA/Calculator/${urlArr[1]}layouts/${urlArr[1]}${urlArr[2]}/${urlArr[1]}${urlArr[2]}`
 		});
-	}else if(type == '监理费' || type == '建设项目前期工作咨询费'){
+	}else if(type == '监理费'||type == '建设项目前期工作咨询费'||type == '建设交易服务收费'||type == '城市基础设施配套费'||type == '地震安全性评价费'||type == '防空地下室易地建设费'){
 		uni.navigateTo({
 			url: `/pagesC/Calculator/${urlArr[1]}layouts/${urlArr[1]}${urlArr[2]}/${urlArr[1]}${urlArr[2]}`
 		});
@@ -22,7 +22,7 @@ function checkComputed(needVal){
 	//优惠折扣  对应线上fw_0_100
 	const checkDiscount = ['discount','dzzk','qfbl','yhzk']
 	//附加调整  对应线上fw_1
-	const checkFjtz = ['hzhjcgb','fjtz','fwxs','fjxs','sf','zhynys']
+	const checkFjtz = ['hzhjcgb','fjtz','fwxs','fjxs','sf','zhynys','cqxs','gyxs','ghgwxs','dzxs','xmjxs','xcxs']
 	//对应线上fw_int_0
 	const checkXs = ['xmjscs']
 	//浮动幅度  对应线上fw_80_120
@@ -39,7 +39,9 @@ function checkComputed(needVal){
 		if(flag){ //当已经检验出错误输入时不再执行循环
 			checkArr.forEach(val=>{
 				if(val.split('_')[1] == item){ //改进完全匹配
-					if(!(needVal[val]>0)){ 
+					if(!(needVal[val]>0) && !needVal[val].includes('|')){ 
+						console.log(val)
+						console.log(isNaN(needVal[val]))
 						flag = false
 						return uni.showToast({
 							icon:'none',

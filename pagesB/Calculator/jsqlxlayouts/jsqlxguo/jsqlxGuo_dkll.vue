@@ -48,10 +48,6 @@ export default {
 		};
 	},
 	methods: {
-		clickFjxs(e) {
-			//点击隐藏
-			console.log(e);
-		}
 	},
 	
 

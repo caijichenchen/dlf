@@ -1,6 +1,8 @@
 <template>
 	<view>
-		<view :style="'margin-top:'+CustomBar+ 'px'"></view>
+		<cu-custom  >
+		    <block slot="content"></block>
+		</cu-custom>
 		<view class="text-center">
 			<view class="dlf-title">独立费</view>
 			<view class="dlf-content">轻松计算 无价时间</view>
@@ -33,9 +35,29 @@
 						<view class="qqlogin"></view>
 					</view>
 					<!-- #endif -->
-					<view class="e-wrap" @tap="wxlogin">
+					<view class="e-wrap">
 						<view class="welogin"></view>
+						<!-- <button @click="login">Login</button> -->
+						<button class='bottom' type='primary' open-type="getUserInfo" withCredentials="true" lang="zh_CN" @getuserinfo="wxGetUserInfo">
+							授权登录
+						</button>
 					</view>
+					<!-- #ifdef MP-WEIXIN
+					<view v-if="isCanUse">
+						<view>
+							<view class='header'>
+								<image src='../../static/wechat.png'></image>
+							</view>
+							<view class='content'>
+								<view>申请获取以下权限</view>
+								<text>获得你的公开信息(昵称，头像、地区等)</text>
+							</view>
+							<button class='bottom' type='primary' open-type="getUserInfo" withCredentials="true" lang="zh_CN" @getuserinfo="wxGetUserInfo">
+								授权登录
+							</button>
+						</view>
+					</view>
+					#endif -->
 				</view>
 				<view class="else-b">
 					<view>没有账号?</view>
@@ -56,11 +78,35 @@
 				// password:'123456.',
 				phoneno:'',
 				password:'',
-				storageData:{},
-				know:false
+				know:false,
+				SessionKey: '',
+				OpenId: '',
+				nickName: null,
+				avatarUrl: null,
+				isCanUse: uni.getStorageSync('isCanUse')||true//默认为true
 			};
 		},
 		mounted() {
+			uni.getProvider({
+			    service: 'oauth',
+			    success: function (res) {
+			        console.log(res.provider)
+			        if (~res.provider.indexOf('weixin')) {
+			            uni.login({
+			                provider: 'weixin',
+			                success: function (loginRes) {
+			                    console.log(JSON.stringify(loginRes));
+								// uni.getUserInfo({
+								// 	provider: 'weixin',
+								// 	success: function (infoRes) {
+								// 		console.log('用户昵称为：' + infoRes.userInfo.nickName);
+								// 	}
+								// });
+			                }
+			            });
+			        }
+			    }
+			});
 			const phone = uni.getStorageSync('phone')
 			const pwd = uni.getStorageSync('pwd')
 			if(phone && pwd){
@@ -70,28 +116,66 @@
 			}
 		},
 		methods: {
+			wxGetUserInfo(){
+				uni.getUserInfo({
+					provider: 'weixin',
+					success: function (infoRes) {
+						console.log(infoRes)
+						console.log('用户昵称为：' + infoRes.userInfo.nickName);
+					}
+				});
+			},
+			onGotUserInfo: function (e) {
+			    console.log(e.detail.errMsg)
+			    console.log(e.detail.userInfo)
+			    console.log(e.detail.rawData)
+				uni.getUserInfo({
+					provider: 'weixin',
+					success: function (infoRes) {
+						console.log(infoRes)
+						console.log('用户昵称为：' + infoRes.userInfo.nickName);
+					}
+				});
+			},
+			onGetPhoneNumber(e) {  
+				console.log("onGetPhoneNumber", e);  
+				console.log(e.detail.errMsg);  
+				console.log(e.detail.iv);  
+				console.log(e.detail.encryptedData);  
+				uni.showModal({  
+					title: "onGetPhoneNumber",  
+					content: e.detail.errMsg  
+				})  
+			},
 			...mapMutations(['login','getUserInfo']),
 			bindLogin(e) {
 				const regPhone = /^1[3456789]\d{9}$/
+				const regEmail =  /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
 				if(!this.phoneno){
 					return uni.showToast({
 						icon: 'none',
-						title:'手机号输入不能为空'
+						title:'手机号/邮箱输入不能为空'
 					})
 				}
-				if(!regPhone.test(this.phoneno)){
-					return uni.showToast({
-						icon: 'none',
-						title:'手机号输入格式不正确'
-					})
+				if(this.phoneno.includes('@')){
+					if(!regEmail.test(this.phoneno)){
+						return uni.showToast({
+							icon:'none',
+							title:'邮箱输入格式不正确'
+						})
+					}
+					this.userLogin()
+				}else{
+					if(!regPhone.test(this.phoneno)){
+						return uni.showToast({
+							icon:'none',
+							title:'手机号输入格式不正确'
+						})
+					}
+					this.userLogin()
 				}
-				if (this.password.length < 6) {
-					return	uni.showToast({
-								icon: 'none',
-								title: '密码长度不能少于六位'
-							})
-				}
-				//用户登录
+		    },
+			userLogin(){
 				$req.request({
 					url: '/getApiToken',
 					header: {"Content-Type": "application/x-www-form-urlencoded"},
@@ -117,7 +201,7 @@
 				}).catch((err)=>{
 					console.log('登陆失败',err)
 				})
-		    },
+			},
 			//获取用户个人信息
 			getUserData() {
 				$req.request({
@@ -133,9 +217,6 @@
 					icon:'none',
 					title:'还没有接口'
 				})
-				// wx.login({
-					
-				// })
 			},
 			setKnow(){
 				this.know = !this.know
@@ -152,6 +233,36 @@
 </script>
 
 <style scoped>
+	.header {
+	        margin: 90rpx 0 90rpx 50rpx;
+	        border-bottom: 1px solid #ccc;
+	        text-align: center;
+	        width: 650rpx;
+	        height: 300rpx;
+	        line-height: 450rpx;
+	    }
+	
+	    .header image {
+	        width: 200rpx;
+	        height: 200rpx;
+	    }
+	
+	    .content {
+	        margin-left: 50rpx;
+	        margin-bottom: 90rpx;
+	    }
+	
+	    .content text {
+	        display: block;
+	        color: #9d9d9d;
+	        margin-top: 40rpx;
+	    }
+	
+	    .bottom {
+	        border-radius: 80rpx;
+	        margin: 70rpx 50rpx;
+	        font-size: 35rpx;
+	    }
 	page{
 		background: #FFFFFF;
 	}

@@ -1,5 +1,4 @@
 <template>
-	<!-- 设计费计算结果 7个-->
 		<view class="navigation-bar">
 			<view class="sjfjsjg">
 				<view class="sjftable">
@@ -35,9 +34,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		mixins: [resultMixin],
 		data() {
@@ -54,12 +50,6 @@
 					menuText: ['基价:','折前白蚁防治费:', '折后白蚁防治费:',  '计算过程:'],
 				},
 			};
-		},
-		created() {
-			
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

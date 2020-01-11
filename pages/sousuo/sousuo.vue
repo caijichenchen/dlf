@@ -64,8 +64,8 @@
 				this.hisSearchList = [...new Set(this.hisSearchList)]
 				uni.setStorageSync('hisSearchList',this.hisSearchList)
 				uni.navigateTo({
-						url:'/pages/sousuo/searchResult'
-					})
+					url:`./searchResult?key=${searchkey}`
+				})
 				// $req.request({
 				// 	url: '/api/xcx/search',
 				// 	data:{
@@ -75,24 +75,7 @@
 				// 	console.log(res.data)
 				// }).catch(err=>{
 				// 	console.log(err)
-				// }).finally(data=>{
-				// 	console.log(data)
-				// 	uni.navigateTo({
-				// 		url:'/pages/sousuo/searchResult'
-				// 	})
 				// })
-				uni.request({
-					url: this.$serverUrl + '/api/xcx/search',
-					data:{
-						key: searchkey
-					},
-					success:(res)=> {
-						console.log(res)
-					},
-					fail:(err)=>{
-						console.log(err)
-					}
-				})
 			},
 			setSearch(e){
 				this.searchkey = e.currentTarget.dataset.name
@@ -135,13 +118,6 @@
 		color: #ccc;
 		border-radius: 8rpx;
 		padding: 6rpx 14rpx;
-	}
-	.search-btn {
-		font-size: 0.8rem;
-		width: 20%;
-		line-height: 1.6rem;
-		text-align: center;
-		color: #00A0E0;
 	}
 	.cont-title {
 		font-weight: 700;

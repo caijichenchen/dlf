@@ -39,9 +39,7 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
 		import {counterMixin} from "@/common/base/counterMixin"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 		import hjyxpjfMengJsxmlb from "./hjyxpjMeng_jsxmlb.vue"
 		
 		export default {
@@ -75,11 +73,9 @@
 				}
 			},
 			components: {
-				uniTag,
 				// hjyxpjfMengHytzxs,
 				// hjyxpjfMengHjmgxs,
 				hjyxpjfMengJsxmlb,
-				explain
 			},
 			methods:{
 				PickerChange1(e) {

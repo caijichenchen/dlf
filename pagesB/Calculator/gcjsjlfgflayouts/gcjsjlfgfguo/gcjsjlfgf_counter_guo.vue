@@ -1,6 +1,5 @@
 <template>
 	<view>
-			<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 			<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 				<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 				<text class="text-blue lt pl-2 " style="margin-top: 5upx;">工程建设监理费</text>
@@ -8,57 +7,63 @@
 			<form>
 				<view class="cu-form-group">
 					<view class="title">计算依据</view>
-					<picker class="select" @change="PickerChange" v-model="needVal.gcjsjlfgf_jsyj" :range="picker1">
-						<view class="picker" >
+						<view class="picker m-left" >
 							NB/T 32027--2016
 						</view>
-					</picker>
 					<!-- <button type="primary" size="mini" @tap="showModal" data-target="zsxzGuo_fzcd">查看说明</button> -->
+					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 				</view>
-				<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+				<view class="cu-form-group" >
 					<view class="title">建安设备费</view>
-					<input type="text" id="sjf" v-model="needVal.gcjsjlfgf_jasbf"></input>
-					<uni-tag  text="万元" type="defult">万元</uni-tag>
+					<input type="text" v-model="needVal.gcjsjlfgfGuo_gczj"></input>
+					<uni-tag  text="万元" type="defult"></uni-tag>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">打折折扣</view>
-					<input name="sjfGuo_discount" v-model="needVal.gcjsjlfgf_dzzk" /></input>
+					<input v-model="needVal.gcjsjlfgfGuo_dzzk" /></input>
 					<uni-tag text="%" type="defult"></uni-tag>
-					<button type="primary" size="mini" @tap="showModal" data-target="showdzzk">查看说明</button>
+					<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 				</view>
 			</form>
+			<explain></explain>
 	</view>
 </template>
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	export default {
 		mixins: [counterMixin],
 		data() {
 			return {
 				needVal: {
-					gcjsjlfgf_dzzk: '',
-					gcjsjlfgf_jasbf: '',
-					gcjsjlfgf_jsyj: 'NB/T 32027--2016',
+					gcjsjlfgfGuo_dzzk: '100',
+					gcjsjlfgfGuo_gczj: '',
+					gcjsjlfgfGuo_jsyj: 'NB/T 32027--2016',
+					gcjsjlfgfGuo_jfe: '5000|10000|20000|40000|80000|170000|270000|360000',
+					gcjsjlfgfGuo_fl: '1.12|0.87|0.79|0.71|0.64|0.41|0.34|0.28',
+					type:'gcjsjlfgfGuo'
 				},
 				showModalName: null,
-				radio: 'radio1',
-				selected: 'A',
-				shows: 1,
-				picker1:['NB/T 32027--2016'],
-				index:'NB/T 32027--2016'
+				modalData: null,
+				explain: [
+					{
+						"id": "2",
+						"title": "计算依据",
+						"text": "中华人民共和国能源行业标准NB/T 32027--2016"
+					},
+					{
+						"id": "1",
+						"title": "打折折扣",
+						"text": "目前市场行情不同，各地区取值略有不同"
+					}
+				]
 			}
-		},
-		components: {
-			uniTag,
-			
 		},
 		methods:{
-			PickerChange(e) {
-				this.index = e.detail.value
-				console.log(e.detail.value);
-			}
+			showdzzk(e) {
+				this.modalData = JSON.parse(e.currentTarget.dataset.target)
+				this.$bus.emit('modalData', this.modalData )
+			},
 		}
 	}
 </script>

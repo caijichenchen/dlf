@@ -14,9 +14,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import slsdgckcCounterGuo from "./slsdgckc-counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import slsdgckcResult from "./slsdgckc_result.vue"
 	export default {
 		data() {
@@ -32,8 +30,6 @@
 		},
 		components:{
 			slsdgckcCounterGuo,
-			baseLayout,
-			computing,
 			slsdgckcResult,
 		}
 	}

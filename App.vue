@@ -3,15 +3,6 @@
 	import Vue from 'vue'
 	import {mapMutations} from 'vuex';
 	export default {
-		// onShareAppMessage(res) {
-		//     if (res.from === 'button') {// 来自页面内分享按钮
-		//       console.log(res.target)
-		//     }
-		//     return {
-		// 		title: '独立费邀请您体验工程造价',
-		// 		path: '/pages/index/index'
-		//     }
-		// },
 		onLaunch: function() {
 				// 初始化用户状态
 				// this.$store.commit('initUser')
@@ -47,13 +38,6 @@
 		onShow: function() {
 			
 			// console.log('App Show')
-			// wx.showShareMenu({
-			//   withShareTicket: true
-			// })
-			// wx.onShareAppMessage(function () {
-			//   // 用户点击了“转发”按钮
-			//   console.log('用户点击了转发按钮')
-			// })
 		},
 		onHide: function() {
 			// console.log('App Hide') 

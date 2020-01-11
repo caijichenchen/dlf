@@ -2,17 +2,20 @@
 	<view :style="'height:'+windowHeight+'px'" >
 		<cu-custom bgColor="bg-gradual-blue" >
 		    <block slot="content">计算器分类</block>
-			<block slot="right" @click="goSearch" >
+			<!-- <block slot="right" @click="goSearch" >
 				<text class="iconfont" style="color: #FFFFFF;font-size: 34upx;">&#xe666;</text>
-			</block>
+			</block> -->
 		</cu-custom>
 		<view class="province-header" >
 			<view class="province-nav">当前省份:</view>
 			<view class="province-wrap">
-				<view class="province-now">海南</view>
+				<view class="province-now" 
+				:class="{'activepro':clickPro == addressName}"
+				 :data-name="addressName"
+				@tap="getCal">{{addressName}}</view>
 				<view class="province-box">
 					<scroll-view scroll-x="true" show-scrollbar="true" class="scroll-box">
-						<view v-for="(item,index) in provinceList"
+						<view v-for="(item,index) in proList"
 							:key="index"
 							class="province-item"
 							:data-name="item"
@@ -37,7 +40,12 @@
 				</view>
 			</scroll-view>
 			<scroll-view scroll-y show-scrollbar="true" class="content">
-				<view v-for="(item,index) in proCalList" :key="index">
+				<view v-if="JSON.stringify(proCalList)=='{}'" class="mt-5">
+					<view style="width: 85%;margin: 60rpx auto;white-space: normal;">
+						您还没有选择计算器或该分类下没有计算器哦~
+					</view>
+				</view>
+				<view v-else v-for="(item,index) in proCalList" :key="index">
 					<view :data-url="item.url" :data-type="item.parent_type" @tap="navigateto" class="btn">{{item.name}}</view>
 				</view>
 			</scroll-view>
@@ -48,47 +56,64 @@
 <script>
 	import $req from '@/common/req/request.js'
 	import { calRouter } from '@/common/req/router.js'
-	// import { getFilterCategory } from '@/common/js/function.js'
+	import amap from '@/common/amap-wx.js';  
 	export default {
-		onShareAppMessage() {
-			
+		onShareAppMessage(res) {
+		    if (res.from === 'button') {// 来自页面内分享按钮
+		      console.log(res.target)
+		    }
+		    return {
+				title: '独立费~工程建设其他费用计算器',
+				path: '/pages/index/index'
+		    }
 		},
 		data() {
 			return {
-					provinceLists: ['全国','海南','广东','广西','北京','天津','河北','山西','辽宁','吉林','黑龙江','内蒙古','上海','浙江','江苏','山东','安徽','福建','湖南','湖北','河南','江西','四川','重庆','贵州','云南','陕西','甘肃','宁夏','青海','新疆'],
+					provinceLists: ['全国','河南','海南','广东','广西','北京','天津','河北','山西','辽宁','吉林','黑龙江','内蒙古','上海','浙江','江苏','山东','安徽','福建','湖南','湖北','江西','四川','重庆','贵州','云南','陕西','甘肃','宁夏','青海','新疆'],
 					proCalList:{},
 					filterList: [],
 					clickPro: '',
 					clickFilter: '',
-					windowHeight: ''
+					windowHeight: '',
+					key: 'd5e591ec54220d8fd5cafc4def34eef9',
+					amapPlugin: null,  
+					addressName: '全国',  
 				}
 		},
-		onShow() {
-			// uni.getLocation({
-			//     type: 'wgs84',
-			//     success: function (res) {
-			// 			console.log(JSON.stringify(res))
-			//          console.log('当前位置：' + res.latitude);
-			//     },
-			// 		fail: function(res) {
-			// 			console.log("获取位置信息失败了")
-			// 		}
-			// });
+		onLoad() {  
+			this.amapPlugin = new amap.AMapWX({  
+				key: this.key  
+			});  
+			this.getRegeo()
 		},
 		mounted() {
 			const res = uni.getSystemInfoSync()
 			this.windowHeight = res.windowHeight
-			// $req.request({
-			// 	url:'/api/xcx/getCalculatorByProvince?state=1&province=海南'
-			// }).then(res=>{
-			// 	this.proCalList = res.data.message
-			// 	console.log(res)
-			// }).catch(err=>{
-			// 	console.log(err)
-			// })   
 			this.getFilterAll()
 		},
 		methods: {
+			getRegeo() {  
+				this.amapPlugin.getRegeo({  
+					success: (data) => { 
+						const pro = data[0].regeocodeData.addressComponent.province.slice(0,2);
+						if(pro){
+							this.addressName = pro
+							this.clickPro = pro
+						}
+						$req.request({
+							url:'/api/xcx/getCalculatorByProvince',
+							data:{
+								state:1,
+								province:this.addressName
+							}
+						}).then(res=>{
+							this.proCalList = res.data.message
+						}).catch(err=>{
+							console.log(err)
+						})
+					}  
+				});  
+			},  
 			goSearch() {
 				uni.navigateTo({
 				    url: '/pages/sousuo/sousuo'
@@ -106,7 +131,10 @@
 				$req.request({
 					url:'/api/xcx/getAll'
 				}).then(res=>{
-					this.filterList = res.data.data
+					const result =  res.data.data
+					this.filterList = result.filter(val=>{
+						return val != '其他标准' && val != '原位测试'
+					})
 				}).catch(err=>{
 					console.log(err)
 				})
@@ -114,43 +142,41 @@
 			getFilter(e) {
 				if(this.clickFilter == e.currentTarget.dataset.filter){
 					this.clickFilter = ''
-					
 				}else{
 					this.clickFilter = e.currentTarget.dataset.filter
 				}
 				this.getCalculate(this.clickPro,this.clickFilter)
 			},
 			getCalculate(pro,category){
-				const url = '/api/xcx/getCalculatorByProvince'
 				let data = {}
 				if(pro && !category){ // 只有省份时
 					data = {
 						state: 1,
 						province:pro
 					}
+					this.getAllCate(data)
 				}else if(!pro && category){ //只有分类
 					data = {
 						state: 1,
 						calculator_type: category
 					}
+					this.getAllCate(data)
 				}else { //省份分类
 					data = {
 						state: 1,
 						province:pro,
 						calculator_type: category
 					}
+					this.getAllCate(data)
 				}
-				this.proCalList = {}
-				$req.request({
+			},
+			getAllCate(data){
+				const url = '/api/xcx/getCalculatorByProvince'
+				$req.request({ //没省份没分类不发送请求
 					url:url,
 					data:data
 				}).then(res=>{
-					this.proCalList = {}
-					const data = res.data.message
-					for(let key in data){
-						this.$set(this.proCalList,key,data[key])
-					}
-					// this.proCalList = res.data.message
+					this.proCalList = res.data.message 
 				}).catch(err=>{
 					uni.showToast({
 						icon:'none',
@@ -165,19 +191,14 @@
 				calRouter(type,urlArr)
 			}
 		},
-		computed: {
-			provinceList: function() {
-				function removepro(arr,val) {
-					for(var i = 0;i < arr.length;i++){
-						if(arr[i] === val){
-							arr.splice(i,1);
-							break;
-						}
-					}
-					return arr
-				}
-				return removepro(this.provinceLists,'海南')
-			},
+		computed:{
+			proList(){
+				let arr = []
+				arr = this.provinceLists.filter(val=>{
+					return val != this.addressName
+				})
+				return arr
+			}
 		}
 	}
 </script>

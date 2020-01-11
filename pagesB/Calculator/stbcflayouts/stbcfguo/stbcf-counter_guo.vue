@@ -1,6 +1,5 @@
 <template>
 	<view>
-		<img src="/static/img/sjjsq.png" alt="" style="width: 100%;height: 120upx;">
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
 			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">水土保持费</text>
@@ -50,8 +49,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/stbcfs1.json'
 	import tzxsGuo from './stbcfGuo_tzxs.vue'
 	export default {
@@ -110,8 +107,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			tzxsGuo
 		},
 		methods:{

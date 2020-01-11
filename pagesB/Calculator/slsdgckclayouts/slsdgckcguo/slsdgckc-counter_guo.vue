@@ -68,8 +68,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import gctz from '@/common/base/gctz.vue'
 	import fztz from './csgdgckcfGuo_fzcd.vue'
 	export default {
@@ -125,8 +123,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			gctz,
 			fztz
 		},

@@ -81,8 +81,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import datajson from "@/common/json/xcjchclsy.json"
 	import xcjchclsyYueJcff from './xcjchclsyYue_jcff.vue'
 	export default {
@@ -152,8 +150,6 @@
 				datajson:datajson,
 				modalData: null,  //查看说明
 				showModalName: null,
-				selected: 'A',
-				shows: 1,
 				explain: [{
 						"id": "1",
 						"title": "选择大类",
@@ -178,8 +174,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			xcjchclsyYueJcff
 		},
 		methods:{

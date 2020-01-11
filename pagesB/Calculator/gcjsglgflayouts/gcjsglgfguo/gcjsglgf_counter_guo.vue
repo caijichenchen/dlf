@@ -31,8 +31,6 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -46,6 +44,7 @@
 					gcjsglgfGuo_fl: '3.58|2.32|1.53|0.94|0.68|0.43|0.35|0.32'
 				},
 				showModalName: null,
+				modalData: null,
 				explain: [
 					{
 						"id": "2",
@@ -54,10 +53,6 @@
 					}
 				]
 			}
-		},
-		components: {
-			uniTag,
-			explain
 		},
 		methods:{
 			showdzzk(e) {

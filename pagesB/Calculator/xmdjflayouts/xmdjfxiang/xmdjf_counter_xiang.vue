@@ -48,8 +48,6 @@
 
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import xmdjfXiangJdtzxs from "./xmdjfXiang_jdtzxs.vue"
 	import xmdjfXiangZytz from "./xmdjfXiang_zytz.vue"
 	export default {
@@ -77,10 +75,8 @@
 			}
 		},
 		components: {
-			uniTag,
 			xmdjfXiangJdtzxs,
 			xmdjfXiangZytz,
-			explain
 		},
 		methods:{
 			showdzzk(e) {

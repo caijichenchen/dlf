@@ -59,8 +59,6 @@
 
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import zytz from './sjfGuo_zytz.vue'
 	import fjtz from './sjfGuo_fjtz.vue'
 	import blb from './sjfGuo_blb.vue'
@@ -100,8 +98,6 @@
 			}
 		},
 		components: {
-			explain,
-			uniTag,
 			zytz,
 			fjtz,
 			blb,

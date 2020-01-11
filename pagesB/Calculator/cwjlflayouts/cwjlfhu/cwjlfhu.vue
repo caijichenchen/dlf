@@ -9,9 +9,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import csjlfCounterHu from "./csjlf-counter-hu.vue"
-	import computing from "@/common/base/computing.vue"
 	import csjlfResult from "./csjlf_result.vue"
 	export default {
 		data() {
@@ -27,8 +25,6 @@
 		},
 		components:{
 			csjlfCounterHu,
-			baseLayout,
-			computing,
 			csjlfResult
 		}
 	}

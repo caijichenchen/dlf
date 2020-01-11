@@ -1,5 +1,4 @@
 <template>
-			<!-- 设计费 附加调整 模态框 -->
 	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
@@ -35,10 +34,6 @@
 </template>
 
 <script>
-	import {
-		uniCollapse,
-		uniCollapseItem
-	} from "@dcloudio/uni-ui"
 	import {modalMixin} from "@/common/base/modalMixin"
 	
 	export default {
@@ -56,10 +51,6 @@
 					{content:"大地测量外业、摄影测量与遥感外业,地形数据采集与编辑外业、界线测绘、工程测绘,海洋测绘与江湖水下测量",val:"5.0"},
 				]
 			}
-		},
-		components: {
-			uniCollapse,
-			uniCollapseItem,
 		},
 		methods: {
 			

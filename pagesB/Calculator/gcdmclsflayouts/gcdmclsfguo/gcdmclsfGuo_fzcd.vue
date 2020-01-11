@@ -68,10 +68,6 @@
 </template>
 
 <script>
-	import {
-		uniCollapse,
-		uniCollapseItem
-	} from "@dcloudio/uni-ui"
 	import {modalMixin} from "@/common/base/modalMixin"
 	
 	export default {
@@ -199,10 +195,7 @@
 				]
 			}
 		},
-		components: {
-			uniCollapse,
-			uniCollapseItem,
-		},
+
 		methods: {
 			addClass(index){
 				if(this.isactive == index){

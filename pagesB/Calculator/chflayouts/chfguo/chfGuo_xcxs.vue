@@ -1,6 +1,5 @@
 <template>
-			<!-- 设计费 附加调整 模态框 -->
-	<view class="cu-modal" :class="showModalName== modalName ?'show':''">
+	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
 				<view class="content">测绘费涉及成本费用有关系数</view>
@@ -11,19 +10,19 @@
 			<view class="inputBox">
 				<view class="boxtop flexbox">
 					<view class="toptitle">修测面积:</view>
-					<input type="text">
+					<input type="text" v-model="xcmj">
 					<uni-tag text="k㎡" type="defult"></uni-tag>
 				</view>
 				<view class="boxbottom flexbox">
 					<view class="toptitle">标准幅面积:</view>
-					<input type="text">
+					<input type="text" v-model="bzfmj">
 					<uni-tag text="k㎡" type="defult"></uni-tag>
 				</view>
 			</view>
 			<view class="warp">
 				<view>有关测绘工作项目的图幅标准面积按下表执行</view>
-					<z-table :tableData='tableData' :columns='columns'></z-table>
-					<button>计算</button>
+				<z-table :tableData='tableData' :columns='columns'></z-table>
+				<view class="computed-btn" @tap="computedData">计算</view>
 			</view>
 		</view>
 	</view>
@@ -32,7 +31,6 @@
 <script>
 	import zTable from '@/components/z-table/z-table.vue';
 	import {modalMixin} from "@/common/base/modalMixin"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
 	export default {
 		mixins: [modalMixin],
 		props: {
@@ -40,9 +38,15 @@
 				type: String,
 				default: null
 			}, // 弹框可见标志
+			xmjxs:{
+				type:String,
+				default: '0'
+			}
 		},
 		data() {
 			return {
+				xcmj: '0',
+				bzfmj: '0',
 				modalName:'chfGuo_xcxs',
 				columns:[
 					{
@@ -126,10 +130,17 @@
 		},
 		components: {
 			zTable,
-			uniTag
 		},
 		methods: {
-			
+			computedData(){
+				let result = this.xcmj/this.bzfmj*this.xmjxs
+				if(result){
+					result = result.toFixed(2)
+				}else{
+					result = 0
+				}
+				this.$emit('getData',{type:xcxs,val:result})
+			}
 		}
 	}
 </script>
@@ -144,10 +155,16 @@
 		display: flex;
 		margin-top: 10upx;
 	}
+	.computed-btn{
+		font-size: 30rpx;
+		padding: 20rpx 0;
+		color: #FFFFFF;
+		background-color: #00a0e0;
+	}
 	.toptitle {
 		width: 30%;
 		height: 68upx;
-		font-size: 0.8rem;
+		font-size: 28rpx;
 		line-height: 68upx;
 		text-align: left;
 		padding-left: 30upx;

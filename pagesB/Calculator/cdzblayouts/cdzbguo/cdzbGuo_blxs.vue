@@ -1,5 +1,4 @@
 <template>
-	<!-- 设计费 复杂调整 模态框 -->
 	<view class="cu-modal" :class="showModalName == modalName ? 'show' : ''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">

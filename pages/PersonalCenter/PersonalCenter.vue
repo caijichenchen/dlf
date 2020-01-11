@@ -98,24 +98,24 @@
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
 			</navigator> 
 		</view>
-		<view class="list">
+		<!-- <view class="list">
 			<navigator url="wdhb" class="li"    hover-class="hover" >
 				<view class="icon iconRed"><text class="iconfont">&#xe61d;</text></view>
 				<view class="text">我的红包</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
 			</navigator> 
-		</view>
+		</view> -->
 		<view class="list" >
 			<navigator url="wdedingdan" class="li"  hover-class="hover" >
 				<view class="icon iconBLue" ><text class="iconfont">&#xe603;</text></view>
 				<view class="text">我的订单</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
 			</navigator>
-			<navigator url="wdfp" class="li"    hover-class="hover" >
+			<!-- <navigator url="wdfp" class="li"    hover-class="hover" >
 				<view class="icon iconRed"><text class="iconfont">&#xe6f3;</text></view>
 				<view class="text">我的发票</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
+			</navigator> -->
 		</view>
 		<view class="list" >
 			<navigator url="csshi" class="li"    hover-class="hover" >
@@ -135,11 +135,11 @@
 				<view class="text">我的标准</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
 			</navigator> 
-			<navigator url="wdsc" class="li"  hover-class="hover" >
+			<!-- <navigator url="wdsc" class="li"  hover-class="hover" >
 				<view class="icon iconRed"><text class="iconfont">&#xe602;</text></view>
 				<view class="text">我的收藏</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
+			</navigator> -->
 		</view>
 		<view class="list">
 			<view class="li" @tap="showex()"   hover-class="hover" >

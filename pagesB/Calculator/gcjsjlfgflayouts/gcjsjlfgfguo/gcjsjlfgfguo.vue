@@ -1,31 +1,21 @@
 <template>
-	<!-- 计算器页面 -->
-	<base-layout>
+	<base-layout :detailId="1923">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<gcjsjlfgf-counter-guo></gcjsjlfgf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<gcjsjlfgf-result></gcjsjlfgf-result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import gcjsjlfgfCounterGuo from "./gcjsjlfgf_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import gcjsjlfgfResult from "./gcjsjlfgf_result.vue"
 	export default {
 		data() {
 			return {
 				countData:{
-					url: 'http://dlf.test/api/sjfGuo',  //api请求
+					url: this.$serverUrl+'/api/gcjsjlfgfGuo',  //api请求
 					count:2  //积分消耗
 				}
 			}
@@ -35,8 +25,6 @@
 		},
 		components:{
 			gcjsjlfgfCounterGuo,
-			baseLayout,
-			computing,
 			gcjsjlfgfResult
 		}
 	}

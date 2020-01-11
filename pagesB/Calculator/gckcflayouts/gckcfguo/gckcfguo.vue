@@ -9,9 +9,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import gckcfguoCounterGuo from "./gckcfguo-counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import gckcfguoResult from "./gckcfguo_result.vue"
 	export default {
 		data() {
@@ -27,8 +25,6 @@
 		},
 		components:{
 			gckcfguoCounterGuo,
-			baseLayout,
-			computing,
 			gckcfguoResult
 		}
 	}

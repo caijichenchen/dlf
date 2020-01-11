@@ -60,8 +60,6 @@
 	import sjfGuiFztz from "./sjfGui_fzcd.vue"
 	import sjfGuiZytz from "./sjfGui_zytz.vue"
 	import sjfGuiFjtz from "./sjfGui_fjtz.vue"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -95,8 +93,6 @@
 			sjfGuiFztz,
 			sjfGuiFjtz,
 			sjfGuiZytz,
-			explain,
-			uniTag
 		},
 		methods:{
 			PickerChanges(e) {

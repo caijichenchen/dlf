@@ -1,7 +1,7 @@
 <template>
 	<view style="background: #fff;">
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
-			<block slot="backText">杩斿洖</block>
+			<block slot="backText">返回</block>
 		    <block slot="content">{{title}}</block>
 		</cu-custom>
 		<parser :html="html" class="contentwrap"></parser>
@@ -23,7 +23,7 @@
 			if(this.title){
 				this.title = options.title
 			}else{
-				this.title = '鏍囧噯'
+				this.title = '相关标准'
 			}
 			$req.request({
 				url:'/api/xcx/standard/detail',
@@ -31,7 +31,6 @@
 			}).then(res=>{
 				let data = res.data.message.body
 				this.html = data
-				console.log(res)
 			}).catch(err=>{
 				console.log(err)
 			})

@@ -8,6 +8,24 @@ Vue.config.productionTip = false
 import cuCustom from './colorui/components/cu-custom.vue'
 Vue.component('cu-custom',cuCustom)
 
+import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue' 
+Vue.component('uni-tag',uniTag)
+
+import baseLayout from "@/common/base/baseLayout.vue"
+Vue.component('base-layout',baseLayout)
+
+import computing from "@/common/base/computing.vue"
+Vue.component('computing',computing)
+
+import explain from '@/common/base/explain.vue'
+Vue.component('explain',explain)
+
+import {uniCollapse,uniCollapseItem} from "@dcloudio/uni-ui"
+Vue.component('uni-collapse',uniCollapse)
+Vue.component('uni-collapse-item',uniCollapseItem)
+
+
+
 // 使用vuex
 Vue.use(Vuex)
 

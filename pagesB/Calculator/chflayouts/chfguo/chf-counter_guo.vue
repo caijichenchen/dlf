@@ -81,12 +81,6 @@
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_gyxs">点击选择</button>
 			</view>
-			<!-- <view class="cu-form-group">
-				<view class="title">附加调整</view>
-				<input v-model="needVal.ytgcdzchfGuo_fjtz"/></input>
-				<uni-tag text="%" type="defult"></uni-tag>
-				<button type="primary" size="mini" @tap="showModal" data-target="ytgcdzchfGuo_fjtz">点击查看</button>
-			</view> -->
 			<view class="cu-form-group">
 				<view class="title">高寒高温系数</view>
 				<input v-model="needVal.chfGuo_ghgwxs"/></input>
@@ -144,8 +138,9 @@
 		<dzxs :showModalName="showModalName" v-on:hideModal="hideModal"></dzxs>
 		<fjxs :showModalName="showModalName" v-on:hideModal="hideModal" :chfGuo6="multiSelector.chfGuo6"></fjxs>
 		<ndjb :showModalName="showModalName" v-on:hideModal="hideModal"></ndjb>
-		<xcxs :showModalName="showModalName" v-on:hideModal="hideModal"></xcxs>
-		<mjxs :showModalName="showModalName" v-on:hideModal="hideModal"></mjxs>
+		<xcxs :showModalName="showModalName" v-on:hideModal="hideModal" v-on:getData="getData" :xmjxs="needVal.chfGuo_xmjxs"></xcxs>
+		<mjxs :showModalName="showModalName" v-on:hideModal="hideModal" v-on:getData="getData"></mjxs>
+		<xmjxs :showModalName="showModalName" v-on:hideModal="hideModal" v-on:getData="getData"></xmjxs>
 	</view>
 </template>
 
@@ -156,8 +151,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/chfs/chfs-guo.json'
 	import gzxm from './chfGuo_gzxm.vue'
 	import cqxs from './chfGuo_cqxs.vue'
@@ -168,6 +161,7 @@
 	import ndjb from './chfGuo_ndjb.vue'
 	import xcxs from './chfGuo_xcxs.vue'
 	import mjxs from './chfGuo_mjxs.vue'
+	import xmjxs from './chfGuo_xmjxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -257,8 +251,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			gzxm,
 			cqxs,
 			gyxs,
@@ -267,13 +259,23 @@
 			fjxs,
 			ndjb,
 			xcxs,
-			mjxs
+			mjxs,
+			xmjxs
 		},
 		methods:{
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target)
 				console.log(this.modalData)
 				this.$bus.emit('modalData', this.modalData )
+			},
+			getData(obj){
+				if(obj.type == 'mjxs'){
+					this.needVal.chfGuo_mjxs = obj.val
+				}else if(obj.type == 'xcxs'){
+					this.needVal.chfGuo_xcxs = obj.val
+				}else if(obj.type == 'xmjxs'){
+					this.needVal.chfGuo_xmjxs = obj.val
+				}
 			}
 		}
 	}

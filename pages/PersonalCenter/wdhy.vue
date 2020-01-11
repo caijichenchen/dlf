@@ -18,11 +18,16 @@
 				<view v-if="vipInfo.userType == '普通会员'" class="pl-3 font-md">
 					当前身份为普通会员,可消耗积分计算
 				</view>
-				<!-- <view class="jsqxqy">
+				<view class="jsqxqy" v-if="vipInfo.userType == 'VIP会员'">
+					<view style="text-align: left;">计算权限: VIP会员</view>
+					<view class="qxtime">会员期限: {{time[0]+"   "+time[2]+"   "+time[4]}}</view>
+					<text class="textBuuton" @click="goxf">续费</text>
+				</view>
+				<view class="jsqxqy" v-if="vipInfo.userType == '企业会员'">
 					<view style="text-align: left;">计算权限: 企业会员6人</view>
 					<view class="qxtime">会员期限: {{time[0]+"   "+time[2]+"   "+time[4]}}</view>
 					<text class="textBuuton" @click="goxf">续费</text>
-				</view> -->
+				</view>
 			</view>
 			<view style="height: 40rpx;background: #F1F1F1;"></view>
 			<view class="con-bot pb-4">
@@ -82,7 +87,7 @@
 				<view v-else>
 					<view v-if="vipInfo.userType != '自选会员'" class="zxvip row p-4 mb-4">
 						<view>
-							<img :src="imgUrl+'/images/auth/optional.png'" alt="">
+							<img :src="imgUrl+'/images/auth/optional.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
 						<view class="text-center ct font-md iconWhite">
 							<view>
@@ -93,7 +98,7 @@
 					</view>
 					<view v-if="vipInfo.userType != '省份会员'" class="sfvip row p-4 mb-4">
 						<view>
-							<img :src="imgUrl+'/images/auth/province.png'" alt="">
+							<img :src="imgUrl+'/images/auth/province.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
 						<view class="text-center ct font-md iconWhite">
 							<view>
@@ -104,7 +109,7 @@
 					</view>
 					<view v-if="vipInfo.userType != 'VIP会员'" class="hyvip row p-4 mb-4">
 						<view>
-							<img :src="imgUrl+'/images/auth/vip.png'" alt="">
+							<img :src="imgUrl+'/images/auth/vip.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
 						<view class="text-center ct font-md iconWhite">
 							<view>
@@ -115,7 +120,7 @@
 					</view>
 					<view v-if="vipInfo.userType != '企业会员'" class="qyvip row p-4 mb-4">
 						<view>
-							<img :src="imgUrl+'/images/auth/ee.png'" alt="">
+							<img :src="imgUrl+'/images/auth/ee.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
 						<view class="text-center ct font-md iconWhite">
 							<view>
@@ -144,7 +149,7 @@
 				url: '/api/xcx/memberlist',
 			})
 			.then((res)=>{
-				// this.time = res.data.vipTiem.split(' ')
+				this.time = res.data.vipTiem.split(' ')
 				// this.vipInfo = res.data
 				this.vipInfo = res.data
 				console.log(res.data)

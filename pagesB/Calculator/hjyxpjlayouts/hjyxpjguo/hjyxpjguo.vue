@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<hjyxpjf-counter-guo></hjyxpjf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<hjyxpjf-result :title="title"></hjyxpjf-result>
 		</template>
 		
@@ -19,9 +15,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import hjyxpjfCounterGuo from "./hjyxpjf_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import hjyxpjfResult from "../hjyxpjf_result.vue"
 	export default {
 		data() {
@@ -41,8 +35,6 @@
 		},
 		components:{
 			hjyxpjfCounterGuo,
-			baseLayout,
-			computing,
 			hjyxpjfResult
 		}
 	}

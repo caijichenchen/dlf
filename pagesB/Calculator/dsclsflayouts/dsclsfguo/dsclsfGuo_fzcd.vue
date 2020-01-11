@@ -47,10 +47,6 @@
 </template>
 
 <script>
-	import {
-		uniCollapse,
-		uniCollapseItem
-	} from "@dcloudio/uni-ui"
 	import {modalMixin} from "@/common/base/modalMixin"
 	
 	export default {
@@ -156,10 +152,6 @@
 				console.log(this.lastval)
 			},
 		},
-		components:{
-			uniCollapse,
-			uniCollapseItem
-		}
 	}
 </script>
 

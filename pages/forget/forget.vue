@@ -5,7 +5,7 @@
 		</cu-custom>
 		<view class="header text-center">
 			<text style="margin-right: 90rpx;" :class="{'activeCat':showTab == 0}" @click="changeCategory(0)">手机号找回</text>
-			<text :class="{'activeCat':showTab == 1}" @click="changeCategory(1)">邮箱找回</text>
+			<!-- <text :class="{'activeCat':showTab == 1}" @click="changeCategory(1)">邮箱找回</text> -->
 		</view>
 		<view class="list" v-if="showTab == 0">
 			<view class="list-call">

@@ -7,52 +7,49 @@
 		<form>
 			<view class="cu-form-group">
 				<view class="title">计算依据</view>
-				<picker class="select" v-model="needVal.shwdfxpgHu_jsyj" :range="picker1">
-					<view class="picker" name="shwdfxpgHu_jsyj">
+					<view class="picker m-left" >
 						沪发改投〔2012〕130号
 					</view>
-				</picker>
-				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
+				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">咨询服务项目</view>
-				<picker class="select" @change="PickerChange" v-model="needVal.shwdfxpgHu_zxfwxm" :range="picker2">
-					<view class="picker" name="shwdfxpgHu_zxfwxm">
-						{{index>-1?picker2[index]:'编制建设项目社会稳定风险评估报告'}}
+				<picker class="select" @change="PickerChange1" :value="index0" :range="shwdfxpgHu_zxfwxm">
+					<view class="picker" >
+						{{shwdfxpgHu_zxfwxm[index0]}}
 					</view>
 				</picker>
-				<!-- <button type="primary" size="mini" @tap="showdzzk" :data-target="explain[1]">查看说明</button> -->
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">估算投资额</view>
-				<input type="text"  id="sjf" v-model="needVal.shwdfxpgHu_gstze"></input>
+				<input type="text"  v-model="needVal.shwdfxpgHu_gstze"></input>
 				<uni-tag text="亿元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">行业调整系数</view>
-				<input name="shwdfxpgHu_hytzxs" v-model="needVal.shwdfxpgHu_hytzxs" /></input>
+				<input v-model="needVal.shwdfxpgHu_hytzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_hytzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">社会稳定风险敏感程度调整系数</view>
-				<input name="shwdfxpgHu_fxmgcdtz" v-model="needVal.shwdfxpgHu_fxmgcdtz" /></input>
+				<input v-model="needVal.shwdfxpgHu_fxmgcdtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_fxmgcdtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">区域范围调整系数</view>
-				<input name="shwdfxpgHu_qyfwtz" v-model="needVal.shwdfxpgHu_qyfwtz" /></input>
+				<input v-model="needVal.shwdfxpgHu_qyfwtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_qyfwtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动</view>
-				<input name="shwdfxpgHu_fd" v-model="needVal.shwdfxpgHu_fd" /></input>
+				<input v-model="needVal.shwdfxpgHu_fd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input name="shwdfxpgHu_yhzk" v-model="needVal.shwdfxpgHu_yhzk" /></input>
+				<input  v-model="needVal.shwdfxpgHu_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
@@ -68,8 +65,6 @@
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
 	// import shwdfxpgHuZbxm from "./shwdfxpgHu_zbxm.vue"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import shwdfxpgHuHytz from "./shwdfxpgHu_hytzxs.vue"
 	import shwdfxpgHuQyfwtz from "./shwdfxpgHu_qyfwtz.vue"
 	import shwdfxpgHuWdfxtz from "./shwdfxpgHu_fxmgcdtz.vue"
@@ -93,12 +88,9 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				selected: 'A',
-				shows: 1,
-				picker:['山西'],
-				picker1:['沪发改投〔2012〕130号'],
-				picker2: ['编制建设项目社会稳定风险评估报告',  '评价建设项目社会稳定风险评估报告'],
-				index:'0',
+				shwdfxpgHu_zxfwxm: ['编制建设项目社会稳定风险评估报告',  '评价建设项目社会稳定风险评估报告'],
+				shwdfxpgHu_sffl: ['6|0.00025|0.00018|0.0000625|50','4|0.00015|0.0001|0.000025|25'],
+				index0:'0',
 				explain: [{
 						"id": "1",
 						"title": "计算依据",
@@ -123,35 +115,16 @@
 			}
 		},
 		components: {
-			uniTag,
 			shwdfxpgHuHytz,
 			shwdfxpgHuQyfwtz,
 			shwdfxpgHuWdfxtz,
-			explain
 		},
 		methods:{
-			PickerChange(e) {
-				this.index = e.detail.value
-				this.afterPicker(this.index)
+			PickerChange1(e) {
+				this.index0 = e.detail.value
+				this.needVal.shwdfxpgHu_zxfwxm = this.shwdfxpgHu_zxfwxm[this.index0]
+				this.needVal.shwdfxpgHu_sffl = this.shwdfxpgHu_sffl[this.index0]
 			},
-			afterPicker(index){
-				this.index = index
-				this.needVal.shwdfxpgHu_zxfwxm = this.picker2[index]
-				// console.log(this.needVal.shwdfxpgHu_zxfwxm );
-					if(this.needVal.shwdfxpgHu_zxfwxm == "评价建设项目社会稳定风险评估报告"  ){
-						this.needVal.shwdfxpgHu_sffl = " 4|0.00015|0.0001|0.000025|25"
-					}
-				// else if(this.needVal.shwdfxpgHu_zxfwxm == "财政承受能力论证报告"){
-				// 		this.needVal.shwdfxpgHu_sfjj = "28|60|88|160|200"
-				// 	}else if(this.needVal.shwdfxpgHu_zxfwxm == "PPP合同及配套协议编制"){
-				// 		this.needVal.shwdfxpgHu_sfjj = "24|36|48|72|108"
-				// 	}else if(this.needVal.shwdfxpgHu_zxfwxm == "编制中期评估报告"){
-				// 		this.needVal.shwdfxpgHu_sfjj = "14|30|44|80|100"
-				// 	}else if(this.needVal.shwdfxpgHu_zxfwxm == "编制项目后评价报告"){
-				// 		this.needVal.shwdfxpgHu_sfjj = "22|48|70|128|160"
-				// 	}
-  			},
-			//查看说明
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target)
 				this.$bus.emit('modalData', this.modalData )

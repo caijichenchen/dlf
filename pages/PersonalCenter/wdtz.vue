@@ -17,13 +17,13 @@
 						<view>没有新的通知</view>
 					</view>
 					<view v-else>
-						<view class="msg-box">未读消息<view style="color:#00A0E0;margin-left: auto;" :data-status="'all'" @tap="readAllMsg">全部设置为已读</view></view>
+						<view class="msg-box">未读消息<view style="color:#00A0E0;margin-left: auto;" @tap="readAllMsg('all')">全部设置为已读</view></view>
 						<view v-for="(item,index) in noread" :key="index" class="msg-ct">
 							<text class="ggmsg">公告</text>
-							<text @tap="readMsg" :data-id="item.id">{{item.message}}</text>
+							<text @tap="readMsg(item.id)">{{item.message}}</text>
 							<view style="display: flex;">
-								<view style="line-height: 1.8rem;font-size: 0.7rem;">{{item.created_at}}</view>
-								<view class="nonebtn" @tap="readMsg" :data-id="item.id" style="background: #00A0E0;">设为已读</view>
+								<view style="line-height: 60rpx;font-size: 28rpx;">{{item.created_at}}</view>
+								<view class="nonebtn" @tap="readMsg(item.id)" style="background: #00A0E0;">设为已读</view>
 							</view>
 						</view>
 					</view>
@@ -34,12 +34,12 @@
 						<view>没有新的通知</view>
 					</view>
 					<view v-else>
-						<view class="msg-box">已读消息<view style="color: red;margin-left: auto;" :data-status="'read'" @tap="delAllMsg">删除全部通知</view></view>
+						<view class="msg-box">已读消息<view style="color: red;margin-left: auto;"  @tap="delAllMsg('read')">删除全部通知</view></view>
 						<view v-for="(item,index) in okread" :key="index" class="msg-ct">
 							<text class="ggmsg">公告</text>
 							<text>{{item.message}}</text>
 							<view style="display: flex;">
-								<view style="line-height: 1.8rem;font-size: 0.7rem;">{{item.created_at}}</view>
+								<view style="line-height: 60rpx;font-size: 28rpx;">{{item.created_at}}</view>
 								<view class="nonebtn" @tap="delMsg" :data-id="item.id">删除</view>
 							</view>
 						</view>
@@ -51,7 +51,7 @@
 						<view>没有新的通知</view>
 					</view>
 					<view v-else>
-						<view class="msg-box">已读消息<view style="color: red;margin-left: auto;" :data-status="'all'" @tap="delAllMsg">删除全部通知</view></view>
+						<view class="msg-box">已读消息<view style="color: red;margin-left: auto;" @tap="delAllMsg('all')">删除全部通知</view></view>
 						<view v-for="(item,index) in allread" :key="index" class="msg-ct">
 							<text class="ggmsg">公告</text>
 							<text>{{item.message}}</text>
@@ -96,10 +96,10 @@
 					this.getAllRead()
 				}
 			},
-			readAllMsg(e) {
+			readAllMsg(msg) {
 				$req.request({
 				 	url: '/api/xcx/setNotificationRead',
-					data:{status:e.currentTarget.dataset.status},
+					data:{status:msg},
 					method:'PATCH'
 				}).then((res)=>{
 					uni.showToast({
@@ -113,15 +113,18 @@
 					}else if(this.TabCur == 2){
 						this.getAllRead()
 					}
-				 	console.log(res)
 				}).catch(()=>{
-				 	console.log("errerrerr")
+				 	uni.showToast({
+				 		icon:'none',
+						title:'设置全部已读失败,请稍后重试'
+				 	})
 				})
 			},
-			readMsg(e) {
+			readMsg(id) {
+				const msgId = id
 				$req.request({
 				 	url: '/api/xcx/setNotificationRead',
-					data:{id:e.currentTarget.dataset.id},
+					data:{id:msgId},
 					method:'PATCH'
 				}).then((res)=>{
 					uni.showToast({
@@ -135,15 +138,17 @@
 					}else if(this.TabCur == 2){
 						this.getAllRead()
 					}
-				 	console.log(res)
 				}).catch(()=>{
-				 	console.log("errerrerr")
+				 	uni.showToast({
+				 		icon:'none',
+						title:'阅读消息失败,请稍后重试'
+				 	})
 				})
 			},
-			delAllMsg(e){
+			delAllMsg(msg){
 				$req.request({
 				 	url: '/api/xcx/notificationDelete',
-					data:{status:e.currentTarget.dataset.status},
+					data:{status:msg},
 					method:'DELETE'
 				}).then((res)=>{
 					uni.showToast({

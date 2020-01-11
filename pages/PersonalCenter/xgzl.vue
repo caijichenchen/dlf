@@ -22,7 +22,7 @@
 			<view class="p-3 row border-bottom">
 				<view >绑定手机:</view>
 				<view style="margin-left: auto;">{{userInfo.userInfo.user.tel}}</view>
-				<navigator url="grxx" style="color: #00A0E0;">解绑</navigator>
+				<navigator url="grxx" style="margin-left: 10rpx; color: #00A0E0;">解绑</navigator>
 			</view>
 			<view class="p-3 row border-bottom">
 				<view >验证邮箱:</view>
@@ -69,7 +69,7 @@
 					success: function (res) {
 						console.log(res)
 						console.log(JSON.stringify(res.tempFilePaths));
-						this.imgSrc = res.tempFilePaths
+						this.imgSrc = JSON.stringify(res.tempFilePaths)
 						console.log(this.imgSrc)
 						// uni.previewImage({
 						// 	urls: res.tempFilePaths,
@@ -109,38 +109,6 @@
 					})
 				})
 			},
-			xgxm(e){
-				this.modalName = e.currentTarget.dataset.target
-			},
-			hideModal(e) {
-				this.modalName = null
-			},
-			xguname(){
-				let that = this
-				uni.getStorage({ 
-					key:"uerInfo",
-					success:(res) => {
-						uni.request({
-						    url: this.$serverUrl + '/altername',
-							  header: {
-									"Authorization": "Bearer " + res.data.token,
-									"Accept":"application/prs.dlf.v1+json",
-									},
-						    data: {
-									name:this.uname
-								},
-								method: 'POST',
-								dataType:'json',
-						    success: (res) => {
-										console.log(res)
-										that.hideModal()
-										
-									}
-							});
-							
-						},
-					}) 
-			}
 		}
 	}
 </script>

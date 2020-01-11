@@ -14,9 +14,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import csgdgckcfCounterGuo from "./csgdgckcf-counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import csgdgckcfResult from "./csgdgckcf_result.vue"
 	export default {
 		data() {
@@ -32,8 +30,6 @@
 		},
 		components:{
 			csgdgckcfCounterGuo,
-			baseLayout,
-			computing,
 			csgdgckcfResult,
 		}
 	}

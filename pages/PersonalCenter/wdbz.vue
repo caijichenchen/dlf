@@ -44,21 +44,21 @@
 			downup(e){
 				console.log(e)
 				console.log(e.currentTarget.dataset.countid)
-				uni.downloadFile({
-				    url: this.serverUrl+'/api/xcx/standard/download'+'?id='+e.currentTarget.dataset.countid, 
-					header:{
-						"Authorization": "Bearer " +uni.getStorageSync('loginToken'),
-						"Accept":"application/prs.dlf.v1+json",
-					},
-				    success: (res) => {
-				        if (res.statusCode === 200) {
-				            uni.showToast({
-				            	icon:'none',
-								title:'下载成功'
-				            })
-				        }
-				    }
-				});
+				// uni.downloadFile({
+				//     url: this.serverUrl+'/api/xcx/standard/download'+'?id='+e.currentTarget.dataset.countid, 
+				// 	header:{
+				// 		"Authorization": "Bearer " +uni.getStorageSync('loginToken'),
+				// 		"Accept":"application/prs.dlf.v1+json",
+				// 	},
+				//     success: (res) => {
+				//         if (res.statusCode === 200) {
+				//             uni.showToast({
+				//             	icon:'none',
+				// 				title:'下载成功'
+				//             })
+				//         }
+				//     }
+				// });
 			}
 		}
 	}

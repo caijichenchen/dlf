@@ -71,8 +71,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import wrdjzfGuoBlb from './wrdjzfGuo_yddb.vue'
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/wrdjzfs/wrdjzfs-all.json'
 	import ydlx from './wrdjzfGuo_ydlx.vue'
 	import ydfs from './wrdjzfGuo_ydfs.vue'
@@ -133,8 +131,6 @@
 		},
 		components: {
 			wrdjzfGuoBlb,
-			uniTag,
-			explain,
 			ydlx,
 			ydfs,
 			yddb

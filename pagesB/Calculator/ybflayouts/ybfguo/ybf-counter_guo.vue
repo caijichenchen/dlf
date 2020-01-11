@@ -66,8 +66,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import ybfCategory from './ybfGuo_category.vue'
 	import datajson from '@/common/json/ybfs/ybfs-guo.json'
 	
@@ -135,8 +133,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			ybfCategory
 		},
 		methods:{

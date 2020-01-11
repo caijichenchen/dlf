@@ -48,9 +48,9 @@
 				<input v-model="needVal.ytgckcsfLiao_fzfjd" @blur="checkVal" placeholder="例如:5,15"/></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
-			<view class="cu-form-group" v-if="arr == []">
+			<view class="cu-form-group" v-if="arr.length == 0">
 				<view class="title">0至n米/复杂程度</view>
-				<picker class="select" @change="PickerChange2" :value="index2" :range="ytgckcsfLiao_fzcd">
+				<picker class="select" @change="PickerChanges" :value="index2" :range="ytgckcsfLiao_fzcd">
 					<view class="picker">
 						{{ytgckcsfLiao_fzcd[index2]}}
 					</view>
@@ -67,18 +67,13 @@
 							{{ytgckcsfLiao_fzcd[copyPickerIndex[index]]}}
 						</view>
 					</picker>
-					<button type="primary" size="mini" @tap="showModal" data-target="ytgckcsfLiao_fjtz">点击选择</button>
+					<button type="primary" size="mini" @tap="changeModal(index,$event)" data-target="ytgckcsfLiao_fzcd">点击选择</button>
 				</view>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
 				<input v-model="needVal.ytgckcsfLiao_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="ytgckcsfLiao_fjtz">点击选择</button>
-			</view>
-			<view class="cu-form-group">
-				<view class="title">浮动幅度</view>
-				<input v-model="needVal.ytgcjcGuo_fdfd" /></input>
-				<uni-tag text="%" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
@@ -88,6 +83,8 @@
 			</view>
 		</form>
 		<explain></explain>
+		<fjtz :showModalName="showModalName" v-on:hideModal="hideModal"></fjtz>
+		<fzcd :showModalName="showModalName" v-on:hideModal="hideModal" v-on:chioceModal="chioceModal" :indexKey="indexkey"></fzcd>
 	</view>
 </template>
 
@@ -95,8 +92,8 @@
 	import {
 		counterMixin
 	} from "@/common/base/counterMixin"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
+	import fjtz from './ytgckcsfLiao_fjtz.vue'
+	import fzcd from './ytgckcsfLiao_fzcd.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -121,6 +118,7 @@
 				ytgckcsfLiao_fzcd: ['Ⅰ','Ⅱ','Ⅲ','Ⅳ','Ⅴ'],
 				index0: 0,
 				index2: '0',
+				indexkey: 0,
 				arr : [],
 				copyPickerIndex:[],
 				showModalName: null,
@@ -150,19 +148,22 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
+			fjtz,
+			fzcd
 		},
 		methods:{
 			PickerChange1(e) {
 				this.index0 = e.detail.value
 				this.needVal.ytgckcsfLiao_kcdj = this.ytgckcsfLiao_kcdj[this.index0]
 			},
-			PickerChange2(e) {
-				const indexName = e.currentTarget.dataset.index
-				console.log(indexName)
+			PickerChanges(e){
 				this.index2 = e.detail.value
-				this.needVal.ytgckcsfLiao_fzcd = this.ytgckcsfLiao_fzcd[this.index2]
+			},
+			PickerChange2(e) {
+				const indexKey = e.currentTarget.dataset.index
+				const key = e.detail.value
+				this.needVal.ytgckcsfLiao_fzcd[indexKey] = this.ytgckcsfLiao_fzcd[key]
+				this.copyPickerIndex.splice(indexKey,1,key)
 			},
 			checkVal(){
 				this.arr = this.needVal.ytgckcsfLiao_fzfjd.split(',')
@@ -177,13 +178,21 @@
 					this.copyPickerIndex = []
 					this.arr.forEach(item=>{
 						this.copyPickerIndex.push(0)
+						this.needVal.ytgckcsfLiao_fzcd.push('Ⅰ')
 					})
-					console.log(this.copyPickerIndex)
 				}
+			},
+			changeModal(index,e){
+				this.indexkey = index
+				this.showModalName = e.currentTarget.dataset.target
 			},
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target)
 				this.$bus.emit('modalData', this.modalData )
+			},
+			chioceModal(val){
+				this.needVal.ytgckcsfLiao_fzcd[val.key] = this.ytgckcsfLiao_fzcd[val.index]
+				this.copyPickerIndex[val.key] = val.index
 			}
 		}
 	}

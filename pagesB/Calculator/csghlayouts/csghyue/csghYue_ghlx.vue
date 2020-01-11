@@ -1,5 +1,4 @@
 <template>
-			<!-- 设计费 附加调整 模态框 -->
 	<view class="cu-modal" :class="showModalName== modalName ?'show':''" @touchmove.stop.prevent="moveHandle">
 		<view class="cu-dialog">
 			<view class="cu-bar bg-white justify-end">
@@ -36,10 +35,6 @@
 </template>
 
 <script>
-	import {
-		uniCollapse,
-		uniCollapseItem
-	} from "@dcloudio/uni-ui"
 	import {modalMixin} from "@/common/base/modalMixin"
 	
 	export default {
@@ -63,13 +58,6 @@
 				]
 			}
 		},
-		components: {
-			uniCollapse,
-			uniCollapseItem,
-		},
-		methods: {
-			
-		}
 	}
 </script>
 

@@ -66,8 +66,6 @@
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
 	// import pppxmzxJinZbxm from "./pppxmzxJin_zbxm.vue"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import pppxmzxJinSffj from "./pppxmzxJin_sffj.vue"
 	import pppxmzxJinZytz from "./pppxmzxJin_zytz.vue"
 	export default {
@@ -109,10 +107,8 @@
 			}
 		},
 		components: {
-			uniTag,
 			pppxmzxJinSffj,
 			pppxmzxJinZytz,
-			explain
 		},
 		methods:{
 			PickerChanges(e) {

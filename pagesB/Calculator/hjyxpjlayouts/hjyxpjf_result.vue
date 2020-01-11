@@ -29,9 +29,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		props:{
 			title:{
@@ -53,9 +50,6 @@
 					menuText: ['折前环评费:', '折后环评费:', '计算过程:'],
 				},
 			};
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

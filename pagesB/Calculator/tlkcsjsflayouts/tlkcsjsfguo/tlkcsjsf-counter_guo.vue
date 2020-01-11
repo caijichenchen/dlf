@@ -2,7 +2,7 @@
 	<view>
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">铁路勘察设计收费</text>
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;"> </text>
 		</div>
 		
 		<view class="cu-form-group" v-show="showSelector.tlkcsjsfGuo_standard">
@@ -101,8 +101,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/tlkcsjsfs/tlkcsjsfs-all.json'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import gctz from '@/common/base/gctz.vue'
 	import fzfz from './tlkcsjsfGuo_fzfz.vue'
 	export default {
@@ -177,8 +175,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			gctz,
 			fzfz
 		},

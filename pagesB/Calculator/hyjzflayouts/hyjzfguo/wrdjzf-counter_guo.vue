@@ -75,8 +75,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/hyjzfs/hyjzfs-all.json'
 	import hydb from './hyjzfGuo_hydb.vue'
 	import yhdl from './hyjzfGuo_yhdl.vue'
@@ -135,8 +133,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			hydb,
 			yhdl,
 			yhxf,

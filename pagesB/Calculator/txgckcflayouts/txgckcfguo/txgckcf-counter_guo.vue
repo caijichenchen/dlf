@@ -93,10 +93,8 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
 	import txgcBlb from './txgckcfGuo_blb.vue'
 	import txgcFjtz from './txgckcfGuo_fjtz.vue'
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
 	import datajson from '@/common/json/txgcs/txgcs-all.json'
 	import gctzGuo from '@/common/base/gctz.vue'
 	export default {
@@ -180,8 +178,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			txgcBlb,
 			txgcFjtz,
 			gctzGuo

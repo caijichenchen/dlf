@@ -58,8 +58,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/byfzfs/byfzfs-zhe.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -109,10 +107,6 @@
 					}
 				]
 			}
-		},
-		components: {
-			uniTag,
-			explain
 		},
 		methods:{
 			showdzzk(e) {

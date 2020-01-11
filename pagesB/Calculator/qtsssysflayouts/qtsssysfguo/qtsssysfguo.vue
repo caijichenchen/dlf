@@ -5,16 +5,11 @@
 			<computing v-bind:countData = "countData"></computing>
 			<qtsssysf-result></qtsssysf-result>
 		</template>
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import qtsssysfCounterGuo from "./qtsssysf-counter-guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import qtsssysfResult from "./qtsssysf-result.vue"
 	export default {
 		data() {
@@ -30,8 +25,6 @@
 		},
 		components:{
 			qtsssysfCounterGuo,
-			baseLayout,
-			computing,
 			qtsssysfResult
 		}
 	}

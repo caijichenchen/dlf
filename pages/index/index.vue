@@ -127,7 +127,7 @@
 					</view>
 				</view>
 				<view class="box">
-					<view v-for="(item,index) in hotNormList" :key="index" class="box-item" :data-url="item.new_url" @tap="goHotNorm">
+					<view v-for="(item,index) in hotNormList" :key="index" class="box-item" @tap="goHotNorm(item.id)">
 						<view class="m-hot-cal-icon">
 							<i class="iconfont" style="color: #62bcff;">&#xe7b4;</i>
 						</view>
@@ -138,7 +138,7 @@
 				</view>
 			</view>
 		</view>
-		<view class="m-hot-area">
+		<!-- <view class="m-hot-area">
 			<scroll-view scroll-x class="bg-white nav">
 				<view class="flex text-center">
 					<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in wdsc" :key="index" @tap="tabSelect" :data-id="index">
@@ -146,20 +146,16 @@
 					</view>
 				</view>
 				<view class="sjf_content">
-					<!-- 我的收藏 -->
 					<view v-show="TabCur==0" class="content_jsq">
 						<view class="tabbox">
 							<view class="item-box" :class="{tabox:index==show}" 
 							v-for="(item,index) in tabs" :key="index" :data-index="index"
 							@touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @tap="showtab(index)">
 								<view class="item-list" >{{item.name}}</view>
-								<view class="item-del" >删除</view><!-- 
-								<text style="padding-left: 30upx;">{{item.name}}</text> 
-								<text style="padding-right: 30upx;" class="rt" @tap="deletetabox(index)">X</text> -->
+								<view class="item-del" >删除</view>
 							</view>
 						</view> 
 					</view>
-					<!-- 经常使用 -->
 					<view v-show="TabCur==1" class="content_jsq">
 						<view class="tabbox">
 							<view class="text-black" :class="{tabox:index==show}" 
@@ -170,7 +166,6 @@
 							</view>
 						</view> 
 					</view>
-					<!-- 最近使用 -->
 					<view v-show="TabCur==2" class="content_jsq">
 						<view class="tabbox">
 							<view class="text-black" :class="{tabox:index==show}" 
@@ -183,7 +178,7 @@
 					</view>
 				</view>
 			</scroll-view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
@@ -283,6 +278,11 @@
 			goAllCal(){
 				uni.switchTab({
 					url: '/pages/Calculation/Calculation'
+				})
+			},
+			goHotNorm(id){
+				uni.navigateTo({
+					url:`/pages/normal/normal?id=${id}`
 				})
 			},
 			goHotCal(e){

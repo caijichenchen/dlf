@@ -37,10 +37,8 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import ldaqwspsBlb from "./ldaqwspsGuo_blb.vue"
 	import ldaqwspsGcfy from "./ldaqwspsGuo_gcfy.vue"
-	import explain from '@/common/base/explain.vue'
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -65,8 +63,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			ldaqwspsBlb,
 			ldaqwspsGcfy
 		},

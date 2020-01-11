@@ -9,7 +9,7 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华南 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hnlist" :key="index" :class="{'active-choice':proList.includes(item)}" :data-name="item" @tap="getCal" class="p-item">
+					<view v-for="(item,index) in hnlist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
 						{{item}}
 					</view>
 				</view>
@@ -17,7 +17,7 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华北 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hblist" :key="index" :class="{'active-choice':proList.includes(item)}" :data-name="item" @tap="getCal" class="p-item">
+					<view v-for="(item,index) in hblist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
 						{{item}}
 					</view>
 				</view>
@@ -25,7 +25,7 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华东 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hdlist" :key="index" :class="{'active-choice':proList.includes(item)}" :data-name="item" @tap="getCal" class="p-item">
+					<view v-for="(item,index) in hdlist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
 						{{item}}
 					</view>
 				</view>
@@ -33,7 +33,7 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华中 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hzlist" :key="index" :class="{'active-choice':proList.includes(item)}" :data-name="item" @tap="getCal" class="p-item">
+					<view v-for="(item,index) in hzlist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
 						{{item}}
 					</view>
 				</view>
@@ -41,7 +41,7 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">西部 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in xblist" :key="index" :class="{'active-choice':proList.includes(item)}" :data-name="item" @tap="getCal" class="p-item">
+					<view v-for="(item,index) in xblist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
 						{{item}}
 					</view>
 				</view>
@@ -51,7 +51,7 @@
 			<view class="iconBLue px-4">包含的计算器:</view>
 			<view class="c-box px-4">
 				<view v-if="proList.length == 0" class="nochoose">您还没有选择计算器哦</view>
-				<view class="c-item" v-for="(item,key) in allCalList" :key="key">
+				<view class="c-item" v-for="(item,key) in allCalArr" :key="key">
 					{{item}}
 				</view>
 			</view>
@@ -106,7 +106,7 @@
 			</view>
 		</view>
 		<radio-group class="uni-flex con-bot" name="gender">
-			<view class="wx">
+			<!-- <view class="wx">
 				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAABKCAMAAAArDjJDAAAAjVBMVEUAAAAimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEgimEg2MoZLAAAALnRSTlMA+gT16gjlz/Ij7uERP7ehcjjcvYtqKqcxF6sM18iclXlf1GRQS1ZEw7Eehn9bjbVPuAAAA2pJREFUWMOtV+e6qkAMzNJ7kSrSEbu8/+Pdc0Q5gAFhvfPP1W9MZjPJBmag3a+mIQoc2zREEmInuFYyUEC3TFFQJJY0TxBWUoQyyI/reHzPLAW2QcAKpen5i4lsy9mQZhJk41jhwogcjjSzIJyxIDJtHyFECFlUa/NMsoulhqd5nbtOXj8rzWIokc1MMTGe2KxCUkxw8bnarMTG41HBc6lZDc5C4trlpKGAUvHvOrENFZRizLXnGkpw9pApjGmZ2HI/FOpMSUSE7LIbCJUTOiIpsrej9AQ6ptPBb0P54zOpmERLfxq3SF9J6jR1oGY1wzxKWzcVcngqRaG5EBU7pg3pFv8I7bQf7NWas4mn8a1vj470kK0trnS1ifNXAWg39RlHCj/YCiudkvnaawhESpfx7yVW6wrA1Lubr5KeNMXPQbCGyTjI3Ti5DtpbAMCro/hnWvKpN7SOZzIUkAd7bPRsSjvR1Tui7T0ZZ25DPj6qvBK9trTme4Pp/f/yd9MEsE+Qkrxrf0PADhB/mOCMj6QthGd2mLThyb0hUCUNAgdiJFLwTanHnVgh89eQLjd8MMXAvcvL/IrxOmfFq95vbbo54TMO3rMm+mOUbchjnJv74ZPiNGlMQA7TtpYNVVGNajDnZIub9gFGtdm1EViupw3GtzzrDMAyvwMG/lA2s1TYdD+jTK4yb3TAbCIh78OP7yUOROz4NiZiLJH91BDBwI5LfhRS+rk/nvB2TA59om1xWjCTArDQc6eXm52pSwbJFUKChtWZ5eIhIWGogY/xzss8jRIICyfjDiDDq2QPwPB1tvixFP02afyrRN4eXHFKJNwh/IQdIjNe84R4jLRbQwG8m/jc90zs88azhgJ4A/g+LLZbXV3yJZXJdCYTv2NSfehwl75hIt6gQ35DFewGfcSgZ0r80RYvUgt1ZEYdt1Ypt6X3TZW5U60UksdjY44iLsV6Sj7OsVy9CVQ7wHFcu9HXPEwhWCVTqsM0nDWLV76dYWKWC6+mXTmh8MlC06lRpcEsit6vyfSWG5uFzMA8OlOzcWSUCiEIz8ZwjzJ8RPAkErO9H9ZW4MScxJIXJG5zim6HUIMFSFoid98W3sU+WLfMMBzn5BhGerUKXYZlYLgfd4pZPTy9yGFoh/IF1kAmiuja8D9QiO4F6PEPK7CSjTfoBuIAAAAASUVORK5CYII=" alt="微信支付">
 				<text>微信支付</text>
 				<label><radio value="微信" checked="true" /></label>
@@ -115,7 +115,7 @@
 				<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAABKCAMAAAArDjJDAAAAn1BMVEUAAAABn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+gBn+jJZnQ1AAAANHRSTlMA4+nQcGz0gviQRA3DJAbGSN6eCu6VKsipiT4gHObMVtm9rqRnXDOzhWFNLxZ4EQJSOZl0zNrw/wAAAtZJREFUWMPtmNmWojAQQAvRiII2KPuioIAL7p3//7bhCFFkEkMLZ04/zH30hJukqCpLoUBWDUsTPkCzRuocnpyTELcgXAJBtnFL1nJpUnBrlLvrbOMOsM+5aok7IY+XLHSj0mQY444Yg9GVagQLzEUq4L1E0LhBcCcFnE0XwI36DEo46Sf+V/1SlU1Ui5+qvvo1VKJa9utE71UGNMf5Z6rN+BXVhIJpfzusYf0w7OtSNdc7S4a59ptUjwv2PlD1vqocSdiHoyo3iaNqng9po1ONmqiMRiplwCYms4bIUfERpoXJR61VWyj4xm1VyCtVm9YqqzSZqKFKQjkSTbUrVSPcQCXMkqvp+b43Sd1kuApftg/mpIi4KjS7yvDC3HOPkVAPep9bOJEJVOS9fT+GfiprSOSptsBmrq6ERxnEnHImpkN2da+p6cl/n+1ADsVRre+bJyu9fIlC5OzSM1Doc5pM4OeLXKs+6QzVad00tTmq73xRItGWfGc11/nqKAwVqYgLpiOt9lAnizeIobIB5AAziXYy1Jns1jpN1SfRZNDzgIK/NISqikzwK8wGucBATo/hq0oFiN7/VmAzNWNFwiFRjSstiN0QYKAydJPEIao9GSYoSDE8Kya6yMBAeOxrSoyIl6lAsiWMD0wV+e670Rvno124iFTG0Xuj0v08fJRooe2jcFS98vHNZarwEHKXUTfZKRCWtfuvLlOGCt3vsd9UHghmla1jytV3J6oKi0UwzbyhW6JorY/7ykJ5hmloowlNhZXno9Pa2VURM9BnLkWFFylQ8Q0Jv2FzIaqX13Wg5LEjYA7K4ERUT4Jb9nK3QxIh3ADB8YmqQrjqq5nnTzJ1sF7ouCm6wZgZEEL4hyCiak8PtK5UAYhdqTRYd6VawLIrlQMH1JEqIwNqJ39gzRddmHT/XmRCe5OkluOu2PpMKpScHNQuTl61kxyVMOh9QKBZo7LN/QHf5SDCzUz2PQAAAABJRU5ErkJggg==" alt="支付宝">
 				<text>支付宝支付</text>
 					<label><radio value="支付宝" /></label>
-			</view>
+			</view> -->
 			<view class="zhifu">
 				<view class="zhifu-lf" @tap="closepayaa()">应付金额:￥{{money}}</view>
 				<view class="zhifu-rt" @tap="pay()">确认购买</view>
@@ -145,15 +145,13 @@
 			};
 		},
 		methods: {
-			getCal(e){
-				var province = e.currentTarget.dataset.name
-				var index = this.proList.indexOf(province)
+			getCal(province){
+				const index = this.proList.indexOf(province)
 				if(this.proList.includes(province)){//如果包含了当前点击省份，移除
 					this.proList.splice(index,1)
 					this.calList = this.calList.filter(item=>{
 						return item.name != province
 					})
-					this.filterCal()
 					this.getMoney()
 				}else {//没有包含，放进数组,发送请求
 					this.proList.push(province)
@@ -165,20 +163,14 @@
 							price:res.data.price,
 							cal:res.data.province_role
 						})
-						this.filterCal()
 						this.getMoney()
 					}).catch(()=>{
-					 	console.log("errerrerr",err)
+					 	uni.showToast({
+					 		icon:'none',
+							title:'获取数据失败,请稍后重试'
+					 	})
 					})
 				}
-			},
-			filterCal(){
-				this.calList.map(item=>{
-					item.cal.forEach(i=>{
-						this.allCalList.push(i)
-					})
-				})
-				this.allCalList = [...new Set(this.allCalList)]
 			},
 			getVal(e){
 				this.shows = e.currentTarget.dataset.show
@@ -194,13 +186,21 @@
 				}else if(this.shows == 12){
 					this.money = this.monthTwe
 				}
-				
 			}
 		},
 		computed:{
 			...mapState({
 				userInfo:state=>state.user.userInfo
 			}),
+			allCalArr(){
+				let arr = []
+				this.calList.forEach(item=>{
+					item.cal.forEach(i=>{
+						arr.push(i)
+					})
+				})
+				return [...new Set(arr)]
+			},
 			monthOne:function(){
 				let money = 0
 				this.calList.map(item=>{
