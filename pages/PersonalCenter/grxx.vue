@@ -28,7 +28,10 @@
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >验证手机:</view>
-				<view style="margin-left: auto;">{{userInfo.userInfo.user.tel}} <text class="iconBLue" @tap="bindEmail('phone')">立即解绑</text> </view>
+				<view style="margin-left: auto;">{{userInfo.userInfo.user.tel}} 
+					<text class="iconBLue" v-if="userInfo.userInfo.user.tel_verified == 0" @tap="bindEmail('phone')">立即绑定</text> 
+					<text class="iconBLue" v-if="userInfo.userInfo.user.tel_verified == 1" @tap="bindEmail('phone')">立即解绑</text> 
+				</view>
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >验证邮箱:</view>
@@ -39,7 +42,7 @@
 				<view >会员信息:</view>
 				<view style="margin-left: auto;">会员等级:{{userInfo.vipInfo.type}}</view>
 			</view>
-			<view class="p-3 row border-bottom font-md" v-if="userInfo.vipInfo.type != '普通会员'">
+			<view class="p-3 row border-bottom font-md" v-if="userInfo.vipInfo.type == 'VIP会员' || userInfo.vipInfo.type == '企业会员'">
 				<view >会员期限:</view>
 				<view style="margin-left: auto;">{{userInfo.vipInfo.expireDate}}</view>
 			</view>

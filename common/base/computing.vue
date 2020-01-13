@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<button class="computerBtn" type="primary" @tap="jisuan">点击计算</button>
+		<button class="computerBtn" :class="computedStatus ? '':'not'" type="primary" @tap="computedStatus && jisuan()">{{btnText}}</button>
 		<text>单次计算消耗{{countData.count}}积分(自选会员及以上不消耗积分)</text>
 	</view>
 </template>
@@ -28,6 +28,10 @@
 				// 	sjf_zhsjf: 18819,
 				// }
 				result:{},
+				btnText: '点击计算',
+				computedStatus:true,
+				timer: null,
+				time: 3
 			}
 		},
 		computed:{
@@ -44,6 +48,17 @@
 					})
 				}
 				if(checkComputed(this.needVal)){
+					this.computedStatus = false
+					this.timer = setInterval(()=>{
+						if(this.time == 0){
+							clearInterval(this.timer)
+							this.time = 3
+							this.computedStatus = true
+							this.btnText = '点击计算'
+							return 
+						}
+						this.btnText = (this.time--)+'s 独立费 专注造价计算'
+					},1000)
 					uni.request({
 						url: this.countData.url, //仅为示例，并非真实接口地址。
 						header: {
@@ -56,6 +71,10 @@
 							// this.$emit('jsSuccess', res.data);
 							this.result = res.data
 							this.$bus.emit('jsSuccess', this.result);
+							uni.pageScrollTo({
+								scrollTop:999999,
+								duration:300
+							})
 						},
 						fail: (err) => {
 					
@@ -84,5 +103,8 @@
 		margin-top: 20upx;
 		padding-bottom: 20upx;
 		font-size: 30upx;
+	}
+	.not{
+		opacity: 0.6;
 	}
 </style>

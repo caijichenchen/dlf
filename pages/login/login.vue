@@ -87,26 +87,20 @@
 			};
 		},
 		mounted() {
-			uni.getProvider({
-			    service: 'oauth',
-			    success: function (res) {
-			        console.log(res.provider)
-			        if (~res.provider.indexOf('weixin')) {
-			            uni.login({
-			                provider: 'weixin',
-			                success: function (loginRes) {
-			                    console.log(JSON.stringify(loginRes));
-								// uni.getUserInfo({
-								// 	provider: 'weixin',
-								// 	success: function (infoRes) {
-								// 		console.log('用户昵称为：' + infoRes.userInfo.nickName);
-								// 	}
-								// });
-			                }
-			            });
-			        }
-			    }
-			});
+			// uni.getProvider({
+			//     service: 'oauth',
+			//     success: function (res) {
+			//         console.log(res.provider)
+			//         if (~res.provider.indexOf('weixin')) {
+			//             uni.login({
+			//                 provider: 'weixin',
+			//                 success: function (loginRes) {
+			//                     console.log(JSON.stringify(loginRes));
+			//                 }
+			//             });
+			//         }
+			//     }
+			// });
 			const phone = uni.getStorageSync('phone')
 			const pwd = uni.getStorageSync('pwd')
 			if(phone && pwd){
@@ -120,8 +114,21 @@
 				uni.getUserInfo({
 					provider: 'weixin',
 					success: function (infoRes) {
-						console.log(infoRes)
-						console.log('用户昵称为：' + infoRes.userInfo.nickName);
+						if(infoRes.errMsg == 'getUserInfo:ok'){
+							uni.login({
+							    provider: 'weixin',
+							    success: function (loginRes) {
+							        console.log(JSON.stringify(loginRes));
+									uni.getUserInfo({
+										provider: 'weixin',
+										success:function(success){
+											console.log(infoRes)
+											console.log('用户昵称为：' + infoRes.userInfo.nickName);
+										}
+									})
+							    }
+							});
+						}
 					}
 				});
 			},
@@ -199,7 +206,10 @@
 					    url: '/pages/index/index'
 					});
 				}).catch((err)=>{
-					console.log('登陆失败',err)
+					uni.showToast({
+						icon:'none',
+						title:'登录失败,请稍后重试'
+					})
 				})
 			},
 			//获取用户个人信息

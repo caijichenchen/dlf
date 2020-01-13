@@ -46,7 +46,7 @@
 					</view>
 				</view>
 				<view v-else v-for="(item,index) in proCalList" :key="index">
-					<view :data-url="item.url" :data-type="item.parent_type" @tap="navigateto" class="btn">{{item.name}}</view>
+					<view v-show="item.role_id" :data-url="item.url" :data-type="item.parent_type" @tap="navigateto" class="btn">{{item.name}}</view>
 				</view>
 			</scroll-view>
 		</view>
@@ -72,6 +72,7 @@
 					provinceLists: ['全国','河南','海南','广东','广西','北京','天津','河北','山西','辽宁','吉林','黑龙江','内蒙古','上海','浙江','江苏','山东','安徽','福建','湖南','湖北','江西','四川','重庆','贵州','云南','陕西','甘肃','宁夏','青海','新疆'],
 					proCalList:{},
 					filterList: [],
+					data:{},
 					clickPro: '',
 					clickFilter: '',
 					windowHeight: '',
@@ -199,7 +200,7 @@
 				})
 				return arr
 			}
-		}
+		},
 	}
 </script>
 <!-- 获取地理位置 -->

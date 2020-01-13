@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<sgtscf-counter-qian></sgtscf-counter-qian>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<sgtscf-result></sgtscf-result>
 		</template>
 		
@@ -18,9 +14,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import sgtscfCounterQian from "./sgtscf_counter_qian.vue"
-	import computing from "@/common/base/computing.vue"
 	import sgtscfResult from "./sgtscf_result.vue"
 	export default {
 		data() {
@@ -39,8 +33,6 @@
 		},
 		components:{
 			sgtscfCounterQian,
-			baseLayout,
-			computing,
 			sgtscfResult
 		}
 	}

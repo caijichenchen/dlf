@@ -68,8 +68,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/sgtscfs/sgtscfs-tianjin.json'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import fjtzTianjin from './sgtscfTianjin_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -135,8 +133,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			fjtzTianjin
 		},
 		methods:{

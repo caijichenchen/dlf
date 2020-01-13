@@ -38,10 +38,12 @@ function checkComputed(needVal){
 		// const reg = new RegExp(item,'g')
 		if(flag){ //当已经检验出错误输入时不再执行循环
 			checkArr.forEach(val=>{
-				if(val.split('_')[1] == item){ //改进完全匹配
-					if(!(needVal[val]>0) && !needVal[val].includes('|')){ 
+				if(val.split('_')[1] == item ){ //改进完全匹配只有数据转换成数值时判断
+					if(!(needVal[val]>=0) && !isNaN(Number(needVal[val]))){ 
 						console.log(val)
-						console.log(isNaN(needVal[val]))
+						console.log(needVal[val])
+						console.log(Number(needVal[val]))
+						console.log(isNaN(Number(needVal[val])))
 						flag = false
 						return uni.showToast({
 							icon:'none',
@@ -68,8 +70,8 @@ function checkComputed(needVal){
 			// const reg = new RegExp(item,'g')
 			if(flag){
 				checkArr.forEach(val=>{
-					if(val.split('_')[1] == item){
-						if(!(needVal[val]>0 && needVal[val] <= 100)){
+					if(val.split('_')[1] == item ){
+						if(!(needVal[val]>0 && needVal[val] <= 100) && !isNaN(Number(needVal[val]))){
 							flag = false
 							return uni.showToast({
 								icon:'none',
@@ -87,8 +89,8 @@ function checkComputed(needVal){
 			// const reg = new RegExp(item,'g')
 			if(flag){
 				checkArr.forEach(val=>{
-					if(val.split('_')[1] == item){
-						if(!(needVal[val]>=0)){
+					if(val.split('_')[1] == item ){
+						if(!(needVal[val]>=0) && !isNaN(Number(needVal[val]))){
 							flag = false
 							return uni.showToast({
 								icon:'none',
@@ -106,8 +108,8 @@ function checkComputed(needVal){
 			// const reg = new RegExp(item,'g')
 			if(flag){
 				checkArr.forEach(val=>{
-					if(val.split('_')[1] == item){
-						if(!(needVal[val]>0 && Math.floor(needVal[val]) == needVal[val])){
+					if(val.split('_')[1] == item ){
+						if(!(needVal[val]>0 && Math.floor(needVal[val]) == needVal[val]) && !isNaN(Number(needVal[val]))){
 							flag = false
 							return uni.showToast({
 								icon:'none',
@@ -125,8 +127,8 @@ function checkComputed(needVal){
 			// const reg = new RegExp(item,'g')
 			if(flag){
 				checkArr.forEach(val=>{
-					if(val.split('_')[1] == item){
-						if(!(needVal[val]>=80 && needVal[val]<=120)){
+					if(val.split('_')[1] == item ){
+						if(!(needVal[val]>=80 && needVal[val]<=120) && !isNaN(Number(needVal[val]))){
 							flag = false
 							return uni.showToast({
 								icon:'none',
@@ -144,8 +146,8 @@ function checkComputed(needVal){
 			// const reg = new RegExp(item,'g')
 			if(flag){
 				checkArr.forEach(val=>{
-					if(val.split('_')[1] == item){
-						if(!(needVal[val]>=0.008 && needVal[val]<=0.011)){
+					if(val.split('_')[1] == item ){
+						if(!(needVal[val]>=0.008 && needVal[val]<=0.011)&& !isNaN(Number(needVal[val]))){
 							flag = false
 							return uni.showToast({
 								icon:'none',

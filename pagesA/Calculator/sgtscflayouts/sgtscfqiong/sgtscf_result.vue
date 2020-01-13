@@ -22,11 +22,11 @@
 				</view>
 				<view class="cu-form-group align-start">
 					<view class="title">{{config.menuText[3]}}</view>
-					<textarea class="text-left font" maxlength="-1" :disabled="modalName!=null" v-html="result.calcu_jsgc"></textarea>
+					<view class="msg" v-html="result.calcu_jsgc"></view>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">直达链接</view>
-					<button class="calculatorReport" type="primary" @click="ckjsgchbg" name="calcu_url">查看计算过程和报告</button>
+					<button class="calculatorReport" type="primary" @tap="goDetail(result.calcu_url)">查看计算过程和报告</button>
 				</view>
 			</view>
 		</view>
@@ -34,9 +34,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		mixins: [resultMixin],
 		data() {
@@ -53,12 +50,6 @@
 					menuText: ['施工图审查费基价:', '折前施工图审查费:', '折后施工图审查费:', '计算过程:'],
 				},
 			};
-		},
-		created() {
-			
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

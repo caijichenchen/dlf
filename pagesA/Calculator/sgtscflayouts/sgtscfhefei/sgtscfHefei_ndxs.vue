@@ -27,10 +27,6 @@
 </template>
 
 <script>
-	import {
-		uniCollapse,
-		uniCollapseItem
-	} from "@dcloudio/uni-ui"
 	import {modalMixin} from "@/common/base/modalMixin"
 	
 	export default {
@@ -49,10 +45,6 @@
 			return {
 				modalName:'sgtscfHefei_ndxs',
 			}
-		},
-		components: {
-			uniCollapse,
-			uniCollapseItem,
 		},
 		computed: {
 			dataComputed: function() {

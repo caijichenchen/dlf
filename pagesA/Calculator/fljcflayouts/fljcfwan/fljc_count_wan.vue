@@ -68,8 +68,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/fljcfs/fljcfs-wan.json'
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import tzxsWan from './fljcfWan_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -134,8 +132,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			tzxsWan
 		},
 		methods:{

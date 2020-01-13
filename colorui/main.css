@@ -2351,6 +2351,18 @@ button.cuIcon.lg {
 	box-sizing: border-box;
 }
 
+.cu-form-group .msg {
+	/* margin: 32upx 0 30upx; */
+	height: 320upx;
+	width: 100%;
+	line-height: 1.2em;
+	flex: 1;
+	font-size: 28upx;
+	margin-top: 20rpx;
+	white-space: normal;
+	/* padding: 20upx 0; */
+}
+
 .cu-form-group textarea {
 	/* margin: 32upx 0 30upx; */
 	height: 320upx;
@@ -2358,7 +2370,8 @@ button.cuIcon.lg {
 	line-height: 1.2em;
 	flex: 1;
 	font-size: 28upx;
-	padding: 20upx 0;
+	margin-top: 20rpx;
+	/* padding: 20upx 0; */
 }
 
 .cu-form-group.align-start .title {

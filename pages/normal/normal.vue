@@ -15,15 +15,13 @@
 		data() {
 		    return {
 				html:'',
-				title:''
+				title:'相关标准'
 		    }
 		},
 		onLoad(options) {
 			const id = options.id
 			if(this.title){
 				this.title = options.title
-			}else{
-				this.title = '相关标准'
 			}
 			$req.request({
 				url:'/api/xcx/standard/detail',

@@ -21,12 +21,17 @@
 				<view class="jsqxqy" v-if="vipInfo.userType == 'VIP会员'">
 					<view style="text-align: left;">计算权限: VIP会员</view>
 					<view class="qxtime">会员期限: {{time[0]+"   "+time[2]+"   "+time[4]}}</view>
-					<text class="textBuuton" @click="goxf">续费</text>
+					<text class="textBuuton" @tap="goxf">续费</text>
 				</view>
-				<view class="jsqxqy" v-if="vipInfo.userType == '企业会员'">
+				<view class="jsqxqy" v-else-if="vipInfo.userType == '企业会员'">
 					<view style="text-align: left;">计算权限: 企业会员6人</view>
 					<view class="qxtime">会员期限: {{time[0]+"   "+time[2]+"   "+time[4]}}</view>
-					<text class="textBuuton" @click="goxf">续费</text>
+					<text class="textBuuton" @tap="goxf">续费</text>
+				</view>
+				<view class="jsqxqy" v-else v-for="(item,index) in time" :key="index">
+					<view style="text-align: left;">计算权限: {{item[1]}}</view>
+					<view class="qxtime">会员期限: {{item[0]+"   "+item[2]}}</view>
+					<text class="textBuuton" @tap="goxf">续费</text>
 				</view>
 			</view>
 			<view style="height: 40rpx;background: #F1F1F1;"></view>
@@ -34,6 +39,34 @@
 				<view class="vip pl-3">{{vipInfo.userType}}特权介绍</view>
 				<view v-if="vipInfo.userType == '普通会员'" class="pl-3 font-md">
 					您当前的身份为普通会员,可以消耗积分购买计算器,下载标准,如果想享有更多权限,请升级会员			
+				</view>
+				<view v-else-if="vipInfo.userType.indexOf('省份')!=-1 || vipInfo.userType.indexOf('自选')!=-1">
+					<view class="tequan">
+						<view class="showtq" >
+							<text class="iconfont iconBLue">&#xe612;</text>
+							<view>对应计算器</view>
+						</view>
+						<view class="showtq" >
+							<text class="iconfont iconBLue">&#xe6d0;</text>
+							<view>系统配置</view>
+						</view>
+						<view class="showtq" >
+							<text class="iconfont iconBLue">&#xe646;</text>
+							<view>不限类型</view>
+						</view>
+						<view class="showtq" >
+							<text class="iconfont iconBLue">&#xe69e;</text>
+							<view>生成报告</view>
+						</view>
+						<view class="showtq" >
+							<text class="iconfont iconGreen">&#xe628;</text>
+							<view>导出报告</view>
+						</view>
+						<view class="showtq" >
+							<text class="iconfont iconGray">&#xe751;</text>
+							<view>一键计算</view>
+						</view>
+					</view>
 				</view>
 				<view v-else>
 					<view class="tequan" >
@@ -65,11 +98,11 @@
 							<text class="iconfont iconGreen">&#xe610;</text>
 							<view>新版一键</view>
 						</view>
-						<view class="showtq" >
+						<view class="showtq" v-if="vipInfo.userType == '企业会员'">
 							<text class="iconfont iconYellow">&#xe7f3;</text>
 							<view>多人登录</view>
 						</view>
-						<view class="showtq" >
+						<view class="showtq">
 							<text class="iconfont iconYellow">&#xe6d1;</text>
 							<view>所有特权</view>
 						</view>
@@ -85,7 +118,7 @@
 				<view class="vip pl-3">会员推荐</view>
 				<view v-if="vipInfo.userType == '企业会员'" class="pl-3 font-md">您现在的身份是尊贵的企业会员,已拥有网站所有权限,没有会员给您推荐了哦,如果有什么需要,可以联系我们。</view>
 				<view v-else>
-					<view v-if="vipInfo.userType != '自选会员'" class="zxvip row p-4 mb-4">
+					<view v-if="vipInfo.userType.indexOf('自选') != -1" class="zxvip row p-4 mb-4">
 						<view>
 							<img :src="imgUrl+'/images/auth/optional.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
@@ -96,7 +129,7 @@
 							<navigator class="g-btn" style="background:rgba(127,207,11,1);" url="./zxhy">立即购买</navigator>
 						</view>
 					</view>
-					<view v-if="vipInfo.userType != '省份会员'" class="sfvip row p-4 mb-4">
+					<view v-if="vipInfo.userType.indexOf('省份') != -1" class="sfvip row p-4 mb-4">
 						<view>
 							<img :src="imgUrl+'/images/auth/province.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
@@ -107,7 +140,7 @@
 							<navigator class="g-btn" style="background:rgba(75,172,255,1);" url="./sfhy">立即购买</navigator>
 						</view>
 					</view>
-					<view v-if="vipInfo.userType != 'VIP会员'" class="hyvip row p-4 mb-4">
+					<view v-if="vipInfo.userType.indexOf('VIP会员') != -1" class="hyvip row p-4 mb-4">
 						<view>
 							<img :src="imgUrl+'/images/auth/vip.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>
@@ -149,9 +182,22 @@
 				url: '/api/xcx/memberlist',
 			})
 			.then((res)=>{
-				this.time = res.data.vipTiem.split(' ')
 				// this.vipInfo = res.data
 				this.vipInfo = res.data
+				if(Array.isArray(res.data.vipTiem)){
+					this.time = res.data.vipTiem
+					let data = []
+					data = res.data.vipTiem.map(item=>{
+						return [
+							item[0].split(' ')[0],
+							item[1],
+							item[3].split('T')[0]
+						]
+					})
+					this.time = data
+				}else{
+					this.time = res.data.vipTiem.split(' ')
+				}
 				console.log(res.data)
 			})
 			.catch((err)=>{

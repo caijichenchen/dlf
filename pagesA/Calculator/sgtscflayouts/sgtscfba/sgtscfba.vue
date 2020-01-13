@@ -13,9 +13,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import sgtscfCounterBa from "./sgtscf_counter_ba.vue"
-	import computing from "@/common/base/computing.vue"
 	import sgtscfResult from "./sgtscf_result.vue"
 	export default {
 		data() {
@@ -34,8 +32,6 @@
 		},
 		components:{
 			sgtscfCounterBa,
-			baseLayout,
-			computing,
 			sgtscfResult
 		}
 	}

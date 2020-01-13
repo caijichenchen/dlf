@@ -64,8 +64,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/sgtscfs/sgtscfs-min.json'
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import ndxzMin from './sgtscfMin_ndxs.vue'
 	import tzxsMin from './sgtscfMin_tzxs.vue'
 	export default {
@@ -131,8 +129,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			ndxzMin,
 			tzxsMin
 		},

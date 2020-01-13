@@ -23,9 +23,9 @@
 					<image class="img" src="/static/shilu-login/3.png"></image>
 					<input class="biaoti" v-model="code" type="number" placeholder="请输入验证码" />
 				</view>
-				<view class="code" :class="checkPwd ? '':'noinput'" @click="checkPwd && getCode()">{{codetext}}</view>
+				<view class="code" :class="checkPwd ? '':'noinput'" @tap="checkPwd && getCode()">{{codetext}}</view>
 			</view>
-			<button class="regbtn" :class="checkPwd ? '':'noinput'" @click="checkPwd && regUser()">立即注册</button>
+			<button class="regbtn" :class="checkPwd ? '':'noinput'" @tap="checkPwd && regUser()">立即注册</button>
 		</view>
 		<view class="text-center">
 			<view class="okmsg">注册即代表同意<text style="color: #f66264;" @tap="showModal" data-target="vip">《会员协议》</text></view>

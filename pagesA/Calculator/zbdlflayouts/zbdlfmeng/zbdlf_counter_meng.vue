@@ -59,8 +59,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import zbdlfMengZbxm from "./zbdlfMeng_zbxm.vue"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@//components/uni-ui/uni-tag/uni-tag.vue"
 	import datajson from '@//common/json/zbdlf/zbdlf-meng.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -113,8 +111,6 @@
 		},
 		components: {
 			zbdlfMengZbxm,
-			uniTag,
-			explain
 		},
 		methods:{
 			//查看说明

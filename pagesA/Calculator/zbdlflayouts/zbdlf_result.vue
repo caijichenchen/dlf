@@ -18,11 +18,11 @@
 				</view>
 				<view class="cu-form-group align-start">
 					<view class="title">{{config.menuText[2]}}</view>
-					<textarea class="text-left" maxlength="-1" :disabled="modalName!=null" v-html="result.calcu_jsgc"></textarea>
+					<view class="msg" v-html="result.calcu_jsgc"></view>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">直达链接</view>
-					<button class="calculatorReport" type="primary" @click="ckjsgchbg" name="calcu_url">查看计算过程和报告</button>
+					<button class="calculatorReport" type="primary" @tap="goDetail(result.calcu_url)">查看计算过程和报告</button>
 				</view>
 			</view>
 		</view>
@@ -30,9 +30,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		props:{
 			title:{
@@ -54,12 +51,6 @@
 					menuText: ['折前招标代理费:', '折后招标代理费:',  '计算过程:'],
 				},
 			};
-		},
-		created() {
-			
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

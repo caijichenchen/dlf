@@ -6,7 +6,7 @@
 		</cu-custom>
 		<scroll-view scroll-x class="bg-white nav">
 			<view class="flex text-center">
-				<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in inquireList" :key="index" @tap="getInquire" :data-id="index">
+				<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in inquireList" :key="index" @tap="getInquire(index)">
 					{{item}}
 				</view>
 			</view>
@@ -24,7 +24,7 @@
 				<view v-else>
 					<view class="p-3 row border-bottom font-md">
 						<view class="i-title">{{titlelist[TabCur]}}</view>
-						<view style="margin-left: auto;">11积分</view>
+						<view style="margin-left: auto;">{{inquireData.inquire}}积分</view>
 					</view>
 					<view class="p-3 row border-bottom font-md" v-for="(item,index) in inquireData.integralCalculation" :key="index">
 						<view class="i-title">
@@ -48,7 +48,6 @@
 	export default {
 		data() {
 			return {
-				shows:1,
 				TabCur: 0,
 				scrollLeft: 0,
 				inquireList:['积分余额','下载消耗','计算消耗','积分获得'],
@@ -62,24 +61,34 @@
 				url:'/api/xcx/integral/inquire',
 			}).then(res=>{
 				this.jfye = res.data.integralBalance
-				console.log(res)
 			}).catch(err=>{
-				console.log(err)
+				uni.showToast({
+					icon:'none',
+					title:'获取积分信息失败,请稍后重试'
+				})
 			})
 		},
 		methods: {
-			getInquire(e) {
-			 	this.TabCur = e.currentTarget.dataset.id;
-			 	this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
+			getInquire(index) {
+			 	this.TabCur = index
 				if(this.TabCur >= 1){
 					$req.request({
 						url:'/api/xcx/integral/inquire',
-						data:{id:e.currentTarget.dataset.id}
+						data:{id:index}
 					}).then(res=>{
-						this.inquireData = res.data
-						console.log(res)
+						let inquire = 0
+						res.data.integralCalculation.forEach(item=>{
+							inquire += item.value
+						})
+						this.inquireData = {
+							inquire:inquire,
+							integralCalculation:res.data.integralCalculation.slice(0,10)
+						}
 					}).catch(err=>{
-						console.log(err)
+						uni.showToast({
+							icon:'none',
+							title:'获取积分信息失败,请稍后重试'
+						})
 					})
 				}
 			 },

@@ -16,8 +16,6 @@
 </template>
 
 <script>
-	import computing from "@/common/base/computing.vue"
-	import baseLayout from '@/common/base/baseLayout.vue'
 	import fljcCount from './fljc_count_yue'
 	import fljcResult from '../fljc_result'
 	export default {
@@ -37,10 +35,8 @@
 			}
 		},
 		components: {
-			baseLayout,
 			fljcCount,
 			fljcResult,
-			computing
 		}
 	}
 </script>

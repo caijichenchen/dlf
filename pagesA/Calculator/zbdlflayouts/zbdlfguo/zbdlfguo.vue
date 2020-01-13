@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<zbdlf-counter-guo></zbdlf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<zbdlf-result :title="title"></zbdlf-result>
 		</template>
 		
@@ -18,9 +14,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import zbdlfCounterGuo from "./zbdlf_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
 	import zbdlfResult from "../zbdlf_result.vue"
 	export default {
 		data() {
@@ -40,8 +34,6 @@
 		},
 		components:{
 			zbdlfCounterGuo,
-			baseLayout,
-			computing,
 			zbdlfResult
 		}
 	}

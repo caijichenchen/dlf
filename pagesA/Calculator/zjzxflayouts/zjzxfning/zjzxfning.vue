@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId='id'>
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<zjzxf-counter-ning :title="title"></zjzxf-counter-ning>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<zjzxf-result :title="title"></zjzxf-result>
 		</template>
 		<template v-slot:qfbz>
@@ -17,9 +13,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import zjzxfCounterNing from "./zjzxf-counter_ning.vue"
-	import computing from "@/common/base/computing.vue"
 	import zjzxfResult from "../zjzxf_result.vue"
 	export default {
 		data() {
@@ -39,8 +33,6 @@
 		},
 		components:{
 			zjzxfCounterNing,
-			baseLayout,
-			computing,
 			zjzxfResult
 		}
 	}

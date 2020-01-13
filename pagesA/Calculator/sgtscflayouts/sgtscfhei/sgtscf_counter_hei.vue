@@ -78,8 +78,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/sgtscfs/sgtscfs-hei.json'
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import tzxsHei from './sgtscfHei_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -154,8 +152,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			tzxsHei
 		},
 		methods:{

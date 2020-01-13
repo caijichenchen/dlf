@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<zjzxf-counter-gui :title="title"></zjzxf-counter-gui>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<zjzxf-result :title="title"></zjzxf-result>
 		</template>
 		<template v-slot:qfbz>
@@ -40,8 +36,6 @@
 		},
 		components:{
 			zjzxfCounterGui,
-			baseLayout,
-			computing,
 			zjzxfResult
 		}
 	}

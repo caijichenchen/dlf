@@ -64,8 +64,6 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import datajson from '@/common/json/sgtscfs/sgtscfs-hefei.json'
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import tzxsHefei from './sgtscfHefei_tzxs.vue'
 	import ndxsHefei from './sgtscfHefei_ndxs.vue'
 	export default {
@@ -131,8 +129,6 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			tzxsHefei,
 			ndxsHefei,
 		},

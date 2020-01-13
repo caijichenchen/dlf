@@ -37,8 +37,6 @@
 
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	export default {
 		mixins: [counterMixin],
 		data() {
@@ -61,15 +59,7 @@
 				]
 			}
 		},
-		components: {
-			uniTag,
-			explain
-		},
 		methods:{
-			PickerChange(e) {
-				this.index = e.detail.value
-			},
-			//查看说明
 			showdzzk(e) {
 				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
 				this.$bus.emit('modalData', this.modalData )

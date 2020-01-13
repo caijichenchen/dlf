@@ -4,7 +4,7 @@
 		    <block slot="content"></block>
 		</cu-custom>
 		<view class="header text-center">
-			<text style="margin-right: 90rpx;" :class="{'activeCat':showTab == 0}" @click="changeCategory(0)">手机号找回</text>
+			<text style="margin-right: 90rpx;" :class="{'activeCat':showTab == 0}" @tap="changeCategory(0)">手机号找回</text>
 			<!-- <text :class="{'activeCat':showTab == 1}" @click="changeCategory(1)">邮箱找回</text> -->
 		</view>
 		<view class="list" v-if="showTab == 0">
@@ -25,13 +25,13 @@
 				<image class="img" src="/static/shilu-login/2.png"></image>
 				<input class="biaoti" @blur="checkInput" v-model="regpassword" type="text" password maxlength="16" placeholder="请确认新密码" />
 			</view>
-			<button class="regbtn" :class="checkPwd ? '':'noinput'" @click="checkPwd && setNewPwd()">提交</button>
+			<button class="regbtn" :class="checkPwd ? '':'noinput'" @tap="checkPwd && setNewPwd()">提交</button>
 		</view>
 		<view v-if="showTab == 1" class="list">
 			<view class="list-call">
 				<input class="biaoti" type="text" v-model="userEmail" @blur="checkEmail" placeholder="请输入邮箱地址" />
 			</view>
-			<button class="regbtn" :class="checkPwd ? '':'noinput'" @click="checkPwd && setNewEmail()">发送重置密码链接</button>
+			<button class="regbtn" :class="checkPwd ? '':'noinput'" @tap="checkPwd && setNewEmail()">发送重置密码链接</button>
 		</view>
 	</view>
 </template>

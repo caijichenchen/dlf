@@ -33,11 +33,12 @@
 				</view>
 				<view class="cu-form-group align-start">
 					<view class="title">{{config.menuText[5]}}</view>
-					<textarea maxlength="-1" :disabled="modalName!=null" v-html="result.calcu_jsgc"></textarea>
+					<!-- <textarea maxlength="-1" :disabled="modalName!=null" :placeholder="result.calcu_jsgc"></textarea> -->
+					<view class="msg" v-html="result.calcu_jsgc"></view>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">直达链接</view>
-					<button class="calculatorReport" type="primary" @click="ckjsgchbg" name="calcu_url">查看计算过程和报告</button>
+					<button class="calculatorReport" type="primary" @tap="goDetail(result.calcu_url)" >查看计算过程和报告</button>
 				</view>
 			</view>
 		</view>
@@ -58,7 +59,6 @@
 					calcu_jsgc:'',
 					calcu_url:'',
 				},
-				showGroup: 1,
 				config: {
 					menuText: ['收费基价:', '基本收费:', '基准价:', '设计费:', '折后设计费:', '计算过程:', '不知道说啥'],
 				},

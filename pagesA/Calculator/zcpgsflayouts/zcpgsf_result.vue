@@ -21,7 +21,7 @@
 				</view>
 				<view class="cu-form-group">
 					<view class="title">直达链接</view>
-					<button class="calculatorReport" type="primary" @click="ckjsgchbg" name="calcu_url">查看计算过程和报告</button>
+					<button class="calculatorReport" type="primary" @tap="goDetail(result.calcu_url)">查看计算过程和报告</button>
 				</view>
 			</view>
 		</view>
@@ -29,9 +29,6 @@
 
 <script>
 	import {resultMixin} from "@/common/base/resultMixin"
-	import {
-		uniTag
-	} from '@dcloudio/uni-ui'
 	export default {
 		props:{
 			title:{
@@ -53,12 +50,6 @@
 					menuText: ['折前资产评估收费:', '折后资产评估收费:', '计算过程:'],
 				},
 			};
-		},
-		created() {
-			
-		},
-		components: {
-			uniTag
 		},
 	}
 </script>

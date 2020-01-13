@@ -13,9 +13,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import zjzxfCounterGan from "./zjzxf-counter_gan.vue"
-	import computing from "@/common/base/computing.vue"
 	import zjzxfResult from "../zjzxf_result.vue"
 	export default {
 		data() {
@@ -35,8 +33,6 @@
 		},
 		components:{
 			zjzxfCounterGan,
-			baseLayout,
-			computing,
 			zjzxfResult
 		}
 	}

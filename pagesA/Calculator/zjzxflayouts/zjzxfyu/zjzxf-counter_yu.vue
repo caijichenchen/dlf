@@ -47,13 +47,13 @@
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu10 ">
 			<view class="title">{{multiSelector.zjzxfYu10}}</view>
 			<input v-model="needVal.zjzxfYu_hzhjcgb" /></input>
-			<uni-tag text="%" type="defult" >%</uni-tag>
+			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu12 ">
 			<view class="title">{{multiSelector.zjzxfYu12}}</view>
 			<input v-model="needVal.zjzxfYu_sffl" /></input>
-			<uni-tag text="%" type="defult" >%</uni-tag>
+			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击查看</button>
 		</view>
 		<view class="cu-form-group">
@@ -73,8 +73,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
 	import datajson from '@/common/json/zjzxfs/zjzxfs-yu.json'
 	
 	export default {
@@ -150,10 +148,6 @@
 					}
 				]
 			}
-		},
-		components: {
-			uniTag,
-			explain
 		},
 		methods:{
 			showdzzk(e) {
