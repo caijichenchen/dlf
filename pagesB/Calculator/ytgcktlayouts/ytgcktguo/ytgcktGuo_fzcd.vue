@@ -48,6 +48,7 @@
 		data() {
 			return {
 				modalName: 'ytgcktGuo_fzcd',
+				CustomBar:this.CustomBar,
 				fjxs: '',
 				dataList: [
 					{

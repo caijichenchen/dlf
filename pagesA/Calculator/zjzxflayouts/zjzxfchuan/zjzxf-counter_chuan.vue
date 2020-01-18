@@ -72,16 +72,10 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/zjzxfs/zjzxfs-chuan.json'
+	// import datajson from '@/common/json/zjzxfs/zjzxfs-chuan.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
-		props:{
-			title: {
-				type: String,
-				default: null
-			}
-		},
 		data() {
 			return {
 				needVal: {
@@ -134,7 +128,7 @@
 					zjzxfChuan_sffl2: true,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "zjzxchuan1",
@@ -153,6 +147,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zjzxfs/zjzxfs-chuan.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

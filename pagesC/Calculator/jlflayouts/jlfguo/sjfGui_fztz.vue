@@ -62,6 +62,7 @@
 				isactive: 0 ,
 				clickIndex: 0,
 				modalName:'sjfGui_fztz',
+				CustomBar:this.CustomBar,
 				data:[
 					{
 						list:[

@@ -5,29 +5,29 @@
 			<block slot="content">企业会员</block>
 		</cu-custom>
 		<view class="titelTabs">
-			<view  :class="{titleOn:shows==0}" :data-show="0" :data-pre="3" @click="changeShow">3名人员</view>
-			<view  :class="{titleOn:shows==1}" :data-show="1" :data-pre="6" @click="changeShow" >6名人员</view>
-			<view  :class="{titleOn:shows==2}" :data-show="2" :data-pre="10" @click="changeShow" >10名人员</view>
+			<view  :class="{titleOn:shows==0}" @tap="changePeople(0,3)">3名人员</view>
+			<view  :class="{titleOn:shows==1}" @tap="changePeople(1,6)" >6名人员</view>
+			<view  :class="{titleOn:shows==2}" @tap="changePeople(2,10)" >10名人员</view>
 		</view>
 		<view style="height: 40rpx;background: #F1F1F1;"></view>
 		<view class="titlecon">
 			<view class="time">
-				<view class="timeOne" :class="{tabOn:tab==0}" :data-tab="0" @click="getVal">
+				<view class="timeOne" :class="{tabOn:tab==0}" :data-tab="0" @tap="getVal">
 					<text class="font-md">{{moneyList[shows][0]}}元/1年({{pre}}名成员)</text>
 				</view>
-				<view class="timeOne" :class="{tabOn:tab==1}" :data-tab="1" @click="getVal">
+				<view class="timeOne" :class="{tabOn:tab==1}" :data-tab="1" @tap="getVal">
 					<view>8.6折</view>
-					<text class="lineThr">原价:￥1398</text>
+					<text class="lineThr">原价:￥{{priceLis[shows][1]}}</text>
 					<text class="font-md">{{moneyList[shows][1]}}元/2年({{pre}}名成员)</text>
 				</view>
-				<view class="timeOne" :class="{tabOn:tab==2}" :data-tab="2" @click="getVal">
+				<view class="timeOne" :class="{tabOn:tab==2}" :data-tab="2" @tap="getVal">
 					<view>7.6折</view>
-					<text class="lineThr">原价:￥2097</text>
+					<text class="lineThr">原价:￥{{priceLis[shows][2]}}</text>
 					<text class="font-md">{{moneyList[shows][2]}}元/3年({{pre}}名成员)</text>
 				</view>
-				<view class="timeOne" :class="{tabOn:tab==3}" :data-tab="3" @click="getVal">
+				<view class="timeOne" :class="{tabOn:tab==3}" :data-tab="3" @tap="getVal">
 					<view>4.9折</view>
-					<text class="lineThr">原价:￥3495</text>
+					<text class="lineThr">原价:￥{{priceLis[shows][3]}}</text>
 					<text class="font-md">{{moneyList[shows][3]}}元/5年({{pre}}名成员)</text>
 				</view>
 			</view>
@@ -44,10 +44,15 @@
 					<view style="line-height: 80rpx;">原价</view>
 					<view style="line-height: 80rpx;margin-left: auto;">¥{{money}}</view>
 				</view>
-				<view class="tip px-4"
+				<view class="tip px-4" style="color: #e4393c;"
 					v-if="userInfo.vipInfo.type == '企业会员' || userInfo.vipInfo.type == '省份会员'"
 				>
 					您好,尊贵的企业会员,您已享有网站全部特权,无需购买自选会员或VIP会员,若转变会员,请企业会员过期后再来购买
+				</view>
+				<view class="tip px-4 iconG"
+					v-if="prompt"
+				>
+					{{prompt}}
 				</view>
 			</view>
 		</view>
@@ -63,15 +68,20 @@
 				<text>支付宝支付</text>
 					<label><radio value="支付宝" /></label>
 			</view> -->
-			<view class="zhifu">
-				<view class="zhifu-lf">应付金额:￥{{money}}</view>
-				<view class="zhifu-rt">确认购买</view>
+			<view class="zhifu" v-if="payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price}}</view>
+				<view class="zhifu-rt" @tap="payMent">确认购买</view>
+			</view>
+			<view class="zhifu" v-if="!payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price}}</view>
+				<view class="zhifu-rt" @tap="keepPay">继续支付</view>
 			</view>
 		</radio-group>
 	</view>
 </template>
 
 <script>
+	import $req from '@/common/req/request.js'
 	import {
 		mapState
 	} from 'vuex';
@@ -82,8 +92,27 @@
 				tab:0,
 				pre:3,
 				moneyList:[[699,1199,1599,1899],[999,1714,2285,2714],[1199,2057,2743,3257]],
-				money:0
+				priceLis:[[0,1398,2097,3495],[0,1998,2997,4995],[0,2398,3597,5995]],
+				money:699,
+				couponId:'',
+				prompt:'',
+				price: '',
+				payStatus: false,
+				timer:null,
+				orderData: {}
 			}
+		},
+		created() {
+			console.log(this.shows)
+			uni.$on('chooseCoupon',(data)=>{
+				if(data.id){
+					this.couponId = data.id
+					this.getJudgePay()
+				}
+			})
+			// this.checkVal()
+			this.getOrderStatus()
+			this.getJudgePay()
 		},
 		computed:{
 			...mapState({
@@ -91,18 +120,147 @@
 			})
 		},
 		methods: {
-			changeShow(e) {
-				this.pre = e.currentTarget.dataset.pre
-				this.shows = e.currentTarget.dataset.show
+			changePeople(index,pep) {
+				this.pre = pep
+				this.shows = index
 				this.money = this.moneyList[this.shows][this.tab]
+				this.getJudgePay()
 			},
 			getVal(e){
 				this.tab = e.currentTarget.dataset.tab
 				this.money = this.moneyList[this.shows][this.tab]
+				this.getJudgePay()
+			},
+			getOrderStatus(){ //查询是否订单状态
+				$req.request({
+					url:'/api/xcx/pay/query_valid_order'
+				}).then(res=>{
+					// console.log(res)
+					if(res.data.msg == '暂无订单'){
+						this.payStatus = true
+						clearInterval(this.timer)
+					}else{
+						// this.price
+						this.orderData = res.data.msg
+						this.price = res.data.msg.sum
+						clearInterval(this.timer)
+						this.timer = setInterval(()=>{
+							this.getOrderStatus()
+						},1000)
+					}
+				}).catch(err=>{
+					this.getOrderStatus()
+				})
+			},
+			getJudgePay(){ //获取价格抵扣
+				let num = this.tab
+				$req.request({
+					url:'/api/xcx/pay/judge_pay',
+					method:'POST',
+					data:{
+						goods_type:2,
+						number: num==3?5:num+1,
+						coupon_id: this.couponId || '',
+						ee_people: this.pre
+					}
+				}).then(res=>{
+					this.prompt = res.data.message
+					this.price = res.data.price
+					// this.payStatus = true
+					console.log(res)
+				}).catch(err=>{
+					console.log(err)
+				})
+			},
+			payMent(){ //支付
+				if(!this.price){
+					return
+				}
+				let num = this.tab
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/goods',
+							method:'POST',
+							data:{
+								goods_type:2,
+								number: num==3?5:num+1,
+								coupon_id:this.couponId,
+								pay_type:1,
+								channel:'lite',
+								ee_people: this.pre,
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
+			},
+			keepPay(){
+				if(!this.price){
+					return
+				}
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/arousePay',
+							method:'POST',
+							data:{
+								order_id:this.orderData.order_id,
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
 			},
 			getDiscount(){
 				uni.navigateTo({
-					url:'/pages/PersonalCenter/yhj?type=2'
+					url:`/pages/PersonalCenter/yhj?type=2&money=${this.money}`
 				})
 			}
 		}
@@ -202,7 +360,6 @@
 	.tip{
 		width: 100%;
 		font-size: 24rpx;
-		color: #e4393c;
 	} 
 	.con-top .time .vipon{
 		border: 2upx solid #00a0ea;

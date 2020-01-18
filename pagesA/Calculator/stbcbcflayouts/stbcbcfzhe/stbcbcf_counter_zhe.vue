@@ -60,7 +60,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from "@/common/json/stbcbcf/stbcbcf-zhe.json"
+	// import datajson from "@/common/json/stbcbcf/stbcbcf-zhe.json"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -100,7 +100,7 @@
 					stbcbcfZhe_sfxm: 0,
 					stbcbcfZhe_jd: 0
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [{
@@ -115,6 +115,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/stbcbcf/stbcbcf-zhe.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

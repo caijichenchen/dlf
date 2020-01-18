@@ -44,6 +44,7 @@
 		data() {
 			return {
 				modalName:'dlgckcGuo_fjtz',
+				CustomBar:this.CustomBar,
 			}
 		},
 		computed: {

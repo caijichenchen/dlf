@@ -3,6 +3,9 @@
 	import Vue from 'vue'
 	import {mapMutations} from 'vuex';
 	export default {
+		globalData:{
+			text:'测试'
+		},
 		onLaunch: function() {
 				// 初始化用户状态
 				// this.$store.commit('initUser')
@@ -36,7 +39,7 @@
 			this.$store.commit('initUser')
 		},
 		onShow: function() {
-			
+			console.log(this.globalData)
 			// console.log('App Show')
 		},
 		onHide: function() {

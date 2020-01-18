@@ -71,7 +71,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/fljcfs/fljcfs-ning.json'
+	// import datajson from '@/common/json/fljcfs/fljcfs-ning.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -116,7 +116,7 @@
 					fljcfNing_jtfl: 0
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				explain: [
 					{
@@ -141,6 +141,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/fljcfs/fljcfs-ning.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

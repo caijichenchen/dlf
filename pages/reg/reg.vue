@@ -1,6 +1,8 @@
 <template>
 	<view>
-		<view :style="'height:'+CustomBar+ 'px'"></view>
+		<cu-custom  >
+		    <block slot="content"></block>
+		</cu-custom>
 		<view class="text-center">
 			<view class="dlf-title">独立费</view>
 			<view class="dlf-content">轻松计算 无价时间</view>
@@ -53,9 +55,6 @@
 				timer: null,
 				showModalName: null,
 			}
-		},
-		updated() {
-			
 		},
 		methods:{
 			checkPhone(){
@@ -118,11 +117,6 @@
 						this.codetext = '获取验证码'
 						return 
 					}
-					// if(this.time <= 9){
-					// 	this.codetext = ' '+(this.time--)+'s 再获取'
-					// }else{
-					// 	this.codetext = (this.time--)+'s 再获取'
-					// }
 					this.codetext = (this.time--)+'s 再获取'
 				},1000)
 				$req.request({

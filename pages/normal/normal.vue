@@ -1,7 +1,7 @@
 <template>
-	<view style="background: #fff;">
+	<view>
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
-			<block slot="backText">·µ»Ø</block>
+			<block slot="backText"></block>
 		    <block slot="content">{{title}}</block>
 		</cu-custom>
 		<parser :html="html" class="contentwrap"></parser>

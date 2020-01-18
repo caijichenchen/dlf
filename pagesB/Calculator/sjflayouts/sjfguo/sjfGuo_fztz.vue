@@ -62,6 +62,7 @@
 				isactive: 0 ,
 				clickIndex: 0,
 				modalName:'sjfGuo_fztz',
+				CustomBar:this.CustomBar,
 				data:[
 					{
 						list:[
@@ -74,7 +75,7 @@
 											'1.地形、地质、水文条件简单,',
 											'2.开拓运输系统单一，斜井串车，平硐溜井，主、副、风井条数≤3条,',
 											'3.矿石品种单一，不分采的采矿工程,',
-]
+										]
 									},
 									{
 										level:'II级',

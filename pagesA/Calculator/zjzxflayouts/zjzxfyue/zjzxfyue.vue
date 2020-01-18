@@ -1,5 +1,4 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="920">
 		<template v-slot:jsq>
 			<zjzxf-counter-yue :title="title"></zjzxf-counter-yue>
@@ -7,16 +6,12 @@
 			<zjzxf-result :title="title"></zjzxf-result>
 		</template>
 		<template v-slot:qfbz>
-			<!-- <h1>设计费取费标准</h1> -->
-			<!-- <zxbz></zxbz> -->
 		</template>
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import zjzxfCounterYue from "./zjzxf-counter_yue.vue"
-	import computing from "@/common/base/computing.vue"
 	import zjzxfResult from "../zjzxf_result.vue"
 	export default {
 		data() {
@@ -33,8 +28,6 @@
 		},
 		components:{
 			zjzxfCounterYue,
-			baseLayout,
-			computing,
 			zjzxfResult,
 		}
 	}

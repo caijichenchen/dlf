@@ -60,23 +60,13 @@
 </template>
 
 <script>
-	// import {
-	// 	counterMixin
-	// } from "@/pagesCommon/base/counterMixin"
 	import {
 		counterMixin
 	} from "@/common/base/counterMixin"
-	// import {
-	// 	MultiSelectorsChangeMixin
-	// } from "@/pagesCommon/base/multiSelectorsChange.js"
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	// import uniTag from '@/pagesCommon/components/uni-ui/uni-tag/uni-tag.vue'
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	// import explain from '@/pagesCommon/base/explain.vue'
-	import explain from '@/common/base/explain.vue'
-	import datajson from '@/common/json/zjzxfs/zjzxfs-yue.json'
+	// import datajson from '@/common/json/zjzxfs/zjzxfs-yue.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -127,7 +117,7 @@
 					zjzxfYue_sffl: false,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "zjzxyue1",
@@ -147,9 +137,13 @@
 				]
 			}
 		},
-		components: {
-			uniTag,
-			explain
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zjzxfs/zjzxfs-yue.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

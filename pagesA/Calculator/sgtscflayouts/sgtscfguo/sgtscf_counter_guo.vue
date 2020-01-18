@@ -57,7 +57,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/sgtscfs/sgtscfs-guo.json'
+	// import datajson from '@/common/json/sgtscfs/sgtscfs-guo.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -97,7 +97,7 @@
 					sgtscfGuo_standard: 0,
 					sgtscfGuo_category: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				showModalName: null,
 				explain: [
@@ -118,6 +118,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sgtscfs/sgtscfs-guo.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

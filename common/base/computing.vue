@@ -57,7 +57,7 @@
 							this.btnText = '点击计算'
 							return 
 						}
-						this.btnText = (this.time--)+'s 独立费 专注造价计算'
+						this.btnText = (this.time--)+'s 轻松计算 无价时间'
 					},1000)
 					uni.request({
 						url: this.countData.url, //仅为示例，并非真实接口地址。

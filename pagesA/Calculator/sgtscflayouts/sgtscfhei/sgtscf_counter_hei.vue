@@ -77,7 +77,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/sgtscfs/sgtscfs-hei.json'
+	// import datajson from '@/common/json/sgtscfs/sgtscfs-hei.json'
 	import tzxsHei from './sgtscfHei_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -124,7 +124,7 @@
 					sgtscfHei_jtfl: 0,
 					sgtscfHei_cs: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				showModalName:null,
 				explain: [
@@ -150,6 +150,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sgtscfs/sgtscfs-hei.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			tzxsHei

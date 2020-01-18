@@ -59,9 +59,7 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import zbdlfQianZbxm from "./zbdlfQian_zbxm.vue"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import datajson from '@/common/json/zbdlf/zbdlf-qian.json'
+	// import datajson from '@/common/json/zbdlf/zbdlf-qian.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -97,7 +95,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [{
 						"id": "zbdlqian1",
 						"title": "工程造价",
@@ -111,10 +109,16 @@
 				]
 			}
 		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zbdlf/zbdlf-qian.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		components: {
 			zbdlfQianZbxm,
-			uniTag,
-			explain
 		},
 		methods:{
 			//查看说明

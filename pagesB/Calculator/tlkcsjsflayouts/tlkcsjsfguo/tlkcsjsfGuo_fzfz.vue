@@ -62,6 +62,7 @@
 		data() {
 			return {
 				modalName:'tlkcsjsfGuo_fzfz',
+				CustomBar:this.CustomBar,
 				key:0,
 				resultval: [1,1,1,1,0],
 				lastval: 4,

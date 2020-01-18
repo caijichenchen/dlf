@@ -59,7 +59,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/zjzxfs/zjzxfs-ba.json'
+	// import datajson from '@/common/json/zjzxfs/zjzxfs-ba.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -108,7 +108,7 @@
 					zjzxfBa_sffl: false,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "zjzxba1",
@@ -122,6 +122,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zjzxfs/zjzxfs-ba.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

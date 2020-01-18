@@ -57,6 +57,7 @@
 		data() {
 			return {
 				modalName:'jlfMeng_fztz',
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"房屋建筑工程",

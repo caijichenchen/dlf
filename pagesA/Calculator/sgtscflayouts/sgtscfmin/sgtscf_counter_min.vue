@@ -63,7 +63,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/sgtscfs/sgtscfs-min.json'
+	// import datajson from '@/common/json/sgtscfs/sgtscfs-min.json'
 	import ndxzMin from './sgtscfMin_ndxs.vue'
 	import tzxsMin from './sgtscfMin_tzxs.vue'
 	export default {
@@ -111,7 +111,7 @@
 					sgtscfMin_standard: 0,
 					sgtscfMin_category: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				showModalName: null,
 				explain: [
@@ -127,6 +127,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sgtscfs/sgtscfs-min.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			ndxzMin,

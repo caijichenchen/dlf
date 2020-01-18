@@ -35,6 +35,7 @@ export default {
 	data() {
 		return {
 			modalName: 'swdzchfGuo_fzcd',
+			CustomBar:this.CustomBar,
 			fjxs: '',
 			fjxsList: [
 				{value:" 基岩岩层水平或倾角很缓，构造简单，岩性稳定均一，多为低山丘陵；第四系沉积物均匀分布，河谷平原宽广；含水层埋藏浅，底下水的补给、径流=排泄条件清楚；水质类型较单一",xs:"简单"},

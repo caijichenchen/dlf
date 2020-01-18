@@ -30,6 +30,7 @@ export default {
 	data() {
 		return {
 			modalName: 'hyjzfGuo_yhdl',
+			CustomBar:this.CustomBar,
 			fzcd: '',
 			fzcdList: [
 				{

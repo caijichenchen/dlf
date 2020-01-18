@@ -75,9 +75,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
-	import datajson from '@/common/json/zjzxfs/zjzxfs-zhe.json'
+	// import datajson from '@/common/json/zjzxfs/zjzxfs-zhe.json'
 	import fdfdZhe from './zjzxfZhe_fdfd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -129,7 +127,7 @@
 					zjzxfZhe_sffl: false,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "zjxzhe1",
@@ -149,9 +147,15 @@
 				]
 			}
 		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zjzxfs/zjzxfs-zhe.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		components: {
-			uniTag,
-			explain,
 			fdfdZhe
 		},
 		methods:{

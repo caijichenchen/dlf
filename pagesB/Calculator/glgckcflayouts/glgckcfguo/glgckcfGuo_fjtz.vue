@@ -44,6 +44,7 @@
 		data() {
 			return {
 				modalName:'glgckcfGuo_fjtz',
+				CustomBar:this.CustomBar,
 				tzxsList:[
 					{content:"默认系数",val:"1"},
 					{content:"一次勘察-(按初、定测收费基价之和计算收费)",val:"0.8"},

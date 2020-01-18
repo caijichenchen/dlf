@@ -77,7 +77,7 @@
 					sjfGuo_discount: '50',
 					type: "sjfGuo"
 				},
-				showModalName: null,
+				showModalName:null,
 				sjfGuo_fztz: ['I级','II级','III级'],
 				index0:'0',
 				explain: [

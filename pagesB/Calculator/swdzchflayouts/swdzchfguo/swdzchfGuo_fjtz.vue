@@ -48,6 +48,7 @@
 		data() {
 			return {
 				modalName: 'swdzchfGuo_fjtz',
+				CustomBar:this.CustomBar,
 				fjxs: '',
 				tzxsList: [
 					{content:" 1.默认附加调整系数为1",val:"1"},

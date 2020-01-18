@@ -2,9 +2,6 @@
 	<view :style="'height:'+windowHeight+'px'" >
 		<cu-custom bgColor="bg-gradual-blue" >
 		    <block slot="content">计算器分类</block>
-			<!-- <block slot="right" @click="goSearch" >
-				<text class="iconfont" style="color: #FFFFFF;font-size: 34upx;">&#xe666;</text>
-			</block> -->
 		</cu-custom>
 		<view class="province-header" >
 			<view class="province-nav">当前省份:</view>

@@ -43,6 +43,7 @@
 		data() {
 			return {
 				modalName: 'qtsssysfGuo_fjtz',
+				CustomBar:this.CustomBar,
 				tzxsList:[
 					{content:"默认系数为1",val:"1.0"},
 					{content:"钻孔:跟管钻进、泥浆护壁、基岩无水干钻钻探、基岩破碎带钻进取芯",val:"1.5"},

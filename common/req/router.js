@@ -1,17 +1,20 @@
 function calRouter(type,urlArr){
-	if(type == '招标代理费'||type == '资产评估收费标准费'||type == '造价咨询费'||type == '防雷检测费'||type=='施工图审查费'||type=='水土保持费'){
-		uni.navigateTo({
-			url: `/pagesA/Calculator/${urlArr[1]}layouts/${urlArr[1]}${urlArr[2]}/${urlArr[1]}${urlArr[2]}`
-		});
-	}else if(type == '监理费'||type == '建设项目前期工作咨询费'||type == '建设交易服务收费'||type == '城市基础设施配套费'||type == '地震安全性评价费'||type == '防空地下室易地建设费'){
-		uni.navigateTo({
-			url: `/pagesC/Calculator/${urlArr[1]}layouts/${urlArr[1]}${urlArr[2]}/${urlArr[1]}${urlArr[2]}`
-		});
+	urlArr = urlArr.filter(val=>{
+		return val
+	})
+	let url
+	const pagesA = ['招标代理费','资产评估收费标准费','造价咨询费','防雷检测费','施工图审查费','水土保持费']
+	const pagesC = ['监理费','建设项目前期工作咨询费','建设交易服务收费','城市基础设施配套费','地震安全性评价费','防空地下室易地建设费']
+	if(pagesA.includes(type)){
+		url = `/pagesA/Calculator/${urlArr[0]}layouts/${urlArr[0]}${urlArr[1]}/${urlArr[0]}${urlArr[1]}`
+	}else if(pagesC.includes(type)){
+		url = `/pagesC/Calculator/${urlArr[0]}layouts/${urlArr[0]}${urlArr[1]}/${urlArr[0]}${urlArr[1]}`
 	}else {
-		uni.navigateTo({
-			url: `/pagesB/Calculator/${urlArr[1]}layouts/${urlArr[1]}${urlArr[2]}/${urlArr[1]}${urlArr[2]}`
-		});
+		url = `/pagesB/Calculator/${urlArr[0]}layouts/${urlArr[0]}${urlArr[1]}/${urlArr[0]}${urlArr[1]}`
 	}
+	uni.navigateTo({
+		url: url
+	});
 }
 
 function checkComputed(needVal){

@@ -57,6 +57,7 @@
 		data() {
 			return {
 				modalName: 'jlfJin_fztz',
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"市政基础设施工程",

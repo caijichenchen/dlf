@@ -27,8 +27,11 @@ export default {
 		},
 		//用户个人信息
 		getUserInfo(state,userInfo){
-			console.log("+++++",userInfo)
-			state.userInfo = userInfo
+			// console.log("+++++",userInfo)
+			let userData = userInfo
+			userData.userInfo.head_img = userData.userInfo.head_img.includes('http')?userData.userInfo.head_img:'https://www.dulifei.com/upload'+userData.userInfo.head_img,
+			userData.userInfo.user.name = userData.userInfo.user.name.slice(0,8)
+			state.userInfo = userData
 			//持久化存储
 			// uni.setStorageSync('userInfo',JSON.stringify(state.userInfo))
 			uni.setStorageSync('userInfo',state.userInfo)

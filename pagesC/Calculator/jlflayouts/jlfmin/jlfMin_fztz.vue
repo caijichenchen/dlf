@@ -57,6 +57,7 @@
 		data() {
 			return {
 				modalName:'jlfMin_fztz',
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"建筑、人防工程",

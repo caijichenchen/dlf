@@ -57,6 +57,7 @@
 		data() {
 			return {
 				modalName:'jlfMin_zytz',
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"1.矿山采选工程",

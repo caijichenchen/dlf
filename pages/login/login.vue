@@ -35,29 +35,15 @@
 						<view class="qqlogin"></view>
 					</view>
 					<!-- #endif -->
+					
+					<!-- #ifdef MP-WEIXIN -->
 					<view class="e-wrap">
-						<view class="welogin"></view>
-						<!-- <button @click="login">Login</button> -->
-						<button class='bottom' type='primary' open-type="getUserInfo" withCredentials="true" lang="zh_CN" @getuserinfo="wxGetUserInfo">
-							授权登录
-						</button>
-					</view>
-					<!-- #ifdef MP-WEIXIN
-					<view v-if="isCanUse">
-						<view>
-							<view class='header'>
-								<image src='../../static/wechat.png'></image>
-							</view>
-							<view class='content'>
-								<view>申请获取以下权限</view>
-								<text>获得你的公开信息(昵称，头像、地区等)</text>
-							</view>
+						<view class="welogin">
 							<button class='bottom' type='primary' open-type="getUserInfo" withCredentials="true" lang="zh_CN" @getuserinfo="wxGetUserInfo">
-								授权登录
 							</button>
 						</view>
 					</view>
-					#endif -->
+					<!-- #endif -->
 				</view>
 				<view class="else-b">
 					<view>没有账号?</view>
@@ -87,20 +73,6 @@
 			};
 		},
 		mounted() {
-			// uni.getProvider({
-			//     service: 'oauth',
-			//     success: function (res) {
-			//         console.log(res.provider)
-			//         if (~res.provider.indexOf('weixin')) {
-			//             uni.login({
-			//                 provider: 'weixin',
-			//                 success: function (loginRes) {
-			//                     console.log(JSON.stringify(loginRes));
-			//                 }
-			//             });
-			//         }
-			//     }
-			// });
 			const phone = uni.getStorageSync('phone')
 			const pwd = uni.getStorageSync('pwd')
 			if(phone && pwd){
@@ -111,50 +83,65 @@
 		},
 		methods: {
 			wxGetUserInfo(){
-				uni.getUserInfo({
+				uni.login({
 					provider: 'weixin',
-					success: function (infoRes) {
-						if(infoRes.errMsg == 'getUserInfo:ok'){
-							uni.login({
-							    provider: 'weixin',
-							    success: function (loginRes) {
-							        console.log(JSON.stringify(loginRes));
-									uni.getUserInfo({
-										provider: 'weixin',
-										success:function(success){
-											console.log(infoRes)
-											console.log('用户昵称为：' + infoRes.userInfo.nickName);
-										}
-									})
-							    }
-							});
-						}
+					success:(loginRes)=> {
+						const code = loginRes.code
+						uni.getUserInfo({
+							provider: 'weixin',
+							success:(infoRes)=>{
+								const endata = "!"+infoRes.encryptedData+"!"
+								const ivdata = "!"+infoRes.iv+"!"
+								this.weChatLogin(code,endata,ivdata)
+							}
+						})
 					}
 				});
 			},
-			onGotUserInfo: function (e) {
-			    console.log(e.detail.errMsg)
-			    console.log(e.detail.userInfo)
-			    console.log(e.detail.rawData)
-				uni.getUserInfo({
-					provider: 'weixin',
-					success: function (infoRes) {
-						console.log(infoRes)
-						console.log('用户昵称为：' + infoRes.userInfo.nickName);
+			...mapMutations(['login','getUserInfo','setWeChatInfo']),
+			weChatLogin(code,endata,ivdata){
+				$req.request({
+					url:'/getWxAccessToken',
+					data:{
+						code:code,
+						encryptedData:endata,
+						iv:ivdata
 					}
-				});
+				}).then(res=>{
+					console.log(res)
+					if(res.data.status == 'fail' && res.data.message == '未绑定账号，请绑定'){
+						uni.showToast({
+							icon:'none',
+							title:res.data.message
+						})
+						this.setWeChatInfo(res.data.data)
+						uni.navigateTo({
+							url:'/pages/weChatBind/weChatBind'
+						})
+					}else if(res.data.status == 'fail' && res.data.message == '获取用户信息失败,请稍后重试'){
+						uni.showToast({
+							icon:'none',
+							title:res.data.message
+						})
+					}else{
+						this.login(res.data.access_token)
+						uni.setStorageSync('loginToken',res.data.access_token);
+						uni.showToast({
+							icon:'success',
+							title: '登录成功'
+						});
+						this.getUserData()
+						uni.switchTab({
+						    url: '/pages/index/index'
+						});
+					}
+				}).catch(err=>{
+					uni.showToast({
+						icon:'none',
+						title:'拉起微信登录失败,请稍后重试'
+					})
+				})
 			},
-			onGetPhoneNumber(e) {  
-				console.log("onGetPhoneNumber", e);  
-				console.log(e.detail.errMsg);  
-				console.log(e.detail.iv);  
-				console.log(e.detail.encryptedData);  
-				uni.showModal({  
-					title: "onGetPhoneNumber",  
-					content: e.detail.errMsg  
-				})  
-			},
-			...mapMutations(['login','getUserInfo']),
 			bindLogin(e) {
 				const regPhone = /^1[3456789]\d{9}$/
 				const regEmail =  /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
@@ -243,36 +230,6 @@
 </script>
 
 <style scoped>
-	.header {
-	        margin: 90rpx 0 90rpx 50rpx;
-	        border-bottom: 1px solid #ccc;
-	        text-align: center;
-	        width: 650rpx;
-	        height: 300rpx;
-	        line-height: 450rpx;
-	    }
-	
-	    .header image {
-	        width: 200rpx;
-	        height: 200rpx;
-	    }
-	
-	    .content {
-	        margin-left: 50rpx;
-	        margin-bottom: 90rpx;
-	    }
-	
-	    .content text {
-	        display: block;
-	        color: #9d9d9d;
-	        margin-top: 40rpx;
-	    }
-	
-	    .bottom {
-	        border-radius: 80rpx;
-	        margin: 70rpx 50rpx;
-	        font-size: 35rpx;
-	    }
 	page{
 		background: #FFFFFF;
 	}
@@ -347,7 +304,12 @@
 	.welogin {
 		width: 80rpx;
 		height: 80rpx;
+	}
+	.bottom {
+		width: 100%;
+		height: 100%;
 		background-image: url('../../static/wechat.png');
 		background-size: cover;
+		background-color: #FFFFFF;
 	}
 </style>

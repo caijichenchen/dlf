@@ -67,7 +67,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/sgtscfs/sgtscfs-tianjin.json'
+	// import datajson from '@/common/json/sgtscfs/sgtscfs-tianjin.json'
 	import fjtzTianjin from './sgtscfTianjin_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -110,7 +110,7 @@
 					sgtscfTianjin_category: 0,
 					sgtscfTianjin_gcgm: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				showModalName: null,
 				explain: [
@@ -131,6 +131,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sgtscfs/sgtscfs-tianjin.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			fjtzTianjin

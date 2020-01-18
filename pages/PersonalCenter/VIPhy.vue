@@ -7,30 +7,30 @@
 		<view class="con-top">
 			<view class="font-bs iconBLue px-4">1、选择时长:</view>
 			<view class="time mt-3">
-				<view class="timeOne" :class="{vipon:shows==1}" :data-show="1" :data-num="68" @click="getVal">
+				<view class="timeOne" :class="{vipon:month==1}" @tap="getVal(1,68)">
 					<text>68元/1月</text>
 				</view>
-				<view class="timeOne" :class="{vipon:shows==2}" :data-show="2" :data-num="179" @click="getVal">
+				<view class="timeOne" :class="{vipon:month==3}" @tap="getVal(3,179)">
 					<view>9折</view>
 					<text class="lineThr">原价:￥204</text>
 					<text>179元/3月</text>
 				</view>
-				<view class="timeOne" :class="{vipon:shows==3}" :data-show="3" :data-num="259" @click="getVal">
+				<view class="timeOne" :class="{vipon:month==6}" @tap="getVal(6,259)">
 					<view>6.3折</view>
 					<text class="lineThr">原价:￥408</text>
 					<text>259元/6月</text>
 				</view>
-				<view class="timeOne" :class="{vipon:shows==4}" :data-show="4" :data-num="399" @click="getVal">
+				<view class="timeOne" :class="{vipon:month==12}" @tap="getVal(12,399)">
 					<view>4.9折</view>
 					<text class="lineThr">原价:￥816</text>
 					<text>399元/12月</text>
 				</view>
-				<view class="timeOne" :class="{vipon:shows==5}" :data-show="5" :data-num="999" @click="getVal">
+				<view class="timeOne" :class="{vipon:month==36}" @tap="getVal(36,999)">
 					<view>4.1折</view>
 					<text class="lineThr">原价:￥2448</text>
 					<text>999元/3年</text>
 				</view>
-				<view class="timeOne" :class="{vipon:shows==6}" :data-show="6" :data-num="2019" @click="getVal">
+				<view class="timeOne" :class="{vipon:month==1200}" @tap="getVal(1200,2019)">
 					<view>终身</view>
 					<text>2019元/终身</text>
 				</view> 
@@ -47,10 +47,15 @@
 					<view style="line-height: 80rpx;">原价</view>
 					<view style="line-height: 80rpx;margin-left: auto;">¥{{money}}</view>
 				</view>
-				<view class="tip px-4"
-					v-if="userInfo.vipInfo.type == '企业会员' || userInfo.vipInfo.type == '省份会员'"
+				<view class="tip px-4" style="color: #e4393c;"
+					v-if="userInfo.vipInfo.type == '企业会员'"
 				>
 					您好,尊贵的企业会员,您已享有网站全部特权,无需购买自选会员或VIP会员,若转变会员,请企业会员过期后再来购买
+				</view>
+				<view class="tip px-4 iconG"
+					v-if="prompt"
+				>
+					{{prompt}}
 				</view>
 			</view>
 		</view>
@@ -65,26 +70,46 @@
 				<text>支付宝支付</text>
 					<label><radio value="支付宝" /></label>
 			</view> -->
-			<view class="zhifu">
-				<view class="zhifu-lf" @tap="closepayaa()">应付金额:￥{{money}}</view>
-				<view class="zhifu-rt" @tap="pay()">确认购买</view>
+			<view class="zhifu" v-if="payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price}}</view>
+				<view class="zhifu-rt" @tap="payMent">确认购买</view>
+			</view>
+			<view class="zhifu" v-if="!payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price}}</view>
+				<view class="zhifu-rt" @tap="keepPay">继续支付</view>
 			</view>
 		</radio-group>
 	</view>
 </template>
 
 <script>
+	import $req from '@/common/req/request.js'
 	import {
 		mapState
 	} from 'vuex';
 	export default {
 		data() {
 			return {
-				shows:1,
+				month:1,
 				money:68,
-				number: '1',
-				typenum: '1',
+				couponId:'',
+				prompt:'',
+				price:'',
+				payStatus: false,
+				// dateNow:Date.now().getTime(),
+				payData: {}
 			}
+		},
+		created() {
+			uni.$on('chooseCoupon',(data)=>{
+				if(data.id){
+					this.couponId = data.id
+					this.getJudgePay()
+				}
+			})
+			this.getOrderStatus()
+			this.getJudgePay()
+			console.log(this.month)
 		},
 		computed:{
 			...mapState({
@@ -92,62 +117,105 @@
 			})
 		},
 		methods: {
-			pay(){
-				uni.request({
-					url:this.$serverUrl +  '/pay/goods', 
-					method: 'POST',
-					header: {
-						"Authorization": "Bearer " + userInfo.token,
-						"Accept":"application/prs.dlf.v1+json",
-						},
-					data: {
-						goods_type: '1',
-						number: this.number,
-						channel: 'web',
-						pay_type: this.typenum
-					},
-					success: res => {
-						console.log(res.data[0])
-						// this.img = res.data[0]
-						uni.requestPayment({
-							provider: 'wxpay',
-							timeStamp: String(Date.now()),
-							nonceStr: 'A1B2C3D4E5',
-							package: 'prepay_id=wx20180101abcdefg',
-							signType: 'MD5',
-							paySign: '',
-							success: function (res) {
-									console.log('success:' + JSON.stringify(res));
-									
-							},
-							// fail: function (err) {
-							// 		console.log('fail:' + JSON.stringify(err));
-							// }
-						});
-					},
+			getOrderStatus(){ //查询订单支付状态
+				$req.request({
+					url:'/api/xcx/pay/query_valid_order',
+				}).then(res=>{
+					if(res.data.msg == '暂无订单'){
+						this.payStatus = true
+						clearInterval(this.timer)
+					}else{
+						this.orderData = res.data.msg
+						this.price = res.data.msg.sum
+						clearInterval(this.timer)   //短轮询
+						this.timer = setInterval(()=>{
+							this.getOrderStatus()
+						},1000)
+					}
+				}).catch(err=>{
+					this.getOrderStatus()
+				})
+			},
+			getVal(showIndex,num) {
+				console.log(this.month)
+				this.month = showIndex
+				this.money = num
+				this.getJudgePay()
+				console.log(this.month)
+			},
+			getJudgePay(){ //获取价格抵扣
+				$req.request({
+					url:'/api/xcx/pay/judge_pay',
+					method:'POST',
+					data:{
+						goods_type:1,
+						number:this.month,
+						coupon_id: this.couponId || ''
+					}
+				}).then(res=>{
+					this.prompt = res.data.message
+					this.price = res.data.price
+					// this.payStatus = true
+					console.log(res)
+				}).catch(err=>{
+					console.log(err)
+				})
+			},
+			payMent(){ //支付
+				if(!this.payStatus){
+					return uni.showToast({
+						icon:'none',
+						title:'优惠券使用不符合规则'
+					})
+				}
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/goods',
+							method:'POST',
+							data:{
+								goods_type:1,
+								number:this.month,
+								coupon_id:this.couponId,
+								pay_type:1,
+								channel:'lite',
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
 				});
 			},
-			closepayaa(){
-					uni.request({
-					url:this.$serverUrl +  '/pay/cancel_pay', 
-					method: 'GET',
-					header: {
-						"Authorization": "Bearer " + userInfo.token,
-						"Accept":"application/prs.dlf.v1+json",
-						},
-					data: {},
-					success: res => {
-						console.log(res)
-					},
-				});
-			},
-			getVal(e) {
-				this.shows = e.currentTarget.dataset.show
-				this.money = e.currentTarget.dataset.num
+			keepPay(){
+				// $req.request({
+				// 	url:'/api/xcx/pay/arousePay'
+				// })
 			},
 			getDiscount(){
 				uni.navigateTo({
-					url:'/pages/PersonalCenter/yhj?type=1'
+					url:`/pages/PersonalCenter/yhj?type=1&money=${this.money}`
 				})
 			}
 		}
@@ -216,7 +284,6 @@
 	.tip{
 		width: 100%;
 		font-size: 24rpx;
-		color: #e4393c;
 	} 
 	.con-top .time .vipon{
 		border: 2upx solid #00a0ea;

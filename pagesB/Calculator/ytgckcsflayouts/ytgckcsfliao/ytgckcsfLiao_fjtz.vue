@@ -39,6 +39,7 @@ export default {
 	data() {
 		return {
 			modalName: 'ytgckcsfLiao_fjtz',
+			CustomBar:this.CustomBar,
 			fjxs: '',
 			fjxsList: [
 				{value:"复杂场地:水上钻探",xs:"2.5"},

@@ -33,6 +33,7 @@ export default {
 		return {
 			modalName: 'zsxzsjfylGuo_fzcd',
 			fzcd: '',
+			CustomBar:this.CustomBar,
 			fzcdList: [
 				{
 					name: 'I级',

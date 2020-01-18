@@ -6,7 +6,7 @@
 		</cu-custom>
 		<scroll-view scroll-x class="bg-white nav">
 			<view class="flex text-center">
-				<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in sjf" :key="index" @tap="tabSelect" :data-id="index">
+				<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in sjf" :key="index" @tap="tabSelect(index)">
 					{{item}}
 				</view>
 			</view>
@@ -15,24 +15,26 @@
 				<view v-else
 					v-for="(item,index) in paidList"
 					:key="index"
-					class="dd-item"
-				>
-					<view>订单详情:{{item.order_id}}</view>
-					<view v-if="item.type == 0">会员类型:积分</view>
-					<view v-if="item.type == 1">会员类型:VIP</view>
-					<view v-if="item.type == 2">会员类型:企业VIP</view>
-					<view v-if="item.type == 3">会员类型:自选VIP</view>
-					<view v-if="item.state == 0">支付状态:支付超时</view>
-					<view v-if="item.state == 1">支付状态:取消支付</view>
-					<view v-if="item.state == 2">支付状态:支付成功</view>
-					<view v-if="item.state == 3">支付状态:已退款</view>
-					<view v-if="item.state == 4">支付状态:待退款</view>
-					<button v-if="item.state == 0" class="delbtn" :data-id="item.id" @tap="delOrder">删除订单</button>
-					<button v-if="item.state == 1" class="delbtn" :data-id="item.id" @tap="delOrder">取消订单</button>
-					<button v-if="item.state == 2" style="background: #008000;" class="delbtn" @tap="mynavigate('VIPhy')">续费</button>
-					<view class="dd-wrap" style="text-align: right;">
-						<text >实付金额￥<text style="color: #00A0EA ;">{{item.sum}}</text></text>
+				>	
+					<view class="dd-item">
+						<view>订单详情:{{item.order_id}}</view>
+						<view v-if="item.type == 0">会员类型:积分</view>
+						<view v-if="item.type == 1">会员类型:VIP</view>
+						<view v-if="item.type == 2">会员类型:企业VIP</view>
+						<view v-if="item.type == 3">会员类型:自选VIP</view>
+						<view v-if="item.state == 0">支付状态:支付超时</view>
+						<view v-if="item.state == 1">支付状态:取消支付</view>
+						<view v-if="item.state == 2">支付状态:支付成功</view>
+						<view v-if="item.state == 3">支付状态:已退款</view>
+						<view v-if="item.state == 4">支付状态:待退款</view>
+						<button v-if="item.state == 0" class="delbtn" @tap="delOrder(item.id)">删除</button>
+						<button v-if="item.state == 1" class="delbtn" @tap="delOrder(item.id)">取消订单</button>
+						<button v-if="item.state == 2" style="background: #008000;" class="delbtn" @tap="mynavigate('VIPhy')">续费</button>
+						<view class="dd-wrap" style="text-align: right;">
+							<text >实付金额￥<text style="color: #00A0EA ;">{{item.sum}}</text></text>
+						</view>
 					</view>
+					<view style="height: 36rpx;background-color: #F1F1F1;"></view>
 				</view>
 			</view>
 		</scroll-view>
@@ -44,29 +46,39 @@
 	export default {
 		data() {
 			return {
-				CustomBar: this.CustomBar,
-				shows:1,
 				TabCur: 0,
-				scrollLeft: 0,
 				sjf:['全部','已付款','未付款'],
 				paidList:[],
 			}
 		},
-		onLoad() {
-			this.showAll()
+		mounted() {
+			this.getAllOrder(this.TabCur)
 		},
 		methods: {
-			tabSelect(e) {
-			 	this.TabCur = e.currentTarget.dataset.id;
-			 	this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
-				if(this.TabCur == 0){
-					this.showAll()
+			tabSelect(index) {
+			 	this.TabCur = index
+				this.getAllOrder(this.TabCur)
+			 },
+			 getAllOrder(index){
+				 let url
+				if(index == 0){
+					url = '/api/xcx/myorder/paidAllList'
+				} else if(index == 1){
+					url = '/api/xcx/myorder/paidAllList?state=paid'
+				}else if(index == 2){
+					url = '/api/xcx/myorder/unpaidList'
 				}
-				else if(this.TabCur == 1){
-					this.showOver()
-				}else if(this.TabCur == 2){
-					this.showUndone()
-				}
+				$req.request({
+					url:url
+				}).then(res=>{
+					this.paidList = res.data.data
+					console.log(res)
+				}).catch(err=>{
+					uni.showToast({
+						icon:'none',
+						title:'获取订单信息失败,请稍后重试'
+					})
+				})
 			 },
 			 mynavigate(path){
 			 	if(!path) return
@@ -74,8 +86,7 @@
 			 		url: `/pages/PersonalCenter/${path}`
 			 	})
 			 },
-			 delOrder(e) { //删除单个订单
-				 var orderId = e.currentTarget.dataset.id
+			 delOrder(orderId) { //删除单个订单
 				 $req.request({
 				 	url:'/api/xcx/myorder/orderDelete',
 					method: 'DELETE',
@@ -83,57 +94,13 @@
 				 }).then(res=>{
 				 	uni.showToast({
 				 		icon:'success',
-						title:'删除订单成功'
+						title:res.data.data
 				 	})
-					if(this.TabCur == 0){
-						this.showAll()
-					}
-					else if(this.TabCur == 1){
-						this.showOver()
-					}else if(this.TabCur == 2){
-						this.showUndone()
-					}
+					this.getAllOrder(this.TabCur)
 				 }).catch(err=>{
 				 	uni.showToast({
 				 		icon:'success',
 				 		title:'删除订单失败，请稍后重试'
-				 	})
-				 })
-			 },
-			 showAll(){ //显示全部
-				 $req.request({
-				 	url:'/api/xcx/myorder/paidAllList',
-				 }).then(res=>{
-				 	this.paidList = res.data.data
-				 }).catch(err=>{
-					uni.showToast({
-					 	icon:'success',
-					 	title:'获取订单信息失败，请稍后重试'
-					})
-				 })
-			 },
-			 showOver(){
-				 $req.request({
-				 	url:'/api/xcx/myorder/paidAllList',
-				 	data:{state:'paid'}
-				 }).then(res=>{
-				 	this.paidList = res.data.data
-				 }).catch(err=>{
-				 	uni.showToast({
-				 	 	icon:'success',
-				 	 	title:'获取订单信息失败，请稍后重试'
-				 	})
-				 })
-			 },
-			 showUndone(){
-				 $req.request({
-				 	url:'/api/xcx/myorder/unpaidList',
-				 }).then(res=>{
-				 	this.paidList = res.data.data
-				 }).catch(err=>{
-				 	uni.showToast({
-				 	 	icon:'success',
-				 	 	title:'获取订单信息失败，请稍后重试'
 				 	})
 				 })
 			 }
@@ -143,7 +110,7 @@
 
 <style scoped>
 	page{
-		background: #fff;
+		background: #f1f1f1;
 	}
 	.dd-content {
 		width: 100%;

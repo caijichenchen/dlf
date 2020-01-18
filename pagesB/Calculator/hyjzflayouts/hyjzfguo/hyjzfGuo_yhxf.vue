@@ -27,6 +27,7 @@ export default {
 	data() {
 		return {
 			modalName: 'hyjzfGuo_yhxf',
+			CustomBar:this.CustomBar,
 			fzcd: '',
 			fzcdList: [
 				{

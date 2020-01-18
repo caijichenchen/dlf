@@ -48,6 +48,7 @@
 		data() {
 			return {
 				modalName:'xmdjfXiang_zytz',
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"一、交通运输工程 ",

@@ -116,7 +116,7 @@
 					fljcfGui_jtfl: 0
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				explain: [
 					{
@@ -141,6 +141,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/fljcfs/fljcfs-gui.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

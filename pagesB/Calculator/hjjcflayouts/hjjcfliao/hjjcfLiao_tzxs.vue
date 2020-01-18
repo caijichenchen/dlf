@@ -40,6 +40,7 @@
 		data() {
 			return {
 				modalName:'hjjcfLiao_tzxs',
+				CustomBar:this.CustomBar,
 				tzxsList: [
 					{value:"委托方要求监测单位在国家法定节日进行监测的，在收费标准基础上加收一倍",xs:"2"},
 					{value:"污染纠纷、事故仲裁、产品鉴定、验收监测，在收费标准基础上加收50％",xs:"1.5"},

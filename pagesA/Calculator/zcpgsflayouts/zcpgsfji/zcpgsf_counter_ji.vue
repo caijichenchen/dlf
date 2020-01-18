@@ -66,8 +66,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import explain from '@/common/base/explain.vue'
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import datajson from "@/common/json/zcpgfs/zcpgfs-ji.json"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -114,7 +112,7 @@
 					zcpgsfJi_ryjc: 0,
 					index4: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [{
@@ -140,9 +138,13 @@
 				]
 			}
 		},
-		components: {
-			uniTag,
-			explain
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zcpgfs/zcpgfs-ji.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			//查看说明

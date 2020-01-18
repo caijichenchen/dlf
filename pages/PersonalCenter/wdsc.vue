@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<cu-custom bgColor="bg-gradual-blue" :isBack="true">
-				<block slot="backText">返回</block>
+			<block slot="backText">返回</block>
 		    <block slot="content">我的收藏</block>
 		</cu-custom>
 		<view class="suggst_title">

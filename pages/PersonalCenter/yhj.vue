@@ -17,7 +17,10 @@
 					</view>
 					<view class="dis-right">
 						<view v-if="dateNow < item.startTime" class="dis-li py-1 no">时间未到</view>
-						<view v-if="item.startTime<=dateNow&&dateNow<=item.endTime" class="dis-li py-1 ok" @tap="useDiscounter(item.type)">立即使用</view>
+						<view v-if="item.startTime<=dateNow&&dateNow<=item.endTime" style="width: 100%;">
+							<view v-if="money >= item.sum_limit" class="dis-li py-1 ok" @tap="useDiscounter(item.id)">立即使用</view>
+							<view v-else class="dis-li py-1 no">立即使用</view>
+						</view>
 						<view v-if="dateNow > item.endTime" class="dis-li py-1 no">已过期</view>
 					</view>
 				</view>
@@ -32,10 +35,12 @@
 		data () {
 			return {
 				allList: [],
-				dateNow:new Date().getTime()
+				dateNow:new Date().getTime(),
+				money: ''
 			}
 		},
 		onLoad(options) {
+			this.money = options.money
 			$req.request({
 				url:'/api/xcx/myvip/getUserCouponByType',
 				data:{
@@ -58,8 +63,12 @@
 			})
 		},
 		methods:{
-			useDiscounter(){
-				
+			useDiscounter(id){
+				console.log(id)
+				uni.$emit('chooseCoupon',{id:JSON.stringify(id)})
+				uni.navigateBack({
+					
+				})
 			}
 		}
 	}
@@ -96,5 +105,6 @@
 		font-size: 30rpx;
 		width: 80%;
 		border-radius: 36rpx;
+		margin: 0 auto;
 	}
 </style>

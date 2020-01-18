@@ -49,6 +49,7 @@
 		data() {
 			return {
 				modalName:'slsdqqgzkcfGuo_lxtz',
+				CustomBar:this.CustomBar,
 				tzxsList:[
 					{content:"水电工程",val:"1.4"},
 					{content:"潮汐发电工程",val:"1.7"},

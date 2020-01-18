@@ -63,7 +63,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/sgtscfs/sgtscfs-hefei.json'
+	// import datajson from '@/common/json/sgtscfs/sgtscfs-hefei.json'
 	import tzxsHefei from './sgtscfHefei_tzxs.vue'
 	import ndxsHefei from './sgtscfHefei_ndxs.vue'
 	export default {
@@ -127,6 +127,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sgtscfs/sgtscfs-hefei.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			tzxsHefei,

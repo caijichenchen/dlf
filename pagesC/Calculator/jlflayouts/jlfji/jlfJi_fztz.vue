@@ -62,6 +62,7 @@
 				isactive: 0 ,
 				clickIndex: 0,
 				modalName:'jlfJi_fztz',
+				CustomBar:this.CustomBar,
 				data:[
 					{
 						list:[

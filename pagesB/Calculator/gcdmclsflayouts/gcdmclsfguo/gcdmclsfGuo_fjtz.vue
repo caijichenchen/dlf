@@ -48,6 +48,7 @@
 		data() {
 			return {
 				modalName:'gcdmclsfGuo_fjtz',
+				CustomBar:this.CustomBar,
 				tzxsList:[
 					{content:"1.二、三、四等三角(边)不造标",val:"0.6"},
 					{content:"2.连接原有三角点",val:"0.5"},

@@ -31,6 +31,7 @@ export default {
 	data() {
 		return {
 			modalName: 'sjfGui_fzcd',
+			CustomBar:this.CustomBar,
 			fzcd: '',
 			fzcdList: [
 				{

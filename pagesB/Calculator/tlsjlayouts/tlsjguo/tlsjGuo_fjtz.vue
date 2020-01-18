@@ -55,6 +55,7 @@ export default {
 	data() {
 		return {
 			modalName: 'tlsjGuo_fjtz',
+			CustomBar:this.CustomBar,
 			fjxs: '',
 			fjcdList: [
 				{value:"项目不符合下列任何一项的情况，附加调整默认的为1.0",xs:"1.0"},

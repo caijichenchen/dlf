@@ -5,7 +5,7 @@
 		</cu-custom>
 		<navigator v-if="loginState" class="header" url="grxx">
 			<view class="userinfo">
-				<view class="face"><image :src="serverUrl+'/upload'+userInfo.userInfo.head_img"></image></view>
+				<view class="face"><image :src="userInfo.userInfo.head_img"></image></view>
 				<view class="info">
 					<view class="username">{{userInfo.userInfo.user.name}}</view>
 					<view class="integral">会员信息:{{userInfo.vipInfo.type}}</view>
@@ -13,136 +13,136 @@
 			</view>
 			<view class="setting"><image src="../../static/HM-PersonalCenter/setting.png"></image></view>
 		</navigator >
-			<navigator url="../login/login" v-else>
-				<view>请登录</view>
+			<navigator url="../login/login" v-else class="backBlue py-2">
+				<view class="font-md iconWhite" style="padding-left: 4%;">登录/注册</view>
 			</navigator>
 		<view class="orders"></view> 
 		<!-- 我的通知 -->
 		<view class="list" >
-			<navigator url="wdtz" class="li"    hover-class="hover" >
+			<view @tap="mynavigate('wdtz')" class="li">
 				<view class="icon iconBLue"><text class="iconfont">&#xe872;</text></view>
 				<view class="text">我的通知</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator url="wdhy" class="li"    hover-class="hover" >
+			</view>
+			<view @tap="mynavigate('wdhy')" class="li">
 				<view class="icon"><image src="/static/HM-PersonalCenter/sever/vip.png"></image></view>
 				<view class="text">我的会员</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
+			</view>
 		</view>
 		<view class="list" >
-			<navigator url="xgzl" class="li"   hover-class="hover" >
+			<view @tap="mynavigate('xgzl')" class="li">
 				<view class="icon iconRed" ><text class="iconfont">&#xe623;</text></view>
 				<view class="text">修改资料</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator url="xgmm" class="li"   hover-class="hover" >
+			</view>
+			<view @tap="mynavigate('xgmm')" class="li">
 				<view class="icon iconGreen"><text class="iconfont">&#xe718;</text></view>
 				<view class="text">修改密码</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
-			<navigator url="zhaq" class="li"   hover-class="hover" >
+			</view> 
+			<view @tap="mynavigate('zhaq')" class="li">
 				<view class="icon iconYellow"><text class="iconfont">&#xe6d8;</text></view>
 				<view class="text">账户安全</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator url="aqmm" class="li"    hover-class="hover" >
+			</view>
+			<view @tap="mynavigate('aqmm')" class="li">
 				<view class="icon iconBLue"><text class="iconfont">&#xe62b;</text></view>
 				<view class="text">安全密码</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
+			</view>
 		</view>
 		<view class="list" >
-			<navigator url="zxhy" class="li"    hover-class="hover" >
+			<view @tap="mynavigate('zxhy')" class="li">
 				<view class="icon iconYellow" ><text class="iconfont">&#xe620;</text></view>
 				<view class="text">自选会员</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator class="li" url="sfhy"   hover-class="hover" >
+			</view>
+			<view class="li" @tap="mynavigate('sfhy')">
 				<view class="icon iconGreen"><text class="iconfont">&#xe624;</text></view>
 				<view class="text">省份会员</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
-			<navigator class="li" url="VIPhy"  hover-class="hover" >
+			</view> 
+			<view class="li" @tap="mynavigate('VIPhy')">
 				<view class="icon iconGreen"><text class="iconfont">&#xe622;</text></view>
 				<view class="text">VIP会员</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator class="li" url="qyhy"   hover-class="hover" >
+			</view>
+			<view class="li" @tap="mynavigate('qyhy')">
 				<view class="icon iconYellow"><text class="iconfont">&#xe631;</text></view>
 				<view class="text">企业会员</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
+			</view> 
 		</view>
 		<view class="list">
-			<navigator url="jfgm" class="li"   hover-class="hover" >
+			<view @tap="mynavigate('jfgm')" class="li">
 				<view class="icon iconPop" ><text class="iconfont">&#xe621;</text></view>
 				<view class="text">积分购买</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator url="jfcx" class="li"    hover-class="hover" >
+			</view>
+			<view @tap="mynavigate('jfcx')" class="li">
 				<view class="icon iconYellow"><text class="iconfont">&#xe600;</text></view>
 				<view class="text">积分查询</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator > 
+			</view > 
 		</view>
 		<view class="list" >
-			<navigator url="wdyhj" class="li"    hover-class="hover" >
+			<view @tap="mynavigate('wdyhj')" class="li">
 				<view class="icon iconY" ><text class="iconfont">&#xe69b;</text></view>
 				<view class="text">优惠券</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator url="msth" class="li"    hover-class="hover" >
+			</view>
+			<view @tap="mynavigate('msth')" class="li">
 				<view class="icon iconD"><text class="iconfont">&#xe63b;</text></view>
 				<view class="text">密匙兑换历史</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
+			</view> 
 		</view>
 		<!-- <view class="list">
-			<navigator url="wdhb" class="li"    hover-class="hover" >
+			<view @tap="mynavigate('wdhb')"class="li"     >
 				<view class="icon iconRed"><text class="iconfont">&#xe61d;</text></view>
 				<view class="text">我的红包</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
+			</view> 
 		</view> -->
 		<view class="list" >
-			<navigator url="wdedingdan" class="li"  hover-class="hover" >
+			<view @tap="mynavigate('wdedingdan')" class="li">
 				<view class="icon iconBLue" ><text class="iconfont">&#xe603;</text></view>
 				<view class="text">我的订单</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<!-- <navigator url="wdfp" class="li"    hover-class="hover" >
+			</view>
+			<!-- <view @tap="mynavigate('wdfp')" class="li">
 				<view class="icon iconRed"><text class="iconfont">&#xe6f3;</text></view>
 				<view class="text">我的发票</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> -->
+			</view> -->
 		</view>
 		<view class="list" >
-			<navigator url="csshi" class="li"    hover-class="hover" >
+			<view @tap="mynavigate('csshi')" class="li">
 				<view class="icon iconRed" ><text class="iconfont">&#xe605;</text></view>
 				<view class="text">我的计算</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator>
-			<navigator url="mbgl" class="li"    hover-class="hover" >
+			</view>
+			<view @tap="mynavigate('mbgl')" class="li">
 				<view class="icon iconGray"><text class="iconfont">&#xe63e;</text></view>
 				<view class="text">模块管理</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
+			</view> 
 		</view>
 		<view class="list">
-			<navigator url="wdbz" class="li"  hover-class="hover" >
+			<view @tap="mynavigate('wdbz')" class="li">
 				<view class="icon iconRed"><text class="iconfont">&#xe602;</text></view>
 				<view class="text">我的标准</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> 
-			<!-- <navigator url="wdsc" class="li"  hover-class="hover" >
+			</view> 
+			<!-- <view @tap="mynavigate('wdsc')" class="li">
 				<view class="icon iconRed"><text class="iconfont">&#xe602;</text></view>
 				<view class="text">我的收藏</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
-			</navigator> -->
+			</view> -->
 		</view>
 		<view class="list">
-			<view class="li" @tap="showex()"   hover-class="hover" >
+			<view class="li" @tap="showex()">
 				<view class="icon iconRed"><text class="iconfont">&#xe616;</text></view>
 				<view class="text">退出</view>
 				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
@@ -162,40 +162,29 @@
 				serverUrl:this.$serverimgUrl,
 			};
 		},
-		onShow() {
-			if(!this.loginState){
-				uni.navigateTo({
-				    url: '../login/login'
-				});
-			}
-		},
 		computed:{
 			...mapState({
 				loginState:state=>state.user.loginState,
 				token:state=>state.user.token,
 				userInfo:state=>state.user.userInfo
-			})
+			}),
 		},
 		methods: {
 			...mapMutations(['logout']),
-			//用户点击订单类型
-			toOrderType(index){
-				uni.showToast({title: this.orderTypeLise[index].name});
+			mynavigate(path){
+				if(!path) return
+				this.navigateTo({
+					url: `/pages/PersonalCenter/${path}`
+				})
 			},
-			//用户点击列表项
-			toPage(list_i,li_i){
-				uni.showToast({title: this.severList[list_i][li_i].name});
-			},
-			// 退出
 			showex(){
-				var that = this
 				uni.showModal({
 					title: '提示',
 					content: '是否清除缓存',
 					confirmText: '立刻清除',
 					success: res => {
 						if (res.confirm) {
-							that.logout()
+							this.logout()
 							uni.showToast({
 							 	title: '清除缓存成功'
 							});

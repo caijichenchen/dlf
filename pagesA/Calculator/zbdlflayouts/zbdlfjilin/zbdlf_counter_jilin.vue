@@ -59,7 +59,7 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import zbdlfJilinZbxm from "./zbdlfjilin_zbxm.vue"
-	import datajson from '@/common/json/zbdlf/zbdlf-jilin.json'
+	// import datajson from '@/common/json/zbdlf/zbdlf-jilin.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -95,7 +95,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [{
 						"id": "zbdljilin1",
 						"title": "工程造价",
@@ -111,6 +111,14 @@
 		},
 		components: {
 			zbdlfJilinZbxm,
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zbdlf/zbdlf-jilin.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			//查看说明

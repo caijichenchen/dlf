@@ -82,6 +82,7 @@
 		data() {
 			return {
 				modalName:'gcqtclsfGuo_fzcd',
+				CustomBar:this.CustomBar,
 				key:0,
 				resultval: [1,1,1,1],
 				lastval: 4,

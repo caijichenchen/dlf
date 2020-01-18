@@ -72,9 +72,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from '@/components/uni-ui/uni-tag/uni-tag.vue'
-	import explain from '@/common/base/explain.vue'
-	import datajson from '@/common/json/zjzxfs/zjzxfs-xiang.json'
+	// import datajson from '@/common/json/zjzxfs/zjzxfs-xiang.json'
 	import tzxsXiang from './zjzxfXiang_zytzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -129,7 +127,7 @@
 					zjzxfXiang_zytzxs: true
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "zjzxxiang3",
@@ -139,9 +137,15 @@
 				]
 			}
 		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zjzxfs/zjzxfs-xiang.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		components: {
-			uniTag,
-			explain,
 			tzxsXiang
 		},
 		methods:{

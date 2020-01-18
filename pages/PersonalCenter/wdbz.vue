@@ -4,7 +4,10 @@
 			<block slot="backText">返回</block>
 		    <block slot="content">我的标准</block>
 		</cu-custom>
-		<view class="my-stand" v-for="(item,index) in normList" :key="index">
+		<view class="my-stand" v-if="normList.length == 0">
+			您还没有下载过相关标准哦
+		</view>
+		<view class="my-stand" v-else v-for="(item,index) in normList" :key="index">
 			<view class="my-stand-info">
 				<view >
 					标准名:{{item.counter.name}}
@@ -13,9 +16,9 @@
 					文件名:{{item.counter.title}}
 				</view>
 			</view>
-			<view class="my-stand-down" :data-countId="item.counter_id" @tap="downup">
+			<!-- <view class="my-stand-down" :data-countId="item.counter_id" @tap="downup">
 				<view>下载</view>
-			</view>
+			</view> -->
 		</view>
 	</view>
 </template>
@@ -35,7 +38,7 @@
 				data:{page:1}
 			}).then((res)=> {
 				this.normList = res.data.data.data
-				console.log('获取用户标准成功',res)
+				// console.log('获取用户标准成功',res)
 			}).catch((err)=>{
 				console.log('获取用户标准失败',err)
 			})

@@ -56,6 +56,7 @@
 				isactive: 0 ,
 				clickIndex: 0,
 				modalName:'sjfGuo_blb',
+				CustomBar:this.CustomBar,
 				data:[
 					{
 						list:[

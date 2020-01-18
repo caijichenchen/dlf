@@ -39,6 +39,7 @@ export default {
 		return {
 			modalName: 'wrdjzfGuo_yddb',
 			fzcd: '',
+			CustomBar:this.CustomBar,
 			searchResult: '',
 			dataList:[],
 			fzcdList: [

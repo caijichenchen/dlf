@@ -27,6 +27,7 @@ export const counterMixin = {
 			if(isNaN(val)){
 				if(cIndex){
 					this[cIndex] = e.currentTarget.dataset.key
+					console.log(this[cIndex])
 				}
 				this.needVal[name] = e.currentTarget.dataset.val
 				// if(name === 'wrdjzfGuo_ydlx'){
@@ -35,10 +36,12 @@ export const counterMixin = {
 				// 	this.showModalName = null
 				// 	return
 				// }
+				console.log(this.needVal)
 				if(this.multiSelector[name]){
 					this.afterPicker(ckey,name)
 					// this.multiSelectorChange(this.datajson,name)
 				}
+				this.showModalName = null
 			}else if(!isNaN(val) && cIndex){ //数值下拉选项且不为联动时
 				this[cIndex] = e.currentTarget.dataset.key
 				this.needVal[name] = e.currentTarget.dataset.val

@@ -81,6 +81,7 @@
 			return {
 				obj: {},
 				modalName: 'vip',
+				CustomBar:this.CustomBar,
 			}
 		},
 		methods: {

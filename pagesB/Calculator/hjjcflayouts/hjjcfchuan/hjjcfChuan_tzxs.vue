@@ -39,6 +39,7 @@
 		data() {
 			return {
 				modalName:'hjjcfChuan_tzxs',
+				CustomBar:this.CustomBar,
 				tzxsList: [
 					{value:"外单位索取环境监测数据按所需用数据监测收费总和的10%收费",xs:"0.1"},
 					{value:"编制快报、月报、季报、年报等环境质量报告的编制费按该报告所涉及的监测数据的监测收费总和的10%取",xs:"0.1"},

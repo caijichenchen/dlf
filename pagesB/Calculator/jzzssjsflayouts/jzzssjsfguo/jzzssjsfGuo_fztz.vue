@@ -51,6 +51,7 @@
 		data() {
 			return {
 				modalName:'jzzssjsfGuo_fjtz',
+				CustomBar:this.CustomBar,
 				tzxsList:[
 					{content:"建筑装饰设计",val:"1.5"},
 					{content:"机电设备专业二次深化设计",val:"1.25"},

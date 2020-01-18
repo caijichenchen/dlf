@@ -12,10 +12,8 @@
 					<view class="sf-item p-1 m-1 font-md" 
 						v-for="(item,index) in sfList" 
 						:key="index" 
-						:data-pro="item"
-						:data-key="index"
 						:class="activeBorde == index ? 'activeBorde' : ''"
-						@tap="getVal"
+						@tap="getVal(item,index)"
 					>
 						<view >{{item}}</view>
 					</view>
@@ -146,7 +144,7 @@
 			...mapState({
 				userInfo:state=>state.user.userInfo
 			}),
-			getMoney:function(){
+			getMoney(){
 				return this.money * this.shows
 			}
 		},
@@ -165,15 +163,15 @@
 			changeShow(e){
 				this.shows = e.currentTarget.dataset.show
 			},
-			getVal(e){
-				if(this.pro == e.currentTarget.dataset.pro){
+			getVal(pro,key){
+				if(this.pro == pro){
 					this.pro = ''
 					this.activeBorde = -1
 				}else {
-					this.pro = e.currentTarget.dataset.pro
-					this.activeBorde = e.currentTarget.dataset.key
+					this.pro = pro
+					this.activeBorde = key
+					this.showCalcultor()
 				}
-				this.showCalcultor()
 			},
 			getSortVal(e){//分类计算器
 				if(this.sortItem == e.currentTarget.dataset.sortitem){

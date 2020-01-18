@@ -47,6 +47,7 @@ export default {
 	data() {
 		return {
 			modalName: 'jlfLu_fztz',
+			CustomBar:this.CustomBar,
 			fzcd: '',
 			ksList: [
 				{

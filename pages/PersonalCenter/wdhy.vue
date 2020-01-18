@@ -140,7 +140,7 @@
 							<navigator class="g-btn" style="background:rgba(75,172,255,1);" url="./sfhy">立即购买</navigator>
 						</view>
 					</view>
-					<view v-if="vipInfo.userType.indexOf('VIP会员') != -1" class="hyvip row p-4 mb-4">
+					<view v-if="vipInfo.userType!= 'VIP会员'" class="hyvip row p-4 mb-4">
 						<view>
 							<img :src="imgUrl+'/images/auth/vip.png'" alt="" style="width: 139rpx;height: 104rpx;">
 						</view>

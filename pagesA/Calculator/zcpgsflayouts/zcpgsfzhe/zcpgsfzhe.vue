@@ -1,12 +1,8 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<zcpgsf-counter-zhe></zcpgsf-counter-zhe>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<zcpgsf-result :title="title"></zcpgsf-result>
 		</template>
 		
@@ -18,9 +14,7 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import zcpgsfCounterZhe from "./zcpgsf_counter_zhe.vue"
-	import computing from "@/common/base/computing.vue"
 	import zcpgsfResult from "../zcpgsf_result.vue"
 	export default {
 		data() {
@@ -40,8 +34,6 @@
 		},
 		components:{
 			zcpgsfCounterZhe,
-			baseLayout,
-			computing,
 			zcpgsfResult
 		}
 	}

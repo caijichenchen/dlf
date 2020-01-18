@@ -52,6 +52,7 @@
 		data() {
 			return {
 				modalName:'jlfYu_yzfwxs',
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"安会文明奖",

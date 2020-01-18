@@ -44,6 +44,7 @@ export default {
 	data() {
 		return {
 			modalName: 'zsxzsjfGuo_fjxs',
+			CustomBar:this.CustomBar,
 			fjxs: '',
 			fjxsList: [
 				{value:"  项目不符合下列任何一项的情况，附加系数默认的为0 ",xs:"0"},

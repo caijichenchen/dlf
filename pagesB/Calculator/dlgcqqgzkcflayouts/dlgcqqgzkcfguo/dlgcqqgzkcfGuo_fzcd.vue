@@ -73,6 +73,7 @@
 		data() {
 			return {
 				modalName:'dlgcqqgzkcfGuo_fzcd',
+				CustomBar:this.CustomBar,
 				key:0,
 				resultval: [1,1,1,5,1],
 				lastval: 9,

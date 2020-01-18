@@ -14,7 +14,7 @@
 				</view>
 			</view>
 			<view v-else @tap="goCenter">
-				<image style="width: 50upx;height: 50upx;margin-left: 20upx;border-radius:50% ;" :src="serverUrl+'/upload'+userInfo.userInfo.head_img"></image>
+				<image style="width: 50upx;height: 50upx;margin-left: 20upx;border-radius:50% ;" :src="userInfo.userInfo.head_img"></image>
 			</view>
 		</view>
 		<view class="m-entry-features" style="display: flex;background: #00a0e0;flex-wrap: wrap;">
@@ -44,54 +44,54 @@
 		    </view>
 		</view>
 		<view class="m-entry-features" style="display: flex;background: #FFFFFF;flex-wrap: wrap;margin-bottom: 20upx;">
-		    <navigator class="m-entry-nav">
+		    <view class="m-entry-nav" @tap="mynavigate('wdhy')">
 		        <view class="m-entry-nav-img">
 		            <i class="iconfont" style="color: #f83;">&#xe6d1;</i>
 		        </view>
 		        <p class="m-entry-texts">我的会员</p>
-		    </navigator>
-		    <navigator class="m-entry-nav" @tap="mynavigate('csshi')">
+		    </view>
+		    <view class="m-entry-nav" @tap="mynavigate('csshi')">
 		        <view class="m-entry-nav-img">
 		            <i class="iconfont" style="color: #f83;">&#xe63f;</i>
 		        </view>
 		        <p class="m-entry-texts">我的计算</p>
-		    </navigator>
-		    <navigator class="m-entry-nav" @tap="mynavigate('wdbz')">
+		    </view>
+		    <view class="m-entry-nav" @tap="mynavigate('wdbz')">
 		        <view class="m-entry-nav-img">
 		            <i class="iconfont" style="color: #7bbac2;">&#xe618;</i>
 		        </view>
 		        <p class="m-entry-texts">我的标准</p>
-		    </navigator>
-		    <navigator class="m-entry-nav" @tap="mynavigate('mbgl')">
+		    </view>
+		    <view class="m-entry-nav" @tap="mynavigate('mbgl')">
 		        <view class="m-entry-nav-img">
 		            <i class="iconfont" style="color: #62bcff;">&#xe617;</i>
 		        </view>
 		        <p class="m-entry-texts">报告模板</p>
-		    </navigator>
-			<navigator class="m-entry-nav" @tap="mynavigate('jfgm')">
+		    </view>
+			<view class="m-entry-nav" @tap="mynavigate('jfgm')">
 			    <view class="m-entry-nav-img">
 			        <i class="iconfont" style="color: #6881ff;">&#xe621;</i>
 			    </view>
 			    <p class="m-entry-texts">积分购买</p>
-			</navigator>
-			<navigator class="m-entry-nav" @tap="mynavigate('sfhy')">
+			</view>
+			<view class="m-entry-nav" @tap="mynavigate('sfhy')">
 			    <view class="m-entry-nav-img">
 			        <i class="iconfont" style="color: #f83;">&#xe611;</i>
 			    </view>
 			    <p class="m-entry-texts">省份会员</p>
-			</navigator>
-			<navigator class="m-entry-nav" @tap="mynavigate('VIPhy')">
+			</view>
+			<view class="m-entry-nav" @tap="mynavigate('VIPhy')">
 			    <view class="m-entry-nav-img">
 			        <i class="iconfont" style="color: #4fa3ae;">&#xe669;</i>
 			    </view>
 			    <p class="m-entry-texts">VIP会员</p>
-			</navigator>
-			<navigator class="m-entry-nav" @tap="mynavigate('qyhy')">
+			</view>
+			<view class="m-entry-nav" @tap="mynavigate('qyhy')">
 			    <view class="m-entry-nav-img">
 			        <i class="iconfont" style="color: #87baed;">&#xe615;</i>
 			    </view>
 			    <p class="m-entry-texts">企业会员</p>
-			</navigator>
+			</view>
 		</view>
 		<view class="carousel-inner">
 			<swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" class="topic-swiper">
@@ -138,52 +138,36 @@
 				</view>
 			</view>
 		</view>
-		<!-- <view class="m-hot-area">
+		<view class="m-hot-area" v-if="loginState">
 			<scroll-view scroll-x class="bg-white nav">
 				<view class="flex text-center">
-					<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in wdsc" :key="index" @tap="tabSelect" :data-id="index">
+					<view class="cu-item flex-sub" :class="index==TabCur?'text-orange cur':''" v-for="(item,index) in typeList" :key="index" @tap="tabSelect(index)">
 						{{item}}
 					</view>
 				</view>
 				<view class="sjf_content">
-					<view v-show="TabCur==0" class="content_jsq">
-						<view class="tabbox">
-							<view class="item-box" :class="{tabox:index==show}" 
-							v-for="(item,index) in tabs" :key="index" :data-index="index"
-							@touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @tap="showtab(index)">
-								<view class="item-list" >{{item.name}}</view>
-								<view class="item-del" >删除</view>
-							</view>
-						</view> 
+					<view v-if="useData.length == 0" class="content_jsq">
+						<view class="tabbox text-center">没有相关数据哦</view> 
 					</view>
-					<view v-show="TabCur==1" class="content_jsq">
+					<view v-else class="content_jsq">
 						<view class="tabbox">
-							<view class="text-black" :class="{tabox:index==show}" 
-							style="width: 100%; height: 80upx;line-height: 80upx;"
-							v-for="(item,index) in tabs" :key="index" @tap="showtab(index)">
-								<text style="padding-left: 30upx;">{{item.name}}</text> 
-								<text style="padding-right: 30upx;" class="rt" @tap="deletetabox(index)">X</text>
-							</view>
-						</view> 
-					</view>
-					<view v-show="TabCur==2" class="content_jsq">
-						<view class="tabbox">
-							<view class="text-black" :class="{tabox:index==show}" 
-							style="width: 100%; height: 80upx;line-height: 80upx;"
-							v-for="(item,index) in tabs" :key="index" @tap="showtab(index)">
-								<text style="padding-left: 30upx;">{{item.name}}</text> 
-								<text style="padding-right: 30upx;" class="rt" @tap="deletetabox(index)">X</text>
+							<view class="item-box border-bottom" 
+								v-for="(item,index) in useData" :key="index" :data-index="index"
+								@touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd">
+								<view class="item-list"  @tap="showDeail(item.type,item.url)" :style="touchEle == index?'left:-'+moveWith*2+'rpx':''">{{item.name}}</view>
+								<view class="item-del" @tap="delClick(item.id)" :style="touchEle == index?'right:'+(-84+moveWith*2)+'rpx':''">删除</view>
 							</view>
 						</view> 
 					</view>
 				</view>
 			</scroll-view>
-		</view> -->
+		</view>
 	</view>
 </template>
 
 <script>
 	import {mapState,mapMutations} from 'vuex'
+	import { calRouter } from '@/common/req/router.js'
 	import $req from '@/common/req/request.js'
 	export default {  
 		onShareAppMessage(res) {
@@ -200,24 +184,15 @@
 				serverUrl:this.$serverimgUrl,
 				hotCalList:[],
 				hotNormList: [],
-				current: 0,
 				mode: 'long',
-				CustomBar: this.CustomBar,
 				TabCur: 0,
-				scrollLeft: 0,
-				wdsc:['我的收藏','经常使用','最近使用'],
-				tabs:[
-					{name:'暗红色的卡号圣诞节库函计算器'},
-					{name:'暗红色的卡号圣诞节库函计算器'},
-					{name:'暗红色的卡号圣诞节库函计算器'},
-					{name:'暗红色的卡号圣诞节库函计算器'},
-					{name:'暗红色的卡号圣诞节库函计算器'}
-				],
-				show:'',
+				useData:[],
+				typeList:['我的收藏','经常使用','最近使用'],
 				startX : 0,
 				endX : 0,
-				touchEle: '',
-				moveWith: 0
+				touchEle: -1,
+				moveWith: 0,
+				moveStatus:false
 			}
 		},
 		mounted() {
@@ -241,6 +216,9 @@
 				}).catch(err=>{
 					console.log(err)
 				})
+			}
+			if(this.loginState){
+				this.tabSelect(0)
 			}
 		},
 		computed:{
@@ -302,37 +280,73 @@
 					});
 				}
 			},
-			tabSelect(e) {
-				this.TabCur = e.currentTarget.dataset.id;
-				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
+			delClick(id){
+				let url
+				if(this.TabCur == 0){
+					url = '/api/xcx/personalcenter/deleteXcxCollect'
+				}else{
+					url = '/api/xcx/personalcenter/deleteXcxOften'
+				}
+				$req.request({
+					url:url,
+					data:{
+						id:id
+					}
+				}).then(res=>{
+					uni.showToast({
+						icon:'none',
+						title: '删除成功'
+					})
+					this.moveWith = 0
+					this.tabSelect(this.TabCur)
+				}).catch(err=>{
+					uni.showToast({
+						icon:'none',
+						title:'删除失败,请稍后重试'
+					})
+				})
 			},
-			showtab(index){
-				this.show = index
+			tabSelect(index) {
+				this.TabCur = index
+				this.touchEle = -1
+				let url
+				if(index == 0){
+					url = '/api/xcx/personalcenter/getXcxCollects'
+				}else if(index == 1){
+					url = '/api/xcx/personalcenter/oftenXcxCalculation'
+				}else if(index == 2){
+					url = '/api/xcx/personalcenter/nearXcxCalculation'
+				}
+				$req.request({
+					url:url
+				}).then(res=>{
+					this.useData = res.data.data
+				}).catch(err=>{
+					console.log(err)
+				})
 			},
-			deletetabox(index){
-				console.log("点击了" + index);
-				this.tabs.splice(index,1)
+			showDeail(caltype,url){
+				const type = caltype
+				let urlArr = url.split('/')
+				calRouter(type,urlArr)
 			},
 			touchStart(e){
 				this.touchEle = e.currentTarget.dataset.index
-				console.log(this.touchEle)
 				this.startX = e.touches[0].clientX//记录初始位置
 			},
 			touchMove(e){
 				let moveX = e.touches[0].clientX
 				let disX = this.startX - moveX
-				
 			},
 			touchEnd(e){
 				let nowEle = e.currentTarget.dataset.index
-				console.log(nowEle)
 				this.endX = e.changedTouches[0].clientX//结束位置
 				if(this.touchEle == nowEle && this.startX-this.endX > 30 ){//当前节点左滑
-					// console.log("左滑")
-					
+					this.moveWith = 43
+					this.moveStatus = true
 				}
 				if(this.touchEle == nowEle && this.endX-this.startX > 30 ){//当前节点右滑
-					console.log("右滑")
+					this.moveWith = 0
 				}
 				this.startX = 0
 				this.endX = 0
@@ -361,7 +375,7 @@
 		background-color: rgba(0, 0, 0, 0.3);
 		border-radius: 5px;
 		color: #FFFFFF;
-		font-size: 0.65rem;
+		font-size: 30rpx;
 		display: flex;
 	}
 	.m-search>input{
@@ -536,8 +550,8 @@
 	
 	.item-box {
 		width: 100%; 
-		height: 80rpx;
-		line-height: 80rpx;
+		height: 100rpx;
+		line-height: 100rpx;
 		overflow: hidden;
 		position: relative;
 		display: flex;
@@ -546,18 +560,24 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-		left: 0;
+		/* left: 0; */
+		/* position: relative; */
+	}
+	.move{
+		margin-left: -84rpx;
+		transition: transform 0.3s;
 	}
 	.item-del{
 		position: absolute;
 		width: 84rpx;
-		background: red;
+		background: #ff3a31;
 		color: #fff;
 		font-size: 28rpx;
-		line-height: 80rpx;
+		line-height: 100rpx;
 		height: 100%;
 		text-align: center;
-		right: 0;
+		right: -84rpx;
+		/* margin-right: -84rpx; */
 	}
 	.box{
 		width: 100%;

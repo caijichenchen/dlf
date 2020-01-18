@@ -59,6 +59,7 @@
 		},
 		data() {
 			return {
+				CustomBar:this.CustomBar,
 				dataList:[
 					{
 						title:"房屋建筑工程",

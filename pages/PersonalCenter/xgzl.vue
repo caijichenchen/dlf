@@ -8,7 +8,7 @@
 			<view class="p-3 row border-bottom">
 				<view style="line-height: 80rpx;">修改头像:</view>
 				<view style="margin-left: auto;">
-					<image style="width: 80rpx;height: 80rpx;border-radius: 50%;" @tap="changeImg" :src="serverUrl+'/upload'+userInfo.userInfo.head_img"></image>
+					<image style="width: 80rpx;height: 80rpx;border-radius: 50%;" @tap="changeImg" :src="userInfo.userInfo.head_img"></image>
 				</view>
 			</view>
 			<view class="p-3 row border-bottom">

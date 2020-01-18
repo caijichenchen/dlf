@@ -63,7 +63,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from "@/common/json/zcpgfs/zcpgfs-gui.json"
+	// import datajson from "@/common/json/zcpgfs/zcpgfs-gui.json"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -108,7 +108,7 @@
 					zcpgsfGui_category: 0,
 					zcpgsfGui_ryjc: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [{
@@ -133,6 +133,14 @@
 					},
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/zcpgfs/zcpgfs-gui.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			//查看说明

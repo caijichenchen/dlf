@@ -52,6 +52,7 @@ export default {
 	data() {
 		return {
 			modalName: 'ytgckcsfLiao_fzcd',
+			CustomBar:this.CustomBar,
 			fjxs: '',
 			fjxsList: [
 				{value:"流塑及软塑的粘性土、粉土、粉细砂、含硬杂质≤10%的填土",xs:"Ⅰ"},

@@ -72,17 +72,17 @@
 				</view>
 				<view class="timeOne" :class="{vipon:shows==3}" :data-show="3" :data-money="monthThr" @tap="getVal">
 					<view>8.5折</view>
-					<text class="lineThr">原价:￥{{monthThr}}</text>
+					<text class="lineThr">原价:￥{{Math.ceil(monthThr*100/85)}}</text>
 					<text>{{monthThr}}/3月</text>
 				</view>
 				<view class="timeOne" :class="{vipon:shows==6}" :data-show="6" :data-money="monthSix" @tap="getVal">
 					<view>5.9折</view>
-					<text class="lineThr">原价:￥{{monthThr}}</text>
+					<text class="lineThr">原价:￥{{Math.ceil(monthSix*100/59)}}</text>
 					<text>{{monthSix}}/6月</text>
 				</view>
 				<view class="timeOne" :class="{vipon:shows==12}" :data-show="12" :data-money="monthTwe" @tap="getVal">
 					<view>4.3折</view>
-					<text class="lineThr">原价:￥{{monthThr}}</text>
+					<text class="lineThr">原价:￥{{Math.ceil(monthTwe*100/43)}}</text>
 					<text>{{monthTwe}}/12月</text>
 				</view>
 			</view>
@@ -117,8 +117,8 @@
 					<label><radio value="支付宝" /></label>
 			</view> -->
 			<view class="zhifu">
-				<view class="zhifu-lf" @tap="closepayaa()">应付金额:￥{{money}}</view>
-				<view class="zhifu-rt" @tap="pay()">确认购买</view>
+				<view class="zhifu-lf">应付金额:￥{{price}}</view>
+				<view class="zhifu-rt" >确认购买</view>
 			</view>
 		</radio-group>
 	</view>
@@ -142,7 +142,23 @@
 				proList:[],
 				money: 0,
 				shows:1,
+				couponId:'',
+				prompt:'',
+				price: 0,
+				payStatus: false,
+				timer:null,
+				orderData: {}
 			};
+		},
+		created() {
+			// uni.$on('chooseCoupon',(data)=>{
+			// 	if(data.id){
+			// 		this.couponId = data.id
+			// 		this.getJudgePay()
+			// 	}
+			// })
+			// this.getOrderStatus()
+			// this.getJudgePay()
 		},
 		methods: {
 			getCal(province){
@@ -158,12 +174,15 @@
 					$req.request({
 					 	url: '/api/xcx/getCalculatorByProvince?state=1&province='+province
 					}).then((res)=>{
+						console.log(res)
 						this.calList.push({
 							name:province,
 							price:res.data.price,
-							cal:res.data.province_role
+							cal:res.data.province_role,
+							id:res.data.role_id
 						})
 						this.getMoney()
+						this.getJudgePay()
 					}).catch(()=>{
 					 	uni.showToast({
 					 		icon:'none',
@@ -171,6 +190,102 @@
 					 	})
 					})
 				}
+				
+			},
+			getOrderStatus(){ //查询是否订单状态
+				$req.request({
+					url:'/api/xcx/pay/query_valid_order'
+				}).then(res=>{
+					// console.log(res)
+					if(res.data.msg == '暂无订单'){
+						this.payStatus = true
+						clearInterval(this.timer)
+					}else{
+						// this.price
+						this.orderData = res.data.msg
+						this.price = res.data.msg.sum
+						clearInterval(this.timer)
+						this.timer = setInterval(()=>{
+							this.getOrderStatus()
+						},1000)
+					}
+				}).catch(err=>{
+					this.getOrderStatus()
+				})
+			},
+			getJudgePay(){ //获取价格抵扣
+				let strArr = []
+				console.log(this.calList)
+				this.calList.forEach(item=>{
+					console.log(11)
+					console.log(item.id)
+					strArr.push(item.id)
+				})
+				console.log(strArr)
+				const str = strArr.join(',')
+				console.log(str)
+				$req.request({
+					url:'/api/xcx/pay/judge_pay',
+					method:'POST',
+					data:{
+						goods_type:4,
+						number: this.shows,
+						coupon_id: this.couponId || '',
+						province_id: str
+					}
+				}).then(res=>{
+					this.prompt = res.data.message
+					this.price = res.data.price
+					console.log(res)
+				}).catch(err=>{
+					console.log(err)
+				})
+			},
+			payMent(){ //支付
+				if(!this.price){
+					return
+				}
+				let num = this.tab
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/goods',
+							method:'POST',
+							data:{
+								goods_type:2,
+								number: num==3?5:num+1,
+								coupon_id:this.couponId,
+								pay_type:1,
+								channel:'lite',
+								ee_people: this.pre,
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
 			},
 			getVal(e){
 				this.shows = e.currentTarget.dataset.show

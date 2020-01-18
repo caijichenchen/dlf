@@ -39,6 +39,7 @@ export default {
 	data() {
 		return {
 			modalName: 'ytgcktGuo_fjtz',
+			CustomBar:this.CustomBar,
 			fjxs: '',
 			fjxsList: [
 				{value:"默认系数为1",xs:"1"},
