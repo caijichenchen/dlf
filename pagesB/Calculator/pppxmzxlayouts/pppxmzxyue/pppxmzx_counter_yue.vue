@@ -11,7 +11,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程造价</view>
-				<input name="pppxmzxYue_gczj" v-model="needVal.pppxmzxYue_gczj" /></input>
+				<input type="digit" v-model="needVal.pppxmzxYue_gczj" /></input>
 				<uni-tag text="亿元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
@@ -36,18 +36,18 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">专业领域数量的调整系数</view>
-				<input v-model="needVal.pppxmzxYue_zytzxs" /></input>
+				<input type="digit" v-model="needVal.pppxmzxYue_zytzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_zytzxs">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">收费附加</view>
-				<input v-model="needVal.pppxmzxYue_sffd" /></input>
+				<input type="digit" v-model="needVal.pppxmzxYue_sffd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxYue_sffd">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.pppxmzxYue_discount" /></input>
+				<input type="digit" v-model="needVal.pppxmzxYue_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -64,11 +64,19 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/pppxmzxs/pppxmzxs-yue.json'
+	// import datajson from '@/common/json/pppxmzxs/pppxmzxs-yue.json'
 	import sffdChuan from './pppxmzxYue_sffd.vue'
 	import zytzxsChuan from './pppxmzxYue_zytzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/pppxmzxs/pppxmzxs-yue.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -103,7 +111,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "3",

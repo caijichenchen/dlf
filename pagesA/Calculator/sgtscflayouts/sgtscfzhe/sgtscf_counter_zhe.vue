@@ -30,12 +30,12 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">{{multiSelector.sgtscfZhe4}}</view>
-				<input type="text" v-model="needVal.sgtscfZhe_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfZhe_gcl"></input>
 				<uni-tag :text="multiSelector.sgtscfZhe_units" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfZhe_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfZhe_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="explain[1]">查看说明</button>
 			</view>

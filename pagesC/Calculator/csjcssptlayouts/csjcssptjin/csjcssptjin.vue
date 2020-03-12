@@ -3,27 +3,28 @@
 		<template v-slot:jsq>
 			<csjcsspt-counter-jin></csjcsspt-counter-jin>
 			<computing v-bind:countData = "countData"></computing>
-			<csjcsspt-result :title="title"></csjcsspt-result>
+			<result title="山西省城市基础设施配套费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import csjcssptCounterJin from "./csjcsspt_counter_jin.vue"
-	import csjcssptResult from "../csjcsspt_result.vue"
+	import {csjcssptData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/csjcssptJin',  //api请求
 					count:1  //积分消耗
 				},
-				title:'山西'
+				result:JSON.parse(JSON.stringify(csjcssptData)),
 			}
 		},
 		components:{
-			csjcssptCounterJin,
-			csjcssptResult
+			csjcssptCounterJin
 		}
 	}
 </script>

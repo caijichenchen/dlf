@@ -3,29 +3,28 @@
 		<template v-slot:jsq>
 			<xmjs-counter-xiamen></xmjs-counter-xiamen>
 			<computing v-bind:countData = "countData"></computing>
-			<xmjs-result></xmjs-result>
+			<result title="厦门市建设单位管理费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import xmjsCounterXiamen from "./xmjs_counter_xiamen.vue"
-	import xmjsResult from "./xmjs_result.vue"
+	import {jsdwglData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/jsdwglXiamen',  //api请求
 					count:1  //积分消耗
-				}
+				},
+				result:JSON.parse(JSON.stringify(jsdwglData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			xmjsCounterXiamen,
-			xmjsResult
+			xmjsCounterXiamen
 		}
 	}
 </script>

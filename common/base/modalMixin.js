@@ -16,7 +16,7 @@ export const modalMixin = {
    	hideModal(e) {
    		this.$emit('hideModal')  // 子组件更新弹框隐藏
    	},
-	moveHandle(){
+	moveHandle(e){
 		return
 	}
    },

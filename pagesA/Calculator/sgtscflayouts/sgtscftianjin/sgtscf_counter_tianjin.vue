@@ -40,17 +40,17 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfTianjin_mjorje || showSelector.sgtscfTianjin_units">
 				<view class="title">{{multiSelector.sgtscfTianjin_mjorje}}</view>
-				<input type="text" v-model="needVal.sgtscfTianjin_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfTianjin_gcl"></input>
 				<uni-tag :text="multiSelector.sgtscfTianjin_units" type="defult" v-model="multiSelector.sgtscfTianjin_units"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.sgtscfTianjin_fjtz" /></input>
+				<input type="digit" v-model="needVal.sgtscfTianjin_fjtz" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sgtscfTianjin_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfTianjin_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfTianjin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

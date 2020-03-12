@@ -14,18 +14,18 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">建安设备费</view>
-				<input type="text" v-model="needVal.gcbxfgfGuo_gczj"></input>
+				<input type="digit" v-model="needVal.gcbxfgfGuo_gczj"></input>
 				<uni-tag  text="万元" type="defult">万元</uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">建安设备费率</view>
-				<input v-model="needVal.gcbxfgfGuo_fl" /></input>
+				<input type="digit" v-model="needVal.gcbxfgfGuo_fl" /></input>
 				<uni-tag text="%" type="defult"></uni-tag> 
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.gcbxfgfGuo_dzzk" /></input>
+				<input type="digit" v-model="needVal.gcbxfgfGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

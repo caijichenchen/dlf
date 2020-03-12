@@ -3,27 +3,28 @@
 		<template v-slot:jsq>
 			<zbdlf-counter-gui></zbdlf-counter-gui>
 			<computing v-bind:countData = "countData"></computing>
-			<zbdlf-result :titl="title"></zbdlf-result>
+			<result title="广西省招标代理费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import zbdlfCounterGui from "./zbdlf_counter_gui.vue"
-	import zbdlfResult from "../zbdlf_result.vue"
+	import {zbdlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/zbdlfGui',  //api请求
 					count:2  //积分消耗
 				},
-				title:'广西'
+				result:JSON.parse(JSON.stringify(zbdlfData))
 			}
 		},
 		components:{
-			zbdlfCounterGui,
-			zbdlfResult
+			zbdlfCounterGui
 		}
 	}
 </script>

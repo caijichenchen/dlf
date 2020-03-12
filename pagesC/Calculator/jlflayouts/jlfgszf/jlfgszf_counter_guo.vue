@@ -11,31 +11,31 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">计费额</view>
-				<input type="text"  v-model="needVal.jlfGszf_jfe"></input>
+				<input type="digit" v-model="needVal.jlfGszf_jfe"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工作量比例</view>
-				<input type="text"  v-model="needVal.jlfGszf_gzlbl"></input>
+				<input type="digit" v-model="needVal.jlfGszf_gzlbl"></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfGszf_gzlbl">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
-				<input type="text"  v-model="needVal.jlfGszf_fztz"></input>
+				<input type="digit" v-model="needVal.jlfGszf_fztz"></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfGszf_fztz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input type="text"  v-model="needVal.jlfGszf_fjtz"></input>
+				<input type="digit" v-model="needVal.jlfGszf_fjtz"></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfGszf_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="sjfGuo_discount" v-model="needVal.jlfGszf_dzzk" /></input>
+				<input type="digit" v-model="needVal.jlfGszf_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

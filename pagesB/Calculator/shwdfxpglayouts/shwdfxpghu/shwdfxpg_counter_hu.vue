@@ -22,34 +22,34 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">估算投资额</view>
-				<input type="text"  v-model="needVal.shwdfxpgHu_gstze"></input>
+				<input type="digit" v-model="needVal.shwdfxpgHu_gstze"></input>
 				<uni-tag text="亿元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">行业调整系数</view>
-				<input v-model="needVal.shwdfxpgHu_hytzxs" /></input>
+				<input type="digit" v-model="needVal.shwdfxpgHu_hytzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_hytzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">社会稳定风险敏感程度调整系数</view>
-				<input v-model="needVal.shwdfxpgHu_fxmgcdtz" /></input>
+				<input type="digit" v-model="needVal.shwdfxpgHu_fxmgcdtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_fxmgcdtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">区域范围调整系数</view>
-				<input v-model="needVal.shwdfxpgHu_qyfwtz" /></input>
+				<input type="digit" v-model="needVal.shwdfxpgHu_qyfwtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="shwdfxpgHu_qyfwtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动</view>
-				<input v-model="needVal.shwdfxpgHu_fd" /></input>
+				<input type="digit" v-model="needVal.shwdfxpgHu_fd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input  v-model="needVal.shwdfxpgHu_yhzk" /></input>
+				<input type="digit" v-model="needVal.shwdfxpgHu_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

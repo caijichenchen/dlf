@@ -38,24 +38,24 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jlfJin7">
 				<view class="title">{{multiSelector.jlfJin7}}</view>
-				<input type="text" v-model="needVal.jlfJin_jfe"></input>
+				<input type="digit" v-model="needVal.jlfJin_jfe"></input>
 				<uni-tag  :text="multiSelector.jlfJin8" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfJin_jfe">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
-				<input type="text" v-model="needVal.jlfJin_fztz"></input>
+				<input type="digit" v-model="needVal.jlfJin_fztz"></input>
 				<uni-tag  :text="multiSelector.jlfJin8" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfJin_fztz">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jlfJin10">
 				<view class="title">{{multiSelector.jlfJin10}}</view>
-				<input type="text" v-model="needVal.jlfJin_gztzbl"></input>
+				<input type="digit" v-model="needVal.jlfJin_gztzbl"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfJin_gztzbl">点击选择</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jlfJin12">
 				<view class="title">{{multiSelector.jlfJin12}}</view>
-				<input type="text" v-model="needVal.jlfJin_jlrysl"></input>
+				<input type="digit" v-model="needVal.jlfJin_jlrysl"></input>
 				<uni-tag  text="人" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
@@ -65,7 +65,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input type="text" v-model="needVal.jlfJin_dzzk"></input>
+				<input type="digit" v-model="needVal.jlfJin_dzzk"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
@@ -86,13 +86,21 @@
 	} from "@/common/base/multiSelectorsChange.js"
 	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import explain from '@/common/base/explain.vue'
-	import datajson from '@/common/json/sxsjlfs/sxsjlfs.json'
+	// import datajson from '@/common/json/sxsjlfs/sxsjlfs.json'
 	import fjtz from './jlfJin_fjtz.vue'
 	import fztz from './jlfJin_fztz.vue'
 	import tzbl from './jlfJin_gztzbl.vue'
 	import jfe from './jlfJin_jfe.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sxsjlfs/sxsjlfs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -158,7 +166,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [{
 						"id": "1",
 						"title": "监理费收费计费额",

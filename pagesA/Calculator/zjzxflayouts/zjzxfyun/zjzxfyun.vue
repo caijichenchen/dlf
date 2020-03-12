@@ -3,7 +3,7 @@
 		<template v-slot:jsq>
 			<zjzxf-counter-yun :title="title"></zjzxf-counter-yun>
 			<computing v-bind:countData = "countData"></computing>
-			<zjzxf-result :title="title"></zjzxf-result>
+			<result title="云南省造价咨询费" :result="result"></result>
 		</template>
 		<template v-slot:qfbz>
 			<view class="a-text" :data-id="119" @tap="setDetailId">云南省建设工程造价咨询服务收费-云价综合〔2012〕66号|云建标〔2012〕509号文件</view>
@@ -14,26 +14,22 @@
 
 <script>
 	import zjzxfCounterYun from "./zjzxf-counter_yun.vue"
-	import zjzxfResult from "../zjzxf_result.vue"
+	import {zjzxfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/zjzxfYun',  //api请求
 					count:2  //积分消耗
 				},
-				title: "云南省造价咨询费",
+				result:JSON.parse(JSON.stringify(zjzxfData)),
 				id:119
 			}
 		},
-		methods: {
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			zjzxfCounterYun,
-			zjzxfResult
+			zjzxfCounterYun
 		}
 	}
 </script>

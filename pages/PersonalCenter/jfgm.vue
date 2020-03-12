@@ -5,20 +5,20 @@
 			<block slot="content">积分购买</block>
 		</cu-custom>
 		<view class="jifen">
-			<view :class="{jifenact:shows==1}" :data-show="1" :data-num="10" @click="getVal">10积分</view>
-			<view :class="{jifenact:shows==2}" :data-show="2" :data-num="20" @click="getVal">20积分</view>
-			<view :class="{jifenact:shows==3}" :data-show="3" :data-num="50" @click="getVal">50积分</view>
-			<view :class="{jifenact:shows==4}" :data-show="4" :data-num="100" @click="getVal">100积分</view>
-			<view :class="{jifenact:shows==5}" :data-show="5" :data-num="200" @click="getVal">200积分</view>
+			<view :class="{jifenact:shows==1}" @tap="getVal(1,10)">10积分</view>
+			<view :class="{jifenact:shows==2}" @tap="getVal(2,20)">20积分</view>
+			<view :class="{jifenact:shows==3}" @tap="getVal(3,50)">50积分</view>
+			<view :class="{jifenact:shows==4}" @tap="getVal(4,100)">100积分</view>
+			<view :class="{jifenact:shows==5}" @tap="getVal(5,200)">200积分</view>
 			<view >
 				<input type="text" style="height: 100%;" @blur="setVal" placeholder="其他金额">
 			</view>
 		</view>
 		<view class="mt-4 font-md  ">
-			<view class="row px-4 border-bottom" @tap="showyhj" style="height: 80rpx;">
+			<view class="row px-4 border-bottom" style="height: 80rpx;">
 				<view style="line-height: 80rpx;">优惠码</view>
-				<view style="line-height: 80rpx;margin-left: auto;">领取优惠券</view>
-				<image class="toimg" src="/static/HM-PersonalCenter/to.png"></image>
+				<view style="line-height: 80rpx;margin-left: auto;">暂无优惠券</view>
+				<view class="cuIcon-right" style="line-height: 80rpx;font-size: 38rpx;"></view>
 			</view>
 			<view >
 				<view class="row px-4 border-bottom" style="height: 80rpx;">
@@ -29,6 +29,11 @@
 					v-if="userInfo.vipInfo.type == '企业会员' || userInfo.vipInfo.type == '省份会员'"
 				>
 					您好,尊贵的企业会员,您已享有网站全部特权,无需购买自选会员或VIP会员,若转变会员,请企业会员过期后再来购买
+				</view>
+				<view class="tip px-4"
+					v-if="prompt"
+				>
+					{{prompt}}
 				</view>
 			</view>
 		</view>
@@ -43,9 +48,13 @@
 				<text>支付宝支付</text>
 				<label><radio value="支付宝" /></label>
 			</view> -->
-			<view class="zhifu">
-				<view class="zhifu-lf">应付金额:￥{{money}}</view>
-				<view class="zhifu-rt">确认购买</view>
+			<view class="zhifu" v-if="payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price || money}}</view>
+				<view class="zhifu-rt" @tap="payMent">确认购买</view>
+			</view>
+			<view class="zhifu" v-if="!payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price || money}}</view>
+				<view class="zhifu-rt" @tap="keepPay">继续支付</view>
 			</view>
 		</radio-group>
 	</view>
@@ -59,7 +68,14 @@
 	  data () {
 		return {
 				money:10,
-				shows:'1'
+				shows:'1',
+				couponId:'',
+				prompt:'',
+				price: 0,
+				payStatus: true,
+				timer:null,
+				status: true,
+				orderData: {}
 			}
 		},
 		computed:{
@@ -67,19 +83,149 @@
 				userInfo:state=>state.user.userInfo
 			})
 		},
+		created() {
+			uni.$on('chooseCoupon',(data)=>{
+				if(data.id){
+					this.couponId = data.id
+					this.getJudgePay()
+				}
+			})
+			this.getOrderStatus()
+			this.getJudgePay()
+		},
 		methods:{
-			showyhj(){
-				uni.navigateTo({
-					url:'yhj'
-				})
-			},
-			getVal(e) {
-				this.shows = e.currentTarget.dataset.show
-				this.money = e.currentTarget.dataset.num
+			getVal(show,num) {
+				this.shows = show
+				this.money = num
 			},
 			setVal(e){
 				this.money = e.target.value
-			}
+			},
+			getOrderStatus(){ //查询是否订单状态
+				$req.request({
+					url:'/api/xcx/pay/query_valid_order'
+				}).then(res=>{
+					if(res.data.msg == '暂无订单'){
+						this.payStatus = true
+						console.log(this.payStatus)
+						clearInterval(this.timer)
+					}else{
+						this.payStatus = false
+						this.orderData = res.data.msg
+						this.price = res.data.msg.sum
+						clearInterval(this.timer)
+						this.timer = setInterval(()=>{
+							this.getOrderStatus()
+						},1000)
+					}
+				}).catch(err=>{
+					this.getOrderStatus()
+				})
+			},
+			getJudgePay(){ //获取价格抵扣
+				let strArr = []
+				this.selectIdList.forEach(item=>{
+					strArr.push(item.id)
+				})
+				$req.request({
+					url:'/api/xcx/pay/judge_pay',
+					method:'POST',
+					data:{
+						goods_type:3,
+						number: this.money,
+						coupon_id: this.couponId || ''
+					}
+				}).then(res=>{
+					this.prompt = res.data.message
+					this.price = res.data.price
+					this.status = res.data.status?false:true
+				}).catch(err=>{
+					console.log(err)
+				})
+			},
+			payMent(){ //支付
+				if(!this.money){
+					return
+				}
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/goods',
+							method:'POST',
+							data:{
+								goods_type:0,
+								number: this.money,
+								coupon_id:this.couponId || '',
+								pay_type:1,
+								channel:'lite',
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
+			},
+			keepPay(){
+				if(!this.price){
+					return
+				}
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/arousePay',
+							data:{
+								order_id:this.orderData.order_id,
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
+			},
 		}
 	}
 </script>

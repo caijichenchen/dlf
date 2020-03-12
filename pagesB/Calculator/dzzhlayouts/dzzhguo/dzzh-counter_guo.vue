@@ -47,28 +47,28 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">工程类别调整系数K1</view>
-				<input v-model="needVal.dzzhGuo_gclbtzxs" /></input>
+				<input type="digit" v-model="needVal.dzzhGuo_gclbtzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dzzhGuo_gclbtzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程规模评估长度km/面积km2</view>
-				<input v-model="needVal.dzzhGuo_gcgmpgcdmj" /></input>
+				<input type="digit" v-model="needVal.dzzhGuo_gcgmpgcdmj" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dzzhGuo_gcgmpgcdmj">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">地区调整系数</view>
-				<input v-model="needVal.dzzhGuo_dqtzxs" /></input>
+				<input type="digit" v-model="needVal.dzzhGuo_dqtzxs" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.dzzhGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.dzzhGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.dzzhGuo_dzzk" /></input>
+				<input type="digit" v-model="needVal.dzzhGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
@@ -90,7 +90,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/dzzhs.json'
+	// import datajson from '@/common/json/dzzhs.json'
 	import xmzyx from './dzzhGuo_xmzyx.vue'
 	import fzcd from './dzzhGuo_fzcd.vue'
 	import gclbtzxs from './dzzhGuo_gclbtzxs.vue'
@@ -98,6 +98,14 @@
 	import pgjb from './dzzhGuo_pgjb.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/dzzhs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -135,7 +143,7 @@
 					dzzhGuo_jbfy: false,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

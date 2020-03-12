@@ -3,7 +3,7 @@
 		<template v-slot:jsq>
 			<cbsjpssf-counter-guo></cbsjpssf-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<cbsjpssf-result></cbsjpssf-result>
+			<result title="初步设计评审收费" :result="result"></result>
 		</template>
 		<template v-slot:qfbz>
 			<view class="a-text" :data-id="134" @tap="setDetailId">初步设计评审收费标准|初步设计文件审查费标准|国管房地〔2006〕37号</view>
@@ -14,25 +14,22 @@
 
 <script>
 	import cbsjpssfCounterGuo from "./cbsjpssf-counter_guo.vue"
-	import cbsjpssfResult from "./cbsjpssf_result.vue"
+	import {cbsjpssfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/cbsjpssfGuo',  //api请求
 					count:2  //积分消耗
 				},
-				id:134
-			}
-		},
-		methods:{
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
+				id:134,
+				result:JSON.parse(JSON.stringify(cbsjpssfData)),
 			}
 		},
 		components:{
-			cbsjpssfCounterGuo,
-			cbsjpssfResult
+			cbsjpssfCounterGuo
 		}
 	}
 </script>

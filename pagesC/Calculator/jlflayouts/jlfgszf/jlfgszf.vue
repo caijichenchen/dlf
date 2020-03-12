@@ -1,43 +1,30 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="329">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<jlfgszf-counter-guo></jlfgszf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
-			<jlfgszf-result></jlfgszf-result>
+			<result title="广州、深圳、珠海、佛山工程监理费" :result="result"></result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import jlfgszfCounterGuo from "./jlfgszf_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
-	import jlfgszfResult from "./jlfgszf_result.vue"
+	import {jlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jlfGszf',  //api请求
 					count:3 //积分消耗
-				}
+				},
+				result: JSON.parse(jlfData(''))
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			jlfgszfCounterGuo,
-			baseLayout,
-			computing,
-			jlfgszfResult
+			jlfgszfCounterGuo
 		}
 	}
 </script>

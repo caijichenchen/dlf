@@ -20,24 +20,24 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">中标价</view>
-				<input type="text" id="sjf" v-model="needVal.jsjyfwfJing_zbj"></input>
+				<input type="digit" v-model="needVal.jsjyfwfJing_zbj"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">收取分配</view>
-				<input name="sjfJing_discount" v-model="needVal.jsjyfwfJing_qfbl" /></input>
+				<input type="digit" v-model="needVal.jsjyfwfJing_qfbl" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfJing_qfbl">点击选择</button>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">浮动幅度</view>
-				<input type="text" id="sjf" v-model="needVal.jsjyfwfJing_fdfd"></input>
+				<input type="digit" v-model="needVal.jsjyfwfJing_fdfd"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">打折折扣</view>
-				<input type="text" id="sjf" v-model="needVal.jsjyfwfJing_discount"></input>
+				<input type="digit" v-model="needVal.jsjyfwfJing_discount"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

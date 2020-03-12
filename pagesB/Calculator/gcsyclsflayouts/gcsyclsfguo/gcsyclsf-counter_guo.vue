@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.gcsyclsfGuo_swgzldw">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.gcsyclsfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.gcsyclsfGuo_swgzl" /></input>
 				<uni-tag :text="multiSelector.gcsyclsfGuo_swgzldw" type="defult" v-model="needVal.gcsyclsfGuo_swgzldw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.gcsyclsfGuo_xzbl">
@@ -42,7 +42,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">附加调整</view>
-				<input v-model="needVal.gcsyclsfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.gcsyclsfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="gcsyclsfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
@@ -57,19 +57,19 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">高程调整</view>
-				<input v-model="needVal.gcsyclsfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.gcsyclsfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="gcsyclsfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.gcsyclsfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.gcsyclsfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.gcsyclsfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.gcsyclsfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -88,12 +88,20 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/sycls.json'
+	// import datajson from '@/common/json/sycls.json'
 	import tzxsGuo from './gcsyclsfGuo_fjtz.vue'
 	import gctz from '@/common/base/gctz.vue'
 	import fzcd from './gcsyclsfGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/sycls.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -134,7 +142,7 @@
 				index0: 0,
 				indexfzcd: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

@@ -33,7 +33,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfYue4">
 				<view class="title">{{multiSelector.fljcfYue4}}</view>
-				<input v-model="needVal.fljcfYue_czcs" /></input>
+				<input type="digit" v-model="needVal.fljcfYue_czcs" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfYue_jtfl">
@@ -48,12 +48,12 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfYue_gclmc || showSelector.fljcfYue_dw">
 				<view class="title" v-model="needVal.fljcfYue_gclmc">{{multiSelector.fljcfYue_gclmc}}</view>
-				<input v-model="needVal.fljcfYue_gcl" /></input>
+				<input type="digit" v-model="needVal.fljcfYue_gcl" /></input>
 				<uni-tag :text="multiSelector.fljcfYue_dw" type="defult" v-model="needVal.fljcfYue_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.fljcfYue_discount" /></input>
+				<input type="digit" v-model="needVal.fljcfYue_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

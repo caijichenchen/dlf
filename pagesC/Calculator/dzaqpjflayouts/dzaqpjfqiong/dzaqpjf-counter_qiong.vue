@@ -50,18 +50,18 @@
 		</view>
 		<view class="cu-form-group" v-show="showSelector.dzaqpjfQiong6 || showSelector.dzaqpjfQiong7">
 			<view class="title">{{multiSelector.dzaqpjfQiong6}}</view>
-			<input v-model="needVal.dzaqpjfQiong_gzl" /></input>
+			<input type="digit" v-model="needVal.dzaqpjfQiong_gzl" /></input>
 			<uni-tag :text="multiSelector.dzaqpjfQiong7" type="defult" v-model="multiSelector.dzaqpjfQiong7"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.dzaqpjfQiong12 || showSelector.dzaqpjfQiong11">
 			<view class="title">{{multiSelector.dzaqpjfQiong12}}</view>
-			<input v-model="needVal.dzaqpjfQiong_comment" /></input>
+			<input type="digit" v-model="needVal.dzaqpjfQiong_comment" /></input>
 			<uni-tag :text="multiSelector.dzaqpjfQiong11" type="defult" v-model="multiSelector.dzaqpjfQiong11"></uni-tag>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">打折折扣</view>
-			<input v-model="needVal.dzaqpjfQiong_dzzk" /></input>
+			<input type="digit" v-model="needVal.dzaqpjfQiong_dzzk" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 		</view>
@@ -78,11 +78,19 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/dzaqpjfs/dzaqpjfs-qiong.json'
+	// import datajson from '@/common/json/dzaqpjfs/dzaqpjfs-qiong.json'
 	import pjxmQiong from './dzaqpjfQiong_pjxm.vue'
 	import pjflQiong from './dzaqpjfQiong_pjfl.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/dzaqpjfs/dzaqpjfs-qiong.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {

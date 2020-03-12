@@ -15,22 +15,22 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">投资估算值</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_gczj" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_gczj" /></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">比例表</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_blb" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_blb" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="slsdqqgzkcfGuo_blb">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">类型调整</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_lxtz" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_lxtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="slsdqqgzkcfGuo_lxtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">赋分表</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_ffb" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_ffb" /></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂程度调整系数</view>
@@ -43,29 +43,29 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="slsdqqgzkcfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">作业准备费比例</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_zyzbfbl" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_zyzbfbl" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_gctz" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.slsdqqgzkcfGuo_discount"/></input>
+				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_discount"/></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

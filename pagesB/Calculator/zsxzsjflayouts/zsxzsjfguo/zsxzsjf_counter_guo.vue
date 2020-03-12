@@ -7,7 +7,7 @@
 		<form>
 			<view class="cu-form-group">
 				<view class="title">项目建安费额</view>
-				<input type="text" v-model="needVal.zsxzsjfGuo_xmjafe"></input>
+				<input type="digit" v-model="needVal.zsxzsjfGuo_xmjafe"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
@@ -21,12 +21,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加系数</view>
-				<input v-model="needVal.zsxzsjfGuo_fjxs"></input>
+				<input type="digit" v-model="needVal.zsxzsjfGuo_fjxs"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfGuo_fjxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.zsxzsjfGuo_discount" /></input>
+				<input type="digit" v-model="needVal.zsxzsjfGuo_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>

@@ -3,29 +3,28 @@
 		<template v-slot:jsq>
 			<fwmjchf-counter-qiong></fwmjchf-counter-qiong>
 			<computing v-bind:countData = "countData"></computing>
-			<fwmjchf-result></fwmjchf-result>
+			<result title="房屋面积测绘费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import fwmjchfCounterQiong from "./fwmjchf-counter_qiong.vue"
-	import fwmjchfResult from "./fwmjchf_result.vue"
+	import {fwmjchfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/fwmjchfQiong',  //api请求
 					count:3  //积分消耗
-				}
+				},
+				result:JSON.parse(JSON.stringify(fwmjchfData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			fwmjchfCounterQiong,
-			fwmjchfResult
+			fwmjchfCounterQiong
 		}
 	}
 </script>

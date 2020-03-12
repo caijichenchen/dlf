@@ -11,19 +11,19 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">计费额</view>
-				<input type="text"  v-model="needVal.jlfSzh_jfe"></input>
+				<input type="digit" v-model="needVal.jlfSzh_jfe"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">难度调整系数</view>
-				<input type="text"  v-model="needVal.jlfSzh_ndtzxs"></input>
+				<input type="digit" v-model="needVal.jlfSzh_ndtzxs"></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfSzh_ndtzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="sjfGuo_discount" v-model="needVal.jlfSzh_dzzk" /></input>
+				<input type="digit" v-model="needVal.jlfSzh_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

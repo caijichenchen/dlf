@@ -3,30 +3,28 @@
 		<template v-slot:jsq>
 			<hjyxpjf-counter-zhe></hjyxpjf-counter-zhe>
 			<computing v-bind:countData = "countData"></computing>
-			<hjyxpjf-result :title="title"></hjyxpjf-result>
+			<result title="浙江省环境影响评价费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import hjyxpjfCounterZhe from "./hjyxpj_counter_zhe.vue"
-	import hjyxpjfResult from "../hjyxpjf_result.vue"
+	import {hjyxpjData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url:this.$serverUrl + '/api/hjyxpjZhe',  //api请求
 					count:2  //积分消耗
 				},
-				title:'浙江'
+				result:JSON.parse(JSON.stringify(hjyxpjData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			hjyxpjfCounterZhe,
-			hjyxpjfResult
+			hjyxpjfCounterZhe
 		}
 	}
 </script>

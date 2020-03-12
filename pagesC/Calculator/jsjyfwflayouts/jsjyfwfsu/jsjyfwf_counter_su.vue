@@ -40,23 +40,23 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">中标额</view>
-				<input type="text" v-model="needVal.jsjyfwfSu_zbj"></input>
+				<input type="digit" v-model="needVal.jsjyfwfSu_zbj"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">收取分配</view>
-				<input type="text" v-model="needVal.jsjyfwfSu_qfbl"></input>
+				<input type="digit" v-model="needVal.jsjyfwfSu_qfbl"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfSu_qfbl">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input type="text" v-model="needVal.jsjyfwfSu_fjtz" /></input>
+				<input type="digit" v-model="needVal.jsjyfwfSu_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfSu_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">打折折扣</view>
-				<input type="text" v-model="needVal.jsjyfwfSu_discount"></input>
+				<input type="digit" v-model="needVal.jsjyfwfSu_discount"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -72,11 +72,19 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import {counterMixin} from "@/common/base/counterMixin"
-	import datajson from '@/common/json/jsjyfwf/jsjyfwf-su.json'
+	// import datajson from '@/common/json/jsjyfwf/jsjyfwf-su.json'
 	import fjtzSu from './jsjyfwfSu_fjtz.vue'
 	import qfblSu from './jsjyfwfSu_qfbl.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/jsjyfwf/jsjyfwf-su.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -116,7 +124,7 @@
 					jsjyfwfSu_jtfl: 0
 				},
 				showModalName: null,
-				datajson: datajson,
+				datajson: '',
 				modalData: null,  //查看说明
 				explain: [
 					{

@@ -41,18 +41,18 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jzmqmcjcfQiong_dw">
 				<view class="title">工程量</view>
-				<input v-model="needVal.jzmqmcjcfQiong_gzl" /></input>
+				<input type="digit" v-model="needVal.jzmqmcjcfQiong_gzl" /></input>
 				<uni-tag :text="multiSelector.jzmqmcjcfQiong_dw" type="defult" v-model="needVal.jzmqmcjcfQiong_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jzmqmcjcfQiong8">
 				<view class="title">天数</view>
-				<input v-model="needVal.jzmqmcjcfQiong_dayCount"/></input>
+				<input type="digit" v-model="needVal.jzmqmcjcfQiong_dayCount"/></input>
 				<uni-tag :text="multiSelector.jzmqmcjcfQiong8" type="defult" v-model="multiSelector.jzmqmcjcfQiong8"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.jzmqmcjcfQiong_dzzk" /></input>
+				<input type="digit" v-model="needVal.jzmqmcjcfQiong_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -70,10 +70,18 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/jzmqmcjcs.json'
+	// import datajson from '@/common/json/jzmqmcjcs.json'
 	import jsxmQiong  from './jzmqmcjcfQiong_jsxm.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/jzmqmcjcs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -115,7 +123,7 @@
 					jzmqmcjcfQiong_sf: false,
 					jzmqmcjcfQiong8: false,
 				},
-				datajson:datajson,
+				datajson:'',
 				showModalName:null,
 				modalData: null,
 				explain: [

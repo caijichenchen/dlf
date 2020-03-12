@@ -40,22 +40,22 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.csghYue5 || showSelector.csghYue_qyzmjdw">
 				<view class="title">{{multiSelector.csghYue5}}</view>
-				<input v-model="needVal.csghYue_qyzmj" /></input>
+				<input type="digit" v-model="needVal.csghYue_qyzmj" /></input>
 				<uni-tag :text="multiSelector.csghYue_qyzmjdw" type="defult" v-model="needVal.csghYue_qyzmjdw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.csghYue10">
 				<view class="title">{{multiSelector.csghYue10}}</view>
-				<input v-model="needVal.csghYue_tzxs" /></input>
+				<input type="digit" v-model="needVal.csghYue_tzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="csghYue_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.csghYue12">
 				<view class="title">{{multiSelector.csghYue12}}</view>
-				<input v-model="needVal.csghYue_fzxs" /></input>
+				<input type="digit" v-model="needVal.csghYue_fzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="csghYue_fzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.csghYue14">
 				<view class="title">{{multiSelector.csghYue14}}</view>
-				<input v-model="needVal.csghYue_sffd" /></input>
+				<input type="digit" v-model="needVal.csghYue_sffd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="csghYue_sffd">点击选择</button>
 			</view>
@@ -67,12 +67,12 @@
 						{{csghYue_ztyj[index]}}
 					</view>
 				</picker>
-				<input v-model="needVal.csghYue_sl" /></input>
+				<input type="digit" v-model="needVal.csghYue_sl" /></input>
 				<uni-tag text="个" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.csghYue_yhzk" /></input>
+				<input type="digit" v-model="needVal.csghYue_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -93,7 +93,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/csghs.json'
+	// import datajson from '@/common/json/csghs.json'
 	import sffdYue from './csghYue_sffd.vue'
 	import fzxsYue from './csghYue_fzxs.vue'
 	import tzxsYue from './csghYue_tzxs.vue'
@@ -166,7 +166,7 @@
 				csghYue_ztyj: ['小城市','中等城市','大城市','特区城市','省域或区域'],
 				index: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{
@@ -181,6 +181,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/csghs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			sffdYue,

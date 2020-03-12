@@ -4,80 +4,27 @@
 		    <block slot="content">一键计算</block>
 		</cu-custom>
 		<view >
-			<choose></choose>
-		</view>
-		<view class="oneclick-wrap">
-			<view class="cal-wrap">
-				<view class="login all-btn" @tap="selectAll">全选<text :class="selectStatus ? 'bg-i':''"></text></view>
-				<view v-for="(item,index) in calList" 
-					:key="index" class="c-item" 
-					:class="loginState ? 'login' : 'nologin'" 
-					@tap="getCal"
-					:data-item="JSON.stringify(item)"
-				>
-					{{item.name}}
-					<text v-if="loginState" :class="item.check ? 'bg-i' : ''"></text>
-					<text v-else :class="item.check ? 'bl-bg-i' : ''"></text>
-				</view>
-			</view>
-			<showcal></showcal>
+			<button @tap="addCal('jsdwglflayouts/jsdwglfji/jsdwglji')">项目建设管理费</button>
+			<button @tap="addCal('hjyxpjlayouts/hjyxpjji/hjyxpjji')">环境影响评价费</button>
+			<button @tap="addCal('sjflayouts/gcsjfji/sjfji')">工程设计费</button>
+			<button @tap="addCal('zbdlflayouts/zbdlfji/zbdlfji')">招标代理费</button>
+			<button @tap="addCal('gcjsjlflayouts/gcjsjlfji/jlfji')">工程建设监理费</button>
 		</view>
 	</view>
 </template>
 
 <script>
-	import choose from './chooseCategory.vue'
-	import {mapState,mapGetters,mapMutations,mapActions} from 'vuex'
-	import $req from '@/common/req/request.js'
-	import jsxmqq from '@/pagesC/Calculator/jsxmqqgzzxflayouts/jsxmqqgzzxfguo/jsxmqqgzzxf_counter_guo'
-	import showcal from './showCal.vue'
 	export default {
 		data() {
 			return {
-				testList:[
-					{
-						name: '111',
-						check:false
-					},
-					{
-						name: '222',
-						check:true
-					}
-				]
 			}
 		},
-		mounted() {
-		},
-		methods: {
-			...mapMutations(['selectAllCal']),
-			...mapActions(['doSelectAll']),
-			selectAll(){//全选全不选
-				this.doSelectAll()
-			},
-			getCal(e){//单个计算器操作
-				const item = JSON.parse(e.currentTarget.dataset.item)
-				if(!this.loginState){
-					uni.showToast({
-						icon:'none',
-						title:`此计算器一次计算消耗${item.integral}积分`
-					})
-					this.selectAllCal(item)
-				}else{
-					this.selectAllCal(item)
-				}
-			},
-		},
-		computed:{
-			...mapState({
-				loginState:state=>state.user.loginState,
-				calList:state=>state.oneClick.calList
-			}),
-			...mapGetters(['selectStatus'])
-		},
-		components:{
-			jsxmqq,
-			choose,
-			showcal
+		methods:{
+			addCal(path){
+				uni.navigateTo({
+					url:`/pages/CalCulator/${path}`
+				})
+			}
 		}
 	}
 </script>

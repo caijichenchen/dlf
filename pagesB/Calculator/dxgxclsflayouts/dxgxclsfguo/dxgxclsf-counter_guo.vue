@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.dxgxclsfGuo_swgzldw">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.dxgxclsfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.dxgxclsfGuo_swgzl" /></input>
 				<uni-tag :text="multiSelector.dxgxclsfGuo_swgzldw" type="defult" v-model="needVal.dxgxclsfGuo_swgzldw"></uni-tag>
 			</view>
 			<view class="cu-form-group" >
@@ -32,7 +32,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">附加调整</view>
-				<input v-model="needVal.dxgxclsfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.dxgxclsfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
@@ -47,19 +47,19 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">高程调整</view>
-				<input v-model="needVal.dxgxclsfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.dxgxclsfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dxgxclsfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.dxgxclsfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.dxgxclsfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.dxgxclsfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.dxgxclsfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -77,11 +77,19 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/dxgxcls.json'
+	// import datajson from '@/common/json/dxgxcls.json'
 	import tzxsGuo from './dxgxclsfGuo_fzcd.vue'
 	import gctz from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/dxgxcls.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -118,7 +126,7 @@
 				index0: 0,
 				indexfzcd: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

@@ -30,12 +30,12 @@
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfChangge5 ">
 			<view class="title">{{multiSelector.zjzxfChangge5}}</view>
-			<input v-model="needVal.zjzxfChangge_ztz" /></input>
+			<input type="digit" v-model="needVal.zjzxfChangge_ztz" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">打折折扣</view>
-			<input v-model="needVal.zjzxfChangge_discount" /></input>
+			<input type="digit" v-model="needVal.zjzxfChangge_discount" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 		</view>

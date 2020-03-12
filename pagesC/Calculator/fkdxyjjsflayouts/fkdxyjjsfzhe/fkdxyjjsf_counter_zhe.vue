@@ -26,12 +26,11 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">建设面积</view>
-				<input type="text" id="sjf" v-model="needVal.fkdxyjjsfZhe_jsmj"></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfZhe_jsmj"></input>
 				<uni-tag text="㎡" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0]) ">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fkdxyjjsfZhe_category">
-				<!-- <input type="hidden" v-show='false' v-model="needVal.fkdxyjjsfZhe_graded"> -->
 				<view class="title">计算区域</view>
 				<picker class="select" @change="PickerChange" data-name="fkdxyjjsfZhe_category" :value="pickerIndex.fkdxyjjsfZhe_category"
 				 :range="multiSelector.fkdxyjjsfZhe_category">
@@ -43,13 +42,13 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.fkdxyjjsfZhe_fjtz" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfZhe_fjtz" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="fkdxyjjsfZhe_fjtz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.fkdxyjjsfZhe_discount" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfZhe_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

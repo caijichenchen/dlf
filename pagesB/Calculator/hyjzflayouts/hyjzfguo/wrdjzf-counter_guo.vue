@@ -40,22 +40,22 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.hyjzfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.hyjzfGuo_swgzl" /></input>
 				<uni-tag text="公顷" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.hyjzfGuo4">
 				<view class="title">{{multiSelector.hyjzfGuo4}}</view>
-				<input v-model="needVal.hyjzfGuo_nx" /></input>
+				<input type="digit" v-model="needVal.hyjzfGuo_nx" /></input>
 				<uni-tag :text="multiSelector.hyjzfGuo5" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加系数</view>
-				<input v-model="needVal.hyjzfGuo_fjxs" /></input>
+				<input type="digit" v-model="needVal.hyjzfGuo_fjxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="hyjzfGuo_fjxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.hyjzfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.hyjzfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
@@ -75,13 +75,21 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/hyjzfs/hyjzfs-all.json'
+	// import datajson from '@/common/json/hyjzfs/hyjzfs-all.json'
 	import hydb from './hyjzfGuo_hydb.vue'
 	import yhdl from './hyjzfGuo_yhdl.vue'
 	import yhxf from './hyjzfGuo_yhxf.vue'
 	import fjxs from './hyjzfGuo_fjxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/hyjzfs/hyjzfs-all.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -121,7 +129,7 @@
 				index3:0,
 				showModalName: null,
 				hyjzfGuo_hydb: ['一等','二等','三等','四等','五等','六等'],
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 						{

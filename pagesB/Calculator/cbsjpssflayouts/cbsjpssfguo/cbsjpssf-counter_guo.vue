@@ -24,7 +24,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.cbsjpssfGuo_fymc">
 				<view class="title">{{multiSelector.cbsjpssfGuo_fymc}}</view>
-				<input v-model="needVal.cbsjpssfGuo_gstze" /></input>
+				<input type="digit" v-model="needVal.cbsjpssfGuo_gstze" /></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -40,18 +40,18 @@
 			</view>
 			<view class="cu-form-group" v-show="multiSelector.cbsjpssfGuo9">
 				<view class="title">{{multiSelector.cbsjpssfGuo9}}</view>
-				<input v-model="needVal.cbsjpssfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.cbsjpssfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="cbsjpssfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.cbsjpssfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.cbsjpssfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.cbsjpssfGuo_dzzk" /></input>
+				<input type="digit" v-model="needVal.cbsjpssfGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -68,7 +68,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/cbsjpsfs.json'
+	// import datajson from '@/common/json/cbsjpsfs.json'
 	import fjtzGuo from './cbsjpssfGuo_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
@@ -117,7 +117,7 @@
 					cbsjpssfGuo10: false
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				explain: [
 					{
@@ -147,6 +147,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/cbsjpsfs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			fjtzGuo

@@ -29,17 +29,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">中标价</view>
-				<input type="text" v-model="needVal.jsjyfwfE_zbj"></input>
+				<input type="digit" v-model="needVal.jsjyfwfE_zbj"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">附加调整</view>
-				<input type="text" v-model="needVal.jsjyfwfE_fjtz"></input>
+				<input type="digit" v-model="needVal.jsjyfwfE_fjtz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfE_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">打折折扣</view>
-				<input type="text" v-model="needVal.jsjyfwfE_discount"></input>
+				<input type="digit" v-model="needVal.jsjyfwfE_discount"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

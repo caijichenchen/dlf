@@ -19,22 +19,22 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">计费额</view>
-				<input type="text" v-model="needVal.xmdjfXiang_jfe"></input>
+				<input type="digit" v-model="needVal.xmdjfXiang_jfe"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">专业调整</view>
-				<input v-model="needVal.xmdjfXiang_zytz" /></input>
+				<input type="digit" v-model="needVal.xmdjfXiang_zytz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="xmdjfXiang_zytz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">阶段调整系数</view>
-				<input v-model="needVal.xmdjfXiang_jdtzxs" /></input>
+				<input type="digit" v-model="needVal.xmdjfXiang_jdtzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="xmdjfXiang_jdtzxs">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.xmdjfXiang_discount" /></input>
+				<input type="digit" v-model="needVal.xmdjfXiang_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>

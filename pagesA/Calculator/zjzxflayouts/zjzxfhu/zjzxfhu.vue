@@ -3,30 +3,28 @@
 		<template v-slot:jsq>
 			<zjzxf-counter-hu :title="title"></zjzxf-counter-hu>
 			<computing v-bind:countData = "countData"></computing>
-			<zjzxf-result :title="title"></zjzxf-result>
+			<result title="上海市造价咨询费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import zjzxfCounterHu from "./zjzxf-counter_hu.vue"
-	import zjzxfResult from "../zjzxf_result.vue"
+	import {zjzxfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/zjzxfHu',  //api请求
 					count:2  //积分消耗
 				},
-				title: "上海造价咨询费"
+				result:JSON.parse(JSON.stringify(zjzxfData))
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			zjzxfCounterHu,
-			zjzxfResult
+			zjzxfCounterHu
 		}
 	}
 </script>

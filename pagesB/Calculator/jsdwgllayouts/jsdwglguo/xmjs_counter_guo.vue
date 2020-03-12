@@ -16,12 +16,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程总概算</view>
-				<input type="text" v-model="needVal.jsdwglGuo_gczgs"></input>
+				<input type="digit" v-model="needVal.jsdwglGuo_gczgs"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.jsdwglGuo_dzzk" /></input>
+				<input type="digit" v-model="needVal.jsdwglGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

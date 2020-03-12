@@ -54,12 +54,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实际工作量</view>
-				<input v-model="needVal.qtsssysfGuo_sjgzl" /></input>
+				<input type="digit" v-model="needVal.qtsssysfGuo_sjgzl" /></input>
 				<uni-tag :text="multiSelector.qtsssysfGuo_sjgzldw" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.qtsssysfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.qtsssysfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="qtsssysfGuo_fjtz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
@@ -73,17 +73,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.qtsssysfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.qtsssysfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="qtsssysfGuo_gctz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.qtsssysfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.qtsssysfGuo_fdfd" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[6])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.qtsssysfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.qtsssysfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[7])">查看说明</button>
 			</view>
@@ -100,11 +100,19 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import {counterMixin} from "@/common/base/counterMixin"
-	import datajson from '@/common/json/qtsssysfs/qtsssysfs.json'
+	// import datajson from '@/common/json/qtsssysfs/qtsssysfs.json'
 	import gctz from '@/common/base/gctz.vue'
 	import fjtz from './qtsssysfGuo_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/qtsssysfs/qtsssysfs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -152,7 +160,7 @@
 				qtsssysfGuo_qwfjtz: ['1','1.2'],
 				index0: '0',
 				index1: '0',
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "1",

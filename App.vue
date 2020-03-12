@@ -3,9 +3,6 @@
 	import Vue from 'vue'
 	import {mapMutations} from 'vuex';
 	export default {
-		globalData:{
-			text:'测试'
-		},
 		onLaunch: function() {
 				// 初始化用户状态
 				// this.$store.commit('initUser')
@@ -36,11 +33,51 @@
 					// #endif
 				}
 			})
+			//微信小程序更新
+			//#ifdef MP-WEIXIN
+			const updateManager = uni.getUpdateManager();
+			updateManager.onCheckForUpdate(res=>{
+				// 请求完新版本信息的回调
+				if(res.hasUpdate){ //有新版本
+					updateManager.onUpdateReady(res=>{
+						uni.showModal({
+							title: '更新提示',
+							content: '新版本已经准备好，是否重启应用？',
+							success(res) {
+								if (res.confirm) {
+									// 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+									updateManager.applyUpdate();
+								}	
+							}
+						});
+					});
+				}
+			});
+			updateManager.onUpdateFailed(function (res) {
+				// 新的版本下载失败
+				uni.showModal({
+					title: '提示',
+					content: '检查到有新版本，但下载失败，请检查网络设置',
+					success(res) {
+						if (res.confirm) {
+							// 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+							updateManager.applyUpdate();
+						}
+					}
+				});
+			});
+			//#endif
+			
 			this.$store.commit('initUser')
 		},
 		onShow: function() {
-			console.log(this.globalData)
 			// console.log('App Show')
+			let chilren = (pre =>[
+				{
+					name:`${pre}`
+				}
+			])('chen')
+			console.log(chilren)
 		},
 		onHide: function() {
 			// console.log('App Hide') 

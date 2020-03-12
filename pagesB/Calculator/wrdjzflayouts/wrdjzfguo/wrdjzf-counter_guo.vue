@@ -40,17 +40,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.wrdjzfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.wrdjzfGuo_swgzl" /></input>
 				<uni-tag text="公顷" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.wrdjzfGuo4">
 				<view class="title">{{multiSelector.wrdjzfGuo4}}</view>
-				<input v-model="needVal.wrdjzfGuo_nx" /></input>
+				<input type="digit" v-model="needVal.wrdjzfGuo_nx" /></input>
 				<uni-tag :text="multiSelector.wrdjzfGuo_zsdw" type="defult" v-model="multiSelector.wrdjzfGuo_zsdw"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.wrdjzfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.wrdjzfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
@@ -71,12 +71,20 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import wrdjzfGuoBlb from './wrdjzfGuo_yddb.vue'
-	import datajson from '@/common/json/wrdjzfs/wrdjzfs-all.json'
+	// import datajson from '@/common/json/wrdjzfs/wrdjzfs-all.json'
 	import ydlx from './wrdjzfGuo_ydlx.vue'
 	import ydfs from './wrdjzfGuo_ydfs.vue'
 	import yddb from './wrdjzfGuo_yddb.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/wrdjzfs/wrdjzfs-all.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -118,7 +126,7 @@
 				index3:0,
 				showModalName: null,
 				wrdjzfGuo_ydlx: ['旅游娱乐用岛','交通运输用岛','工业仓储用岛','渔业用岛','农林牧业用岛','可再生能源用岛','城乡建设用岛'],
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 						{

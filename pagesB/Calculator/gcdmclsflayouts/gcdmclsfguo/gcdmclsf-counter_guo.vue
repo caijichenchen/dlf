@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.gcdmclsfGuo_swgzldw">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.gcdmclsfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.gcdmclsfGuo_swgzl" /></input>
 				<uni-tag :text="multiSelector.gcdmclsfGuo_swgzldw" type="defult" v-model="needVal.gcdmclsfGuo_swgzldw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.gcdmclsfGuo_xzxm">
@@ -51,7 +51,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">附加调整</view>
-				<input v-model="needVal.gcdmclsfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.gcdmclsfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="gcdmclsfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
@@ -66,19 +66,19 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">高程调整</view>
-				<input v-model="needVal.gcdmclsfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.gcdmclsfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="gcdmclsfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.gcdmclsfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.gcdmclsfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.gcdmclsfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.gcdmclsfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -97,12 +97,20 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/dmcls.json'
+	// import datajson from '@/common/json/dmcls.json'
 	import tzxsGuo from './gcdmclsfGuo_fjtz.vue'
 	import gctz from '@/common/base/gctz.vue'
 	import fztz from './gcdmclsfGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/dmcls.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -147,7 +155,7 @@
 				title: '工程地面测量费',
 				modalName: 'gcdmclsfGuo_gctz',
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

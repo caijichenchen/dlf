@@ -36,13 +36,13 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">工程造价</view>
-				<input type="text"  v-model="needVal.zbdlfGuo_gczj"></input>
+				<input type="digit" v-model="needVal.zbdlfGuo_gczj"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.zbdlfGuo_discount" /></input>
+				<input type="digit" v-model="needVal.zbdlfGuo_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

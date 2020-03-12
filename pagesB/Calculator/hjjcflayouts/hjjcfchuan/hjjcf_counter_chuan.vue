@@ -52,23 +52,23 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">工程量</view>
-				<input type="text" v-model="needVal.hjjcfChuan_gcl"></input>
+				<input type="digit" v-model="needVal.hjjcfChuan_gcl"></input>
 				<uni-tag :text="multiSelector.hjjcfChuan_units" type="defult" v-model="needVal.hjjcfChuan_units"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.hjjcfChuan9">
 				<view class="title">{{multiSelector.hjjcfChuan9}}</view>
-				<input type="text" v-model="needVal.hjjcfChuan_gd"></input>
+				<input type="digit" v-model="needVal.hjjcfChuan_gd"></input>
 				<uni-tag text="米" type="defult" ></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">调整系数</view>
-				<input name="hjjcfChuan_tzxs" v-model="needVal.hjjcfChuan_tzxs" /></input>
+				<input type="digit" v-model="needVal.hjjcfChuan_tzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="hjjcfChuan_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input name="hjjcfChuan_discount" v-model="needVal.hjjcfChuan_discount" /></input>
+				<input type="digit" v-model="needVal.hjjcfChuan_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -84,10 +84,18 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from "@/common/json/hjjcfs/hjjcfs-chuan.json"
+	// import datajson from "@/common/json/hjjcfs/hjjcfs-chuan.json"
 	import tzxsChuan from './hjjcfChuan_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/hjjcfs/hjjcfs-chuan.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -134,7 +142,7 @@
 					hjjcfChuan_cyxm: 0,
 					hjjcfChuan_ff: 0
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [{

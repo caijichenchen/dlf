@@ -28,52 +28,52 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">监理人员数量</view>
-				<input type="text"  v-model="needVal.jlfNanning_jlrysl"></input>
+				<input type="digit" v-model="needVal.jlfNanning_jlrysl"></input>
 				<uni-tag  text="人" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">监理人员服务时间</view>
-				<input type="text"  v-model="needVal.jlfNanning_jlryfwsj"></input>
+				<input type="digit" v-model="needVal.jlfNanning_jlryfwsj"></input>
 				<uni-tag  text="月" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程复杂调整系数</view>
-				<input type="text"  v-model="needVal.jlfNanning_fztz"></input>
+				<input type="digit" v-model="needVal.jlfNanning_fztz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfNanning_fztz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">企业综合管理费率</view>
-				<input type="text"  v-model="needVal.jlfNanning_qyzhglfl"></input>
+				<input type="digit" v-model="needVal.jlfNanning_qyzhglfl"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfNanning_qyzhglfl">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">利润率</view>
-				<input type="text"  v-model="needVal.jlfNanning_lrl"></input>
+				<input type="digit" v-model="needVal.jlfNanning_lrl"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">税率</view>
-				<input type="text"  v-model="needVal.jlfNanning_sl"></input>
+				<input type="digit" v-model="needVal.jlfNanning_sl"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfNanning_sl">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工作量比例</view>
-				<input type="text"  v-model="needVal.jlfNanning_gzlbl"></input>
+				<input type="digit" v-model="needVal.jlfNanning_gzlbl"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfNanning_gzlbl">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input type="text"  v-model="needVal.jlfNanning_fjtz"></input>
+				<input type="digit" v-model="needVal.jlfNanning_fjtz"></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfNanning_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="sjfGuo_discount" v-model="needVal.jlfNanning_dzzk" /></input>
+				<input type="digit" v-model="needVal.jlfNanning_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

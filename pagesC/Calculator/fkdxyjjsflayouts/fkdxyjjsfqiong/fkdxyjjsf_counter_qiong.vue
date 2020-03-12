@@ -26,7 +26,7 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">建设面积</view>
-				<input type="text" id="sjf" v-model="needVal.fkdxyjjsfQiong_jsmj"></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfQiong_jsmj"></input>
 				<uni-tag text="㎡" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -42,13 +42,13 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.fkdxyjjsfQiong_fjtz" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfQiong_fjtz" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="fkdxyjjsfQiong_fjtz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.fkdxyjjsfQiong_yhzk" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfQiong_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

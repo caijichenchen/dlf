@@ -1,43 +1,30 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="928">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<jlfjin-counter-jin></jlfjin-counter-jin>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
-			<jlfjin-result></jlfjin-result>
+			<result title="山西省监理费" :result="result"></result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import jlfjinCounterJin from "./jlfjin_counter_jin.vue"
-	import computing from "@/common/base/computing.vue"
-	import jlfjinResult from "./jlfjin_result.vue"
+	import {jlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jlfLu',  //api请求
 					count:2  //积分消耗
-				}
+				},
+				result: JSON.parse(jlfData('Jin')),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			jlfjinCounterJin,
-			baseLayout,
-			computing,
-			jlfjinResult
+			jlfjinCounterJin
 		}
 	}
 </script>

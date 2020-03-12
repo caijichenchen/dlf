@@ -3,7 +3,7 @@
 		<template v-slot:jsq>
 			<swdzchf-counter-guo></swdzchf-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<swdzchf-result></swdzchf-result>
+			<result title="水文地质测绘费" :result="result"></result>
 		</template>
 		<template v-slot:qfbz>
 			<view class="a-text" :data-id="275" @tap="setDetailId">水文地质测绘费计算标准|水文地质测绘费取费标准|计价格[2002]10号</view>
@@ -14,25 +14,22 @@
 
 <script>
 	import swdzchfCounterGuo from "./swdzchf-counter_guo.vue"
-	import swdzchfResult from "./swdzchf_result.vue"
+	import {swdzchfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/swdzchfGuo',  //api请求
 					count:4  //积分消耗
 				},
+				result:JSON.parse(JSON.stringify(swdzchfData)),
 				id:275
 			}
 		},
-		methods: {
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			swdzchfCounterGuo,
-			swdzchfResult
+			swdzchfCounterGuo
 		}
 	}
 </script>

@@ -37,7 +37,7 @@
 			<view class="row px-4 border-bottom" @tap="getDiscount" style="height: 80rpx;">
 				<view style="line-height: 80rpx;">优惠码</view>
 				<view style="line-height: 80rpx;margin-left: auto;" >领取优惠券</view>
-				<image class="toimg" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right" style="line-height: 80rpx;font-size: 38rpx;"></view>
 			</view>
 			<view >
 				<view class="row px-4 border-bottom" style="height: 80rpx;">
@@ -228,7 +228,6 @@
 						const code = loginRes.code
 						$req.request({
 							url:'/api/xcx/pay/arousePay',
-							method:'POST',
 							data:{
 								order_id:this.orderData.order_id,
 								code:code
@@ -351,11 +350,6 @@
 		border-radius: 1.2upx;
 		box-shadow: 2upx 2upx 5px #00a0ea;
 		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAmCAMAAABnA+JrAAAAilBMVEUAAAAArv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv/////G7f+v5v8Utf8Jsf8DsP/h9f/S8f/M7//a9P/x+//q+P++6v+j4v9nz/8nuv8aV5l0AAAAHXRSTlMA+t7RIQ/vFsOnh3ltWE08B/TnurKeMiyVkWNGYTInvJYAAAD/SURBVDjLjdPLcoJAEIXhEy6ioiiKGpMMBExiru//ehkpkYF2TvW/6c236qqDxYPRB2S5GucA9hutnsAWhUq9waV4q9MB2tY7tW5LNTpE15J+8rU8DzRWE4bLyp4p+qKA4Pd6pJFMHfH3O8CNsW3htp71+qv8OI2wKTBsftPfpeVDbGYY9dS9pqksb1r8dsVS47l7zcnyqv6xuDbXdhAdAod/utg8QpaEPW8x1YiLnp8dbOa429GIiPbsL4WnLNdrz/4W8BaFWu3Z3wvRcn9L0FK9lvvLiBT7o1rub0Wc2B/Vcn97ouT+DsTI/UWEiP1RLfeXECD3F0NdXAhNO+IfWtVg7E1guKEAAAAASUVORK5CYII=") 101% 0% no-repeat;
-	}
-	.toimg {
-		height: 40rpx;
-		width: 40rpx;
-		margin-top: 20rpx;
 	}
 	.tip{
 		width: 100%;

@@ -12,7 +12,7 @@
 				<view >
 					标准名:{{item.counter.name}}
 				</view>
-				<view >
+				<view style="margin-top: 20rpx;">
 					文件名:{{item.counter.title}}
 				</view>
 			</view>
@@ -20,48 +20,51 @@
 				<view>下载</view>
 			</view> -->
 		</view>
+		<view v-if="page >= last_page" class="load-more">
+			没有更多了
+		</view>
+		<view v-if="page < last_page" class="load-more">
+			下拉加载更多
+		</view>
 	</view>
 </template>
 
 <script>
-	import $req from '@/common/req/request.js'
 	export default {
 		data() {
 			return {
 				normList:[],
-				serverUrl:this.$serverUrl
+				page:1,
+				last_page:1,
+				timer:null
 			}
 		},
-		onLoad() {
-			$req.request({
-				url:'/api/xcx/norm/norm',
-				data:{page:1}
-			}).then((res)=> {
-				this.normList = res.data.data.data
-				// console.log('获取用户标准成功',res)
-			}).catch((err)=>{
-				console.log('获取用户标准失败',err)
-			})
+		onLoad() { //获取标准
+			this.getNorms()
+		},
+		onReachBottom(){
+			if(this.timer){
+				clearInterval(this.timer)
+			}
+			if(this.page <= this.last_page){
+				this.page++
+				this.timer = setTimeout(()=>{
+					this.getNorms()
+				},1000)
+			}
+			uni.showNavigationBarLoading()
 		},
 		methods: {
-			downup(e){
-				console.log(e)
-				console.log(e.currentTarget.dataset.countid)
-				// uni.downloadFile({
-				//     url: this.serverUrl+'/api/xcx/standard/download'+'?id='+e.currentTarget.dataset.countid, 
-				// 	header:{
-				// 		"Authorization": "Bearer " +uni.getStorageSync('loginToken'),
-				// 		"Accept":"application/prs.dlf.v1+json",
-				// 	},
-				//     success: (res) => {
-				//         if (res.statusCode === 200) {
-				//             uni.showToast({
-				//             	icon:'none',
-				// 				title:'下载成功'
-				//             })
-				//         }
-				//     }
-				// });
+			getNorms(){ //加载标准
+				this.$req.request({
+					url:'/api/xcx/norm/norm',
+					data:{page:this.page}
+				}).then(res=> {
+					this.normList = this.normList.concat(res.data.data.data) 
+					this.last_page = res.data.data.last_page
+				}).catch(err=>{
+					this.$msg('获取用户标准失败')
+				})
 			}
 		}
 	}
@@ -95,5 +98,11 @@
 		padding: 6upx 24upx;
 		background: #00a0ea;
 		margin-left: 40%;
+	}
+	.load-more{
+		height: 60rpx;
+		line-height: 60rpx;
+		text-align: center;
+		color: #777777;
 	}
 </style>

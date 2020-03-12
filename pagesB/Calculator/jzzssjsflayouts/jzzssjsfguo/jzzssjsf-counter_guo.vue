@@ -46,18 +46,18 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jzzssjsfGuo4 || showSelector.jzzssjsfGuo_units">
 				<view class="title">{{multiSelector.jzzssjsfGuo4}}</view>
-				<input v-model="needVal.jzzssjsfGuo_jfe" /></input>
+				<input type="digit" v-model="needVal.jzzssjsfGuo_jfe" /></input>
 				<uni-tag :text="multiSelector.jzzssjsfGuo_units" type="defult" v-model="needVal.jzzssjsfGuo_units"></uni-tag>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">比例表</view>
-				<input v-model="needVal.jzzssjsfGuo_blb" /></input>
+				<input type="digit" v-model="needVal.jzzssjsfGuo_blb" /></input>
 				<uni-tag text="%" type="defult" ></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jzzssjsfGuo_blb">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">专业调整</view>
-				<input v-model="needVal.jzzssjsfGuo_zytz" /></input>
+				<input type="digit" v-model="needVal.jzzssjsfGuo_zytz" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">点击查看</button>
 			</view>
 			<view class="cu-form-group" >
@@ -72,18 +72,18 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.jzzssjsfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.jzzssjsfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jzzssjsfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.jzzssjsfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.jzzssjsfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.jzzssjsfGuo_discount" /></input>
+				<input type="digit" v-model="needVal.jzzssjsfGuo_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -107,10 +107,18 @@
 	import fjtzGuo from "./jzzssjsfGuo_fjtz.vue"
 	import fztzGuo from './jzzssjsfGuo_fztz.vue'
 	import blbGuo from './jzzssjsfGuo_blb.vue'
-	import datajson from '@/common/json/jzzssjsf/jzzssjsf-guo.json'
+	// import datajson from '@/common/json/jzzssjsf/jzzssjsf-guo.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/jzzssjsf/jzzssjsf-guo.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -167,7 +175,7 @@
 				jzzssjsfGuo_fztz: ['I级','II级','III级'],
 				index: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

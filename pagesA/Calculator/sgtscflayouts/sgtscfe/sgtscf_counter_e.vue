@@ -41,17 +41,17 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfE_mjorje || showSelector.sgtscfE_units">
 				<view class="title">{{multiSelector.sgtscfE_mjorje}}</view>
-				<input type="text" v-model="needVal.sgtscfE_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfE_gcl"></input>
 				<uni-tag :text="multiSelector.sgtscfE_units" type="defult" v-model="multiSelector.sgtscfE_units"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">调整系数</view>
-				<input v-model="needVal.sgtscfE_tzxs" /></input>
+				<input type="digit" v-model="needVal.sgtscfE_tzxs" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sgtscfE_tzxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfE_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfE_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

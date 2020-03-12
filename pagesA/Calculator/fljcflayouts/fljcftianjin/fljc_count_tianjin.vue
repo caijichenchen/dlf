@@ -50,7 +50,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfTianjin_gclmc || showSelector.fljcfTianjin_dw">
 				<view class="title" v-model="needVal.fljcfTianjin_gclmc">{{multiSelector.fljcfTianjin_gclmc}}</view>
-				<input v-model="needVal.fljcfTianjin_gcl" /></input>
+				<input type="digit" v-model="needVal.fljcfTianjin_gcl" /></input>
 				<uni-tag :text="multiSelector.fljcfTianjin_dw" type="defult" v-model="needVal.fljcfTianjin_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfTianjin_gdname || showSelector.fljcfTianjin11">
@@ -60,13 +60,13 @@
 						{{multiSelector.fljcfTianjin_gdname[pickerIndex.fljcfTianjin_gdname]}}
 					</view>
 				</picker>
-				<input v-model="needVal.fljcfTianjin_zzgd" /></input>
+				<input type="digit" v-model="needVal.fljcfTianjin_zzgd" /></input>
 				<uni-tag :text="multiSelector.fljcfTianjin11" type="defult" v-model="multiSelector.fljcfTianjin11"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.fljcfTianjin_discount" /></input>
+				<input type="digit" v-model="needVal.fljcfTianjin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>

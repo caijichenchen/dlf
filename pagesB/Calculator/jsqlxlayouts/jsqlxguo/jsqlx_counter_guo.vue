@@ -18,36 +18,36 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="title">贷款比例</view>
-			<input v-model="needVal.tlkcsjsfGuo_fzfz" /></input>
+			<input type="digit" v-model="needVal.tlkcsjsfGuo_fzfz" /></input>
 			<uni-tag text="%" type="defult"></uni-tag>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">贷款利率</view>
-			<input v-model="needVal.jsqlxGuo_dkll" /></input>
+			<input type="digit" v-model="needVal.jsqlxGuo_dkll" /></input>
 			<uni-tag text="%" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showModal" data-target="jsqlxGuo_dkll">点击选择</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">浮动幅度</view>
-			<input v-model="needVal.jsqlxGuo_sf" /></input>
+			<input type="digit" v-model="needVal.jsqlxGuo_sf" /></input>
 			<uni-tag text="%" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">投资总额</view>
-			<input v-model="needVal.jsqlxGuo_gcjsqtfy" /></input>
+			<input type="digit" v-model="needVal.jsqlxGuo_gcjsqtfy" /></input>
 			<uni-tag text="万元" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">建设期(贷款时长)</view>
-			<input v-model="needVal.jsqlxGuo_dksc" /></input>
+			<input type="digit" v-model="needVal.jsqlxGuo_dksc" /></input>
 			<uni-tag text="年" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">建设期最后一年</view>
-			<input v-model="needVal.jsqlxGuo_zhynys" /></input>
+			<input type="digit" v-model="needVal.jsqlxGuo_zhynys" /></input>
 			<uni-tag text="月" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 		</view>

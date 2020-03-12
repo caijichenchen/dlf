@@ -3,30 +3,28 @@
 		<template v-slot:jsq>
 			<stbcbcf-counter-ji></stbcbcf-counter-ji>
 			<computing v-bind:countData = "countData"></computing>
-			<stbcbcf-result :title="title"></stbcbcf-result>
+			<result title="河北省水土保持补偿费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import stbcbcfCounterJi from "./stbcbcf_counter_ji.vue"
-	import stbcbcfResult from "../stbcbcf_result.vue"
+	import {stbcbcfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/stbcbcfJi',  //api请求
 					count:1  //积分消耗
 				},
-				title:'河北省'
+				result:JSON.parse(JSON.stringify(stbcbcfData))
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			stbcbcfCounterJi,
-			stbcbcfResult
+			stbcbcfCounterJi
 		}
 	}
 </script>

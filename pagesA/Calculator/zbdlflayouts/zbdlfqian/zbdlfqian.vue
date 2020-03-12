@@ -1,41 +1,30 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="265">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<zbdlf-counter-qian></zbdlf-counter-qian>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
-			<zbdlf-result :title="title"></zbdlf-result>
+			<result title="贵州招标代理费" :result="result"></result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import zbdlfCounterQian from "./zbdlf_counter_qian.vue"
-	import computing from "@/common/base/computing.vue"
-	import zbdlfResult from "../zbdlf_result.vue"
+	import {zbdlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/zbdlfQian',  //api请求
 					count:2  //积分消耗
 				},
-				title:'贵州'
+				result:JSON.parse(JSON.stringify(zbdlfData))
 			}
 		},
 		components:{
-			zbdlfCounterQian,
-			baseLayout,
-			computing,
-			zbdlfResult
+			zbdlfCounterQian
 		}
 	}
 </script>

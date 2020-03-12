@@ -17,8 +17,7 @@
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名:</view>
-				<view style="margin-left: auto;" v-if="userInfo.userInfo.user_name">{{userInfo.userInfo.user_name}}</view>
-				<view style="margin-left: auto;" v-else>您还没有填写个人信息</view>
+				<view style="margin-left: auto;" >{{userInfo.userInfo.user_name?userInfo.userInfo.user_name:'您还没有填写个人信息'}}</view>
 			</view>
 			<view class="p-3 row border-bottom font-md">
 				<view >姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别:</view>
@@ -29,8 +28,7 @@
 			<view class="p-3 row border-bottom font-md">
 				<view >验证手机:</view>
 				<view style="margin-left: auto;">{{userInfo.userInfo.user.tel}} 
-					<text class="iconBLue" v-if="userInfo.userInfo.user.tel_verified == 0" @tap="bindEmail('phone')">立即绑定</text> 
-					<text class="iconBLue" v-if="userInfo.userInfo.user.tel_verified == 1" @tap="bindEmail('phone')">立即解绑</text> 
+					<text class="iconBLue" @tap="bindEmail('phone')">{{userInfo.userInfo.user.tel_verified == 1?'立即解绑':'立即绑定'}}</text> 
 				</view>
 			</view>
 			<view class="p-3 row border-bottom font-md">

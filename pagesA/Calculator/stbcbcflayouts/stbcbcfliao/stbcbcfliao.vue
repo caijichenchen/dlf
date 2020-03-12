@@ -3,30 +3,28 @@
 		<template v-slot:jsq>
 			<stbcbcf-counter-liao></stbcbcf-counter-liao>
 			<computing v-bind:countData = "countData"></computing>
-			<stbcbcf-result :title="title"></stbcbcf-result>
+			<result title="辽宁省水土保持补偿费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import stbcbcfCounterLiao from "./stbcbcf_counter_liao.vue"
-	import stbcbcfResult from "../stbcbcf_result.vue"
+	import {stbcbcfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/stbcbcfLiao',  //api请求
 					count:1  //积分消耗
 				},
-				title:'辽宁省'
+				result:JSON.parse(JSON.stringify(stbcbcfData))
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			stbcbcfCounterLiao,
-			stbcbcfResult
+			stbcbcfCounterLiao
 		}
 	}
 </script>

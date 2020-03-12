@@ -13,13 +13,13 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">工程造价</view>
-				<input type="text" v-model="needVal.sjfGui_gczj"></input>
+				<input type="digit" v-model="needVal.sjfGui_gczj"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">专业调整</view>
-				<input v-model="needVal.sjfGui_zytz"></input>
+				<input type="digit" v-model="needVal.sjfGui_zytz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="sjfGui_zytz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
@@ -33,12 +33,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input name="sjfGuo_fjtz" v-model="needVal.sjfGui_fjtz"></input>
+				<input type="digit" v-model="needVal.sjfGui_fjtz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="sjfGui_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="sjfGui_discount" v-model="needVal.sjfGui_discount" /></input>
+				<input type="digit" v-model="needVal.sjfGui_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ytgcjcGuo_swgzldw">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.ytgcjcGuo_swgzl"/></input>
+				<input type="digit" v-model="needVal.ytgcjcGuo_swgzl"/></input>
 				<uni-tag :text="multiSelector.ytgcjcGuo_swgzldw" type="defult" v-model="needVal.ytgcjcGuo_swgzldw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ytgcjcGuo_xzlx2">
@@ -42,7 +42,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ytgcjcGuo_zdzmc">
 				<view class="title" v-model="needVal.ytgcjcGuo_zdzmc">{{multiSelector.ytgcjcGuo_zdzmc}}</view>
-				<input v-model="needVal.ytgcjcGuo_zdz" /></input>
+				<input type="digit" v-model="needVal.ytgcjcGuo_zdz" /></input>
 				<uni-tag :text="multiSelector.ytgcjcGuo_zdzdw" type="defult" v-model="needVal.ytgcjcGuo_zdzdw"></uni-tag>
 			</view>
 			<view class="cu-form-group" >
@@ -57,18 +57,18 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.ytgcjcGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.ytgcjcGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="ytgcjcGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.ytgcjcGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.ytgcjcGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.ytgcjcGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.ytgcjcGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[5])">查看说明</button>
 			</view>
@@ -86,10 +86,18 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/ytgcjcs.json'
+	// import datajson from '@/common/json/ytgcjcs.json'
 	import gctz from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/ytgcjcs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -140,7 +148,7 @@
 				ytgcjcGuo_qwfjtz: ['1.0','1.2'],
 				index: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

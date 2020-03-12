@@ -13,28 +13,28 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">计费额</view>
-				<input type="text"  v-model="needVal.jlfMin_jfe"></input>
+				<input type="digit" v-model="needVal.jlfMin_jfe"></input>
 				<uni-tag  text="万元" type="defult">万元</uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">专业调整</view>
-				<input type="text"  v-model="needVal.jlfMin_zytz"></input>
+				<input type="digit" v-model="needVal.jlfMin_zytz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfMin_zytz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
-				<input type="text"  v-model="needVal.jlfMin_fztz"></input>
+				<input type="digit" v-model="needVal.jlfMin_fztz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfMin_fztz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">服务质量系数</view>
-				<input type="text"  v-model="needVal.jlfMin_fwzlxs"></input>
+				<input type="digit" v-model="needVal.jlfMin_fwzlxs"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfMin_fwzlxs">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input  v-model="needVal.jlfMin_discount" /></input>
+				<input type="digit" v-model="needVal.jlfMin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

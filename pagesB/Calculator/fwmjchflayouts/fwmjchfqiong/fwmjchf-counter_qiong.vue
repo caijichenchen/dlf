@@ -27,7 +27,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">测绘工作量</view>
-				<input v-model="needVal.fwmjchfQiong_chgzl" /></input>
+				<input type="digit" v-model="needVal.fwmjchfQiong_chgzl" /></input>
 				<uni-tag :text="multiSelector.fwmjchfQiong_chgzldw" type="defult" v-model="needVal.fwmjchfQiong_chgzldw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fwmjchfQiong_fccl || showSelector.fwmjchfQiong_xzqy">
@@ -42,13 +42,13 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.fwmjchfQiong_fdfd" /></input>
+				<input type="digit" v-model="needVal.fwmjchfQiong_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.fwmjchfQiong_yhzk" /></input>
+				<input type="digit" v-model="needVal.fwmjchfQiong_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -68,10 +68,18 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import fwmjchfFczl from "./fwmjchf_fczl.vue"
-	import datajson from '@/common/json/fwmjchfs.json'
+	// import datajson from '@/common/json/fwmjchfs.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/fwmjchfs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -115,7 +123,7 @@
 				},
 				fwmjchfQiong_xzbz:['琼价审批[2010]397号'],
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

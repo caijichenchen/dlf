@@ -50,12 +50,12 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfGui_gclmc || showSelector.fljcfGui_dw">
 				<view class="title">{{multiSelector.fljcfGui_gclmc}}</view>
-				<input v-model="needVal.fljcfGui_gcl" /></input>
+				<input type="digit" v-model="needVal.fljcfGui_gcl" /></input>
 				<uni-tag :text="multiSelector.fljcfGui_dw" type="defult" v-model="needVal.fljcfGui_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.fljcfGui_discount" /></input>
+				<input type="digit" v-model="needVal.fljcfGui_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
@@ -71,7 +71,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/fljcfs/fljcfs-gui.json'
+	// import datajson from '@/common/json/fljcfs/fljcfs-gui.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {

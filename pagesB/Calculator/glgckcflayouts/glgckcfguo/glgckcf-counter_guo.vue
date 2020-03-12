@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.glgckcfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.glgckcfGuo_swgzl" /></input>
 				<uni-tag text="正线公里" type="defult"></uni-tag>
 			</view>
 			
@@ -33,12 +33,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂分值</view>
-				<input v-model="needVal.glgckcfGuo_fzfz" /></input>
+				<input type="digit" v-model="needVal.glgckcfGuo_fzfz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="glgckcfGuo_fzfz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">附加调整</view>
-				<input v-model="needVal.glgckcfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.glgckcfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="glgckcfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
@@ -53,19 +53,19 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">高程调整</view>
-				<input v-model="needVal.glgckcfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.glgckcfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="glgckcfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.glgckcfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.glgckcfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.glgckcfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.glgckcfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -85,12 +85,20 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/glgcs.json'
+	// import datajson from '@/common/json/glgcs.json'
 	import gctz from '@/common/base/gctz.vue'
 	import fjzt from './glgckcfGuo_fjtz.vue'
 	import fzfz from './glgckcfGuo_fzfz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/glgcs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -126,7 +134,7 @@
 				title: '公路勘察费',
 				modalName: 'glgckcfGuo_gctz',
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

@@ -26,6 +26,10 @@ export default {
 		options.method = options.method || this.common.method
 		options.dataType = options.dataType || this.common.dataType
 		return new Promise((res,rej)=>{
+			uni.showLoading({
+				title:'加载中',
+				mask:true
+			})
 			uni.request({
 				...options,
 				success:(result) => {
@@ -52,6 +56,9 @@ export default {
 						title:'获取数据失败,请稍后重试'
 					})
 					return rej()
+				},
+				complete() {
+					uni.hideLoading()
 				}
 			})
 		})

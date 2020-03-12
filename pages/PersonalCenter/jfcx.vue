@@ -49,7 +49,6 @@
 		data() {
 			return {
 				TabCur: 0,
-				scrollLeft: 0,
 				inquireList:['积分余额','下载消耗','计算消耗','积分获得'],
 				titlelist:['可用积分','计算消耗积分','下载消耗积分','总积分'],
 				jfye:{},
@@ -57,15 +56,12 @@
 			}
 		},
 		onLoad() {
-			$req.request({
+			this.$req.request({
 				url:'/api/xcx/integral/inquire',
 			}).then(res=>{
 				this.jfye = res.data.integralBalance
 			}).catch(err=>{
-				uni.showToast({
-					icon:'none',
-					title:'获取积分信息失败,请稍后重试'
-				})
+				this.$msg('获取积分信息失败,请稍后重试')
 			})
 		},
 		methods: {
@@ -85,10 +81,7 @@
 							integralCalculation:res.data.integralCalculation.slice(0,10)
 						}
 					}).catch(err=>{
-						uni.showToast({
-							icon:'none',
-							title:'获取积分信息失败,请稍后重试'
-						})
+						this.$msg('获取积分信息失败,请稍后重试')
 					})
 				}
 			 },

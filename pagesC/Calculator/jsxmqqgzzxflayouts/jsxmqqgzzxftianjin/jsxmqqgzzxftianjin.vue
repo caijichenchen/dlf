@@ -1,41 +1,30 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="250">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<jsxmqqgzzxf-counter-jin></jsxmqqgzzxf-counter-jin>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
-			<jsxmqqgzzxf-result :title="title"></jsxmqqgzzxf-result>
+			<result title="天津市建设项目前期工作咨询费" :result="result"></result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
-	import computing from "@/common/base/computing.vue"
 	import jsxmqqgzzxfCounterJin from "./jsxmqqgzzxf_counter_jin.vue"
-	import jsxmqqgzzxfResult from "../jsxmqqgzzxf_result.vue"
+	import {jsxmqqgzzxfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url:this.$serverUrl + '/api/jsxmqqgzzxfTianjin',  //api请求
 					count:2  //积分消耗
 				},
-				title:'天津'
+				result:JSON.parse(JSON.stringify(jsxmqqgzzxfData)),
 			}
 		},
 		components:{
-			jsxmqqgzzxfCounterJin,
-			baseLayout,
-			computing,
-			jsxmqqgzzxfResult
+			jsxmqqgzzxfCounterJin
 		}
 	}
 </script>

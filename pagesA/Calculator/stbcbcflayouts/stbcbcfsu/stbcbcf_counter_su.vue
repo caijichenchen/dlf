@@ -48,12 +48,12 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.stbcbcfSu_gclmc || showSelector.stbcbcfSu_dw">
 				<view class="title">{{multiSelector.stbcbcfSu_gclmc}}</view>
-				<input type="text" v-model="needVal.stbcbcfSu_gcl"></input>
+				<input type="digit" v-model="needVal.stbcbcfSu_gcl"></input>
 				<uni-tag :text="multiSelector.stbcbcfSu_dw" type="defult" v-model="needVal.stbcbcfSu_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="stbcbcfSu_discount" v-model="needVal.stbcbcfSu_discount" /></input>
+				<input type="digit" v-model="needVal.stbcbcfSu_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

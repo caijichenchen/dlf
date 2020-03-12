@@ -11,7 +11,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">估算投资额</view>
-				<input name="pppxmzxQingdao_gczj" v-model="needVal.pppxmzxQingdao_gczj" /></input>
+				<input type="digit" v-model="needVal.pppxmzxQingdao_gczj" /></input>
 				<uni-tag text="亿元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
@@ -46,12 +46,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">项目计算次数</view>
-				<input v-model="needVal.pppxmzxQingdao_xmjscs" /></input>
+				<input type="digit" v-model="needVal.pppxmzxQingdao_xmjscs" /></input>
 				<uni-tag text="次" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.pppxmzxQingdao_discount" /></input>
+				<input type="digit" v-model="needVal.pppxmzxQingdao_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -66,9 +66,17 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/pppxmzxs/pppxmzxs-qingdao.json'
+	// import datajson from '@/common/json/pppxmzxs/pppxmzxs-qingdao.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/pppxmzxs/pppxmzxs-qingdao.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -109,7 +117,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "3",

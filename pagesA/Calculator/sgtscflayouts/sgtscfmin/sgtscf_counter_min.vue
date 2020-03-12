@@ -30,22 +30,22 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfMin4 || showSelector.sgtscfMin_units">
 				<view class="title">{{multiSelector.sgtscfMin4}}</view>
-				<input type="text" v-model="needVal.sgtscfMin_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfMin_gcl"></input>
 				<uni-tag :text="multiSelector.sgtscfMin_units" type="defult" v-model="multiSelector.sgtscfMin_units"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfMin8 || showSelector.sgtscfMin_ndxs">
 				<view class="title">{{multiSelector.sgtscfMin8}}</view>
-				<input v-model="needVal.sgtscfMin_ndxs" /></input>
+				<input type="digit" v-model="needVal.sgtscfMin_ndxs" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sgtscfMin_ndxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">调整系数</view>
-				<input v-model="needVal.sgtscfMin_tzxs" /></input>
+				<input type="digit" v-model="needVal.sgtscfMin_tzxs" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sgtscfMin_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfMin_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfMin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

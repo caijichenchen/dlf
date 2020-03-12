@@ -22,12 +22,12 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">总投资</view>
-				<input type="text" id="sjf" v-model="needVal.hjyxpjMeng_gtz"></input>
+				<input type="digit" v-model="needVal.hjyxpjMeng_gtz"></input>
 				<uni-tag  text="亿元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">优惠折扣</view>
-				<input type="text" id="sjf" v-model="needVal.hjyxpjMeng_discount"></input>
+				<input type="digit" v-model="needVal.hjyxpjMeng_discount"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1]) ">查看说明</button>
 			</view>

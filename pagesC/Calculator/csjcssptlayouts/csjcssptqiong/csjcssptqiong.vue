@@ -3,9 +3,8 @@
 		<template v-slot:jsq>
 			<csjcsspt-counter-qiong></csjcsspt-counter-qiong>
 			<computing v-bind:countData = "countData"></computing>
-			<csjcsspt-result :title="title"></csjcsspt-result>
+			<result title="海南省城市基础设施配套费" :result="result"></result>
 		</template>
-		
 		<template v-slot:qfbz>
 			<view class="a-text" :data-id="243" @tap="setDetailId">海南|调整城市基础设施配套费征收标准|琼价费管[2010]99号</view>
 			<view class="a-text" :data-id="245" @tap="setDetailId">海南省各市县城市基础设施配套费征收标准2017</view>
@@ -16,26 +15,22 @@
 
 <script>
 	import csjcssptCounterQiong from "./csjcsspt_counter_qiong.vue"
-	import csjcssptResult from "../csjcsspt_result.vue"
+	import {csjcssptData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/csjcssptQiong',  //api请求
 					count:1  //积分消耗
 				},
-				title:"海南",
+				result:JSON.parse(JSON.stringify(csjcssptData)),
 				id:243
 			}
 		},
-		methods:{
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			csjcssptCounterQiong,
-			csjcssptResult
+			csjcssptCounterQiong
 		}
 	}
 </script>

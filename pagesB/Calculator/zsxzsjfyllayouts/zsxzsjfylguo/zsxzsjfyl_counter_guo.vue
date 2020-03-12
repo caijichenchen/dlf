@@ -14,13 +14,13 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">项目建安费额</view>
-				<input type="text" v-model="needVal.zsxzsjfylGuo_gczj"></input>
+				<input type="digit" v-model="needVal.zsxzsjfylGuo_gczj"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">工作比例表</view>
-				<input type="text" v-model="needVal.zsxzsjfylGuo_blb"></input>
+				<input type="digit" v-model="needVal.zsxzsjfylGuo_blb"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfylGuo_blb">查看说明</button>
 			</view>
@@ -35,12 +35,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">其他服务成本附加系数</view>
-				<input  v-model="needVal.zsxzsjfylGuo_fjxs"></input>
+				<input type="digit" v-model="needVal.zsxzsjfylGuo_fjxs"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfylGuo_fjxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input  v-model="needVal.zsxzsjfylGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.zsxzsjfylGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

@@ -46,33 +46,33 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.dlgcqqgzkcfGuo8">
 				<view class="title">{{multiSelector.dlgcqqgzkcfGuo8}}</view>
-				<input v-model="needVal.dlgcqqgzkcfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.dlgcqqgzkcfGuo_swgzl" /></input>
 				<uni-tag text="公里" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂分值</view>
-				<input v-model="needVal.dlgcqqgzkcfGuo_fzcd" /></input>
+				<input type="digit" v-model="needVal.dlgcqqgzkcfGuo_fzcd" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dlgcqqgzkcfGuo_fzcd">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.dlgcqqgzkcfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.dlgcqqgzkcfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dlgcqqgzkcfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.dlgcqqgzkcfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.dlgcqqgzkcfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dlgcqqgzkcfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.dlgcqqgzkcfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.dlgcqqgzkcfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.dlgcqqgzkcfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.dlgcqqgzkcfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -92,7 +92,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/dlgcqqgzkcf/dlgcqqgzkcf-guo.json'
+	// import datajson from '@/common/json/dlgcqqgzkcf/dlgcqqgzkcf-guo.json'
 	import fzcd from './dlgcqqgzkcfGuo_fzcd.vue'
 	import fjtz from './dlgcqqgzkcfGuo_fjtz.vue'
 	import gctz from '@/common/base/gctz.vue'
@@ -144,7 +144,7 @@
 					dlgcqqgzkcfGuo_sfjj: false,
 					dlgcqqgzkcfGuo8: false,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				showModalName: null,
 				explain: [{
@@ -174,6 +174,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/dlgcqqgzkcf/dlgcqqgzkcf-guo.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			fzcd,

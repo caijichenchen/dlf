@@ -29,12 +29,12 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" v-model="needVal.fljcfBa_gclmc">工程量</view>
-				<input v-model="needVal.fljcfBa_gcl" /></input>
+				<input type="digit" v-model="needVal.fljcfBa_gcl" /></input>
 				<uni-tag text="套" type="defult" v-model="needVal.fljcfBa_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.fljcfBa_discount" /></input>
+				<input type="digit" v-model="needVal.fljcfBa_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -47,11 +47,8 @@
 	import {
 		counterMixin
 	} from "@/common/base/counterMixin"
-	import {
-		MultiSelectorsChangeMixin
-	} from "@/common/base/multiSelectorsChange.js"
 	export default {
-		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		mixins: [counterMixin],
 		data() {
 			return {
 				needVal: {

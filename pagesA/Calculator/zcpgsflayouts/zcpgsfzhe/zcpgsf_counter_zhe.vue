@@ -30,12 +30,12 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.zcpgsfZhe4 || showSelector.zcpgsfZhe5">
 				<view class="title">{{multiSelector.zcpgsfZhe4}}</view>
-				<input type="text" v-model="needVal.zcpgsfZhe_edorcd"></input>
+				<input type="digit" v-model="needVal.zcpgsfZhe_edorcd"></input>
 				<uni-tag :text="multiSelector.zcpgsfZhe5" type="defult" v-model="multiSelector.zcpgsfZhe5"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="zcpgsfZhe_discount" v-model="needVal.zcpgsfZhe_discount" /></input>
+				<input type="digit" v-model="needVal.zcpgsfZhe_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

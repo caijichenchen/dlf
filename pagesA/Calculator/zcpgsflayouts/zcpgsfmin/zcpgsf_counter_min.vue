@@ -37,17 +37,17 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.zcpgsfMin_ryjc">
 				<view class="title">人数</view>
-				<input type="text" v-model="needVal.zcpgsfMin_peoples"></input>
+				<input type="digit" v-model="needVal.zcpgsfMin_peoples"></input>
 				<uni-tag text="人" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.zcpgsfMin4 || showSelector.zcpgsfMin5">
 				<view class="title">{{multiSelector.zcpgsfMin4}}</view>
-				<input type="text" v-model="needVal.zcpgsfMin_edorcd"></input>
+				<input type="digit" v-model="needVal.zcpgsfMin_edorcd"></input>
 				<uni-tag :text="multiSelector.zcpgsfMin5" type="defult" v-model="multiSelector.zcpgsfMin5"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="zcpgsfMin_discount" v-model="needVal.zcpgsfMin_discount" /></input>
+				<input type="digit" v-model="needVal.zcpgsfMin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

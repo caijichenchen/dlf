@@ -3,30 +3,28 @@
 		<template v-slot:jsq>
 			<hjyxpjf-counter-gui></hjyxpjf-counter-gui>
 			<computing v-bind:countData = "countData"></computing>
-			<hjyxpjf-result :title="title"></hjyxpjf-result>
+			<result title="广西省环境影响评价费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import hjyxpjfCounterGui from "./hjyxpj_counter_gui.vue"
-	import hjyxpjfResult from "../hjyxpjf_result.vue"
+	import {hjyxpjData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url:this.$serverUrl + '/api/hjyxpjGui',  //api请求
 					count:2  //积分消耗
 				},
-				title:'广西'
+				result:JSON.parse(JSON.stringify(hjyxpjData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			hjyxpjfCounterGui,
-			hjyxpjfResult
+			hjyxpjfCounterGui
 		}
 	}
 </script>

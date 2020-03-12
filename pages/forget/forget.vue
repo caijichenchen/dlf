@@ -9,21 +9,21 @@
 		</view>
 		<view class="list" v-if="showTab == 0">
 			<view class="list-call">
-				<image class="img" src="/static/shilu-login/1.png"></image>
-				<input class="biaoti" @blur="checkPhone" v-model="phoneno" type="number" maxlength="11" placeholder="请输入手机号" />
+				<view class="cuIcon-mobilefill iconBLue font-bs"></view>
+				<input class="biaoti" @blur="checkPhone" v-model="forgetFrom.tel" type="number" maxlength="11" placeholder="请输入手机号" />
 			</view>
 			<view class="list-call">
-				<image class="img" src="/static/shilu-login/3.png"></image>
-				<input class="biaoti" v-model="code" type="number" maxlength="4" placeholder="请输入验证码" />
-				<view class="code" :class="phoneStatus ? '':'noinput'" @click="phoneStatus && getCode()">{{codetext}}</view>
+				<view class="cuIcon-safe iconBLue font-bs"></view>
+				<input class="biaoti" v-model="forgetFrom.tel_code" type="number" maxlength="4" placeholder="请输入验证码" />
+				<view class="code" :class="codeStatus ? '':'noinput'" @click="codeStatus && getCode()">{{time ? time+'s 再获取' : '获取验证码'}}</view>
 			</view>
 			<view class="list-call">
-				<image class="img" src="/static/shilu-login/2.png"></image>
-				<input class="biaoti" @blur="checkInput" v-model="password" type="text" password maxlength="16" placeholder="6-16位字母数字符号组成密码" />
+				<view class="cuIcon-unlock iconBLue font-bs"></view>
+				<input class="biaoti" @blur="checkPassword" v-model="forgetFrom.password" type="text" password maxlength="16" placeholder="6-16位字母数字符号组成密码" />
 			</view>
 			<view class="list-call">
-				<image class="img" src="/static/shilu-login/2.png"></image>
-				<input class="biaoti" @blur="checkInput" v-model="regpassword" type="text" password maxlength="16" placeholder="请确认新密码" />
+				<view class="cuIcon-unlock iconBLue font-bs"></view>
+				<input class="biaoti" @blur="checkPassword" v-model="forgetFrom.password_confirmation" type="text" password maxlength="16" placeholder="请确认新密码" />
 			</view>
 			<button class="regbtn" :class="checkPwd ? '':'noinput'" @tap="checkPwd && setNewPwd()">提交</button>
 		</view>
@@ -37,195 +37,124 @@
 </template>
 
 <script>
-	import $req from '@/common/req/request.js'
 	export default {
 		data() {
 			return {
-				phoneno:'',
-				code:"",
-				password:'',
-				regpassword: '',
-				phoneStatus: false,
+				forgetFrom:{
+					tel:'',
+					password:'',
+					password_confirmation:'',
+					tel_code:''
+				},
 				showTab: 0,
-				goreg:false,
 				userEmail: '',
-				time: 60,
-				codetext:'获取验证码'
+				time: 0,
 			}
 		},
 		methods: {
 			changeCategory(index){
 				this.showTab = index
 			},
-			checkPhone(){
-				const regPhone = /^1[3456789]\d{9}$/
-				const phoneNum = this.phoneno.trim()
-				if(!regPhone.test(phoneNum)){
-					uni.showToast({
-						icon: 'none',
-						title:'手机号输入格式不正确'
-					})
-					return 
-				}
-				$req.request({
+			checkPhone(){ //检验手机号
+				if(!this.codeStatus) return this.$msg('手机号输入格式不正确')
+				this.$req.request({
 					url:'/api/xcx/checkTelExsit',
-					data:{
-						tel:phoneNum
-					}
+					data:{ tel:tel }
 				}).then(res=>{
 					if(res.data.status == 'success' && res.data.message == '手机号不存在'){
-						uni.showToast({
-							icon:'none',
-							title:'手机号不存在'
-						})
+						this.$msg('手机号不存在')
 					}else{
-						this.phoneStatus = true
+						this.$msg('手机号可正常注册')
 					}
 				}).catch(err=>{
-					uni.showToast({
-						icon:'none',
-						title:'查询手机号失败,请稍后重试'
-					})
+					this.$msg('查询手机号失败,请稍后重试')
 				})
 			},
-			checkInput(){
+			checkPassword(){
+				const { password,password_confirmation } = this.forgetFrom
 				const reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,}$/
-				if(!this.password){
-					return uni.showToast({
-						icon:'none',
-						title:'密码输入不能为空'
-					})
+				if(!password){
+					return this.$msg('密码输入不能为空')
 				}
-				if(!reg.test(this.password)){
-					return uni.showToast({
-						icon:'none',
-						title:'密码输入不符合规范'
-					})
+				if(!reg.test(password)){
+					return this.$msg('密码输入不规范')
 				}
-				if(this.password != this.regpassword){
-					uni.showToast({
-						icon: 'none',
-						title:'两次密码输入不一致'
-					})
-					return 
+				if(password != password_confirmation){
+					return this.$msg('两次密码输入不一致')
 				}
 			},
-			getCode(){
-				this.timer = setInterval(()=>{
-					if(this.time == 0){
-						clearInterval(this.timer)
-						this.time = 60
-						this.phoneStatus = true
-						this.codetext = '获取验证码'
-						return 
-					}
-					if(this.phoneStatus){
-						this.phoneStatus = false
-					}
-					this.codetext = (this.time--)+'s 再获取'
-				},1000)
-				$req.request({
-					url:'/api/xcx/registerVerfied',
-					data:{
-						tel:this.phoneno,
-						message_code: 'reset'
-					}
-				}).then(res=>{
-					if(res.data[0] == 'T'){
-						uni.showToast({
-							icon:'none',
-							title:'验证码发送成功'
-						})
-					}else{
-						uni.showToast({
-							icon:'none',
-							title:'验证码发送失败，请稍后重试'
-						})
-					}
-				}).catch(err=>{
-					uni.showToast({
-						icon:'none',
-						title:'验证码发送失败，请稍后重试'
-					})
-				})
-			},
-			setNewPwd(){
-				if(!this.code){
-					return uni.showToast({
-						icon:'none',
-						title:'验证码输入不能为空'
+			getCode(){ //验证码
+				if(!this.time){
+					this.time = 60
+					const intervalId = setInterval(()=>{
+						if(this.time == 0){
+							clearInterval(intervalId)
+						}
+						this.time--
+					},1000)
+					this.$req.request({
+						url:'/api/xcx/registerVerfied',
+						data:{
+							tel:this.regFrom.tel,
+							message_code: 'reset'
+						}
+					}).then(res=>{
+						if(res.data[0] == 'T'){
+							this.$msg('验证码发送成功')
+						}else{
+							clearInterval(intervalId)
+							this.$msg('验证码发送失败，请稍后重试')
+						}
+					}).catch(err=>{
+						clearInterval(intervalId)
+						this.$msg('验证码发送失败，请稍后重试')
 					})
 				}
-				$req.request({
+			},
+			setNewPwd(){ //重置密码
+				if(!this.forgetFrom.tel_code){
+					return this.$msg('验证码输入不能为空')
+				}
+				this.$req.request({
 					url:'/api/xcx/telReset',
-					data:{
-						tel:this.phoneno,
-						password:this.password,
-						password_confirmation:this.regpassword,
-						tel_code:this.code
-					}
+					data:{...this.forgetFrom}
 				}).then(res=>{
-					console.log(res)
 					if(res.data.status == 200 || res.data.msg == '密码重置成功'){
-						uni.showToast({
-							icon:'none',
-							title:'密码重置成功'
-						})
+						this.$msg('密码重置成功')
 						setTimeout(()=>{
 							uni.navigateTo({
 								url:'/pages/login/login'
 							})
 						},1500)
 					}else{
-						uni.showToast({
-							icon:'none',
-							title:'密码重置失败,请稍后重试'
-						})
+						this.$msg('密码重置失败,请稍后重试')
 					}
 				}).catch(err=>{
-					uni.showToast({
-						icon:'none',
-						title:'密码重置失败,请稍后重试'
-					})
+					this.$msg('密码重置失败,请稍后重试')
 				})
 			},
 			checkEmail(){
 				const reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/
 				if(!this.userEmail){
-					return uni.showToast({
-						icon:'none',
-						title:'邮箱输入不能为空'
-					})
+					return this.$msg('邮箱输入不能为空')
 				}
 				if(reg.test(this.userEmail)){
-					return uni.showToast({
-						icon:'none',
-						title:'邮箱输入不符合规范'
-					})
+					return this.$msg('邮箱输入不符合规范')
 				}
 			},
-			setNewEmail(){
-				
-			}
 		},
 		computed:{
-			checkPwd(){
-				let baseStatus = false
-				// if(!this.phoneStatus){
-				// 	return baseStatus
-				// }
+			codeStatus(){ //获取验证码按钮
+				const { tel } = this.forgetFrom
+				return /^1[3456789]\d{9}$/.test(tel.trim())
+			},
+			checkPwd(){ //校验密码
+				const { password,password_confirmation } = this.regFrom
 				const reg = /^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,}$/
-				if(!this.password){
-					return baseStatus
+				if(!password && !reg.test(password) && password != password_confirmation){
+					return false
 				}
-				if(!reg.test(this.password)){
-					return baseStatus
-				}
-				if(this.password != this.regpassword){
-					return baseStatus
-				}
-				baseStatus = true
-				return baseStatus
+				return true
 			}
 		}
 	}
@@ -258,10 +187,6 @@
     	margin-bottom: 10rpx;
     	border-bottom: 2rpx solid rgba(230,230,230,1);
     }
-    .list-call .img{
-    	width: 40rpx;
-    	height: 40rpx;
-    }
     .list-call .biaoti{
     	flex: 1;
     	text-align: left;
@@ -290,8 +215,8 @@
     	width: 100%;
     	border-radius: 10rpx;
     	font-size: 28rpx;
-    	height: 60rpx;
-    	line-height: 60rpx;
+    	height: 70rpx;
+    	line-height: 70rpx;
     	margin-top: 40rpx;
     }
 </style>

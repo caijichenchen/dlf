@@ -3,7 +3,7 @@
 		<template v-slot:jsq>
 			<dzzh-counter-guo></dzzh-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<dzzh-result></dzzh-result>
+			<result title="地质灾害危险性评估收费" :result="result"></result>
 		</template>
 		<template v-slot:qfbz>
 			<view class="a-text" :data-id="140" @tap="setDetailId">地质灾害危险性评估收费管理办法|发改办价格(2006]745号</view>
@@ -16,25 +16,22 @@
 
 <script>
 	import dzzhCounterGuo from "./dzzh-counter_guo.vue"
-	import dzzhResult from "./dzzh_result.vue"
+	import {dzzhData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/dzzhGuo',  //api请求
 					count:4  //积分消耗
 				},
+				result:JSON.parse(JSON.stringify(dzzhData)),
 				id:140
 			}
 		},
-		methods:{
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			dzzhCounterGuo,
-			dzzhResult
+			dzzhCounterGuo
 		}
 	}
 </script>

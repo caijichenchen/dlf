@@ -34,12 +34,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程总概算</view>
-				<input v-model="needVal.jsdwglXiamen_gczgs" /></input>
+				<input type="digit" v-model="needVal.jsdwglXiamen_gczgs" /></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.jsdwglXiamen_discount" /></input>
+				<input type="digit" v-model="needVal.jsdwglXiamen_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
@@ -54,9 +54,17 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/jsdwglf/jsdwglf-xiamen.json'
+	// import datajson from '@/common/json/jsdwglf/jsdwglf-xiamen.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/jsdwglf/jsdwglf-xiamen.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -92,7 +100,7 @@
 					jsdwglXiamen_fl: false,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

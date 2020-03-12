@@ -22,17 +22,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">主体土建投资</view>
-				<input v-model="needVal.stbcfGuo_zttjtz"/></input>
+				<input type="digit" v-model="needVal.stbcfGuo_zttjtz"/></input>
 				<uni-tag text="亿元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.stbcfGuo_tzxs">
 				<view class="title">调整系数</view>
-				<input v-model="needVal.stbcfGuo_tzxs" /></input>
+				<input type="digit" v-model="needVal.stbcfGuo_tzxs" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="stbcfGuo_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.stbcfGuo_dzzk" /></input>
+				<input type="digit" v-model="needVal.stbcfGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

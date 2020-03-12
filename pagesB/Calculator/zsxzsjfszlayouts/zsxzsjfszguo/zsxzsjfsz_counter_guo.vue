@@ -14,13 +14,13 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">项目工程费</view>
-				<input type="text" v-model="needVal.zsxzsjfszGuo_gczj"></input>
+				<input type="digit" v-model="needVal.zsxzsjfszGuo_gczj"></input>
 				<uni-tag  text="万元" type="defult">万元</uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工作量比列</view>
-				<input type="text" v-model="needVal.zsxzsjfszGuo_blb"></input>
+				<input type="digit" v-model="needVal.zsxzsjfszGuo_blb"></input>
 				<uni-tag  text="万元" type="defult">%</uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfszGuo_blb">查看说明</button>
 			</view>
@@ -35,22 +35,22 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程附加系数</view>
-				<input  v-model="needVal.zsxzsjfszGuo_fjtz"></input>
+				<input type="digit" v-model="needVal.zsxzsjfszGuo_fjtz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfszGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程专业系数</view>
-				<input  v-model="needVal.zsxzsjfszGuo_zytz"></input>
+				<input type="digit" v-model="needVal.zsxzsjfszGuo_zytz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfszGuo_zytz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">其他服务成本附加系数</view>
-				<input  v-model="needVal.zsxzsjfszGuo_fwxs"></input>
+				<input type="digit" v-model="needVal.zsxzsjfszGuo_fwxs"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="zsxzsjfszGuo_fwxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input  v-model="needVal.zsxzsjfszGuo_discount" /></input>
+				<input type="digit" v-model="needVal.zsxzsjfszGuo_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

@@ -15,12 +15,12 @@
 		</view>
 		<view class="cu-form-group" v-if="index0 == 0">
 			<view class="title" >正线公里</view>
-			<input v-model="needVal.tlsjGuo_zxgl" /></input>
+			<input type="digit" v-model="needVal.tlsjGuo_zxgl" /></input>
 			<uni-tag text="公里" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-if="index0 == 1">
 			<view class="title" >计费额</view>
-			<input v-model="needVal.tlsjGuo_zxgl" /></input>
+			<input type="digit" v-model="needVal.tlsjGuo_zxgl" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-if="index0 == 0">
@@ -34,7 +34,7 @@
 		</view>
 		<view class="cu-form-group" v-if="index0 == 0">
 			<view class="title">复杂分值</view>
-			<input v-model="needVal.tlsjGuo_fzfz" /></input>
+			<input type="digit" v-model="needVal.tlsjGuo_fzfz" /></input>
 			<button type="primary" size="mini" @tap="showModal" data-target="tlsjGuo_fzfz">点击查看</button>
 		</view>
 		<!-- <view class="cu-form-group">
@@ -52,12 +52,12 @@
 		</view>
 		<view class="cu-form-group" >
 			<view class="title">附加调整</view>
-			<input v-model="needVal.tlsjGuo_fjtz" /></input>
+			<input type="digit" v-model="needVal.tlsjGuo_fjtz" /></input>
 			<button type="primary" size="mini" @tap="showModal" data-target="tlsjGuo_fjtz">点击查看</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">打折折扣</view>
-			<input v-model="needVal.tlsjGuo_dzzk" /></input>
+			<input type="digit" v-model="needVal.tlsjGuo_dzzk" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">点击查看</button>
 		</view>

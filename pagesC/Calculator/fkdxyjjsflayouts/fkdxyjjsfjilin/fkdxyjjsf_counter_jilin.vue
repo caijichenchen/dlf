@@ -26,7 +26,7 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">建设面积</view>
-				<input type="text" id="sjf" v-model="needVal.fkdxyjjsfJilin_jsmj"></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfJilin_jsmj"></input>
 				<uni-tag text="㎡" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0]) ">查看说明</button>
 			</view>
@@ -42,7 +42,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.fkdxyjjsfJilin_discount" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfJilin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

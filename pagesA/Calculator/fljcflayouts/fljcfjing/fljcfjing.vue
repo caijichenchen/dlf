@@ -4,34 +4,29 @@
 			<template v-slot:jsq>
 				<fljc-count></fljc-count>
 				<computing v-bind:countData="countData"></computing>
-				<fljc-result :title="title"></fljc-result>
-			</template>
-			<template v-slot:qfbz>
+				<result title="北京市防雷检测费" :result="result"></result>
 			</template>
 		</base-layout>
-	
 	</view>
 </template>
 
 <script>
 	import fljcCount from './fljc_count_jing'
-	import fljcResult from '../fljc_result'
+	import {resultMixin} from "@/common/base/resultMixin"
+	import {fljcData} from '@/common/resultData.js'
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData: {
 					url: this.$serverUrl + '/api/xcx/fljcfJing', //api请求
 					count: 2 //积分消耗
 				},
-				title:'北京'
+				result:JSON.parse(JSON.stringify(fljcData))
 			}
 		},
-		methods: {
-
-		},
 		components: {
-			fljcCount,
-			fljcResult,
+			fljcCount
 		}
 	}
 </script>

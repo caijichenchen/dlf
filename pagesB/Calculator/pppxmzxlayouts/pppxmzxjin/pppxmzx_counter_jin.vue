@@ -19,7 +19,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">项目投资规模</view>
-				<input type="text" v-model="needVal.pppxmzxJin_gczj"></input>
+				<input type="digit" v-model="needVal.pppxmzxJin_gczj"></input>
 				<uni-tag text="亿元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
@@ -33,25 +33,25 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整系数</view>
-				<input v-model="needVal.pppxmzxJin_fztz" /></input>
+				<input type="digit" v-model="needVal.pppxmzxJin_fztz" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxJin_fztz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">其他附加系数</view>
-				<input v-model="needVal.pppxmzxJin_fjxs" /></input>
+				<input type="digit" v-model="needVal.pppxmzxJin_fjxs" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="pppxmzxJin_fjxs">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.pppxmzxJin_fdfd" /></input>
+				<input type="digit" v-model="needVal.pppxmzxJin_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.pppxmzxJin_discount" /></input>
+				<input type="digit" v-model="needVal.pppxmzxJin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

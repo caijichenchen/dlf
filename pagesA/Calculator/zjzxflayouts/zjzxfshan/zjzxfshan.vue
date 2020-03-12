@@ -3,7 +3,7 @@
 		<template v-slot:jsq>
 			<zjzxf-counter-shan :title="title"></zjzxf-counter-shan>
 			<computing v-bind:countData = "countData"></computing>
-			<zjzxf-result :title="title"></zjzxf-result>
+			<result title="陕西省造价咨询费" :result="result"></result>
 		</template>
 		<template v-slot:qfbz>
 			<view class="a-text" :data-id="901" @tap="setDetailId">陕西|工程造价咨询服务收费标准|陕价行发[2014]88号</view>
@@ -14,26 +14,22 @@
 
 <script>
 	import zjzxfCounterShan from "./zjzxf-counter_shan.vue"
-	import zjzxfResult from "../zjzxf_result.vue"
+	import {zjzxfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl+'/api/zjzxfShan',  //api请求
 					count:2  //积分消耗
 				},
-				title: "陕西省造价咨询费",
+				result:JSON.parse(JSON.stringify(zjzxfData)),
 				id:901
 			}
 		},
-		methods: {
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			zjzxfCounterShan,
-			zjzxfResult
+			zjzxfCounterShan
 		}
 	}
 </script>

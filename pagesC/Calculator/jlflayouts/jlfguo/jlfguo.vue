@@ -1,13 +1,9 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="id">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<jlfguo-counter-guo></jlfguo-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
-			<jlfguo-result></jlfguo-result>
+			<result title="监理费" :result="result"></result>
 		</template>
 		
 		<template v-slot:qfbz>
@@ -18,30 +14,23 @@
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import jlfguoCounterGuo from "./jlfguo_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
-	import jlfguoResult from "./jlfguo_result.vue"
+	import {jlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jlfGuo',  //api请求
 					count:2  //积分消耗
 				},
+				result: JSON.parse(jlfData('Guo')),
 				id:38
 			}
 		},
-		methods: {
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			jlfguoCounterGuo,
-			baseLayout,
-			computing,
-			jlfguoResult
+			jlfguoCounterGuo
 		}
 	}
 </script>

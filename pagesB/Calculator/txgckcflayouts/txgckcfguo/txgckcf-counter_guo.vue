@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">比例表</view>
-				<input v-model="needVal.txgckcfGuo_blb" /></input>
+				<input type="digit" v-model="needVal.txgckcfGuo_blb" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="txgckcfGuo_blb">点击选择</button>
 			</view>
@@ -33,7 +33,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实际工作量</view>
-				<input type="text" v-model="needVal.txgckcfGuo_sjgzl" /></input>
+				<input type="digit" v-model="needVal.txgckcfGuo_sjgzl" /></input>
 				<uni-tag :text="multiSelector.txgckcfGuo2" type="defult" v-model="multiSelector.txgckcfGuo2"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.txgckcfGuo_xmjb">
@@ -48,7 +48,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input type="text" v-model="needVal.txgckcfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.txgckcfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="txgckcfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
@@ -62,18 +62,18 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.txgckcfGuo_gctj" /></input>
+				<input type="digit" v-model="needVal.txgckcfGuo_gctj" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="txgckcfGuo_gctj">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.txgckcfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.txgckcfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.txgckcfGuo_yjzk" /></input>
+				<input type="digit" v-model="needVal.txgckcfGuo_yjzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[5])">查看说明</button>
 			</view>
@@ -95,10 +95,18 @@
 	} from "@/common/base/multiSelectorsChange.js"
 	import txgcBlb from './txgckcfGuo_blb.vue'
 	import txgcFjtz from './txgckcfGuo_fjtz.vue'
-	import datajson from '@/common/json/txgcs/txgcs-all.json'
+	// import datajson from '@/common/json/txgcs/txgcs-all.json'
 	import gctzGuo from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/txgcs/txgcs-all.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -143,7 +151,7 @@
 				title: '勘察费',
 				txgckcfGuo_qwfjtz: ['1','1.2'],
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [{
 						"id": "1",
 						"title": "选择项目",

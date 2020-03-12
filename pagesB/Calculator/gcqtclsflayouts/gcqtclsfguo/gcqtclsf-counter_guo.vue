@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.gcqtclsfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.gcqtclsfGuo_swgzl" /></input>
 				<uni-tag :text="multiSelector.gcqtclsfGuo_swgzldw" type="defult" v-model="needVal.gcqtclsfGuo_swgzldw"></uni-tag>
 			</view>
 			
@@ -53,7 +53,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">附加调整</view>
-				<input v-model="needVal.gcqtclsfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.gcqtclsfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="gcqtclsfGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
@@ -68,19 +68,19 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">高程调整</view>
-				<input v-model="needVal.gcqtclsfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.gcqtclsfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="gcqtclsfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.gcqtclsfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.gcqtclsfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
 			
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.gcqtclsfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.gcqtclsfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[5])">查看说明</button>
 			</view>
@@ -100,12 +100,20 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/qtcls.json'
+	// import datajson from '@/common/json/qtcls.json'
 	import fzcd from './gcqtclsfGuo_fzcd.vue'
 	import gctz from '@/common/base/gctz.vue'
 	import fjtz from './gcqtclsfGuo_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/qtcls.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -150,7 +158,7 @@
 				indexfzcd: 0,
 				index0: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

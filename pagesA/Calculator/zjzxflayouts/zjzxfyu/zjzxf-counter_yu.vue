@@ -31,34 +31,34 @@
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu5 ">
 			<view class="title">{{multiSelector.zjzxfYu5}}</view>
-			<input v-model="needVal.zjzxfYu_ztz" /></input>
+			<input type="digit" v-model="needVal.zjzxfYu_ztz" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu7 ">
 			<view class="title">{{multiSelector.zjzxfYu7}}</view>
-			<input v-model="needVal.zjzxfYu_jbfl" /></input>
+			<input type="digit" v-model="needVal.zjzxfYu_jbfl" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu_sdeTitle ">
 			<view class="title" v-model="needVal.zjzxfYu_sdeTitle">{{multiSelector.zjzxfYu_sdeTitle}}</view>
-			<input v-model="needVal.zjzxfYu_sde" /></input>
+			<input type="digit" v-model="needVal.zjzxfYu_sde" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu10 ">
 			<view class="title">{{multiSelector.zjzxfYu10}}</view>
-			<input v-model="needVal.zjzxfYu_hzhjcgb" /></input>
+			<input type="digit" v-model="needVal.zjzxfYu_hzhjcgb" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfYu12 ">
 			<view class="title">{{multiSelector.zjzxfYu12}}</view>
-			<input v-model="needVal.zjzxfYu_sffl" /></input>
+			<input type="digit" v-model="needVal.zjzxfYu_sffl" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击查看</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">打折折扣</view>
-			<input v-model="needVal.zjzxfYu_discount" /></input>
+			<input type="digit" v-model="needVal.zjzxfYu_discount" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">点击查看</button>
 		</view>
@@ -73,7 +73,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	// import datajson from '@/common/json/zjzxfs/zjzxfs-yu.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],

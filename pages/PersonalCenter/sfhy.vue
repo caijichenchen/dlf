@@ -9,7 +9,11 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华南 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hnlist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
+					<view v-for="(item,index) in hnlist" :key="index" 
+						:class="allCalList.findIndex(x=>x.province==item)>-1?'active-choice':''" 
+						@tap="getCal(item)" 
+						class="p-item"
+					>
 						{{item}}
 					</view>
 				</view>
@@ -17,7 +21,11 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华北 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hblist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
+					<view v-for="(item,index) in hblist" :key="index" 
+						:class="allCalList.findIndex(x=>x.province==item)>-1?'active-choice':''"  
+						@tap="getCal(item)" 
+						class="p-item"
+					>
 						{{item}}
 					</view>
 				</view>
@@ -25,7 +33,11 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华东 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hdlist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
+					<view v-for="(item,index) in hdlist" :key="index" 
+						:class="allCalList.findIndex(x=>x.province==item)>-1?'active-choice':''"   
+						@tap="getCal(item)" 
+						class="p-item"
+					>
 						{{item}}
 					</view>
 				</view>
@@ -33,7 +45,11 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">华中 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in hzlist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
+					<view v-for="(item,index) in hzlist" :key="index" 
+						:class="allCalList.findIndex(x=>x.province==item)>-1?'active-choice':''"   
+						@tap="getCal(item)" 
+						class="p-item"
+					>
 						{{item}}
 					</view>
 				</view>
@@ -41,7 +57,11 @@
 			<view class="px-4 font-md mt-2">
 				<view class="pro-title">西部 :</view>
 				<view class="p-box">
-					<view v-for="(item,index) in xblist" :key="index" :class="{'active-choice':proList.includes(item)}" @tap="getCal(item)" class="p-item">
+					<view v-for="(item,index) in xblist" :key="index" 
+						:class="allCalList.findIndex(x=>x.province==item)>-1?'active-choice':''"   
+						@tap="getCal(item)" 
+						class="p-item"
+					>
 						{{item}}
 					</view>
 				</view>
@@ -50,7 +70,7 @@
 		<view class="font-bs ">
 			<view class="iconBLue px-4">包含的计算器:</view>
 			<view class="c-box px-4">
-				<view v-if="proList.length == 0" class="nochoose">您还没有选择计算器哦</view>
+				<view v-if="allCalArr.length == 0" class="nochoose">您还没有选择计算器哦</view>
 				<view class="c-item" v-for="(item,key) in allCalArr" :key="key">
 					{{item}}
 				</view>
@@ -59,8 +79,8 @@
 		<view class="font-bs iconBLue px-4 mt-3">
 			<view class="iconBLue">2、选择的省份:</view>
 			<view class="p-box" >
-				<view v-for="(item,index) in calList" :key="index" class="p-list">
-					{{item.name}}{{item.price[0]}}元/月
+				<view v-for="(item,index) in allCalList" :key="index" class="p-list">
+					{{item.province}}{{item.price[0]}}元/月
 				</view>
 			</view>
 		</view>
@@ -88,10 +108,10 @@
 			</view>
 		</view>
 		<view class="mt-4 font-md  ">
-			<view class="row px-4 border-bottom" @tap="showyhj" style="height: 80rpx;">
+			<view class="row px-4 border-bottom" style="height: 80rpx;">
 				<view style="line-height: 80rpx;">优惠码</view>
-				<view style="line-height: 80rpx;margin-left: auto;">领取优惠券</view>
-				<image class="toimg" src="/static/HM-PersonalCenter/to.png"></image>
+				<view style="line-height: 80rpx;margin-left: auto;">暂无优惠券</view>
+				<view class="cuIcon-right" style="line-height: 80rpx;font-size: 38rpx;"></view>
 			</view>
 			<view >
 				<view class="row px-4 border-bottom" style="height: 80rpx;">
@@ -102,6 +122,11 @@
 					v-if="userInfo.vipInfo.type == '企业会员' || userInfo.vipInfo.type == '省份会员'"
 				>
 					您好,尊贵的企业会员,您已享有网站全部特权,无需购买自选会员或VIP会员,若转变会员,请企业会员过期后再来购买
+				</view>
+				<view class="tip px-4"
+					v-if="prompt"
+				>
+					{{prompt}}
 				</view>
 			</view>
 		</view>
@@ -116,9 +141,13 @@
 				<text>支付宝支付</text>
 					<label><radio value="支付宝" /></label>
 			</view> -->
-			<view class="zhifu">
+			<view class="zhifu" v-if="payStatus">
 				<view class="zhifu-lf">应付金额:￥{{price}}</view>
-				<view class="zhifu-rt" >确认购买</view>
+				<view class="zhifu-rt" @tap="status && payMent()">确认购买</view>
+			</view>
+			<view class="zhifu" v-if="!payStatus">
+				<view class="zhifu-lf">应付金额:￥{{price}}</view>
+				<view class="zhifu-rt" @tap="keepPay">继续支付</view>
 			</view>
 		</radio-group>
 	</view>
@@ -139,7 +168,6 @@
 				xblist:['四川','重庆','贵州','云南','西藏','陕西','甘肃','宁夏','青海','新疆'],
 				allCalList: [],
 				calList: [],
-				proList:[],
 				money: 0,
 				shows:1,
 				couponId:'',
@@ -147,61 +175,52 @@
 				price: 0,
 				payStatus: false,
 				timer:null,
+				status: true,
 				orderData: {}
 			};
 		},
 		created() {
-			// uni.$on('chooseCoupon',(data)=>{
-			// 	if(data.id){
-			// 		this.couponId = data.id
-			// 		this.getJudgePay()
-			// 	}
-			// })
-			// this.getOrderStatus()
-			// this.getJudgePay()
+			uni.$on('chooseCoupon',(data)=>{
+				if(data.id){
+					this.couponId = data.id
+					this.getJudgePay()
+				}
+			})
+			this.getOrderStatus()
+			this.getJudgePay()
 		},
 		methods: {
 			getCal(province){
-				const index = this.proList.indexOf(province)
-				if(this.proList.includes(province)){//如果包含了当前点击省份，移除
-					this.proList.splice(index,1)
-					this.calList = this.calList.filter(item=>{
-						return item.name != province
-					})
+				const index = this.allCalList.findIndex(x => x.province == province)
+				if(index > -1){
+					this.allCalList.splice(index,1)
 					this.getMoney()
-				}else {//没有包含，放进数组,发送请求
-					this.proList.push(province)
+					this.getJudgePay()
+				}else{
 					$req.request({
-					 	url: '/api/xcx/getCalculatorByProvince?state=1&province='+province
-					}).then((res)=>{
-						console.log(res)
-						this.calList.push({
-							name:province,
+						url: '/api/xcx/getCalculatorByProvince?state=1&province='+province
+					}).then(res=>{
+						this.allCalList.push({
+							province:province,
 							price:res.data.price,
 							cal:res.data.province_role,
 							id:res.data.role_id
 						})
 						this.getMoney()
 						this.getJudgePay()
-					}).catch(()=>{
-					 	uni.showToast({
-					 		icon:'none',
-							title:'获取数据失败,请稍后重试'
-					 	})
+					}).catch(err=>{
+						this.$msg('获取计算器失败,请稍后重试')
 					})
 				}
-				
 			},
 			getOrderStatus(){ //查询是否订单状态
 				$req.request({
 					url:'/api/xcx/pay/query_valid_order'
 				}).then(res=>{
-					// console.log(res)
 					if(res.data.msg == '暂无订单'){
 						this.payStatus = true
 						clearInterval(this.timer)
 					}else{
-						// this.price
 						this.orderData = res.data.msg
 						this.price = res.data.msg.sum
 						clearInterval(this.timer)
@@ -214,16 +233,7 @@
 				})
 			},
 			getJudgePay(){ //获取价格抵扣
-				let strArr = []
-				console.log(this.calList)
-				this.calList.forEach(item=>{
-					console.log(11)
-					console.log(item.id)
-					strArr.push(item.id)
-				})
-				console.log(strArr)
-				const str = strArr.join(',')
-				console.log(str)
+				const arr = this.allCalList.map(x => x.id).toString()
 				$req.request({
 					url:'/api/xcx/pay/judge_pay',
 					method:'POST',
@@ -231,12 +241,12 @@
 						goods_type:4,
 						number: this.shows,
 						coupon_id: this.couponId || '',
-						province_id: str
+						province_id: arr
 					}
 				}).then(res=>{
 					this.prompt = res.data.message
 					this.price = res.data.price
-					console.log(res)
+					this.status = res.data.status?false:true
 				}).catch(err=>{
 					console.log(err)
 				})
@@ -245,7 +255,7 @@
 				if(!this.price){
 					return
 				}
-				let num = this.tab
+				const arr = this.allCalList.map(x => x.id).toString()
 				uni.login({
 					provider: 'weixin',
 					success:(loginRes)=> {
@@ -254,12 +264,51 @@
 							url:'/api/xcx/pay/goods',
 							method:'POST',
 							data:{
-								goods_type:2,
-								number: num==3?5:num+1,
-								coupon_id:this.couponId,
+								goods_type:4,
+								number: this.shows,
+								coupon_id:this.couponId || '',
 								pay_type:1,
 								channel:'lite',
-								ee_people: this.pre,
+								province_id:arr,
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
+			},
+			keepPay(){
+				if(!this.price){
+					return
+				}
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/arousePay',
+							data:{
+								order_id:this.orderData.order_id,
 								code:code
 							}
 						}).then(res=>{
@@ -290,6 +339,7 @@
 			getVal(e){
 				this.shows = e.currentTarget.dataset.show
 				this.money = e.currentTarget.dataset.money
+				this.getJudgePay()
 			},
 			getMoney(){
 				if(this.shows == 1){
@@ -307,42 +357,22 @@
 			...mapState({
 				userInfo:state=>state.user.userInfo
 			}),
-			allCalArr(){
-				let arr = []
-				this.calList.forEach(item=>{
-					item.cal.forEach(i=>{
-						arr.push(i)
-					})
-				})
-				return [...new Set(arr)]
+			allCalArr(){ //合并二维数组去重
+				return [...new Set(
+					this.allCalList.length > 0 ? this.allCalList.map(x=>x.cal.map(y=>y)).reduce((a,b)=>a.concat(b)) : []
+				)]
 			},
-			monthOne:function(){
-				let money = 0
-				this.calList.map(item=>{
-					money+=item.price[0]
-				})
-				return money
+			monthOne(){
+				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[0]).reduce((a,b)=>a+b) : 0
 			},
-			monthThr:function(){
-				let money = 0
-				this.calList.map(item=>{
-					money+=item.price[1]
-				})
-				return money
+			monthThr(){
+				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[1]).reduce((a,b)=>a+b) : 0
 			},
-			monthSix:function(){
-				let money = 0
-				this.calList.map(item=>{
-					money+=item.price[2]
-				})
-				return money
+			monthSix(){
+				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[2]).reduce((a,b)=>a+b) : 0
 			},
-			monthTwe:function(){
-				let money = 0
-				this.calList.map(item=>{
-					money+=item.price[3]
-				})
-				return money
+			monthTwe(){
+				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[3]).reduce((a,b)=>a+b) : 0
 			},
 		}
 	};
@@ -457,11 +487,6 @@
 		border-radius: 1.2upx;
 		box-shadow: 2upx 2upx 5px #00a0ea;
 		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAmCAMAAABnA+JrAAAAilBMVEUAAAAArv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv8Arv/////G7f+v5v8Utf8Jsf8DsP/h9f/S8f/M7//a9P/x+//q+P++6v+j4v9nz/8nuv8aV5l0AAAAHXRSTlMA+t7RIQ/vFsOnh3ltWE08B/TnurKeMiyVkWNGYTInvJYAAAD/SURBVDjLjdPLcoJAEIXhEy6ioiiKGpMMBExiru//ehkpkYF2TvW/6c236qqDxYPRB2S5GucA9hutnsAWhUq9waV4q9MB2tY7tW5LNTpE15J+8rU8DzRWE4bLyp4p+qKA4Pd6pJFMHfH3O8CNsW3htp71+qv8OI2wKTBsftPfpeVDbGYY9dS9pqksb1r8dsVS47l7zcnyqv6xuDbXdhAdAod/utg8QpaEPW8x1YiLnp8dbOa429GIiPbsL4WnLNdrz/4W8BaFWu3Z3wvRcn9L0FK9lvvLiBT7o1rub0Wc2B/Vcn97ouT+DsTI/UWEiP1RLfeXECD3F0NdXAhNO+IfWtVg7E1guKEAAAAASUVORK5CYII=") 101% 0% no-repeat;
-	}
-	.toimg {
-		height: 40rpx;
-		width: 40rpx;
-		margin-top: 20rpx;
 	}
 	.tip{
 		width: 100%;

@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.dlgckcGuo_swgzldw">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.dlgckcGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.dlgckcGuo_swgzl" /></input>
 				<uni-tag :text="multiSelector.dlgckcGuo_swgzldw" type="defult" v-model="multiSelector.dlgckcGuo_swgzldw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.dlgckcGuo_xzdj">
@@ -42,29 +42,29 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">比例表</view>
-				<input v-model="needVal.dlgckcGuo_blb" /></input>
+				<input type="digit" v-model="needVal.dlgckcGuo_blb" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="dlgckcGuo_blb">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂分值</view>
-				<input v-model="needVal.dlgckcGuo_fzcd" /></input>
+				<input type="digit" v-model="needVal.dlgckcGuo_fzcd" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dlgckcGuo_fzcd">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.dlgckcGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.dlgckcGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="dlgckcGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.dlgckcGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.dlgckcGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.dlgckcGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.dlgckcGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
@@ -82,7 +82,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/dlgcs.json'
+	// import datajson from '@/common/json/dlgcs.json'
 	import blb from './dlgckcGuo_blb.vue'
 	import fzcd from './dlgckcGuo_fzcd.vue'
 	import fjtz from './dlgckcGuo_fjtz.vue'
@@ -127,7 +127,7 @@
 					dlgckcGuo_xzlx: true,
 					dlgckcGuo_sfjj: false,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				showModalName: null,
 				explain: [{
@@ -157,6 +157,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/dlgcs.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			blb,

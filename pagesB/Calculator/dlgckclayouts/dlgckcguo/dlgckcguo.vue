@@ -3,29 +3,28 @@
 		<template v-slot:jsq>
 			<dlgckcf-counter-guo></dlgckcf-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<dlgckcf-result></dlgckcf-result>
+			<result title="电力工程勘察费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import dlgckcfCounterGuo from "./dlgckcf_counter_guo.vue"
-	import dlgckcfResult from "./dlgckcf_result.vue"
+	import {dlgckcData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/dlgckcGuo',  //api请求
 					count:4  //积分消耗
-				}
+				},
+				result:JSON.parse(JSON.stringify(dlgckcData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			dlgckcfCounterGuo,
-			dlgckcfResult
+			dlgckcfCounterGuo
 		}
 	}
 </script>

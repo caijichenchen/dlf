@@ -16,17 +16,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.csgdgckcfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.csgdgckcfGuo_swgzl" /></input>
 				<uni-tag text="km" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂分值</view>
-				<input v-model="needVal.csgdgckcfGuo_fzcd" /></input>
+				<input type="digit" v-model="needVal.csgdgckcfGuo_fzcd" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="csgdgckcfGuo_fzcd">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.csgdgckcfGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.csgdgckcfGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
@@ -40,18 +40,18 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.csgdgckcfGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.csgdgckcfGuo_gctz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="csgdgckcfGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.csgdgckcfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.csgdgckcfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.csgdgckcfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.csgdgckcfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>

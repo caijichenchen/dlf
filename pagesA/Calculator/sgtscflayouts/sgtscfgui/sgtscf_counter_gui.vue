@@ -30,19 +30,19 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">勘察设计费</view>
-				<input type="text" v-model="needVal.sgtscfGui_sjf"></input>
+				<input type="digit" v-model="needVal.sgtscfGui_sjf"></input>
 				<uni-tag text="万元" type="defult" ></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sgtscfGui_sjf">设计费计算</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">费率α</view>
-				<input v-model="needVal.sgtscfGui_fl" /></input>
+				<input type="digit" v-model="needVal.sgtscfGui_fl" /></input>
 				<uni-tag text="%" type="defult" ></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfGui_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfGui_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

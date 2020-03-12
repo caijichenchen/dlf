@@ -3,7 +3,7 @@
 		<template v-slot:jsq>
 			<jsxmbjf-counter-chuan></jsxmbjf-counter-chuan>
 			<computing v-bind:countData = "countData"></computing>
-			<jsxmbjf-result></jsxmbjf-result>
+			<result title="四川省建设项目报建费" :result="result"></result>
 		</template>
 		
 		<template v-slot:qfbz>
@@ -17,25 +17,22 @@
 
 <script>
 	import jsxmbjfCounterChuan from "./jsxmbjf_counter_chuan.vue"
-	import jsxmbjfResult from "./jsxmbjf_result.vue"
+	import {jsxmbjfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jsxmbjfChuan',  //api请求
 					count:2  //积分消耗
 				},
+				result:JSON.parse(JSON.stringify(jsxmbjfData)),
 				id:892
 			}
 		},
-		methods: {
-			setDetailId(e){
-				this.id = (e.currentTarget.dataset.id)-0
-			}
-		},
 		components:{
-			jsxmbjfCounterChuan,
-			jsxmbjfResult
+			jsxmbjfCounterChuan
 		}
 	}
 </script>

@@ -27,12 +27,12 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">投资额</view>
-				<input type="text"  id="sjf" v-model="needVal.sgtscfQiong_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfQiong_gcl"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="sgtscfQiong_discount" v-model="needVal.sgtscfQiong_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfQiong_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

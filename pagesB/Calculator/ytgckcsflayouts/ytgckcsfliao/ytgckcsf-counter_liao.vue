@@ -35,17 +35,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">计算孔数</view>
-				<input v-model="needVal.ytgckcsfLiao_zkgs" /></input>
+				<input type="digit" v-model="needVal.ytgckcsfLiao_zkgs" /></input>
 				<uni-tag text="个" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">单孔深度D/长度L</view>
-				<input v-model="needVal.ytgckcsfLiao_sdcd" @blur="checkVal" maxlength="4"/></input>
+				<input type="digit" v-model="needVal.ytgckcsfLiao_sdcd" @blur="checkVal" maxlength="4"/></input>
 				<uni-tag text="m" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">单孔复杂分界点</view>
-				<input v-model="needVal.ytgckcsfLiao_fzfjd" @blur="checkVal" placeholder="例如:5,15"/></input>
+				<input type="digit" v-model="needVal.ytgckcsfLiao_fzfjd" @blur="checkVal" placeholder="例如:5,15"/></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-if="arr.length == 0">
@@ -72,12 +72,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.ytgckcsfLiao_fjtz" /></input>
+				<input type="digit" v-model="needVal.ytgckcsfLiao_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="ytgckcsfLiao_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.ytgckcsfLiao_discount" /></input>
+				<input type="digit" v-model="needVal.ytgckcsfLiao_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

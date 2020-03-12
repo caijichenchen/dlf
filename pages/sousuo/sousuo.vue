@@ -15,13 +15,13 @@
 					<view class="clear-btn" @tap="clearSearchList">清空</view>
 				</view>
 				<view class="cont-box mt-4" >
-					<view class="his-item" v-for="(item,index) in hisSearchList" :key="index" :data-name="item" @tap="setSearch">{{item}}</view>
+					<view class="his-item" v-for="(item,index) in historySearchList" :key="index" @tap="goSearch(item)">{{item}}</view>
 				</view>
 			</view>
 			<view >
 				<view class="cont-title">热门推荐</view>
 				<view class="cont-box mt-4">
-					<view class="hot-item" v-for="(item,index) in hotCalList" :key="index" :data-name="item" @tap="setSearch">{{item}}</view>
+					<view class="hot-item" v-for="(item,index) in hotCalList" :key="index" @tap="goSearch(item)">{{item}}</view>
 				</view>
 			</view>
  		</view>
@@ -33,59 +33,44 @@
  		data() {
  			return {
 				searchkey: '',
-				hisSearchList: [],
-				showhistory:false,
+				historySearchList: uni.getStorageSync('historySearchList') || [],
 				hotCalList: ['设计费计算器','监理费计算器','招标代理费计算器','造价咨询费计算器','监理费计算标准-发改价格[2007]670号','招标代理费计算标准-计价格[2002]1980号','设计费计算标准|计价格[2002]10号']
  			}
  		},
-		mounted() {
-			let searchList = uni.getStorageSync('hisSearchList')
-			if(searchList){
-				this.hisSearchList = searchList
-				this.showhistory = true
-			}
-		},
  		methods: {
-			getSearch(){
+			getSearch(){ //保存历史记录
 				let searchkey = this.searchkey.trim()
 				if(!searchkey){
-					return uni.showToast({
-						icon:'none',
-						title:'输入不能为空'
-					})
+					return this.$msg('输入不能为空')
 				}
+				const index = this.historySearchList.indexOf(searchkey)
+				if(index > 0){ //存在且记录不在第一位置顶
+					this.historySearchList.unshift(this.historySearchList.splice(index,1)[0])
+				}else if(this.historySearchList.length == 5){ //保持历史记录为5条
+					this.historySearchList.pop()
+					this.historySearchList.unshift(searchkey)
+				}else{
+					this.historySearchList.unshift(searchkey)
+				}
+				uni.setStorageSync('historySearchList',this.historySearchList)
 				this.searchkey = ''
-				this.showhistory = true
-				if(this.hisSearchList.length >= 5){//保留历史记录条数
-					this.hisSearchList.pop()
-					this.hisSearchList.unshift(searchkey)
-				}
-				this.hisSearchList.unshift(searchkey)
-				this.hisSearchList = [...new Set(this.hisSearchList)]
-				uni.setStorageSync('hisSearchList',this.hisSearchList)
+				this.goSearch(searchkey)
+			},
+			goSearch(val){ //搜索
 				uni.navigateTo({
-					url:`./searchResult?key=${searchkey}`
+					url:`./searchResult?key=${val}`
 				})
-				// $req.request({
-				// 	url: '/api/xcx/search',
-				// 	data:{
-				// 		key: searchkey
-				// 	}
-				// }).then(res=>{
-				// 	console.log(res.data)
-				// }).catch(err=>{
-				// 	console.log(err)
-				// })
 			},
-			setSearch(e){
-				this.searchkey = e.currentTarget.dataset.name
-			},
-			clearSearchList(){
-				this.showhistory = false
-				this.hisSearchList = []
-				uni.removeStorageSync('hisSearchList')
+			clearSearchList(){ //清空历史记录
+				this.historySearchList = []
+				uni.removeStorageSync('historySearchList')
 			}
- 		}
+ 		},
+		computed:{
+			showhistory(){
+				return this.historySearchList.length
+			}
+		}
  	}
  </script>
  <style>

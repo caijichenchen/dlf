@@ -50,12 +50,12 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfLong_gclmc || showSelector.fljcfLong_dw">
 				<view class="title" v-model="needVal.fljcfLong_gclmc">{{multiSelector.fljcfLong_gclmc}}</view>
-				<input v-model="needVal.fljcfLong_gcl" /></input>
+				<input type="digit" v-model="needVal.fljcfLong_gcl" /></input>
 				<uni-tag :text="multiSelector.fljcfLong_dw" type="defult" v-model="needVal.fljcfLong_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.fljcfLong_discount" /></input>
+				<input type="digit" v-model="needVal.fljcfLong_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

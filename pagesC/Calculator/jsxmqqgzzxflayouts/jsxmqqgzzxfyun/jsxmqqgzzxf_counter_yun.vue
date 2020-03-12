@@ -7,7 +7,7 @@
 		<form>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">工程咨询</view>
-				<input type="text" v-model="needVal.jsxmqqgzzxfYun_gzzx"></input>
+				<input type="digit" v-model="needVal.jsxmqqgzzxfYun_gzzx"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.jsxmqqgzzxfYun1">
@@ -41,17 +41,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">行业调整系数</view>
-				<input  v-model="needVal.jsxmqqgzzxfYun_tzxs" /></input>
+				<input type="digit" v-model="needVal.jsxmqqgzzxfYun_tzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsxmqqgzzxfYun_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂程度调整系数</view>
-				<input  v-model="needVal.jsxmqqgzzxfYun_fzcd" /></input>
+				<input type="digit" v-model="needVal.jsxmqqgzzxfYun_fzcd" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">打折折扣</view>
-				<input type="text" v-model="needVal.jsxmqqgzzxfYun_discount"></input>
+				<input type="digit" v-model="needVal.jsxmqqgzzxfYun_discount"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -70,10 +70,18 @@
 		} from "@/common/base/multiSelectorsChange.js"
 		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 		import jsxmqqgzzxfYunHytzxs from "./jsxmqqgzzxfYun_tzxs.vue"
-		import datajson from '@/common/json/kyjbgfs/kyjbgfs-yun.json'
+		// import datajson from '@/common/json/kyjbgfs/kyjbgfs-yun.json'
 		
 		export default {
 			mixins: [counterMixin,MultiSelectorsChangeMixin],
+			beforeCreate() {
+				uni.request({
+					url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-yun.json',
+					success: (res) => {
+						this.datajson = res.data
+					}
+				})
+			},
 			data() {
 				return {
 					needVal: {
@@ -107,7 +115,7 @@
 						jsxmqqgzzxfYun_category: 0,
 					},
 					showModalName: null,
-					datajson:datajson,
+					datajson:'',
 					radio: 'radio1',
 					selected: 'A',
 					shows: 1,

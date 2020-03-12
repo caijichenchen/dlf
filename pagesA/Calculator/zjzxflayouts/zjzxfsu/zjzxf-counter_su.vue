@@ -31,35 +31,35 @@
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfSu5 ">
 			<view class="title">{{multiSelector.zjzxfSu5}}</view>
-			<input v-model="needVal.zjzxfSu_ztz" /></input>
+			<input type="digit" v-model="needVal.zjzxfSu_ztz" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfSu_sdeTitle ">
 			<view class="title" v-model="needVal.zjzxfSu_sdeTitle">{{multiSelector.zjzxfSu_sdeTitle}}</view>
-			<input v-model="needVal.zjzxfSu_sde" /></input>
+			<input type="digit" v-model="needVal.zjzxfSu_sde" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfSu8 ">
 			<view class="title">{{multiSelector.zjzxfSu8}}</view>
-			<input v-model="needVal.zjzxfSu_hzhjcgb" /></input>
+			<input type="digit" v-model="needVal.zjzxfSu_hzhjcgb" /></input>
 			<uni-tag text="%" type="defult" >%</uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfSu10 ">
 			<view class="title">{{multiSelector.zjzxfSu10}}</view>
-			<input v-model="needVal.zjzxfSu_sffl" /></input>
+			<input type="digit" v-model="needVal.zjzxfSu_sffl" /></input>
 			<uni-tag text="%" type="defult" >%</uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击查看</button>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfSu12 || showSelector.zjzxfSu_zytzxs ">
 			<view class="title">{{multiSelector.zjzxfSu12}}</view>
-			<input v-model="needVal.zjzxfSu_zytzxs" /></input>
+			<input type="digit" v-model="needVal.zjzxfSu_zytzxs" /></input>
 			<uni-tag text="%" type="defult" >%</uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="zjzxfSu_zytzxs">点击选择</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">打折折扣</view>
-			<input v-model="needVal.zjzxfSu_discount" /></input>
+			<input type="digit" v-model="needVal.zjzxfSu_discount" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">点击查看</button>
 		</view>

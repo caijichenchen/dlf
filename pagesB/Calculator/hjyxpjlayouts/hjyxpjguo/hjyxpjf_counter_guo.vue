@@ -22,31 +22,31 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">估算投资额</view>
-				<input type="text" id="sjf" v-model="needVal.hjyxpjGuo_gstze"></input>
+				<input type="digit" v-model="needVal.hjyxpjGuo_gstze"></input>
 				<uni-tag  text="亿元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">行业调整系数</view>
-				<input name="sjfGuo_discount" v-model="needVal.hjyxpjGuo_hytzxs" /></input>
+				<input type="digit" v-model="needVal.hjyxpjGuo_hytzxs" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="hjyxpjGuo_hytzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">环境敏感程度调整系数</view>
-				<input name="sjfGuo_discount" v-model="needVal.hjyxpjGuo_hjmgcdtz" /></input>
+				<input type="digit" v-model="needVal.hjyxpjGuo_hjmgcdtz" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="hjyxpjGuo_hjmgcdtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">浮动</view>
-				<input type="text" id="sjf" v-model="needVal.hjyxpjGuo_fd"></input>
+				<input type="digit" v-model="needVal.hjyxpjGuo_fd"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">优惠折扣</view>
-				<input type="text" id="sjf" v-model="needVal.hjyxpjGuo_yhzk"></input>
+				<input type="digit" v-model="needVal.hjyxpjGuo_yhzk"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

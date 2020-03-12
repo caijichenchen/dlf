@@ -30,12 +30,12 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfChuan4 || showSelector.sgtscfChuan_units">
 				<view class="title">{{multiSelector.sgtscfChuan4}}</view>
-				<input type="text" v-model="needVal.sgtscfChuan_amount"></input>
+				<input type="digit" v-model="needVal.sgtscfChuan_amount"></input>
 				<uni-tag :text="multiSelector.sgtscfChuan_units" type="defult" v-model="multiSelector.sgtscfChuan_units"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfChuan_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfChuan_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

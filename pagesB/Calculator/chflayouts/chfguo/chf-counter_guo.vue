@@ -56,7 +56,7 @@
 			</view>
 			<view class="cu-form-group" v-show="multiSelector.chfGuo_swgzldw">
 				<view class="title">实物工作量</view>
-				<input v-model="needVal.chfGuo_swgzl" /></input>
+				<input type="digit" v-model="needVal.chfGuo_swgzl" /></input>
 				<uni-tag :text="multiSelector.chfGuo_swgzldw" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.chfGuo_ndjb">
@@ -71,60 +71,60 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">长迁系数</view>
-				<input v-model="needVal.chfGuo_cqxs" /></input>
+				<input type="digit" v-model="needVal.chfGuo_cqxs" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_cqxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高原系数</view>
-				<input v-model="needVal.chfGuo_gyxs" /></input>
+				<input type="digit" v-model="needVal.chfGuo_gyxs" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_gyxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高寒高温系数</view>
-				<input v-model="needVal.chfGuo_ghgwxs"/></input>
+				<input type="digit" v-model="needVal.chfGuo_ghgwxs"/></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_ghgwxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">带状系数</view>
-				<input v-model="needVal.chfGuo_dzxs"/></input>
+				<input type="digit" v-model="needVal.chfGuo_dzxs"/></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_dzxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">小面积系数</view>
-				<input v-model="needVal.chfGuo_xmjxs"/></input>
+				<input type="digit" v-model="needVal.chfGuo_xmjxs"/></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_xmjxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">修测系数</view>
-				<input v-model="needVal.chfGuo_xcxs"/></input>
+				<input type="digit" v-model="needVal.chfGuo_xcxs"/></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_xcxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">面积系数</view>
-				<input v-model="needVal.chfGuo_mjxs"/></input>
+				<input type="digit" v-model="needVal.chfGuo_mjxs"/></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_mjxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加系数</view>
-				<input v-model="needVal.chfGuo_fjxs"/></input>
+				<input type="digit" v-model="needVal.chfGuo_fjxs"/></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="chfGuo_fjxs">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.chfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.chfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.chfGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.chfGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>
@@ -151,7 +151,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/chfs/chfs-guo.json'
+	// import datajson from '@/common/json/chfs/chfs-guo.json'
 	import gzxm from './chfGuo_gzxm.vue'
 	import cqxs from './chfGuo_cqxs.vue'
 	import gyxs from './chfGuo_gyxs.vue'
@@ -225,7 +225,7 @@
 					chfGuo_sfjj: false,
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [{
 						"id": "1",
@@ -249,6 +249,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/chfs/chfs-guo.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		components: {
 			gzxm,

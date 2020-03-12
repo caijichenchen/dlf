@@ -25,17 +25,17 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">计算孔数</view>
-				<input v-model="needVal.ytgcktGuo_zkgs" /></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_zkgs" /></input>
 				<uni-tag text="个" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">单孔深度D/长度L</view>
-				<input v-model="needVal.ytgcktGuo_sdcd" @blur="checkVal" maxlength="4"/></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_sdcd" @blur="checkVal" maxlength="4"/></input>
 				<uni-tag text="m" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">单孔复杂分界点</view>
-				<input v-model="needVal.ytgcktGuo_fzfjd" @blur="checkVal" placeholder="例如:5,15"/></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_fzfjd" @blur="checkVal" placeholder="例如:5,15"/></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-if="arr.length == 0">
@@ -62,7 +62,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.ytgcktGuo_fjtz" /></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="ytgcktGuo_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group" >
@@ -76,19 +76,19 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">高程调整</view>
-				<input v-model="needVal.ytgcktGuo_gctz" /></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_gctz" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="ytgcktGuo_gctz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input v-model="needVal.ytgcktGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.ytgcktGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.ytgcktGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[5])">查看说明</button>
 			</view>

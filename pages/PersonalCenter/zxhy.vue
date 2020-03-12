@@ -10,10 +10,10 @@
 				<view class="font-bs iconG">丨 选择省份 :</view>
 				<view class="row" >
 					<view class="sf-item p-1 m-1 font-md" 
-						v-for="(item,index) in sfList" 
+						v-for="(item,index) in cityList" 
 						:key="index" 
-						:class="activeBorde == index ? 'activeBorde' : ''"
-						@tap="getVal(item,index)"
+						:class="{'activeBorde': pro == item}"
+						@tap="chooseCity(item)"
 					>
 						<view >{{item}}</view>
 					</view>
@@ -25,10 +25,9 @@
 					<view class="sf-item p-1 m-1 font-md"
 						v-for="(item,index) in flList" 
 						:key="index" 
-						:data-sortitem="item.name"
 						:data-key="index"
-						:class="activeSort == index ? 'activeBorde' : ''"
-						@tap="getSortVal"
+						:class="{'activeBorde' : item.name == sortItem}"
+						@tap="chooseCategory(item.name)"
 					>
 						<view>{{item.name}}</view>
 					</view>
@@ -48,13 +47,14 @@
 						v-for="(item,index) in caList" 
 						:key="index" 
 						class="c-list"
-						:class="{'okitem' : selectList.includes(item.name)}"
+						v-show="item.role_id"
+						:class="selectList.findIndex(x=>x.name == item.name)>-1?'okitem':''"
 						@tap="getResultList(item)"
 					>
 						<view >
 							{{item.name}} 
 							<text style="font-size: 32rpx;color: #00A0E0;"> {{item.price}} </text> 元/月
-							<text v-if="selectList.includes(item.name)" class="chioceok"></text>
+							<text v-if="selectList.findIndex(x=>x.name == item.name)>-1" class="chioceok"></text>
 						</view>
 					</view>
 				</view>
@@ -66,33 +66,38 @@
 					:key="index"
 					style="padding-left: 1.2rem;"
 				>
-					<view class="c-item">{{item}}</view>
+					<view class="c-item">{{item.name}}</view>
 				</view>
 			</view>
 			<view class="over-choice">
 				<view class="font-bs iconBLue px-4">3、选择时长</view>
 				<view class="val-box">
-					<view class="val-item" :class="{vipon:shows==1}" :data-show="1" @tap="changeShow">{{money}}元/1月</view>
-					<view class="val-item" :class="{vipon:shows==3}" :data-show="3" @tap="changeShow">{{money*3}}元/3月</view>
-					<view class="val-item" :class="{vipon:shows==6}" :data-show="6" @tap="changeShow">{{money*6}}元/6月</view>
-					<view class="val-item" :class="{vipon:shows==12}" :data-show="12" @tap="changeShow">{{money*12}}元/12月</view>
+					<view class="val-item" :class="{vipon:month==1}" @tap="changeShow(1)">{{money}}元/1月</view>
+					<view class="val-item" :class="{vipon:month==3}" @tap="changeShow(3)">{{money*3}}元/3月</view>
+					<view class="val-item" :class="{vipon:month==6}" @tap="changeShow(6)">{{money*6}}元/6月</view>
+					<view class="val-item" :class="{vipon:month==12}" @tap="changeShow(12)">{{money*12}}元/12月</view>
 				</view>
 			</view>
 			<view class="mt-4 font-md  ">
 				<view class="row px-4 border-bottom" @tap="getDiscount" style="height: 80rpx;">
 					<view style="line-height: 80rpx;">优惠码</view>
 					<view style="line-height: 80rpx;margin-left: auto;" >领取优惠券</view>
-					<image class="toimg" src="/static/HM-PersonalCenter/to.png"></image>
+					<view class="cuIcon-right" style="line-height: 80rpx;font-size: 38rpx;"></view>
 				</view>
 				<view >
 					<view class="row px-4 border-bottom" style="height: 80rpx;">
 						<view style="line-height: 80rpx;">原价</view>
-						<view style="line-height: 80rpx;margin-left: auto;">¥{{getMoney}}</view>
+						<view style="line-height: 80rpx;margin-left: auto;">¥{{money*month}}</view>
 					</view>
 					<view class="tip px-4"
 						v-if="userInfo.vipInfo.type == '企业会员' || userInfo.vipInfo.type == '省份会员'"
 					>
 						您好,尊贵的企业会员,您已享有网站全部特权,无需购买自选会员或VIP会员,若转变会员,请企业会员过期后再来购买
+					</view>
+					<view class="tip px-4"
+						v-if="prompt"
+					>
+						{{prompt}}
 					</view>
 				</view>
 			</view>
@@ -107,9 +112,13 @@
 					<text>支付宝支付</text>
 						<label><radio value="支付宝" /></label>
 				</view> -->
-				<view class="zhifu">
-					<view class="zhifu-lf">应付金额:￥{{getMoney}}</view>
-					<view class="zhifu-rt">确认购买</view>
+				<view class="zhifu" v-if="payStatus">
+					<view class="zhifu-lf">应付金额:￥{{money*month}}</view>
+					<view class="zhifu-rt" @tap="status && payMent()">确认购买</view>
+				</view>
+				<view class="zhifu" v-if="!payStatus">
+					<view class="zhifu-lf">应付金额:￥{{money*month}}</view>
+					<view class="zhifu-rt" @tap="keepPay">继续支付</view>
 				</view>
 			</radio-group>
 		</view>
@@ -124,67 +133,65 @@
 	export default {
 		data() {
 			return {
-				sfList: [
+				cityList: [
 					"全国","安徽","北京","重庆","福建","甘肃","广东","广西","贵州","海南","河南","河北","黑龙江","湖北","湖南","吉林",
 					"江苏","江西","辽宁","内蒙古","宁夏","青海","山东","山西","陕西","上海","四川","天津","西藏","新疆","云南","浙江",
 				],
 				flList:[],
-				shows:1,
-				activeBorde: -1,
-				activeSort:-1,
+				month:1,
 				pro:'',
 				sortItem: '',
 				caList:{},
+				money:0,
 				selectList:[],
-				selectPriceList:[],
-				money:0
+				couponId:'',
+				prompt:'',
+				price: 0,
+				payStatus: false,
+				timer:null,
+				status: true,
+				orderData: {}
 			}
 		},
 		computed:{
 			...mapState({
 				userInfo:state=>state.user.userInfo
-			}),
-			getMoney(){
-				return this.money * this.shows
-			}
+			})
+		},
+		created() {
+			uni.$on('chooseCoupon',(data)=>{
+				if(data.id){
+					this.couponId = data.id
+					this.getJudgePay()
+				}
+			})
+			this.getOrderStatus()
+			this.getJudgePay()
 		},
 		onLoad() {
 			$req.request({
 				url:'/api/xcx/getStandard'
 			}).then(res=>{
-				this.flList = res.data.filter(item=>{
-					return item.name != '其他标准'
-				})
+				this.flList = res.data.filter(item=> item.name != '其他标准')
 			}).catch(err=>{
-				console.log(err)
+				this.$msg('获取分类失败,稍后重试')
 			})
 		},
 		methods: {
-			changeShow(e){
-				this.shows = e.currentTarget.dataset.show
+			changeShow(index){
+				this.month = index
+				this.getJudgePay()
 			},
-			getVal(pro,key){
-				if(this.pro == pro){
-					this.pro = ''
-					this.activeBorde = -1
-				}else {
-					this.pro = pro
-					this.activeBorde = key
-					this.showCalcultor()
-				}
+			chooseCity(pro){ // 选择省份
+				this.pro = this.pro == pro ? '' : pro
+				this.getCalcultor()
 			},
-			getSortVal(e){//分类计算器
-				if(this.sortItem == e.currentTarget.dataset.sortitem){
-					this.sortItem = ''
-					this.activeSort = -1
-				}else {
-					this.sortItem = e.currentTarget.dataset.sortitem
-					this.activeSort = e.currentTarget.dataset.key
-				}
-				this.showCalcultor()
+			chooseCategory(sort){ // 选择分类
+				this.sortItem = this.sortItem == sort ? '' : sort
+				this.getCalcultor()
 			},
-			showCalcultor(){//初始计算器
-				var url = '/api/xcx/getCalculatorByProvince?state=1&province='+this.pro
+			getCalcultor(){ //显示计算器
+				let url = '/api/xcx/getCalculatorByProvince?state=1&province='+this.pro
 				if(this.pro && this.sortItem){
 					url = '/api/xcx/getCalculatorByProvince?state=1&province='+this.pro+'&calculator_type='+this.sortItem
 				}else if(!this.pro && this.sortItem){
@@ -195,31 +202,141 @@
 				}).then(res=>{
 					this.caList = res.data.message
 				}).catch(err=>{
+					this.$msg('获取计算器失败,请稍后重试')
+				})
+			},
+			getResultList(item){ //选择购买计算器
+				if(JSON.stringify(this.selectList).indexOf(JSON.stringify(item)) > -1){
+					this.selectList = this.selectList.filter(val => val.name != item.name)
+				}else{
+					this.selectList.push(item)
+				}
+				this.money = this.selectList.length >0 ? this.selectList.map(item=> item.price*1).reduce((x,y)=>x+y) : 0
+				this.getJudgePay()
+			},
+			getOrderStatus(){ //查询是否订单状态
+				$req.request({
+					url:'/api/xcx/pay/query_valid_order'
+				}).then(res=>{
+					if(res.data.msg == '暂无订单'){
+						this.payStatus = true
+						clearInterval(this.timer)
+					}else{
+						this.orderData = res.data.msg
+						this.price = res.data.msg.sum
+						clearInterval(this.timer)
+						this.timer = setInterval(()=>{
+							this.getOrderStatus()
+						},1000)
+					}
+				}).catch(err=>{
+					this.getOrderStatus()
+				})
+			},
+			getJudgePay(){ //获取价格抵扣
+				let strArr = this.selectList.map(item=>item.role_id)
+				$req.request({
+					url:'/api/xcx/pay/judge_pay',
+					method:'POST',
+					data:{
+						goods_type:3,
+						number: this.month,
+						coupon_id: this.couponId || '',
+						province_id: strArr.join(',')
+					}
+				}).then(res=>{
+					this.prompt = res.data.message
+					this.price = res.data.price
+					this.status = res.data.status?false:true
+				}).catch(err=>{
 					console.log(err)
 				})
 			},
-			getResultList(item){
-				const itemName = item.name
-				const itemPrice = item.price
-				const resultName = this.selectList.indexOf(itemName);
-				const resultPrice = this.selectPriceList.indexOf(itemPrice)
-				if (resultName > -1) {
-					//之前选中取消选中
-					this.selectList.splice(resultName, 1);
-					this.selectPriceList.splice(resultPrice, 1);
-					this.money = 0
-					this.selectPriceList.forEach(val=>{
-						this.money += (val-0)
-					})
+			payMent(){ //支付
+				if(!this.price) return 
+				let strArr = []
+				this.calList.forEach(item=>{
+					strArr.push(item.id)
+				})
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/goods',
+							method:'POST',
+							data:{
+								goods_type:3,
+								number: this.month,
+								coupon_id:this.couponId || '',
+								pay_type:1,
+								channel:'lite',
+								province_id:strArr.join(','),
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
+			},
+			keepPay(){
+				if(!this.price){
 					return
 				}
-				//选中
-				this.selectList.push(itemName);
-				this.selectPriceList.push(itemPrice);
-				this.money = 0
-				this.selectPriceList.forEach(val=>{
-					this.money += (val-0)
-				})
+				uni.login({
+					provider: 'weixin',
+					success:(loginRes)=> {
+						const code = loginRes.code
+						$req.request({
+							url:'/api/xcx/pay/arousePay',
+							data:{
+								order_id:this.orderData.order_id,
+								code:code
+							}
+						}).then(res=>{
+							console.log(res)
+							if(res.errMsg == 'request:ok'){
+								uni.requestPayment({
+									provider:'wxpay',
+									timeStamp: res.data.timeStamp,
+									nonceStr: res.data.nonceStr,
+									package: res.data.package,
+									signType: res.data.signType,
+									paySign: res.data.paySign,
+									appId:res.data.appId,
+									success: function (res) {
+										console.log('success:' + JSON.stringify(res));
+									},
+									fail: function (err) {
+										console.log('fail:' + JSON.stringify(err));
+									}
+								})
+							}
+						}).catch(err=>{
+							console.log(err)
+						})
+					}
+				});
 			},
 			getDiscount(){
 				uni.navigateTo({
@@ -294,11 +411,6 @@
 		right: 0;
 		bottom: 0;
 		background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAOCAMAAAD32Kf8AAAAP1BMVEUAAAAAoOoAoOoAoOoAoOoAoOr///8nr+7z+/6c2veP1vbk9f3Q7fu65fmC0PV3zPRCue84te8Sp+sDoeoBoOpVGAzAAAAABXRSTlMA6alUFQy/ElcAAABRSURBVBjTbc03EsAwCAVROSwKzuH+Z7WGSp6vbaB4A6HTPAZtGuhAoANrAj2BnkBP4LNkaOAVgTulOhq420m09QXai8WKbb79Xh+W8RxKDqUPVvADbKCslAcAAAAASUVORK5CYII=") no-repeat;
-	}
-	.toimg {
-		height: 40rpx;
-		width: 40rpx;
-		margin-top: 20rpx;
 	}
 	.tip{
 		width: 100%;

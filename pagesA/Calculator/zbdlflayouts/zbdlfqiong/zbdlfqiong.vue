@@ -3,27 +3,28 @@
 		<template v-slot:jsq>
 			<zbdlf-counter-qiong></zbdlf-counter-qiong>
 			<computing v-bind:countData = "countData"></computing>
-			<zbdlf-result :title="title"></zbdlf-result>
+			<result title="海南省招标代理费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import zbdlfCounterQiong from "./zbdlf_counter_qiong.vue"
-	import zbdlfResult from "../zbdlf_result.vue"
+	import {zbdlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/zbdlfQiong',  //api请求
 					count:2  //积分消耗
 				},
-				title:'海南'
+				result:JSON.parse(JSON.stringify(zbdlfData))
 			}
 		},
 		components:{
-			zbdlfCounterQiong,
-			zbdlfResult
+			zbdlfCounterQiong
 		}
 	}
 </script>

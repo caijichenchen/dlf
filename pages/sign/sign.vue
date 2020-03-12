@@ -30,7 +30,6 @@
 </template>
 
 <script>
-	import $req from '@/common/req/request.js'
 	export default{
 		data(){
 			return {
@@ -39,17 +38,16 @@
 			}
 		},
 		mounted() {
-			$req.request({
+			this.$req.request({
 				url:'/api/xcx/verifySignIn',
 				method:'POST'
 			}).then(res=>{
-				console.log(res)
 				if(res.data.message == '已签到'){
 					this.showSign = false
 					this.userIntegral = res.data.integral
 				}
 			}).catch(err=>{
-				
+				this.$msg('查询签到状态失败,请稍后重试')
 			})
 		},
 		methods:{
@@ -59,15 +57,14 @@
 				})
 			},
 			getSign(){
-				$req.request({
+				this.$req.request({
 					url: '/api/xcx/sign',
 					method:'POST'
 				}).then(res=>{
-					uni.setStorageSync('signStatus',{status:'sign',scope:res.data.userIntegral})
 					this.showSign = false
 					this.userIntegral = res.data.userIntegral
 				}).catch(err=>{
-					console.log(err)
+					this.$msg('签到失败,请稍后重试')
 				})
 			}
 		}

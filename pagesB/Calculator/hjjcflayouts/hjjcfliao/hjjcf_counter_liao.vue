@@ -61,28 +61,28 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.hjjcfLiao_units">
 				<view class="title">工程量</view>
-				<input type="text" v-model="needVal.hjjcfLiao_gcl"></input>
+				<input type="digit" v-model="needVal.hjjcfLiao_gcl"></input>
 				<uni-tag :text="multiSelector.hjjcfLiao_units" type="defult" v-model="needVal.hjjcfLiao_units"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.hjjcfLiao10">
 				<view class="title">{{multiSelector.hjjcfLiao10}}</view>
-				<input type="text" v-model="needVal.hjjcfLiao_ds"></input>
+				<input type="digit" v-model="needVal.hjjcfLiao_ds"></input>
 				<uni-tag text="吨" type="defult" ></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">行业调整</view>
-				<input name="hjjcfLiao_hytz" v-model="needVal.hjjcfLiao_hytz" /></input>
+				<input type="digit" v-model="needVal.hjjcfLiao_hytz" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">调整系数</view>
-				<input name="hjjcfLiao_tzxs" v-model="needVal.hjjcfLiao_tzxs" /></input>
+				<input type="digit" v-model="needVal.hjjcfLiao_tzxs" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="hjjcfLiao_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input name="hjjcfLiao_discount" v-model="needVal.hjjcfLiao_discount" /></input>
+				<input type="digit" v-model="needVal.hjjcfLiao_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -98,10 +98,18 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from "@/common/json/hjjcfs/hjjcfs-liao.json"
+	// import datajson from "@/common/json/hjjcfs/hjjcfs-liao.json"
 	import tzxsLiao from './hjjcfLiao_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/hjjcfs/hjjcfs-liao.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -153,7 +161,7 @@
 					hjjcfLiao_cyxm: 0,
 					hjjcfLiao_ff: 0
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [

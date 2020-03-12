@@ -26,29 +26,29 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程费用</view>
-				<input v-model="needVal.ybfGuo_gcfy" /></input>
+				<input type="digit" v-model="needVal.ybfGuo_gcfy" /></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo4">
 				<view class="title">{{multiSelector.ybfGuo4}}</view>
-				<input v-model="needVal.ybfGuo_gcjsqtfy" /></input>
+				<input type="digit" v-model="needVal.ybfGuo_gcjsqtfy" /></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo5">
 				<view class="title">{{multiSelector.ybfGuo5}}</view>
-				<input v-model="needVal.ybfGuo_jsqns" /></input>
+				<input type="digit" v-model="needVal.ybfGuo_jsqns" /></input>
 				<uni-tag text="年" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击查看</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo6">
 				<view class="title">{{multiSelector.ybfGuo6}}</view>
-				<input v-model="needVal.ybfGuo_wjszxs" /></input>
+				<input type="digit" v-model="needVal.ybfGuo_wjszxs" /></input>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">点击查看</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.ybfGuo7">
 				<view class="title">{{multiSelector.ybfGuo7}}</view>
-				<input v-model="needVal.ybfGuo_jbybfl" /></input>
+				<input type="digit" v-model="needVal.ybfGuo_jbybfl" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">点击查看</button>
 			</view>
@@ -67,10 +67,18 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import ybfCategory from './ybfGuo_category.vue'
-	import datajson from '@/common/json/ybfs/ybfs-guo.json'
+	// import datajson from '@/common/json/ybfs/ybfs-guo.json'
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/ybfs/ybfs-guo.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -106,7 +114,7 @@
 					ybfGuo7: true
 				},
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				explain: [
 					{

@@ -30,7 +30,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fkdxyjjsfMeng4">
 				<view class="title">{{multiSelector.fkdxyjjsfMeng4}}</view>
-				<input type="text" v-model="needVal.fkdxyjjsfMeng_jsmj"></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfMeng_jsmj"></input>
 				<uni-tag text="㎡" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fkdxyjjsfMeng_category">
@@ -45,7 +45,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.fkdxyjjsfMeng_discount" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfMeng_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -61,9 +61,17 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/fkydjsfs/fkydjsfs-meng.json'
+	// import datajson from '@/common/json/fkydjsfs/fkydjsfs-meng.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/fkydjsfs/fkydjsfs-meng.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -97,7 +105,7 @@
 					fkdxyjjsfMeng_category: true,
 					fkdxyjjsfMeng_jj: false,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,
 				explain: [{
 						"id": "1",

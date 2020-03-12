@@ -30,18 +30,18 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfGuo4 || showSelector.sgtscfGuo_dw">
 				<view class="title">{{multiSelector.sgtscfGuo4}}</view>
-				<input type="text" v-model="needVal.sgtscfGuo_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfGuo_gcl"></input>
 				<uni-tag :text="multiSelector.sgtscfGuo_dw" type="defult" v-model="multiSelector.sgtscfGuo_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfGuo7">
 				<view class="title">{{multiSelector.sgtscfGuo7}}</view>
-				<input v-model="needVal.sgtscfGuo_fl" /></input>
+				<input type="digit" v-model="needVal.sgtscfGuo_fl" /></input>
 				<uni-tag text="%" type="defult" v-model="multiSelector.sgtscfGuo8"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfGuo_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfGuo_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

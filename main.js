@@ -5,6 +5,11 @@ import VueBus from "vue-bus"
 import Vuex from "vuex"
 Vue.config.productionTip = false
 
+//发送请求
+import $req from '@/common/req/request.js'
+Vue.prototype.$req = $req
+
+//注册全局组件
 import cuCustom from './colorui/components/cu-custom.vue'
 Vue.component('cu-custom',cuCustom)
 
@@ -20,11 +25,21 @@ Vue.component('computing',computing)
 import explain from '@/common/base/explain.vue'
 Vue.component('explain',explain)
 
+import result from '@/common/base/result.vue'
+Vue.component('result',result)
+
 import {uniCollapse,uniCollapseItem} from "@dcloudio/uni-ui"
 Vue.component('uni-collapse',uniCollapse)
 Vue.component('uni-collapse-item',uniCollapseItem)
 
-
+//提示信息
+Vue.prototype.$msg = (msg='信息提示',icons='none',delayTime=1500) =>{
+	return uni.showToast({
+		icon:icons,
+		title:msg,
+		duration:delayTime
+	})
+}
 
 // 使用vuex
 Vue.use(Vuex)

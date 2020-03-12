@@ -28,7 +28,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">建筑面积</view>
-				<input type="text" v-model="needVal.byfzfZhe_jzmj"></input>
+				<input type="digit" v-model="needVal.byfzfZhe_jzmj"></input>
 				<uni-tag text="平方米" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.byfzfZhe_category">
@@ -43,7 +43,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="byfzfZhe_discount" v-model="needVal.byfzfZhe_discount" /></input>
+				<input type="digit" v-model="needVal.byfzfZhe_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -58,7 +58,7 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/byfzfs/byfzfs-zhe.json'
+	// import datajson from '@/common/json/byfzfs/byfzfs-zhe.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {
@@ -94,7 +94,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [{
 						"id": "1",
 						"title": "选择项目",
@@ -107,6 +107,14 @@
 					}
 				]
 			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/byfzfs/byfzfs-zhe.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
 		},
 		methods:{
 			showdzzk(e) {

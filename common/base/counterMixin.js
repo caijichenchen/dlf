@@ -36,12 +36,16 @@ export const counterMixin = {
 				// 	this.showModalName = null
 				// 	return
 				// }
-				console.log(this.needVal)
+				// console.log(this.needVal)
+				// console.log(this.showModalName)
+				this.showModalName = null
 				if(this.multiSelector[name]){
 					this.afterPicker(ckey,name)
 					// this.multiSelectorChange(this.datajson,name)
 				}
-				this.showModalName = null
+				// console.log(this.showModalName)
+				// this.showModalName = null
+				// console.log(this.showModalName)
 			}else if(!isNaN(val) && cIndex){ //数值下拉选项且不为联动时
 				this[cIndex] = e.currentTarget.dataset.key
 				this.needVal[name] = e.currentTarget.dataset.val
@@ -49,6 +53,7 @@ export const counterMixin = {
 				this.needVal[name] = val;
 			}
 			this.showModalName = null
+			// console.log(this.showModalName)
     	},
 		computeRadio(name,e){
 			var val = parseFloat(e.currentTarget.dataset.val)

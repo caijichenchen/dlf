@@ -3,36 +3,28 @@
 		<template v-slot:jsq>
 			<jlfchuan-counter-guo></jlfchuan-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<jlfchuan-result></jlfchuan-result>
+			<result title="四川省监理费" :result="result"></result>
 		</template>
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import jlfchuanCounterGuo from "./jlfchuan_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
-	import jlfchuanResult from "./jlfchuan_result.vue"
+	import {jlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jlfChuan',  //api请求
 					count:2  //积分消耗
-				}
+				},
+				result: JSON.parse(jlfData('Chuan'))
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			jlfchuanCounterGuo,
-			baseLayout,
-			computing,
-			jlfchuanResult
+			jlfchuanCounterGuo
 		}
 	}
 </script>

@@ -3,30 +3,28 @@
 		<template v-slot:jsq>
 			<pppxmzx-counter-chuan></pppxmzx-counter-chuan>
 			<computing v-bind:countData = "countData"></computing>
-			<pppxmzx-result :title="title"></pppxmzx-result>
+			<result title="四川省PPP项目咨询服务收费" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
 	import pppxmzxCounterChuan from "./pppxmzx_counter_chuan.vue"
-	import pppxmzxResult from "../pppxmzx_result.vue"
+	import {pppxmzxData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/pppxmzxChuan',  //api请求
 					count:2  //积分消耗
 				},
-				title:'四川'
+				result:JSON.parse(JSON.stringify(pppxmzxData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			pppxmzxCounterChuan,
-			pppxmzxResult
+			pppxmzxCounterChuan
 		}
 	}
 </script>

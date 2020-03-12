@@ -30,23 +30,23 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">中标额</view>
-				<input type="text" v-model="needVal.jsjyfwfMin_zbj"></input>
+				<input type="digit" v-model="needVal.jsjyfwfMin_zbj"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">收取分配</view>
-				<input v-model="needVal.jsjyfwfMin_qfbl" /></input>
+				<input type="digit" v-model="needVal.jsjyfwfMin_qfbl" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfMin_qfbl">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">附加调整</view>
-				<input v-model="needVal.jsjyfwfMin_fjtz" /></input>
+				<input type="digit" v-model="needVal.jsjyfwfMin_fjtz" /></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jsjyfwfMin_fjtz">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.jsjyfwfMin_discount" /></input>
+				<input type="digit" v-model="needVal.jsjyfwfMin_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
@@ -62,11 +62,19 @@
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
 	import {counterMixin} from "@/common/base/counterMixin"
-	import datajson from '@/common/json/jsjyfwf/jsjyfwf-min.json'
+	// import datajson from '@/common/json/jsjyfwf/jsjyfwf-min.json'
 	import jsjyfwfMinQfbl  from "./jsjyfwfMin_sqfp.vue"
 	import jsjyfwfMinFjtz from "./jsjyfwfMin_fjtz.vue"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/jsjyfwf/jsjyfwf-min.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -101,7 +109,7 @@
 					jsjyfwfMin_jj: false,
 					jsjyfwfMin6: false
 				},
-				datajson: datajson,
+				datajson: '',
 				modalData: null,
 				showModalName: null,
 				explain: [{

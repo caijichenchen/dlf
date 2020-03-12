@@ -2,7 +2,7 @@
 	<view>
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-			<text class="text-blue lt pl-2 " style="margin-top: 5upx;"> </text>
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">铁建设函[2002]86号</text>
 		</div>
 		
 		<view class="cu-form-group" v-show="showSelector.tlkcsjsfGuo_standard">
@@ -52,12 +52,12 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="title">{{multiSelector.tlkcsjsfGuo5}}</view>
-			<input v-model="needVal.tlkcsjsfGuo_jfdw" /></input>
+			<input type="digit" v-model="needVal.tlkcsjsfGuo_jfdw" /></input>
 			<uni-tag text="正线公里" type="defult">{{multiSelector.tlkcsjsfGuo_sjgzldw}}</uni-tag>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">{{multiSelector.tlkcsjsfGuo9}}</view>
-			<input v-model="needVal.tlkcsjsfGuo_fzfz" /></input>
+			<input type="digit" v-model="needVal.tlkcsjsfGuo_fzfz" /></input>
 			<button type="primary" size="mini" @tap="showModal" data-target="tlkcsjsfGuo_fzfz">点击说明</button>
 		</view>
 		<view class="cu-form-group">
@@ -72,18 +72,18 @@
 		</view>
 		<view class="cu-form-group">
 			<view class="title">高程调整</view>
-			<input v-model="needVal.tlkcsjsfGuo_gdtz" /></input>
+			<input type="digit" v-model="needVal.tlkcsjsfGuo_gdtz" /></input>
 			<button type="primary" size="mini" @tap="showModal" data-target="tlkcsjsfGuo_gdtz">点击选择</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">浮动幅度</view>
-			<input v-model="needVal.tlkcsjsfGuo_fdfd" /></input>
+			<input type="digit" v-model="needVal.tlkcsjsfGuo_fdfd" /></input>
 			<uni-tag text="%" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">优惠折扣</view>
-			<input v-model="needVal.tlkcsjsfGuo_yhzk" /></input>
+			<input type="digit" v-model="needVal.tlkcsjsfGuo_yhzk" /></input>
 			<uni-tag text="%" type="defult"></uni-tag>
 			<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 		</view>
@@ -100,11 +100,19 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from '@/common/json/tlkcsjsfs/tlkcsjsfs-all.json'
+	// import datajson from '@/common/json/tlkcsjsfs/tlkcsjsfs-all.json'
 	import gctz from '@/common/base/gctz.vue'
 	import fzfz from './tlkcsjsfGuo_fzfz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/tlkcsjsfs/tlkcsjsfs-all.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -154,7 +162,7 @@
 				tlkcsjsfGuo_qwfjtz: ['1','1.2'],
 				index0: 0,
 				showModalName: null,
-				datajson:datajson,
+				datajson:'',
 				explain: [
 					{
 						"id": "2",

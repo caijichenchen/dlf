@@ -26,12 +26,11 @@
 			</view>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 				<view class="title">地面总建筑面积</view>
-				<input type="text" id="sjf" v-model="needVal.fkdxyjjsfXiang_jsmj"></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfXiang_jsmj"></input>
 				<uni-tag text="㎡" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0]) ">查看说明</button>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fkdxyjjsfXiang_category">
-				<!-- <input type="hidden" v-show='false' v-model="needVal.fkdxyjjsfXiang_graded"> -->
 				<view class="title">计算区域</view>
 				<picker class="select" @change="PickerChange" data-name="fkdxyjjsfXiang_category" :value="pickerIndex.fkdxyjjsfXiang_category"
 				 :range="multiSelector.fkdxyjjsfXiang_category">
@@ -43,7 +42,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">优惠折扣</view>
-				<input v-model="needVal.fkdxyjjsfXiang_discount" /></input>
+				<input type="digit" v-model="needVal.fkdxyjjsfXiang_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>

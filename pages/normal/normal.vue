@@ -15,14 +15,12 @@
 		data() {
 		    return {
 				html:'',
-				title:'相关标准'
+				title:''
 		    }
 		},
 		onLoad(options) {
 			const id = options.id
-			if(this.title){
-				this.title = options.title
-			}
+			this.title = options.title ? options.title : '相关标准'
 			$req.request({
 				url:'/api/xcx/standard/detail',
 				data:{id:id}
@@ -30,14 +28,11 @@
 				let data = res.data.message.body
 				this.html = data
 			}).catch(err=>{
-				console.log(err)
+				this.$msg('获取相关标准失败')
 			})
 		},
 		components: {
 			parser
-		},
-		methods:{
-			
 		}
 	}
 </script>

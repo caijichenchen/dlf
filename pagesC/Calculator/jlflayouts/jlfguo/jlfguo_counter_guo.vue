@@ -11,13 +11,13 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">工程造价</view>
-				<input type="text"  v-model="needVal.jlfGuo_gczj"></input>
+				<input type="digit" v-model="needVal.jlfGuo_gczj"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfGuo_gczj">点击查看</button>
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">专业调整</view>
-				<input type="text"  v-model="needVal.jlfGuo_zytz"></input>
+				<input type="digit" v-model="needVal.jlfGuo_zytz"></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfGuo_zytz">点击查看</button>
 			</view>
 			<view class="cu-form-group">
@@ -31,18 +31,18 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">高程调整</view>
-				<input type="text"  v-model="needVal.jlfGuo_gctz"></input>
+				<input type="digit" v-model="needVal.jlfGuo_gctz"></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfGuo_gctz">点击查看</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">浮动幅度</view>
-				<input  v-model="needVal.jlfGuo_fdfd" /></input>
+				<input type="digit" v-model="needVal.jlfGuo_fdfd" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0]) ">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input  v-model="needVal.jlfGuo_dzzk" /></input>
+				<input type="digit" v-model="needVal.jlfGuo_dzzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

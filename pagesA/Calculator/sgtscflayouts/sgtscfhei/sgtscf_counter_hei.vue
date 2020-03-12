@@ -30,7 +30,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfHei4 || showSelector.sgtscfHei_dw">
 				<view class="title">{{multiSelector.sgtscfHei4}}</view>
-				<input type="text" v-model="needVal.sgtscfHei_gcl"></input>
+				<input type="digit" v-model="needVal.sgtscfHei_gcl"></input>
 				<uni-tag :text="multiSelector.sgtscfHei_dw" type="defult" v-model="multiSelector.sgtscfHei_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.sgtscfHei_jtfl">
@@ -55,12 +55,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">调整系数</view>
-				<input v-model="needVal.sgtscfHei_tzxs" /></input>
+				<input type="digit" v-model="needVal.sgtscfHei_tzxs" /></input>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sgtscfHei_tzxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.sgtscfHei_discount" /></input>
+				<input type="digit" v-model="needVal.sgtscfHei_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

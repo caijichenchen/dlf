@@ -11,7 +11,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">计费额</view>
-				<input type="text" v-model="needVal.jlfJi_jfe"></input>
+				<input type="digit" v-model="needVal.jlfJi_jfe"></input>
 				<uni-tag  text="万元" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="jlfJi_jfe">查看说明</button>
 			</view>
@@ -26,12 +26,12 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">专业调整</view>
-				<input type="text" v-model="needVal.jlfJi_zytz"></input>
+				<input type="digit" v-model="needVal.jlfJi_zytz"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="jlfJi_zytz">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input type="text" v-model="needVal.jlfJi_dzzk"></input>
+				<input type="digit" v-model="needVal.jlfJi_dzzk"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
@@ -48,7 +48,7 @@
 	import {counterMixin} from "@/common/base/counterMixin"
 	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import explain from '@/common/base/explain.vue'
-	import datajson from '@/common/json/sxsjlfs/sxsjlfs.json'
+	// import datajson from '@/common/json/sxsjlfs/sxsjlfs.json'
 	import zytz from './jlfJi_zytz.vue'
 	import fztz from './jlfJi_fztz.vue'
 	import jfe from './jlfJi_jfe.vue'

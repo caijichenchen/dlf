@@ -28,23 +28,23 @@
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfBa5 ">
 			<view class="title">{{multiSelector.zjzxfBa5}}</view>
-			<input v-model="needVal.zjzxfBa_ztz" /></input>
+			<input type="digit" v-model="needVal.zjzxfBa_ztz" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfBa_sdeTitle ">
 			<view class="title" v-model="needVal.zjzxfBa_sdeTitle">{{multiSelector.zjzxfBa_sdeTitle}}</view>
-			<input v-model="needVal.zjzxfBa_sde" /></input>
+			<input type="digit" v-model="needVal.zjzxfBa_sde" /></input>
 			<uni-tag text="万元" type="defult" ></uni-tag>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfBa8 ">
 			<view class="title">{{multiSelector.zjzxfBa8}}</view>
-			<input v-model="needVal.zjzxfBa_hzhjcgb" /></input>
+			<input type="digit" v-model="needVal.zjzxfBa_hzhjcgb" /></input>
 			<uni-tag text="%" type="defult" >%</uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">点击查看</button>
 		</view>
 		<view class="cu-form-group">
 			<view class="title">打折折扣</view>
-			<input v-model="needVal.zjzxfBa_discount" /></input>
+			<input type="digit" v-model="needVal.zjzxfBa_discount" /></input>
 			<uni-tag text="%" type="defult" ></uni-tag>
 			<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">点击查看</button>
 		</view>

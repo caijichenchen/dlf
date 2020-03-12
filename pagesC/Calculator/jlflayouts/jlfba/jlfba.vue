@@ -3,36 +3,28 @@
 		<template v-slot:jsq>
 			<jlfba-counter-guo></jlfba-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<jlfba-result></jlfba-result>
+			<result title="重庆市监理费" :result="result"></result>
 		</template>
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import jlfbaCounterGuo from "./jlfba_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
-	import jlfbaResult from "./jlfba_result.vue"
+	import {jlfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
 					url: this.$serverUrl + '/api/jlfBa',  //api请求
 					count:2  //积分消耗
-				}
+				},
+				result: JSON.parse(jlfData('Ba'))
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			jlfbaCounterGuo,
-			baseLayout,
-			computing,
-			jlfbaResult
+			jlfbaCounterGuo
 		}
 	}
 </script>

@@ -129,7 +129,7 @@
 				<view class="box">
 					<view v-for="(item,index) in hotNormList" :key="index" class="box-item" @tap="goHotNorm(item.id)">
 						<view class="m-hot-cal-icon">
-							<i class="iconfont" style="color: #62bcff;">&#xe7b4;</i>
+							<view class="cuIcon-text iconBLue text-center" style="width: 100%;line-height: 120rpx;font-size: 48rpx;"></view>
 						</view>
 						<view class="m-hot-cal-name">
 							<text style="display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;">{{item.name}}</text>
@@ -168,7 +168,7 @@
 <script>
 	import {mapState,mapMutations} from 'vuex'
 	import { calRouter } from '@/common/req/router.js'
-	import $req from '@/common/req/request.js'
+	import {sgtscfData} from '@/common/resultData.js'
 	export default {  
 		onShareAppMessage(res) {
 		    if (res.from === 'button') {// 来自页面内分享按钮
@@ -200,7 +200,7 @@
 				this.hotCalList = this.hotCal.slice(0,3)
 				this.hotNormList = this.hotNorm.slice(0,3)
 			}else{
-				$req.request({
+				this.$req.request({
 					url:'/api/xcx/hotrank'
 				}).then(res=>{
 					this.hotCalList = res.data.slice(0,3)
@@ -208,7 +208,7 @@
 				}).catch(err=>{
 					console.log(err)
 				})
-				$req.request({
+				this.$req.request({
 					url:'/api/xcx/norm'
 				}).then(res=>{
 					this.hotNormList = res.data.slice(0,3)
@@ -281,32 +281,19 @@
 				}
 			},
 			delClick(id){
-				let url
-				if(this.TabCur == 0){
-					url = '/api/xcx/personalcenter/deleteXcxCollect'
-				}else{
-					url = '/api/xcx/personalcenter/deleteXcxOften'
-				}
-				$req.request({
+				const url = this.TabCur==0 ? '/api/xcx/personalcenter/deleteXcxCollect':'/api/xcx/personalcenter/deleteXcxOften'
+				this.$req.request({
 					url:url,
-					data:{
-						id:id
-					}
+					data:{ id:id }
 				}).then(res=>{
-					uni.showToast({
-						icon:'none',
-						title: '删除成功'
-					})
+					this.$msg('删除成功')
 					this.moveWith = 0
 					this.tabSelect(this.TabCur)
 				}).catch(err=>{
-					uni.showToast({
-						icon:'none',
-						title:'删除失败,请稍后重试'
-					})
+					this.$msg('删除失败,请稍后重试')
 				})
 			},
-			tabSelect(index) {
+			tabSelect(index) { //切换选项
 				this.TabCur = index
 				this.touchEle = -1
 				let url
@@ -317,12 +304,12 @@
 				}else if(index == 2){
 					url = '/api/xcx/personalcenter/nearXcxCalculation'
 				}
-				$req.request({
+				this.$req.request({
 					url:url
 				}).then(res=>{
 					this.useData = res.data.data
 				}).catch(err=>{
-					console.log(err)
+					this.$msg('获取数据失败,请稍后重试')
 				})
 			},
 			showDeail(caltype,url){
@@ -351,7 +338,7 @@
 				this.startX = 0
 				this.endX = 0
 			},
-		}
+		},
 	}
 </script>
 

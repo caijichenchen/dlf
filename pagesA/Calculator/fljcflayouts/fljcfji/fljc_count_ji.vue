@@ -40,18 +40,18 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.fljcfJi_dw">
 				<view class="title" v-model="needVal.fljcfJi_gclmc">工程量</view>
-				<input v-model="needVal.fljcfJi_gcl" /></input>
+				<input type="digit" v-model="needVal.fljcfJi_gcl" /></input>
 				<uni-tag :text="multiSelector.fljcfJi_dw" type="defult" v-model="needVal.fljcfJi_dw"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="pickerIndex.fljcfJi_jtfl >= 1">
 				<view class="title">建筑物层数</view>
-				<input v-model="needVal.fljcfJi_jzcs" /></input>
+				<input type="digit" v-model="needVal.fljcfJi_jzcs" /></input>
 				<uni-tag text="层" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.fljcfJi_discount" /></input>
+				<input type="digit" v-model="needVal.fljcfJi_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
 			</view>

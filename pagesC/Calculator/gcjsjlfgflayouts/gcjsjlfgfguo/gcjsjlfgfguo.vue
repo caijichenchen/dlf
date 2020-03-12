@@ -1,18 +1,10 @@
 <template>
-	<!-- 计算器页面 -->
 	<base-layout :detailId="1923">
 		<template v-slot:jsq>
-			<!-- 设计费计算选项 -->
 			<gcjsjlfgf-counter-guo></gcjsjlfgf-counter-guo>
-			<!-- 设计费计算按钮 -->
 			<computing v-bind:countData = "countData"></computing>
-			<!-- 设计费计算结果 -->
 			<gcjsjlfgf-result></gcjsjlfgf-result>
 		</template>
-		
-		<!-- <template v-slot:qfbz>
-			<h1>设计费取费标准</h1>
-		</template> -->
 	</base-layout>
 </template>
 

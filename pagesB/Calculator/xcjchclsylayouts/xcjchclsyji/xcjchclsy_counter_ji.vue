@@ -47,7 +47,7 @@
 			</view>
 			<view class="cu-form-group" v-show="showSelector.xcjchclsyJi_units">
 				<view class="title">工程量</view>
-				<input type="text" v-model="needVal.xcjchclsyJi_gcl"></input>
+				<input type="digit" v-model="needVal.xcjchclsyJi_gcl"></input>
 				<uni-tag :text="multiSelector.xcjchclsyJi_units" type="defult" v-model="needVal.xcjchclsyJi_units"></uni-tag>
 			</view>
 			<view class="cu-form-group" v-show="showSelector.xcjchclsyJi_xzlb">
@@ -61,7 +61,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input name="xcjchclsyJi_discount" v-model="needVal.xcjchclsyJi_discount" /></input>
+				<input type="digit" v-model="needVal.xcjchclsyJi_discount" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
 			</view>
@@ -77,9 +77,17 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import datajson from "@/common/json/gcjsclsyzljcf/gcjsclsyzljcf-ji.json"
+	// import datajson from "@/common/json/gcjsclsyzljcf/gcjsclsyzljcf-ji.json"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/gcjsclsyzljcf/gcjsclsyzljcf-ji.json',
+				success: (res) => {
+					this.datajson = res.data
+				}
+			})
+		},
 		data() {
 			return {
 				needVal: {
@@ -123,7 +131,7 @@
 					xcjchclsyJi_csxm: 0,
 					xcjchclsyJi_xzlb: 0,
 				},
-				datajson:datajson,
+				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
 				explain: [{

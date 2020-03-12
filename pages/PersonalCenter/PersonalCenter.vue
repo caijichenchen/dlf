@@ -11,7 +11,7 @@
 					<view class="integral">会员信息:{{userInfo.vipInfo.type}}</view>
 				</view>
 			</view>
-			<view class="setting"><image src="../../static/HM-PersonalCenter/setting.png"></image></view>
+			<view class="cuIcon-right" style="line-height: 30vm;font-size: 60rpx;color: #FFF"></view>
 		</navigator >
 			<navigator url="../login/login" v-else class="backBlue py-2">
 				<view class="font-md iconWhite" style="padding-left: 4%;">登录/注册</view>
@@ -22,130 +22,130 @@
 			<view @tap="mynavigate('wdtz')" class="li">
 				<view class="icon iconBLue"><text class="iconfont">&#xe872;</text></view>
 				<view class="text">我的通知</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view @tap="mynavigate('wdhy')" class="li">
 				<view class="icon"><image src="/static/HM-PersonalCenter/sever/vip.png"></image></view>
 				<view class="text">我的会员</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 		</view>
 		<view class="list" >
 			<view @tap="mynavigate('xgzl')" class="li">
 				<view class="icon iconRed" ><text class="iconfont">&#xe623;</text></view>
 				<view class="text">修改资料</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view @tap="mynavigate('xgmm')" class="li">
 				<view class="icon iconGreen"><text class="iconfont">&#xe718;</text></view>
 				<view class="text">修改密码</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 			<view @tap="mynavigate('zhaq')" class="li">
 				<view class="icon iconYellow"><text class="iconfont">&#xe6d8;</text></view>
 				<view class="text">账户安全</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view @tap="mynavigate('aqmm')" class="li">
 				<view class="icon iconBLue"><text class="iconfont">&#xe62b;</text></view>
 				<view class="text">安全密码</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 		</view>
 		<view class="list" >
 			<view @tap="mynavigate('zxhy')" class="li">
 				<view class="icon iconYellow" ><text class="iconfont">&#xe620;</text></view>
 				<view class="text">自选会员</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view class="li" @tap="mynavigate('sfhy')">
 				<view class="icon iconGreen"><text class="iconfont">&#xe624;</text></view>
 				<view class="text">省份会员</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 			<view class="li" @tap="mynavigate('VIPhy')">
 				<view class="icon iconGreen"><text class="iconfont">&#xe622;</text></view>
 				<view class="text">VIP会员</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view class="li" @tap="mynavigate('qyhy')">
 				<view class="icon iconYellow"><text class="iconfont">&#xe631;</text></view>
 				<view class="text">企业会员</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 		</view>
 		<view class="list">
 			<view @tap="mynavigate('jfgm')" class="li">
 				<view class="icon iconPop" ><text class="iconfont">&#xe621;</text></view>
 				<view class="text">积分购买</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view @tap="mynavigate('jfcx')" class="li">
 				<view class="icon iconYellow"><text class="iconfont">&#xe600;</text></view>
 				<view class="text">积分查询</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view > 
 		</view>
 		<view class="list" >
 			<view @tap="mynavigate('wdyhj')" class="li">
 				<view class="icon iconY" ><text class="iconfont">&#xe69b;</text></view>
 				<view class="text">优惠券</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view @tap="mynavigate('msth')" class="li">
 				<view class="icon iconD"><text class="iconfont">&#xe63b;</text></view>
 				<view class="text">密匙兑换历史</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 		</view>
 		<!-- <view class="list">
 			<view @tap="mynavigate('wdhb')"class="li"     >
 				<view class="icon iconRed"><text class="iconfont">&#xe61d;</text></view>
 				<view class="text">我的红包</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 		</view> -->
 		<view class="list" >
 			<view @tap="mynavigate('wdedingdan')" class="li">
 				<view class="icon iconBLue" ><text class="iconfont">&#xe603;</text></view>
 				<view class="text">我的订单</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<!-- <view @tap="mynavigate('wdfp')" class="li">
 				<view class="icon iconRed"><text class="iconfont">&#xe6f3;</text></view>
 				<view class="text">我的发票</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> -->
 		</view>
 		<view class="list" >
 			<view @tap="mynavigate('csshi')" class="li">
 				<view class="icon iconRed" ><text class="iconfont">&#xe605;</text></view>
 				<view class="text">我的计算</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view>
 			<view @tap="mynavigate('mbgl')" class="li">
 				<view class="icon iconGray"><text class="iconfont">&#xe63e;</text></view>
 				<view class="text">模块管理</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 		</view>
 		<view class="list">
 			<view @tap="mynavigate('wdbz')" class="li">
 				<view class="icon iconRed"><text class="iconfont">&#xe602;</text></view>
 				<view class="text">我的标准</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 			<!-- <view @tap="mynavigate('wdsc')" class="li">
 				<view class="icon iconRed"><text class="iconfont">&#xe602;</text></view>
 				<view class="text">我的收藏</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> -->
 		</view>
 		<view class="list">
 			<view class="li" @tap="showex()">
 				<view class="icon iconRed"><text class="iconfont">&#xe616;</text></view>
 				<view class="text">退出</view>
-				<image class="to" src="/static/HM-PersonalCenter/to.png"></image>
+				<view class="cuIcon-right iconRight"></view>
 			</view> 
 		</view>
 	</view>
@@ -258,5 +258,10 @@ page{background-color:#fff}
 		.text{padding-left:20upx;width:100%;color:#666}
 		.to{flex-shrink:0;width:40upx;height:40upx}
 	}
+}
+.iconRight{
+	line-height: 100rpx;
+	font-size: 48rpx;
+	color: #ddd;
 }
 </style>

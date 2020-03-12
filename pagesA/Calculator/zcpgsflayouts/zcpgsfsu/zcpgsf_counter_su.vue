@@ -51,17 +51,17 @@
 				
 				<view class="cu-form-group" style="border-top: 1upx solid #eee;">
 					<view class="title">人数</view>
-					<input type="text" v-model="needVal.zcpgsfSu_peoples"></input>
+					<input type="digit" v-model="needVal.zcpgsfSu_peoples"></input>
 					<uni-tag text="人" type="defult"></uni-tag>
 				</view>
 				<view class="cu-form-group" v-show="multiSelector.zcpgsfSu4 != 'hiddenhidden'">
 					<view class="title">{{multiSelector.zcpgsfSu4}}</view>
-					<input type="text" v-model="needVal.zcpgsfSu_edorcd"></input>
+					<input type="digit" v-model="needVal.zcpgsfSu_edorcd"></input>
 					<uni-tag text="万元" type="defult" v-model="multiSelector.zcpgsfSu5">{{multiSelector.zcpgsfSu5}}</uni-tag>
 				</view>
 				<view class="cu-form-group">
 					<view class="title">打折折扣</view>
-					<input name="zcpgsfSu_discount" v-model="needVal.zcpgsfSu_discount" /></input>
+					<input type="digit" v-model="needVal.zcpgsfSu_discount" /></input>
 					<uni-tag text="%" type="defult">%</uni-tag>
 					<button type="primary" size="mini" @tap="showdzzk" data-target="zcpgsfSu_discount">查看说明</button>
 				</view>
@@ -79,7 +79,7 @@
 	} from "@/common/base/multiSelectorsChange.js"
 	import explain from '@/common/base/explain.vue'
 	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import datajson from "@/common/json/zcpgfs/zcpgfs-guo.json"
+	// import datajson from "@/common/json/zcpgfs/zcpgfs-guo.json"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		data() {

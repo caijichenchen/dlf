@@ -13,18 +13,18 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程费用</view>
-				<input type="text" v-model="needVal.ldaqwspsGuo_gcfy"></input>
+				<input type="digit" v-model="needVal.ldaqwspsGuo_gcfy"></input>
 				<uni-tag  text="万元" type="defult">万元</uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="ldaqwspsGuo_gcfy">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">比例系数</view>
-				<input type="text" v-model="needVal.ldaqwspsGuo_blxs"></input>
+				<input type="digit" v-model="needVal.ldaqwspsGuo_blxs"></input>
 				<button type="primary" size="mini" @tap="showModal" data-target="ldaqwspsGuo_blxs">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">打折折扣</view>
-				<input v-model="needVal.ldaqwspsGuo_yhzk" /></input>
+				<input type="digit" v-model="needVal.ldaqwspsGuo_yhzk" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>

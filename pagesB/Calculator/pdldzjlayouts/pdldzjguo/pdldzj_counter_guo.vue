@@ -19,13 +19,13 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">流动资金总额</view>
-				<input type="text"  v-model="needVal.pdldzjGuo_ldzj"></input>
+				<input type="digit" v-model="needVal.pdldzjGuo_ldzj"></input>
 				<uni-tag text="万元" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">资金比例</view>
-				<input v-model="needVal.pdldzjGuo_dksc" /></input>
+				<input type="digit" v-model="needVal.pdldzjGuo_dksc" /></input>
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>

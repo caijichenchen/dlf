@@ -8,6 +8,26 @@
             "style" : {}
         },
 		{
+			"path":"pages/CalCulator/jsdwglflayouts/jsdwglfji/jsdwglji",
+			"style":{}
+		},
+		{
+			"path":"pages/CalCulator/hjyxpjlayouts/hjyxpjji/hjyxpjji",
+			"style":{}
+		},
+		{
+			"path":"pages/CalCulator/sjflayouts/gcsjfji/sjfji",
+			"style":{}
+		},
+		{
+			"path":"pages/CalCulator/zbdlflayouts/zbdlfji/zbdlfji",
+			"style":{}
+		},
+		{
+			"path":"pages/CalCulator/gcjsjlflayouts/gcjsjlfji/jlfji",
+			"style":{}
+		},
+		{
 			"path":"pages/sign/sign",
 			"style":{}
 		},
@@ -24,10 +44,6 @@
 			"style":{}
 		}
         ,{
-            "path" : "pages/registe/registe",
-            "style" : {}
-        }
-        ,{
             "path" : "pages/reg/reg",
             "style" : {}
         }
@@ -39,11 +55,6 @@
             "path" : "pages/forget/forget",
             "style" : {}
         }
-        ,
-		{
-		    "path" : "pages/registe/xgmm",
-		    "style" : {}
-		}
         ,{
             "path" : "pages/Calculation/Calculation",
             "style" : {}
@@ -223,10 +234,6 @@
 		}
 		,{
 			"path" : "pages/Mycalculation/Mycalculation",
-			"style" : {}
-		}
-		,{
-			"path" : "pages/enterprise/enterprise",
 			"style" : {}
 		}
 		,{
@@ -1295,12 +1302,12 @@
 			"iconPath":"static/tabbar/Calculation.png",
 			"selectedIconPath":"static/tabbar/Calculation-a.png"
 			},
-			// {
-			// "pagePath":"pages/oneClick/oneClick",
-			// "text":"一键计算",
-			// "iconPath":"static/tabbar/oneClick.png",
-			// "selectedIconPath":"static/tabbar/oneClick-a.png"
-			// },
+			{
+			"pagePath":"pages/oneClick/oneClick",
+			"text":"一键计算",
+			"iconPath":"static/tabbar/oneClick.png",
+			"selectedIconPath":"static/tabbar/oneClick-a.png"
+			},
 			{
 			"pagePath":"pages/standard/standard",
 			"text":"标准",
