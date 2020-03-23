@@ -18,7 +18,7 @@
 					{{multiSelector.zjzxfXiang_standard[pickerIndex.zjzxfXiang_standard]}}
 				</view>
 				</picker>
-			<button class="m-r" type="primary" size="mini"@tap="checkDeatil(143,multiSelector.zjzxfXiang_standard[pickerIndex.zjzxfXiang_standard])">点击查看</button>
+			<button class="m-r" type="primary" size="mini" @tap="checkDeatil(143,multiSelector.zjzxfXiang_standard[pickerIndex.zjzxfXiang_standard])">点击查看</button>
 		</view>
 		<view class="cu-form-group" v-show="showSelector.zjzxfXiang3 || showSelector.zjzxfXiang_xzbf">
 			<view class="title">{{multiSelector.zjzxfXiang3}}</view>
@@ -76,6 +76,16 @@
 	import tzxsXiang from './zjzxfXiang_zytzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -148,11 +158,10 @@
 		components: {
 			tzxsXiang
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.zjzxfXiang_ztz = val
+			}
 		}
 	}
 </script>

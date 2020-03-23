@@ -70,6 +70,16 @@
 	import zytzxsChuan from './pppxmzxChuan_zytzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/pppxmzxs/pppxmzxs-chuan.json',
@@ -131,12 +141,10 @@
 			sffdChuan,
 			zytzxsChuan
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.pppxmzxChuan_gczj = val*1/1000
+			}
 		}
 	}
 </script>

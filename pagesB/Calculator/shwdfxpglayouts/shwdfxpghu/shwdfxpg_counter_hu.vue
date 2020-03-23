@@ -70,6 +70,16 @@
 	import shwdfxpgHuWdfxtz from "./shwdfxpgHu_fxmgcdtz.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -125,10 +135,11 @@
 				this.needVal.shwdfxpgHu_zxfwxm = this.shwdfxpgHu_zxfwxm[this.index0]
 				this.needVal.shwdfxpgHu_sffl = this.shwdfxpgHu_sffl[this.index0]
 			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		},
+		watch:{
+			inval(val){
+				this.needVal.shwdfxpgHu_gstze =val*1/1000
+			}
 		}
 	}
 </script>

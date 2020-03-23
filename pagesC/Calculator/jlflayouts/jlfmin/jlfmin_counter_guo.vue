@@ -49,13 +49,21 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import jlfminFztz from "./jlfMin_fztz.vue"
 	import jlfminZytz from "./jlfMin_zytz.vue"
 	import jlfminFwzlxs from "./jlfMin_fwzlxs.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -71,12 +79,6 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				radio: 'radio1',
-				selected: 'A',
-				shows: 1,
-				picker1:['闽监管协〔2015〕13号'],
-				index:'闽监管协〔2015〕13号',
-				picker2: ['I级', 'II级', 'III级'],
 				explain: [{
 						"id": "1",
 						"title": "监理费收费计费额",
@@ -91,26 +93,14 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			jlfminFztz,
 			jlfminZytz,
 			jlfminFwzlxs
 		},
-		methods:{
-			PickerChange(e) {
-				this.index = e.detail.vamine
-				console.log(e.detail.vamine);
-			},
-			afterPicker(index){
-				this.index = index
-				this.needVal.zsxzsjfszGuo_fztz = this.picker2[index]
-			},
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jlfMin_jfe = val
+			}
 		}
 	}
 </script>

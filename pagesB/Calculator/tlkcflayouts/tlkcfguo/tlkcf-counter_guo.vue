@@ -13,7 +13,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">选择项目</view>
-				<picker class="select" @change="PickerChange2"  :value="index1"
+				<picker class="select" @change="pickerChoose" data-index="index1" data-arr="tlkcfGuo_xzxm"  :value="index1"
 				 :range="tlkcfGuo_xzxm">
 					<view class="picker">
 						{{tlkcfGuo_xzxm[index1]}}
@@ -38,7 +38,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChange3"  :value="index3"
+				<picker class="select" @change="pickerChoose" data-index="index3" data-arr="tlkcfGuo_qwfjtz" :value="index3"
 				 :range="tlkcfGuo_qwfjtz">
 					<view class="picker">
 						{{tlkcfGuo_qwfjtz[index3]}}
@@ -85,6 +85,12 @@
 	import fzfz from './tlkcfGuo_fzfz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/tlkcsjsfs/tlkcsjsfs-all.json',
@@ -147,20 +153,6 @@
 			fjtz,
 			fzfz
 		},
-		methods:{
-			PickerChange2(e) {
-				this.index1 = e.detail.value
-				this.needVal.tlkcfGuo_xzxm = this.tlkcfGuo_xzxm[this.index1]
-			},
-			PickerChange3(e) {
-				this.index3 = e.detail.value
-				this.needVal.tlkcfGuo_qwfjtz = this.tlkcfGuo_qwfjtz[this.index3]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

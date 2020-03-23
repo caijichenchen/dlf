@@ -72,6 +72,16 @@
 	import tzxsE from './sgtscfE_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -145,11 +155,10 @@
 		components: {
 			tzxsE
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.sgtscfE_gcl = val
+			}
 		}
 	}
 </script>

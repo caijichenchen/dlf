@@ -97,6 +97,12 @@
 	import fjtzHei from './dzaqpjfHei_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/dzaqpjfs/dzaqpjfs-hei.json',
@@ -179,12 +185,6 @@
 		components: {
 			fjtzHei
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

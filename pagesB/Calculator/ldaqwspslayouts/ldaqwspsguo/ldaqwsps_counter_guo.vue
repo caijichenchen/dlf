@@ -41,6 +41,16 @@
 	import ldaqwspsGcfy from "./ldaqwspsGuo_gcfy.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -66,11 +76,10 @@
 			ldaqwspsBlb,
 			ldaqwspsGcfy
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.ldaqwspsGuo_gcfy = val
+			}
 		}
 	}
 </script>

@@ -216,7 +216,7 @@
 			getOrderStatus(){ //查询是否订单状态
 				$req.request({
 					url:'/api/xcx/pay/query_valid_order'
-				}).then(res=>{
+				},false).then(res=>{
 					if(res.data.msg == '暂无订单'){
 						this.payStatus = true
 						clearInterval(this.timer)
@@ -358,21 +358,19 @@
 				userInfo:state=>state.user.userInfo
 			}),
 			allCalArr(){ //合并二维数组去重
-				return [...new Set(
-					this.allCalList.length > 0 ? this.allCalList.map(x=>x.cal.map(y=>y)).reduce((a,b)=>a.concat(b)) : []
-				)]
+				return [...new Set(this.allCalList.map(x=>x.cal.map(y=>y)).reduce((a,b)=>a.concat(b),[]))]
 			},
 			monthOne(){
-				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[0]).reduce((a,b)=>a+b) : 0
+				return this.allCalList.map(x=>x.price[0]).reduce((a,b)=>a+b,0)
 			},
 			monthThr(){
-				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[1]).reduce((a,b)=>a+b) : 0
+				return this.allCalList.map(x=>x.price[1]).reduce((a,b)=>a+b,0)
 			},
 			monthSix(){
-				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[2]).reduce((a,b)=>a+b) : 0
+				return this.allCalList.map(x=>x.price[2]).reduce((a,b)=>a+b,0)
 			},
 			monthTwe(){
-				return this.allCalList.length > 0 ? this.allCalList.map(x=>x.price[3]).reduce((a,b)=>a+b) : 0
+				return this.allCalList.map(x=>x.price[3]).reduce((a,b)=>a+b,0)
 			},
 		}
 	};

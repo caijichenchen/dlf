@@ -8,28 +8,15 @@
 					<text class="cuIcon-close text-red"></text>
 				</view>
 			</view>
-			<view class="padding-xl border border-blue m-1">
-					<view class="dlf-group lt">
-						<view class="w-100 dlf-li font lt border-b" 
-									v-for="(item, index) in tzxsList" 
-									:key="index" 
-									@tap="assignment" 
-									:data-val="item.val"
-									:data-key="index"
-									>
-							<view class="lt" style="width: 87%; white-space: pre-wrap;">
-								{{item.content}}
-							</view>
-							<span class="spbtn text-white px-1 bg-blue rt" >
-								{{item.val}}
-							</span>
-						</view>
+			<view class="num-wrap">
+				<view class="num-wrap-li border-b"
+					v-for="(item, index) in tzxsList" :key="index"  @tap="assignment" :data-val="item.val">
+					<view class="li-left">{{item.content}}</view>
+					<view class="li-right">
+						<text class="num-box">{{item.val}}</text>
 					</view>
-					<!-- <view class="lt font p-1 text-left" style="white-space: pre-wrap;">
-						<view>注:</view>
-							<view>附加调整系数为两个或两个以上的, 附加调整系数相加。</view>
-					</view> -->
 				</view>
+				<view class="text-left mx-1 my-1"></view>
 			</view>
 		</view>
 	</view>

@@ -62,10 +62,10 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">复杂调整</view>
-				<picker class="select" @change="PickerChanges"  :value="index"
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="jzzssjsfGuo_fztz" :value="index0"
 				 :range="jzzssjsfGuo_fztz">
 					<view class="picker">
-						{{jzzssjsfGuo_fztz[index]}}
+						{{jzzssjsfGuo_fztz[index0]}}
 					</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showModal" data-target="jzzssjsfGuo_fztz">点击选择</button>
@@ -111,6 +111,16 @@
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/jzzssjsf/jzzssjsf-guo.json',
@@ -173,7 +183,7 @@
 					jzzssjsfGuo_fl: false,
 				},
 				jzzssjsfGuo_fztz: ['I级','II级','III级'],
-				index: 0,
+				index0: 0,
 				showModalName: null,
 				datajson:'',
 				modalData: null,  //查看说明
@@ -201,14 +211,9 @@
 			fztzGuo,
 			blbGuo
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index = e.detail.value
-				this.needVal.jzzssjsfGuo_fztz = this.jzzssjsfGuo_fztz[this.index]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
+		watch:{
+			inval(val){
+				this.needVal.jzzssjsfGuo_jfe = val
 			}
 		}
 	}

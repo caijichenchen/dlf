@@ -20,9 +20,9 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">收费项目</view>
-				<picker class="select" @change="PickerChanges" :value="index" :range="fljcfBa_sfxm">
+				<picker class="select" @change="pickerChoose" data-arr="fljcfBa_sfxm" data-index="index0" :value="index0" :range="fljcfBa_sfxm">
 					<view class="picker">
-						{{fljcfBa_sfxm[index]}}
+						{{fljcfBa_sfxm[index0]}}
 					</view>
 				</picker>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
@@ -49,6 +49,12 @@
 	} from "@/common/base/counterMixin"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -64,7 +70,7 @@
 				showModalName: null,
 				modalData: null,
 				fljcfBa_sfxm: ['建(构)筑物防雷设施检测','已建成的建(构)筑物防雷装置每年进行的检测'],
-				index:0,
+				index0:0,
 				explain: [
 					{
 						"id": "fljcchuan1",
@@ -79,16 +85,6 @@
 				]
 			}
 		},
-		methods:{
-			PickerChanges(e){
-				this.index =e.detail.value
-				this.needVal.fljcfBa_sfxm = this.fljcfBa_sfxm[this.index]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

@@ -32,7 +32,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="indexfzcd"
+				<picker class="select" @change="pickerChoose" data-index="indexfzcd" data-arr="gcsyclsfGuo_fzcd" :value="indexfzcd"
 				 :range="gcsyclsfGuo_fzcd">
 					<view class="picker">
 						{{gcsyclsfGuo_fzcd[indexfzcd]}}
@@ -47,7 +47,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >气温附加调整</view>
-				<picker class="select" @change="PickerChangess" :value="index0"
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="gcsyclsfGuo_qwfjtz" :value="index0"
 				 :range="gcsyclsfGuo_qwfjtz">
 					<view class="picker">
 						{{gcsyclsfGuo_qwfjtz[index0]}}
@@ -94,6 +94,12 @@
 	import fzcd from './gcsyclsfGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/sycls.json',

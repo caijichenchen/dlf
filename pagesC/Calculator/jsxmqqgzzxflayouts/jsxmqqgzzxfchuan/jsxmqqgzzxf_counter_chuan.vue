@@ -63,92 +63,94 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
-		import {counterMixin} from "@/common/base/counterMixin"
-		import {
-			MultiSelectorsChangeMixin
-		} from "@/common/base/multiSelectorsChange.js"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-		// import datajson from '@/common/json/kyjbgfs/kyjbgfs-chuan.json'
-		import jsxmqqgzzxfChuanHytzxs from "./jsxmqqgzzxfChuan_hytzxs.vue"
-		
-		export default {
-			mixins: [counterMixin,MultiSelectorsChangeMixin],
-			beforeCreate() {
-				uni.request({
-					url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-chuan.json',
-					success: (res) => {
-						this.datajson = res.data
-					}
-				})
+	import {counterMixin} from "@/common/base/counterMixin"
+	import {
+		MultiSelectorsChangeMixin
+	} from "@/common/base/multiSelectorsChange.js"
+	// import datajson from '@/common/json/kyjbgfs/kyjbgfs-chuan.json'
+	import jsxmqqgzzxfChuanHytzxs from "./jsxmqqgzzxfChuan_hytzxs.vue"
+	
+	export default {
+		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
 			},
-			data() {
-				return {
-					needVal: {
-						jsxmqqgzzxfChuan_gczj: "",
-						jsxmqqgzzxfChuan_standard: '',
-						jsxmqqgzzxfChuan_graded: '',
-						jsxmqqgzzxfChuan_category: '',
-						jsxmqqgzzxfChuan_jsxs: '',
-						jsxmqqgzzxfChuan_hytzxs: '1',
-						jsxmqqgzzxfChuan_fztzxs: '1',
-						jsxmqqgzzxfChuan_discount: '40',
-						type: "jsxmqqgzzxfChuan",
-					},
-					multiSelector: {
-						jsxmqqgzzxfChuan1: [],
-						jsxmqqgzzxfChuan_standard: [],
-						jsxmqqgzzxfChuan_graded: '',
-						jsxmqqgzzxfChuan_category: [],
-						jsxmqqgzzxfChuan_jsxs: '',
-					},
-					showSelector: {
-						jsxmqqgzzxfChuan1: true,
-						jsxmqqgzzxfChuan_standard: true,
-						jsxmqqgzzxfChuan_graded: false,
-						jsxmqqgzzxfChuan_category: true,
-						jsxmqqgzzxfChuan_jsxs: false,
-					},
-					pickerIndex: {
-						jsxmqqgzzxfChuan1: 0,
-						jsxmqqgzzxfChuan_standard: 0,
-						jsxmqqgzzxfChuan_category: 0,
-					},
-					showModalName: null,
-					datajson:'',
-					radio: 'radio1',
-					selected: 'A',
-					shows: 1,
-					explain: [{
-							"id": "1",
-							"title": "项目类别",
-							"text": "请确定好计算类别"
-						},
-						{
-							"id": "3",
-							"title": "复杂程度调整系数",
-							"text": "国家标准：0.8 - 1.2"
-						},
-						{
-							"id": "4",
-							"title": "打折折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-chuan.json',
+				success: (res) => {
+					this.datajson = res.data
 				}
-			},
-			components: {
-				uniTag,
-				jsxmqqgzzxfChuanHytzxs,
-				explain
-			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
+			})
+		},
+		data() {
+			return {
+				needVal: {
+					jsxmqqgzzxfChuan_gczj: "",
+					jsxmqqgzzxfChuan_standard: '',
+					jsxmqqgzzxfChuan_graded: '',
+					jsxmqqgzzxfChuan_category: '',
+					jsxmqqgzzxfChuan_jsxs: '',
+					jsxmqqgzzxfChuan_hytzxs: '1',
+					jsxmqqgzzxfChuan_fztzxs: '1',
+					jsxmqqgzzxfChuan_discount: '40',
+					type: "jsxmqqgzzxfChuan",
 				},
+				multiSelector: {
+					jsxmqqgzzxfChuan1: [],
+					jsxmqqgzzxfChuan_standard: [],
+					jsxmqqgzzxfChuan_graded: '',
+					jsxmqqgzzxfChuan_category: [],
+					jsxmqqgzzxfChuan_jsxs: '',
+				},
+				showSelector: {
+					jsxmqqgzzxfChuan1: true,
+					jsxmqqgzzxfChuan_standard: true,
+					jsxmqqgzzxfChuan_graded: false,
+					jsxmqqgzzxfChuan_category: true,
+					jsxmqqgzzxfChuan_jsxs: false,
+				},
+				pickerIndex: {
+					jsxmqqgzzxfChuan1: 0,
+					jsxmqqgzzxfChuan_standard: 0,
+					jsxmqqgzzxfChuan_category: 0,
+				},
+				showModalName: null,
+				datajson:'',
+				explain: [{
+						"id": "1",
+						"title": "项目类别",
+						"text": "请确定好计算类别"
+					},
+					{
+						"id": "3",
+						"title": "复杂程度调整系数",
+						"text": "国家标准：0.8 - 1.2"
+					},
+					{
+						"id": "4",
+						"title": "打折折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			jsxmqqgzzxfChuanHytzxs
+		},
+		watch:{
+			inval(val){
+				this.needVal.jsxmqqgzzxfChuan_gczj = val
 			}
 		}
-	</script>
+	}
+</script>
 
 	

@@ -8,7 +8,7 @@
 			<view class="cu-form-group">
 				<view class="title">计算依据</view>
 				<view class="picker" >
-					财建[2016]504号
+					冀建工〔2018〕53号
 				</view>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
@@ -37,7 +37,7 @@
 				needVal: {
 					jsdwglJi_dzzk: '40',
 					jsdwglJi_gczgs: '',
-					jsdwglJi_jsyj: '财建[2016]504号',
+					jsdwglJi_jsyj: '冀建工〔2018〕53号',
 					jsdwglJi_jjfw: '0|1000|5000|10000|50000|100000',
 					jsdwglJi_fl: '0.02|0.015|0.012|0.01|0.008|0.004',
 					type:'jsdwglJi'

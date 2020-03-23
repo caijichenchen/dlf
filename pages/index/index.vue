@@ -181,6 +181,7 @@
 		},
 		data() {
 			return {
+				showModalName:null,
 				serverUrl:this.$serverimgUrl,
 				hotCalList:[],
 				hotNormList: [],

@@ -11,7 +11,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">监理人员类别</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="jlfNanning_jlrylb">
+				<picker class="select" @change="pickerChoose" data-arr="jlfNanning_jlrylb" data-index="index0" :value="index0" :range="jlfNanning_jlrylb">
 					<view class="picker" name="sjfGui_fztz">
 						{{jlfNanning_jlrylb[index0]}}
 					</view>
@@ -20,7 +20,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">是否为高级工程师</view>
-				<picker class="select" @change="PickerChangess" :value="index1" :range="jlfNanning_sfgjgcs">
+				<picker class="select" @change="pickerChoose" data-arr="jlfNanning_sfgjgcs" data-index="index1" :value="index1" :range="jlfNanning_sfgjgcs">
 					<view class="picker" name="sjfGui_fztz">
 						{{jlfNanning_sfgjgcs[index1]}}
 					</view>
@@ -89,8 +89,6 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import fjtz from './jlfNanning_fjtz.vue'
 	import gzlbl from './jlfNanning_gzlbl.vue'
 	import sl from './jlfNanning_sl.vue'
@@ -98,6 +96,12 @@
 	import fztz from './jlfNanning_fztz.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
@@ -143,28 +147,12 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			fjtz,
 			gzlbl,
 			sl,
 			glfl,
 			fztz
 		},
-		methods:{
-			PickerChanges(e){
-				this.index0 = e.detail.value
-				this.needVal.jlfNanning_jlrylb = this.jlfNanning_jlrylb[this.index0]
-			},
-			PickerChangess(e){
-				this.index1 = e.detail.value
-				this.needVal.jlfNanning_sfgjgcs = this.jlfNanning_sfgjgcs[this.index1]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

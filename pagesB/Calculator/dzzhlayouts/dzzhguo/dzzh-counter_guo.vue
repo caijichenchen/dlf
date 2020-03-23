@@ -98,6 +98,12 @@
 	import pgjb from './dzzhGuo_pgjb.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/dzzhs.json',
@@ -176,12 +182,6 @@
 			tzxs,
 			pgjb
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

@@ -22,9 +22,9 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
-				<picker class="select" @change="PickerChanges" :value="index" :range="jlfGuo_fztz">
+				<picker class="select" @change="pickerChoose" data-arr="jlfGuo_fztz" data-index="index0" :value="index0" :range="jlfGuo_fztz">
 					<view class="picker">
-						{{jlfGuo_fztz[index]}}
+						{{jlfGuo_fztz[index0]}}
 					</view>
 				</picker>
 				<button class="m-r" type="primary" size="mini" @tap="showModal" data-target="sjfGui_fztz">点击选择</button>
@@ -57,14 +57,22 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import gczj from './jlfGuo_gczj.vue'
 	import zytz from './jlfGuo_zytz.vue'
 	import gctz from '@/common/base/gctz.vue'
 	import fztz from './sjfGui_fztz.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -80,7 +88,7 @@
 				},
 				modalData: null,  //查看说明
 				showModalName: null,
-				index:0,
+				index0:0,
 				modalName: 'jlfGuo_gctz',
 				title:'监理',
 				jlfGuo_fztz: ['I级','II级','III级','II级双线','铁路III级','穿II级','穿III级'],
@@ -98,23 +106,15 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			gczj,
 			zytz,
 			gctz,
 			fztz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index = e.detail.value
-				this.needVal.jlfGuo_fztz = this.jlfGuo_fztz[this.index]
-			},
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jlfGuo_gczj = val
+			}
 		}
 	}
 </script>

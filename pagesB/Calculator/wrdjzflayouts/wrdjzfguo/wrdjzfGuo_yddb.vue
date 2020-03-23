@@ -10,13 +10,13 @@
 				<button class="search-btn" @click="inval">搜索</button>
 			</view> -->
 			<view class="padding-xl">
-				<view class="dlf-group" v-for="(item, index) in dataList" :key="index" @tap="assignment" :data-key="index" :data-val="item.name">
-					<view class="ml-2 my-1 textblue" v-html="item.name"></view>
+				<view class="dlf-group" v-for="(item, index) in fzcdList" :key="index" @tap="assignment" :data-key="index" :data-val="item.name">
+					<view class="ml-2 my-1 textblue" >{{item.name}}</view>
 					<view class="dlf-li ml-2 font" >
 						<view
 						v-for="(v, index) in item.data" :key="index"
 						>
-						<view v-html="v"></view>
+						<view >{{v}}</view>
 						</view>
 					</view>
 				</view>
@@ -101,27 +101,28 @@ export default {
 	mounted() {
 		this.dataList=this.fzcdList
 	},
-	methods: {
-		inval() {
-			const { fzcdList,searchResult,dataList } = this
-			const regExp = new RegExp(searchResult, 'g');
-			// let dataList = fzcdList
-			// for(let i in fzcdList){
-			// 	if(fzcdList[i].name.indexOf(searchResult) !== -1){
-			// 		fzcdList[i].name.replace(regExp,'<view style="color:red;background:yellow">'+fzcdList[i].name+"</view>")
-			// 	}
-			// }
-			// dataList.forEach(item=>{
-			// 	item.data.forEach(val=>{
-			// 		if(val.search(searchResult) != -1){
-			// 			const index = val.indexOf(searchResult)
-			// 			val = val.replace(regExp,'<view style="color:red;background:yellow">'+searchResult+"</view>")
-			// 		}
-			// 	})
-			// })
-		},
-	},
 	computed: {
+		searchData(){
+			const { fzcdList,searchResult } = this
+			let data = fzcdList
+			if(!searchResult.trim()){
+				return data
+			}else{
+				const key = searchResult.trim()
+				const regExp = new RegExp(key, 'g');
+				data.forEach(item=>{
+					if(item.name.includes(key)){
+						item.name = item.name.replace(regExp,'<text style="color:red;background:yellow">'+searchResult+"</text>")
+					}
+					item.data.forEach(x=>{
+						if(x.includes(key)){
+							x = x.replace(regExp,'<text style="color:red;background:yellow">'+searchResult+"</text>")
+						}
+					})
+				})
+				return data
+			}
+		}
 	},
 }
 </script>

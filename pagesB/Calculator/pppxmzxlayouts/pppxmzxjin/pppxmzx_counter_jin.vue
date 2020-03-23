@@ -24,7 +24,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">项目类别</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="pppxmzxJin_category">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="pppxmzxJin_category" :value="index0" :range="pppxmzxJin_category">
 					<view class="picker">
 						{{pppxmzxJin_category[index0]}}
 					</view>
@@ -70,6 +70,16 @@
 	import pppxmzxJinZytz from "./pppxmzxJin_zytz.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -110,16 +120,10 @@
 			pppxmzxJinSffj,
 			pppxmzxJinZytz,
 		},
-		methods:{
-			PickerChanges(e) {
-				this.indexs = e.detail.value
-				this.needVal.pppxmzxJin_category = this.pppxmzxJin_category[this.index0]
-			},
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.pppxmzxJin_gczj = val*1/1000
+			}
 		}
 	}
 </script>

@@ -8,9 +8,10 @@
 			<view class="sign-box">
 				<view v-if="showSign" class="sign-btn" @tap="getSign">签到</view>
 				<view class="sign-content" v-else>
-					<view class="s-item iconBLue sign-top">
+					<view class="s-item iconBLue ">
 						{{userIntegral}}
 					</view>
+					<view class="sign-top"></view>
 					<view class="s-item iconBLue">
 						可用积分
 					</view>
@@ -24,7 +25,9 @@
 			<view>①.每人每天最多签到一次,签到成功后获得积分。</view>
 			<view>②.每次签到成功可获得1-3积分。</view>
 			<view>邀请好友(推荐):</view>
-			<view>邀请一个好友成功注册并登录独立费,您和您的好友即可各获得3天的VIP会员奖励。<text class="iconBLue" @tap="goInvite">去邀请</text></view>
+			<view>邀请一个好友成功注册并登录独立费,您和您的好友即可各获得3天的VIP会员奖励。
+			<!-- <text class="iconBLue" @tap="goInvite">去邀请</text> -->
+			</view>
 		</view>
 	</view>
 </template>

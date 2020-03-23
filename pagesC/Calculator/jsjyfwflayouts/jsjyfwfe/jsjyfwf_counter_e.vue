@@ -20,7 +20,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">收费项目</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="jsjyfwfE_category">
+				<picker class="select" @change="pickerChoose" data-arr="jsjyfwfE_category" data-index="index0" :value="index0" :range="jsjyfwfE_category">
 					<view class="picker" >
 						{{jsjyfwfE_category[index0]}}
 					</view>
@@ -54,6 +54,16 @@
 	import qfblBa from './jsjyfwfBa_qfbl.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -86,15 +96,10 @@
 		components: {
 			qfblBa
 		},
-		methods:{
-			PickerChanges(e){
-				this.index0 = e.target.value
-				this.needVal.jsjyfwfE_category = this.jsjyfwfE_category[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jsjyfwfE_zbj = val
+			}
 		}
 	}
 </script>

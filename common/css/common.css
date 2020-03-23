@@ -249,3 +249,27 @@
 			font-size: 24rpx;
 			line-height: 40rpx;
 		}
+		.num-wrap{
+			 border: 2rpx solid #00a0e0;
+			 border-bottom: none;
+		}
+		.num-wrap-li{
+			display: flex;
+			padding: 12rpx 10rpx;
+			font-size: 26rpx;
+			line-height: 38rpx;
+			text-align: left;
+		}
+		.li-left{
+			width: 85%;
+		}
+		.li-right{
+			width: 15%;
+			text-align: right;
+		}
+		.num-box{
+			color: #FFFFFF;
+			background-color: #0081FF;
+			padding: 4rpx 10rpx;
+			border-radius: 12rpx;
+		}

@@ -71,6 +71,16 @@
 	
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/ybfs/ybfs-guo.json',
@@ -143,11 +153,10 @@
 		components: {
 			ybfCategory
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.ybfGuo_gcfy = val
+			}
 		}
 	}
 </script>

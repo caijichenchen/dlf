@@ -104,7 +104,7 @@
 			getOrderStatus(){ //查询是否订单状态
 				$req.request({
 					url:'/api/xcx/pay/query_valid_order'
-				}).then(res=>{
+				},false).then(res=>{
 					if(res.data.msg == '暂无订单'){
 						this.payStatus = true
 						console.log(this.payStatus)

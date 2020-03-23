@@ -62,6 +62,16 @@
 	// import datajson from '@/common/json/zbdlf/zbdlf-zhe.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -120,12 +130,10 @@
 		components: {
 			zbdlfZheZbxm,
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.zbdlfZhe_gczj = val
+			}
 		}
 	}
 </script>

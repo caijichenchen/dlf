@@ -7,7 +7,7 @@
 		<form>
 			<view class="cu-form-group">
 				<view class="title">选择项目</view>
-				<picker class="select" @change="PickerChange1" :value="index0" :range="csgdgckcfGuo_xzxm">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="csgdgckcfGuo_xzxm" :value="index0" :range="csgdgckcfGuo_xzxm">
 					<view class="picker">
 						{{csgdgckcfGuo_xzxm[index0]}}
 					</view>
@@ -31,7 +31,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChange2" :value="index1" :range="csgdgckcfGuo_qwfjtz">
+				<picker class="select" @change="pickerChoose" data-index="index1" data-arr="csgdgckcfGuo_qwfjtz" :value="index1" :range="csgdgckcfGuo_qwfjtz">
 					<view class="picker">
 						{{csgdgckcfGuo_qwfjtz[index1]}}
 					</view>
@@ -72,6 +72,12 @@
 	import fztz from './csgdgckcfGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
@@ -126,20 +132,6 @@
 			gctz,
 			fztz
 		},
-		methods:{
-			PickerChange1(e){
-				this.index0 = e.detail.value
-				this.needVal.csgdgckcfGuo_xzxm = this.csgdgckcfGuo_xzxm[this.index0]
-			},
-			PickerChange2(e){
-				this.index1 = e.detail.value
-				this.needVal.csgdgckcfGuo_qwfjtz = this.csgdgckcfGuo_qwfjtz[this.index1]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

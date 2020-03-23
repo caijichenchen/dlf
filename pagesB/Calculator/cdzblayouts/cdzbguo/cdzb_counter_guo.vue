@@ -40,6 +40,16 @@
 	import cdzbGuoBlxs from "./cdzbGuo_blxs.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -68,11 +78,10 @@
 		components: {
 			cdzbGuoBlxs
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.cdzbGuo_gcfy = val
+			}
 		}
 	}
 </script>

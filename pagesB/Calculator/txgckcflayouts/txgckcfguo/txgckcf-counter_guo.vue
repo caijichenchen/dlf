@@ -53,7 +53,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChanges" :value="index3" :range="txgckcfGuo_qwfjtz">
+				<picker class="select" @change="pickerChoose" data-arr="txgckcfGuo_qwfjtz" data-index="index3" :value="index3" :range="txgckcfGuo_qwfjtz">
 					<view class="picker">
 						{{txgckcfGuo_qwfjtz[index3]}}
 					</view>
@@ -99,6 +99,12 @@
 	import gctzGuo from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/txgcs/txgcs-all.json',
@@ -190,16 +196,6 @@
 			txgcFjtz,
 			gctzGuo
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index3 = e.detail.value
-				this.needVal.dsclsfGuo_qwfjtz = this.txgckcfGuo_qwfjtz[this.index3]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

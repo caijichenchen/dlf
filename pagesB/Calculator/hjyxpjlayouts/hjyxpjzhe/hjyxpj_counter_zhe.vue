@@ -14,13 +14,13 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">咨询服务项目</view>
-				<picker class="select" @change="PickerChange1" :value="index0" :range="hjyxpjZhe_category">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="hjyxpjZhe_category" :value="index0" :range="hjyxpjZhe_category">
 					<view class="picker">
 						{{hjyxpjZhe_category[index0]}}
 					</view>
 				</picker>
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">估算投资额</view>
 				<input type="digit" v-model="needVal.hjyxpjZhe_gstze"></input>
 				<uni-tag  text="亿元" type="defult"></uni-tag>
@@ -38,13 +38,13 @@
 				<uni-tag text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showModal" data-target="hjyxpjZhe_hjmgcdtz">点击选择</button>
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">浮动</view>
 				<input type="digit" v-model="needVal.hjyxpjZhe_fd"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[1])">查看说明</button>
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">优惠折扣</view>
 				<input type="digit" v-model="needVal.hjyxpjZhe_yhzk"></input>
 				<uni-tag  text="%" type="defult"></uni-tag>
@@ -65,6 +65,16 @@
 	
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -105,15 +115,10 @@
 			hjyxpjfZheHytzxs,
 			hjyxpjfZheHjmgxs,
 		},
-		methods:{
-			PickerChange1(e) {
-				this.index0 = e.detail.value
-				this.needVal.hjyxpjZhe_category = this.hjyxpjZhe_category[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.hjyxpjZhe_gstze = val*1/1000
+			}
 		}
 	}
 </script>

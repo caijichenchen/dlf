@@ -85,6 +85,12 @@
 	import xcjchclsyYueJcff from './xcjchclsyYue_jcff.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/xcjchclsy.json',
@@ -184,13 +190,6 @@
 		components: {
 			xcjchclsyYueJcff
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

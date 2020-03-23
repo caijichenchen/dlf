@@ -24,7 +24,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="sjfGuo_fztz">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="sjfGuo_fztz" :value="index0" :range="sjfGuo_fztz">
 					<view class="picker">
 						{{sjfGuo_fztz[index0]}}
 					</view>
@@ -65,6 +65,16 @@
 	import fztz from './sjfGuo_fztz.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -104,15 +114,10 @@
 			blb,
 			fztz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index0 = e.detail.value
-				this.needVal.sjfGuo_fztz = this.sjfGuo_fztz[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.sjfGuo_gczj = val
+			}
 		}
 	}
 </script>

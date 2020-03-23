@@ -84,8 +84,6 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	// import datajson from '@/common/json/sxsjlfs/sxsjlfs.json'
 	import fjtz from './jlfJin_fjtz.vue'
 	import fztz from './jlfJin_fztz.vue'
@@ -93,6 +91,16 @@
 	import jfe from './jlfJin_jfe.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/sxsjlfs/sxsjlfs.json',
@@ -181,19 +189,15 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			fjtz,
 			fztz,
 			tzbl,
 			jfe
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jlfJin_jfe = val
+			}
 		}
 	}
 </script>

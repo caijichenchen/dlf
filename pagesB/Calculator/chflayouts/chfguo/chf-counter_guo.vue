@@ -164,6 +164,12 @@
 	import xmjxs from './chfGuo_xmjxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
@@ -271,11 +277,6 @@
 			xmjxs
 		},
 		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				console.log(this.modalData)
-				this.$bus.emit('modalData', this.modalData )
-			},
 			getData(obj){
 				if(obj.type == 'mjxs'){
 					this.needVal.chfGuo_mjxs = obj.val

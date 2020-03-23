@@ -11,7 +11,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">海域等别</view>
-				<picker class="select" @change="PickerChanges" :range="hyjzfGuo_hydb"  :value="index3">
+				<picker class="select" @change="pickerChoose" data-index="index3" data-arr="hyjzfGuo_hydb" :range="hyjzfGuo_hydb"  :value="index3">
 					<view class="picker">
 						{{hyjzfGuo_hydb[index3]}}
 					</view>
@@ -82,6 +82,12 @@
 	import fjxs from './hyjzfGuo_fjxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/hyjzfs/hyjzfs-all.json',
@@ -146,16 +152,6 @@
 			yhxf,
 			fjxs
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index3 = e.detail.value
-				this.needVal.hyjzfGuo_hydb = this.hyjzfGuo_hydb[this.index3]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

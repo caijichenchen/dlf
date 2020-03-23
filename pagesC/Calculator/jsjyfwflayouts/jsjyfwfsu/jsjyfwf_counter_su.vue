@@ -77,6 +77,16 @@
 	import qfblSu from './jsjyfwfSu_qfbl.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/jsjyfwf/jsjyfwf-su.json',
@@ -149,11 +159,10 @@
 			fjtzSu,
 			qfblSu
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jsjyfwfSu_zbj = val
+			}
 		}
 	}
 </script>

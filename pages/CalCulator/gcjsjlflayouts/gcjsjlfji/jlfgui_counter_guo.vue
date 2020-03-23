@@ -8,7 +8,7 @@
 			<view class="cu-form-group">
 				<view class="title">计算依据</view>
 				<view class="picker m-left" >
-					发改价格[2015]299号
+					冀建工〔2018〕53号
 				</view>
 			</view>
 			<view class="cu-form-group">
@@ -38,7 +38,7 @@
 				needVal: {
 					jlfJi_dzzk: "100",
 					jlfJi_jfe: "",
-					jlfJi_jsyj: "桂建标[2018]37号",
+					jlfJi_jsyj: "冀建工〔2018〕53号",
 					jlfJi_nums: "",
 					type: "jlfJi"
 				},
@@ -57,12 +57,6 @@
 				]
 			}
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

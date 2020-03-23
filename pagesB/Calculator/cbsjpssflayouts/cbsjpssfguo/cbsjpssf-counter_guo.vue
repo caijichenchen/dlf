@@ -72,6 +72,16 @@
 	import fjtzGuo from './cbsjpssfGuo_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -159,10 +169,9 @@
 		components: {
 			fjtzGuo
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
+		watch:{
+			inval(val){
+				this.needVal.cbsjpssfGuo_gstze = val
 			}
 		}
 	}

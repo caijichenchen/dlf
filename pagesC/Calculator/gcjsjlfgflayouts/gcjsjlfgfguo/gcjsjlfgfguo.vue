@@ -3,33 +3,28 @@
 		<template v-slot:jsq>
 			<gcjsjlfgf-counter-guo></gcjsjlfgf-counter-guo>
 			<computing v-bind:countData = "countData"></computing>
-			<gcjsjlfgf-result></gcjsjlfgf-result>
+			<result title="建设管理费(光伏发电工程)" :result="result"></result>
 		</template>
 	</base-layout>
 </template>
 
 <script>
-	import baseLayout from "@/common/base/baseLayout.vue"
 	import gcjsjlfgfCounterGuo from "./gcjsjlfgf_counter_guo.vue"
-	import computing from "@/common/base/computing.vue"
-	import gcjsjlfgfResult from "./gcjsjlfgf_result.vue"
+	import {gcjsjlfgfData} from '@/common/resultData.js'
+	import {resultMixin} from "@/common/base/resultMixin"
 	export default {
+		mixins: [resultMixin],
 		data() {
 			return {
 				countData:{
-					url: 'http://dlf.test/api/sjfGuo',  //api请求
+					url: this.$serverUrl+'/api/gcjsjlfgfGuo',  //api请求
 					count:2  //积分消耗
-				}
+				},
+				result:JSON.parse(JSON.stringify(gcjsjlfgfData)),
 			}
 		},
-		methods: {
-			
-		},
 		components:{
-			gcjsjlfgfCounterGuo,
-			baseLayout,
-			computing,
-			gcjsjlfgfResult
+			gcjsjlfgfCounterGuo
 		}
 	}
 </script>

@@ -47,6 +47,12 @@
 	import fzcd from './ytgcsjGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -87,9 +93,10 @@
 				this.needVal.ytgcsjGuo_fzcd = this.ytgcsjGuo_fzcd[this.index]
 				this.needVal.ytgcsjGuo_sfjj = this.sfjj[this.index]
 			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
+		},
+		watch:{
+			inval(val){
+				this.needVal.ytgcsjGuo_gse = val
 			}
 		}
 	}

@@ -70,6 +70,16 @@
 		import qfblBa from './jsjyfwfBa_qfbl.vue'
 		export default {
 			mixins: [counterMixin,MultiSelectorsChangeMixin],
+			props:{
+				index:{
+					type: String,
+					required:true
+				},
+				inval:{
+					type:[Number,String],
+					default:0
+				}
+			},
 			beforeCreate() {
 				uni.request({
 					url:'https://www.dulifei.com/json/jsjyfwf/jsjyfwf-ba.json',
@@ -139,11 +149,10 @@
 			components: {
 				qfblBa
 			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target)
-					this.$bus.emit('modalData', this.modalData )
-				},
+			watch:{
+				inval(val){
+					this.needVal.jsjyfwfBa_zbj = val
+				}
 			}
 		}
 	</script>

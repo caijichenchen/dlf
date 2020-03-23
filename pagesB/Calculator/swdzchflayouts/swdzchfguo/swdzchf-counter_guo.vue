@@ -7,7 +7,7 @@
 		<form>
 			<view class="cu-form-group">
 				<view class="title">水文地质勘察项目分类</view>
-				<picker class="select" @change="PickerChanges" :value="index0"
+				<picker class="select" @change="pickerChoose" data-arr="swdzchfGuo_xmfl" data-index="index0" :value="index0"
 				 :range="swdzchfGuo_xmfl">
 					<view class="picker">
 						{{swdzchfGuo_xmfl[index0]}}
@@ -57,7 +57,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChangess" :value="index4"
+				<picker class="select" @change="pickerChoose" data-arr="swdzchfGuo_qwfjtz" data-index="index4" :value="index4"
 				 :range="swdzchfGuo_qwfjtz">
 					<view class="picker">
 						{{swdzchfGuo_qwfjtz[index4]}}
@@ -104,6 +104,12 @@
 	import fjtz from './swdzchfGuo_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/swdzchf.json',
@@ -195,21 +201,6 @@
 			fzcd,
 			fjtz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index0 = e.detail.value
-				this.needVal.swdzchfGuo_xmfl = this.swdzchfGuo_xmfl[this.index0]
-				this.needVal.swdzchfGuo_sfbl = this.swdzchfGuo_sfbl[this.index0]
-			},
-			PickerChangess(e) {
-				this.index4 = e.detail.value
-				this.needVal.swdzchfGuo_qwfjtz = this.swdzchfGuo_qwfjtz[this.index4]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

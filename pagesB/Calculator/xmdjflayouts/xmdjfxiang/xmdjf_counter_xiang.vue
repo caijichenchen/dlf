@@ -52,6 +52,16 @@
 	import xmdjfXiangZytz from "./xmdjfXiang_zytz.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -78,11 +88,10 @@
 			xmdjfXiangJdtzxs,
 			xmdjfXiangZytz,
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.xmdjfXiang_jfe = val
+			}
 		}
 	}
 </script>

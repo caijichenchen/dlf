@@ -5,6 +5,10 @@ export const counterMixin = {
 			}
 		},
     methods: {
+		showdzzk(e) {
+			this.modalData = JSON.parse(e.currentTarget.dataset.target) 
+			this.$bus.emit('modalData', this.modalData )
+		},
     	//模板
     	showModal(e) {
     		this.showModalName = e.currentTarget.dataset.target
@@ -17,6 +21,12 @@ export const counterMixin = {
 				url:`/pages/normal/normal?id=${detailId}&title=${title}`
 			})
 		},
+		pickerChoose(e){ //不联动下拉选项
+			const arrName = e.currentTarget.dataset.arr
+			const indexName = e.currentTarget.dataset.index
+			this[indexName] = e.detail.value
+			this.needVal[arrName] = this[arrName][this[indexName]]
+		},
     	checkpercentage(e) {
     		this.showModalName = null
     	},
@@ -27,25 +37,12 @@ export const counterMixin = {
 			if(isNaN(val)){
 				if(cIndex){
 					this[cIndex] = e.currentTarget.dataset.key
-					console.log(this[cIndex])
 				}
 				this.needVal[name] = e.currentTarget.dataset.val
-				// if(name === 'wrdjzfGuo_ydlx'){
-				// 	this.needVal[name] = this.wrdjzfGuo_ydlx[val]
-				// 	this.index3 = val
-				// 	this.showModalName = null
-				// 	return
-				// }
-				// console.log(this.needVal)
-				// console.log(this.showModalName)
 				this.showModalName = null
 				if(this.multiSelector[name]){
 					this.afterPicker(ckey,name)
-					// this.multiSelectorChange(this.datajson,name)
 				}
-				// console.log(this.showModalName)
-				// this.showModalName = null
-				// console.log(this.showModalName)
 			}else if(!isNaN(val) && cIndex){ //数值下拉选项且不为联动时
 				this[cIndex] = e.currentTarget.dataset.key
 				this.needVal[name] = e.currentTarget.dataset.val
@@ -99,13 +96,25 @@ export const counterMixin = {
     		this.index = 2
     	}
     },
-    mounted(){
-    	this.$bus.emit('needValChange', this.needVal);
-    },
+  //   mounted(){
+  //   	// this.$bus.emit('needValChange', this.needVal);
+		// const valData = {
+		// 	needVal:this.needVal,
+		// 	showSelectedInput:this.showInput || null
+		// }
+  //   	this.$bus.emit('needValChange', valData);
+  //   },
+	updated(){
+		const valData = {
+			needVal:this.needVal,
+			showSelectedInput:this.validate || null
+		}
+		this.$bus.emit('needValChange', valData);
+	},
     created() {
     	this.$bus.on('modalChange', this.changeVal)
     	// this.$bus.on('hideModal', this.hideModal)
-			this.$bus.on('radioChangeval', this.computeRadio)
+		this.$bus.on('radioChangeval', this.computeRadio)
     },
     beforeDestroy() {
     	this.$bus.off('modalChange', this.changeVal);

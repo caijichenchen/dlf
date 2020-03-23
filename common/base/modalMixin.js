@@ -7,6 +7,7 @@ export const modalMixin = {
 			// }
 			// console.log(val);
    		this.$bus.emit('modalChange',this.modalName,e);
+   		// this.$bus.emit('modalChange',this.showModalName,e);
    	},
 	computeval(e) {
 		// console.log(this.modalName)

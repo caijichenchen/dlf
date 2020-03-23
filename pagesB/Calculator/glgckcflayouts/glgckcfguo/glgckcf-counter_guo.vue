@@ -43,10 +43,10 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >气温附加调整</view>
-				<picker class="select" @change="PickerChanges" :value="index"
+				<picker class="select" @change="pickerChoose" data-index="index1" data-arr="glgckcfGuo_qwfjtz" :value="index1"
 				 :range="glgckcfGuo_qwfjtz">
 					<view class="picker">
-						{{glgckcfGuo_qwfjtz[index]}}
+						{{glgckcfGuo_qwfjtz[index1]}}
 					</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[2])">查看说明</button>
@@ -91,6 +91,12 @@
 	import fzfz from './glgckcfGuo_fzfz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/glgcs.json',
@@ -130,7 +136,7 @@
 					glgckcfGuo_sfjj: false,
 				},
 				glgckcfGuo_qwfjtz: ['1','1.2'],
-				index: 0,
+				index1: 0,
 				title: '公路勘察费',
 				modalName: 'glgckcfGuo_gctz',
 				showModalName: null,
@@ -170,16 +176,6 @@
 			fjzt,
 			fzfz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index = e.detail.value
-				this.needVal.glgckcfGuo_qwfjtz = this.glgckcfGuo_qwfjtz[this.index]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

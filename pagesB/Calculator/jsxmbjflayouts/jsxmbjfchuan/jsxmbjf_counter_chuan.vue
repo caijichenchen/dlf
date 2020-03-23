@@ -11,7 +11,6 @@
 						{{multiSelector.jsxmbjfChuan1[pickerIndex.jsxmbjfChuan1]}}
 					</view>
 			</view>
-			
 			<view class="cu-form-group">
 				<view class="title">计算项目</view>
 				<picker class="select" @change="PickerChange"  data-name="jsxmbjfChuan_category" :value="pickerIndex.jsxmbjfChuan_category"
@@ -55,6 +54,16 @@
 	// import datajson from '@/common/json/jsxmbjfs/jsxmbjfs-chuan.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/jsxmbjfs/jsxmbjfs-chuan.json',
@@ -102,12 +111,10 @@
 				]
 			}
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jsxmbjfChuan_bjmj = val
+			}
 		}
 	}
 </script>

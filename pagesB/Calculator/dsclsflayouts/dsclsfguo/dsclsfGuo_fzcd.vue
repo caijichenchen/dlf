@@ -141,15 +141,7 @@
 				this.key = e.currentTarget.dataset.key
 				var val = e.currentTarget.dataset.val
 				this.resultval[this.key] = val
-				function sum(arr){
-					var fzval = 0
-					for(var i = 0;i<arr.length;i++){
-						fzval += parseFloat(arr[i])
-					}
-					return fzval
-				}
-				this.lastval = sum(this.resultval)
-				console.log(this.lastval)
+				this.lastval = this.resultval.reduce((a,b)=>Number(a)+Number(b))
 			},
 		},
 	}

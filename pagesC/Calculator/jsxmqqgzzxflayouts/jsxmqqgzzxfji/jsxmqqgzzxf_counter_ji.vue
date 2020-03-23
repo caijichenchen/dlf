@@ -63,92 +63,93 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
-		import {counterMixin} from "@/common/base/counterMixin"
-		import {
-			MultiSelectorsChangeMixin
-		} from "@/common/base/multiSelectorsChange.js"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-		import jsxmqqgzzxfJiHytzxs from "./jsxmqqgzzxfJi_hytzxs.vue"
-		// import datajson from '@/common/json/kyjbgfs/kyjbgfs-ji.json'
-		
-		export default {
-			mixins: [counterMixin,MultiSelectorsChangeMixin],
-			beforeCreate() {
-				uni.request({
-					url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-ji.json',
-					success: (res) => {
-						this.datajson = res.data
-					}
-				})
+	import {counterMixin} from "@/common/base/counterMixin"
+	import {
+		MultiSelectorsChangeMixin
+	} from "@/common/base/multiSelectorsChange.js"
+	import jsxmqqgzzxfJiHytzxs from "./jsxmqqgzzxfJi_hytzxs.vue"
+	// import datajson from '@/common/json/kyjbgfs/kyjbgfs-ji.json'
+	
+	export default {
+		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
 			},
-			data() {
-				return {
-					needVal: {
-						jsxmqqgzzxfJi_gczj: "",
-						jsxmqqgzzxfJi_standard: '',
-						jsxmqqgzzxfJi_graded: '',
-						jsxmqqgzzxfJi_category: '',
-						jsxmqqgzzxfJi_jsxs: '',
-						jsxmqqgzzxfJi_hytzxs: '1',
-						jsxmqqgzzxfJi_fztzxs: '1',
-						jsxmqqgzzxfJi_discount: '40',
-						type: "jsxmqqgzzxfJi",
-					},
-					multiSelector: {
-						jsxmqqgzzxfJi1: [],
-						jsxmqqgzzxfJi_standard: [],
-						jsxmqqgzzxfJi_graded: '',
-						jsxmqqgzzxfJi_category: [],
-						jsxmqqgzzxfJi_jsxs: '',
-					},
-					showSelector: {
-						jsxmqqgzzxfJi1: true,
-						jsxmqqgzzxfJi_standard: true,
-						jsxmqqgzzxfJi_graded: false,
-						jsxmqqgzzxfJi_category: true,
-						jsxmqqgzzxfJi_jsxs: false,
-					},
-					pickerIndex: {
-						jsxmqqgzzxfJi1: 0,
-						jsxmqqgzzxfJi_standard: 0,
-						jsxmqqgzzxfJi_category: 0,
-					},
-					showModalName: null,
-					datajson:'',
-					radio: 'radio1',
-					selected: 'A',
-					shows: 1,
-					explain: [{
-							"id": "1",
-							"title": "项目类别",
-							"text": "请确定好计算类别"
-						},
-						{
-							"id": "3",
-							"title": "复杂程度调整系数",
-							"text": "国家标准：0.8 - 1.2"
-						},
-						{
-							"id": "4",
-							"title": "打折折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-ji.json',
+				success: (res) => {
+					this.datajson = res.data
 				}
-			},
-			components: {
-				uniTag,
-				jsxmqqgzzxfJiHytzxs,
-				explain
-			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
+			})
+		},
+		data() {
+			return {
+				needVal: {
+					jsxmqqgzzxfJi_gczj: "",
+					jsxmqqgzzxfJi_standard: '',
+					jsxmqqgzzxfJi_graded: '',
+					jsxmqqgzzxfJi_category: '',
+					jsxmqqgzzxfJi_jsxs: '',
+					jsxmqqgzzxfJi_hytzxs: '1',
+					jsxmqqgzzxfJi_fztzxs: '1',
+					jsxmqqgzzxfJi_discount: '40',
+					type: "jsxmqqgzzxfJi",
 				},
+				multiSelector: {
+					jsxmqqgzzxfJi1: [],
+					jsxmqqgzzxfJi_standard: [],
+					jsxmqqgzzxfJi_graded: '',
+					jsxmqqgzzxfJi_category: [],
+					jsxmqqgzzxfJi_jsxs: '',
+				},
+				showSelector: {
+					jsxmqqgzzxfJi1: true,
+					jsxmqqgzzxfJi_standard: true,
+					jsxmqqgzzxfJi_graded: false,
+					jsxmqqgzzxfJi_category: true,
+					jsxmqqgzzxfJi_jsxs: false,
+				},
+				pickerIndex: {
+					jsxmqqgzzxfJi1: 0,
+					jsxmqqgzzxfJi_standard: 0,
+					jsxmqqgzzxfJi_category: 0,
+				},
+				showModalName: null,
+				datajson:'',
+				explain: [{
+						"id": "1",
+						"title": "项目类别",
+						"text": "请确定好计算类别"
+					},
+					{
+						"id": "3",
+						"title": "复杂程度调整系数",
+						"text": "国家标准：0.8 - 1.2"
+					},
+					{
+						"id": "4",
+						"title": "打折折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			jsxmqqgzzxfJiHytzxs
+		},
+		watch:{
+			inval(val){
+				this.needVal.jsxmqqgzzxfJi_gczj =val
 			}
 		}
-	</script>
+	}
+</script>
 
-	

@@ -120,7 +120,7 @@
 			getOrderStatus(){ //查询订单支付状态
 				$req.request({
 					url:'/api/xcx/pay/query_valid_order',
-				}).then(res=>{
+				},false).then(res=>{
 					if(res.data.msg == '暂无订单'){
 						this.payStatus = true
 						clearInterval(this.timer)

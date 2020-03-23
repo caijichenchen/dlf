@@ -41,6 +41,16 @@
 	import gcbxfGuoBlxs from "./gcbxfGuo_blxs.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -69,11 +79,10 @@
 		components: {
 			gcbxfGuoBlxs
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.gcbxfGuo_gcfy = val
+			}
 		}
 	}
 </script>

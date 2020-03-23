@@ -7,7 +7,7 @@
 		<form>
 			<view class="cu-form-group" >
 				<view class="title">岩土工程勘察等级</view>
-				<picker class="select" @change="PickerChange1" :value="index0" :range="qtsssysfGuo_kcdj">
+				<picker class="select" @change="PickerChange1" data-arr="qtsssysfGuo_kcdj" data-index="index0" :value="index0" :range="qtsssysfGuo_kcdj">
 					<view class="picker">{{qtsssysfGuo_kcdj[index0]}}</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
@@ -64,7 +64,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChange2" :value="index1" :range="qtsssysfGuo_qwfjtz">
+				<picker class="select" @change="pickerChoose" data-arr="qtsssysfGuo_qwfjtz" data-index="index1" :value="index1" :range="qtsssysfGuo_qwfjtz">
 					<view class="picker">
 						{{qtsssysfGuo_qwfjtz[index1]}}
 					</view>
@@ -105,6 +105,12 @@
 	import fjtz from './qtsssysfGuo_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/qtsssysfs/qtsssysfs.json',
@@ -209,20 +215,6 @@
 			gctz,
 			fjtz
 		},
-		methods:{
-			PickerChange1(e){
-				this.index0 = e.detail.value
-				this.needVal.qtsssysfGuo_kcdj = this.qtsssysfGuo_kcdj[this.index0]
-			},
-			PickerChange2(e){
-				this.index1 = e.detail.value
-				this.needVal.qtsssysfGuo_qwfjtz = this.qtsssysfGuo_qwfjtz[this.index1]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

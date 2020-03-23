@@ -8,23 +8,22 @@
 				</view>
 			</view>
 			<view class="lt">
-				<uni-collapse animation="outer" accordion="true">
+				<uni-collapse animation="outer" accordion="true" @change="activeIndex">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
-							<view class="w-100 dlf-li font lt border-b"
-								v-for="(i, k) in item.list" 
-								:key="k" 
-								@tap="getval" 
-								:data-val="i.hval"
-								:data-key="index"
-								>
-								<view class="lt" style="width: 87%; white-space: pre-wrap;">
-									{{i.content}}
-								</view>
-								<span class="spbtn text-white px-1 bg-blue rt" >
-									{{i.text}}
-								</span>
-							</view>
+							<radio-group @change="radioChange" >
+								<label class="w-100 dlf-li font lt border-b flex" v-for="(i, k) in item.list" :key="k">
+									<view>
+										<radio :value="i.hval" :checked="i.checked" style="transform: scale(0.5);" />
+									</view>
+									<view class="lt" style="width: 87%; white-space: pre-wrap;">
+										{{i.content}}
+									</view>
+									<span class="spbtn text-white px-1 bg-blue rt" >
+										{{i.text}}
+									</span>
+								</label>
+							</radio-group>
 						</view>
 					</uni-collapse-item>
 						<!-- <view class="lt font p-2 text-left" style="white-space: pre-wrap;">
@@ -55,6 +54,7 @@
 				modalName:'csgdgckcfGuo_fzcd',
 				CustomBar:this.CustomBar,
 				key:0,
+				activeKey:0,
 				resultval: [1,1,1,1,0],
 				lastval: 9,
 				dataList: [
@@ -65,6 +65,7 @@
 								content:'地形平坦或稍有坡度',
 								text:'I级--分值：1(1/1)',
 								hval: '1',
+								checked:true
 							},
 							{
 								content:'地形起伏小，高差在≤20m的缓丘地区',
@@ -95,6 +96,7 @@
 								content:'地区开阔，通视良好；通行方便的平原或草原',
 								text:'I级--分值：1(1/10)',
 								hval: '1',
+								checked:true
 							},
 							{
 								content:'高草、高农作物、树林、竹林隐蔽地区面积在≤20%；有部分杂草和低农作物或比高较小的梯田地区',
@@ -125,6 +127,7 @@
 								content:'房屋、矿洞、地质勘探点（线）、沟坎、道路、水系、灌网及各种管线等面积≤5%',
 								text:'I级--分值：1(1/1)',
 								hval: '1',
+								checked:true
 							},
 							{
 								content:'房屋、矿洞、地质勘探点（线）、沟坎、道路、水系、灌网及各种管线等面积≤10%',
@@ -155,6 +158,7 @@
 								content:'地质构造简单、地层岩性单一 （以Ⅰ类岩土为主）',
 								text:'I级--分值：1(5/2)',
 								hval: '1',
+								checked:true
 							},
 							{
 								content:'地质构造、地层岩性较简单，不良地质及特殊地质现象极少（以Ⅱ类岩土为主）',
@@ -185,6 +189,7 @@
 								content:'（基础资料齐全；水文情势简单）',
 								text:'I级--分值：(1/1)',
 								hval: '0',
+								checked:true
 							},
 							{
 								content:'（基础资料较齐全；水文情势较简单）',
@@ -212,22 +217,13 @@
 			}
 		},
 		methods: {
-			addClass(k) {
-				this.isactive = k
+			activeIndex(e){
+				this.activeKey = e[0] || 0
 			},
-			getval(e) {
-				this.key = e.currentTarget.dataset.key
-				var val = e.currentTarget.dataset.val
-				this.resultval[this.key] = val
-				function sum(arr){
-					var fzval = 0
-					for(var i = 0;i<arr.length;i++){
-						fzval += parseFloat(arr[i])
-					}
-					return fzval
-				}
-				this.lastval = sum(this.resultval)
-			}
+			radioChange(e){
+				this.resultval[this.activeKey] = e.detail.value
+				this.lastval = this.resultval.reduce((a,b)=>Number(a)+Number(b))
+			},
 		}
 	}
 </script>

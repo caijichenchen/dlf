@@ -49,6 +49,16 @@
 	// import datajson from '@/common/json/jnpgfs/jnpgfs-zhe.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/jnpgfs/jnpgfs-zhe.json',
@@ -99,12 +109,6 @@
 				]
 			}
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

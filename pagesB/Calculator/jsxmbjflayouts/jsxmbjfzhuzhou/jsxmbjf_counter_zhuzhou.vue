@@ -51,6 +51,16 @@
 	// import datajson from '@/common/json/jsxmbjfs/jsxmbjfs-zhuzhou.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/jsxmbjfs/jsxmbjfs-zhuzhou.json',
@@ -101,12 +111,10 @@
 				]
 			}
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jsxmbjfZhuzhou_bjmj = val
+			}
 		}
 	}
 </script>

@@ -63,92 +63,94 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
-		import {counterMixin} from "@/common/base/counterMixin"
-		import {
-			MultiSelectorsChangeMixin
-		} from "@/common/base/multiSelectorsChange.js"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-		import jsxmqqgzzxfJinHytzxs from "./jsxmqqgzzxfJin_hytzxs.vue"
-		// import datajson from '@/common/json/kyjbgfs/kyjbgfs-ji.json'
-		
-		export default {
-			mixins: [counterMixin,MultiSelectorsChangeMixin],
-			beforeCreate() {
-				uni.request({
-					url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-ji.json',
-					success: (res) => {
-						this.datajson = res.data
-					}
-				})
+	import {counterMixin} from "@/common/base/counterMixin"
+	import {
+		MultiSelectorsChangeMixin
+	} from "@/common/base/multiSelectorsChange.js"
+	import jsxmqqgzzxfJinHytzxs from "./jsxmqqgzzxfJin_hytzxs.vue"
+	// import datajson from '@/common/json/kyjbgfs/kyjbgfs-ji.json'
+	
+	export default {
+		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
 			},
-			data() {
-				return {
-					needVal: {
-						jsxmqqgzzxfJin_gczj: "",
-						jsxmqqgzzxfJin_standard: '',
-						jsxmqqgzzxfJin_graded: '',
-						jsxmqqgzzxfJin_category: '',
-						jsxmqqgzzxfJin_jsxs: '',
-						jsxmqqgzzxfJin_hytzxs: '1',
-						jsxmqqgzzxfJin_fztzxs: '1',
-						jsxmqqgzzxfJin_discount: '40',
-						type: "jsxmqqgzzxfJin",
-					},
-					multiSelector: {
-						jsxmqqgzzxfJin1: [],
-						jsxmqqgzzxfJin_standard: [],
-						jsxmqqgzzxfJin_graded: '',
-						jsxmqqgzzxfJin_category: [],
-						jsxmqqgzzxfJin_jsxs: '',
-					},
-					showSelector: {
-						jsxmqqgzzxfJin1: true,
-						jsxmqqgzzxfJin_standard: true,
-						jsxmqqgzzxfJin_graded: false,
-						jsxmqqgzzxfJin_category: true,
-						jsxmqqgzzxfJin_jsxs: false,
-					},
-					pickerIndex: {
-						jsxmqqgzzxfJin1: 0,
-						jsxmqqgzzxfJin_standard: 0,
-						jsxmqqgzzxfJin_category: 0,
-					},
-					showModalName: null,
-					datajson:'',
-					radio: 'radio1',
-					selected: 'A',
-					shows: 1,
-					explain: [{
-							"id": "1",
-							"title": "项目类别",
-							"text": "请确定好计算类别"
-						},
-						{
-							"id": "3",
-							"title": "复杂程度调整系数",
-							"text": "国家标准：0.8 - 1.2"
-						},
-						{
-							"id": "4",
-							"title": "打折折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-ji.json',
+				success: (res) => {
+					this.datajson = res.data
 				}
-			},
-			components: {
-				uniTag,
-				jsxmqqgzzxfJinHytzxs,
-				explain
-			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
+			})
+		},
+		data() {
+			return {
+				needVal: {
+					jsxmqqgzzxfJin_gczj: "",
+					jsxmqqgzzxfJin_standard: '',
+					jsxmqqgzzxfJin_graded: '',
+					jsxmqqgzzxfJin_category: '',
+					jsxmqqgzzxfJin_jsxs: '',
+					jsxmqqgzzxfJin_hytzxs: '1',
+					jsxmqqgzzxfJin_fztzxs: '1',
+					jsxmqqgzzxfJin_discount: '40',
+					type: "jsxmqqgzzxfJin",
 				},
+				multiSelector: {
+					jsxmqqgzzxfJin1: [],
+					jsxmqqgzzxfJin_standard: [],
+					jsxmqqgzzxfJin_graded: '',
+					jsxmqqgzzxfJin_category: [],
+					jsxmqqgzzxfJin_jsxs: '',
+				},
+				showSelector: {
+					jsxmqqgzzxfJin1: true,
+					jsxmqqgzzxfJin_standard: true,
+					jsxmqqgzzxfJin_graded: false,
+					jsxmqqgzzxfJin_category: true,
+					jsxmqqgzzxfJin_jsxs: false,
+				},
+				pickerIndex: {
+					jsxmqqgzzxfJin1: 0,
+					jsxmqqgzzxfJin_standard: 0,
+					jsxmqqgzzxfJin_category: 0,
+				},
+				showModalName: null,
+				datajson:'',
+				explain: [{
+						"id": "1",
+						"title": "项目类别",
+						"text": "请确定好计算类别"
+					},
+					{
+						"id": "3",
+						"title": "复杂程度调整系数",
+						"text": "国家标准：0.8 - 1.2"
+					},
+					{
+						"id": "4",
+						"title": "打折折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			jsxmqqgzzxfJinHytzxs
+		},
+		watch:{
+			inval(val){
+				this.needVal.jsxmqqgzzxfJin_gczj =val
 			}
 		}
-	</script>
+	}
+</script>
 
 	

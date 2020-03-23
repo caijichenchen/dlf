@@ -66,6 +66,16 @@
 	import qfbl from './jsjyfwfQiong_qfbl.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -116,21 +126,10 @@
 		components:{
 			qfbl
 		},
-		methods:{
-			// PickerChange(e) {
-			// 	this.index = e.detail.value
-			// 	// this.afterPicker(this.index)
-			// 	console.log(this.index)
-			// 	if(this.index == "0"){
-			// 		this.needVal.jsjyfwfQiong_graded = "0|300|1000|3000|5000|10000|20000"
-			// 	}else{
-			// 		this.needVal.jsjyfwfQiong_graded = ""
-			// 	}
-			// },
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jsjyfwfQiong_zbj = val
+			}
 		}
 	}
 </script>

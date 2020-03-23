@@ -31,6 +31,7 @@
 			<view class="cu-form-group">
 				<view class="title">赋分表</view>
 				<input type="digit" v-model="needVal.slsdqqgzkcfGuo_ffb" /></input>
+				<button type="primary" size="mini" @tap="showModal" data-target="slsdqqgzkcfGuo_ffb">点击选择</button>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂程度调整系数</view>
@@ -76,6 +77,7 @@
 		<lxtz :showModalName="showModalName" v-on:hideModal="hideModal"></lxtz>
 		<fzcd :showModalName="showModalName" v-on:hideModal="hideModal"></fzcd>
 		<blb :showModalName="showModalName" v-on:hideModal="hideModal"></blb>
+		<ffb :showModalName="showModalName" v-on:hideModal="hideModal"></ffb>
 	</view>
 </template>
 
@@ -88,8 +90,19 @@
 	import lxtz from './slsdqqgzkcfGuo_lxtz.vue'
 	import fzcd from './slsdqqgzkcfGuo_fzcd.vue'
 	import blb from './slsdqqgzkcfGuo_blb.vue'
+	import ffb from './slsdqqgzkcfGuo_ffb.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -133,13 +146,13 @@
 			fjtz,
 			lxtz,
 			fzcd,
-			blb
+			blb,
+			ffb
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.slsdqqgzkcfGuo_gczj = val
+			}
 		}
 	}
 </script>

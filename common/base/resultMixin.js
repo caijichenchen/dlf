@@ -20,20 +20,11 @@ export const resultMixin = {
 		},
 		setDetailId(e){
 			this.id = (e.currentTarget.dataset.id)-0
-		},
-		goDetail(address){
-			const arr = address.split('/')
-			const data = arr[arr.length-1]
-			const urlArr = data.split('&')
-			uni.navigateTo({
-				url:`/pages/PersonalCenter/jsym?id=${urlArr[1]}&temId=${urlArr[0]}`
-			})
-		},
+		}
    },
    created() {
-	   this.$set(this.result,"calcu_jsgc",{ title:'计算过程', calcu_jsgc:'' })
-	   this.$set(this.result,"calcu_url",{ title:'直达链接', calcu_url: '' })
-	   console.log(this.result)
+		this.$set(this.result,"calcu_jsgc",{ title:'计算过程', calcu_jsgc:'' })
+		this.$set(this.result,"calcu_url",{ title:'直达链接', calcu_url: '' })
 		this.$bus.on('jsSuccess', this.changeVal)
    },
    beforeDestroy() {

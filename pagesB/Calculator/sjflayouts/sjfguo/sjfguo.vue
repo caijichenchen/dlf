@@ -20,7 +20,7 @@
 					url: this.$serverUrl + '/api/sjfGuo',  //api请求
 					count:2  //积分消耗
 				},
-				result: JSON.parse(sjfGuoData)
+				result: JSON.parse(JSON.stringify(sjfGuoData))
 			}
 		},
 		components:{

@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="jlfQian_fztz">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="jlfQian_fztz" :value="index0" :range="jlfQian_fztz">
 					<view class="picker" name="sjfGui_fztz">
 						{{jlfQian_fztz[index0]}}
 					</view>
@@ -26,7 +26,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">施工危险等级</view>
-				<picker class="select" @change="PickerChangess" :value="index1" :range="jlfQian_sgwxdj">
+				<picker class="select" @change="pickerChoose" data-index="index1" data-arr="jlfQian_sgwxdj" :value="index1" :range="jlfQian_sgwxdj">
 					<view class="picker" name="sjfGui_fztz">
 						{{jlfQian_sgwxdj[index1]}}
 					</view>
@@ -54,12 +54,20 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import jlfqianFjtz from "./jlfQian_fjtz.vue"
 	import jlfqianFztz from "./jlfQian_fztz.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -98,24 +106,13 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			jlfqianFjtz,
 			jlfqianFztz,
 		},
-		methods:{
-			PickerChanges(e){
-				this.index0 = e.detail.value
-				this.needVal.jlfQian_fztz = this.jlfQian_fztz[this.index0]
-			},
-			PickerChangess(e){
-				this.index1 = e.detail.value
-				this.needVal.jlfQian_sgwxdj = this.jlfQian_sgwxdj[this.index1]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jlfQian_jfe =val
+			}
 		}
 	}
 </script>

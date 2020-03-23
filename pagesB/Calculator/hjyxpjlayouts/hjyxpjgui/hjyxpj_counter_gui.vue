@@ -13,7 +13,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">咨询服务项目</view>
-				<picker class="select" @change="PickerChange1" :value="index0" :range="hjyxpjGui_zxfwxm">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="hjyxpjGui_zxfwxm" :value="index0" :range="hjyxpjGui_zxfwxm">
 					<view class="picker">
 						{{hjyxpjGui_zxfwxm[index0]}}
 					</view>
@@ -58,64 +58,69 @@
 </template>
 	
 <script>
-		import {counterMixin} from "@/common/base/counterMixin"
-		import hjyxpjfGuiHytzxs from "./hjyxpjGui_hytzxs.vue"
-		import hjyxpjfGuiHjmgxs from "./hjyxpjGui_hjmgcdtzxs.vue"
-		
-		export default {
-			mixins: [counterMixin],
-			data() {
-				return {
-					needVal: {
-						hjyxpjGui_zxfwxm: "编制环境影响报告书",
-						hjyxpjGui_fd: "0",
-						hjyxpjGui_fl: "3|3.6|9|21|45|66",
-						hjyxpjGui_graded: "0|0.3|2|10|50|100",
-						hjyxpjGui_gstze: "",
-						hjyxpjGui_hjmgcdtz: "0.8",
-						hjyxpjGui_hytzxs: "1.0",
-						hjyxpjGui_jsyj: "桂建标[2018]37号",
-						hjyxpjGui_yhzk: "100",
-						hjyxpjGui_nums: "",
-						type: "hjyxpjGui",
+	import {counterMixin} from "@/common/base/counterMixin"
+	import hjyxpjfGuiHytzxs from "./hjyxpjGui_hytzxs.vue"
+	import hjyxpjfGuiHjmgxs from "./hjyxpjGui_hjmgcdtzxs.vue"
+	
+	export default {
+		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		data() {
+			return {
+				needVal: {
+					hjyxpjGui_zxfwxm: "编制环境影响报告书",
+					hjyxpjGui_fd: "0",
+					hjyxpjGui_fl: "3|3.6|9|21|45|66",
+					hjyxpjGui_graded: "0|0.3|2|10|50|100",
+					hjyxpjGui_gstze: "",
+					hjyxpjGui_hjmgcdtz: "0.8",
+					hjyxpjGui_hytzxs: "1.0",
+					hjyxpjGui_jsyj: "桂建标[2018]37号",
+					hjyxpjGui_yhzk: "100",
+					hjyxpjGui_nums: "",
+					type: "hjyxpjGui",
+				},
+				showModalName: null,
+				hjyxpjGui_zxfwxm: ['编制环境影响报告书','编制环境影响报告表'],
+				index0:'0',
+				explain: [
+					{
+						"id": "2",
+						"title": "估算投资额",
+						"text": "估算投资额为项目建议书或可行性研究报告中的估算投资额"
 					},
-					showModalName: null,
-					hjyxpjGui_zxfwxm: ['编制环境影响报告书','编制环境影响报告表'],
-					index0:'0',
-					explain: [
-						{
-							"id": "2",
-							"title": "估算投资额",
-							"text": "估算投资额为项目建议书或可行性研究报告中的估算投资额"
-						},
-						{
-							"id": "3",
-							"title": "评价专题附加",
-							"text": "本表所列编制环境影响报告表收费为不设评价专题的基准价,每增加一个专题增加50%"
-						},
-						{
-							"id": "4",
-							"title": "优惠折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
-				}
-			},
-			components: {
-				hjyxpjfGuiHytzxs,
-				hjyxpjfGuiHjmgxs,
-			},
-			methods:{
-				PickerChange1(e) {
-					this.index0 = e.detail.value
-					this.needVal.hjyxpjGui_zxfwxm = this.hjyxpjGui_zxfwxm[this.index0]
-				},
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
-				},
+					{
+						"id": "3",
+						"title": "评价专题附加",
+						"text": "本表所列编制环境影响报告表收费为不设评价专题的基准价,每增加一个专题增加50%"
+					},
+					{
+						"id": "4",
+						"title": "优惠折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			hjyxpjfGuiHytzxs,
+			hjyxpjfGuiHjmgxs,
+		},
+		watch:{
+			inval(val){
+				this.needVal.hjyxpjGui_gstze = val
 			}
 		}
-	</script>
+	}
+</script>
 
 	

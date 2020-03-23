@@ -48,19 +48,11 @@
 		data() {
 			return {
 				html:'',
-				CustomBar: this.CustomBar,
 				TabCur: 0,
-				scrollLeft: 0,
 				type:['计算器','取费标准'],
 			}
 		},
 		mounted() {
-			// uni.$on('switch',function(data){
-			// 	if(data.msg){
-			// 		this.TabCur = 1
-			// 		console.log(this.TabCur)
-			// 	}
-			// })
 			if(this.normalId){
 				$req.request({
 					url:'/api/xcx/standard/detail',
@@ -69,34 +61,25 @@
 					let data = res.data.message.body
 					this.html = data
 				}).catch(err=>{
-					uni.showToast({
-						icon:'none',
-						title:'获取信息失败,请稍后重试'
-					})
+					this.$msg('获取标准失败,请稍后重试')
 				})
 			}
 		},
 		components: {
 			parser
 		},
-		computed:{
-			normalId(){
-				return this.detailId
-			}
-		},
 		methods: {
 			goSearch() {
 				uni.navigateTo({
-				    url: '../sousuo/sousuo'
+				    url: '/pages/sousuo/sousuo'
 				});
 			},
 			tabSelect(e) {
 				this.TabCur = e.currentTarget.dataset.id;
-				this.scrollLeft = (e.currentTarget.dataset.id - 1) * 60
 			},
 		},
 		watch:{
-			normalId:function(val){
+			detailId(val){
 				$req.request({
 					url:'/api/xcx/standard/detail',
 					data:{id:this.normalId}
@@ -104,10 +87,7 @@
 					let data = res.data.message.body
 					this.html = data
 				}).catch(err=>{
-					uni.showToast({
-						icon:'none',
-						title:'获取信息失败,请稍后重试'
-					})
+					this.$msg('获取标准失败,请稍后重试')
 				})
 			}
 		}

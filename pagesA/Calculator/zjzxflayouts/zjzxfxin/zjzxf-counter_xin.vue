@@ -54,6 +54,16 @@
 	// import datajson from '@/common/json/zjzxfs/zjzxfs-xin.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -105,11 +115,10 @@
 				}
 			})
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.zjzxfXin_ztz = val
+			}
 		}
 	}
 </script>

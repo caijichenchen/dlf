@@ -63,16 +63,24 @@
 </template>
 	
 <script>
-	import explain from '@/common/base/explain.vue'
 	import {counterMixin} from "@/common/base/counterMixin"
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
 	import jsxmqqgzzxfGuoHytzxs from "./jsxmqqgzzxfGuo_hytzxs.vue"
 	// import datajson from '@/common/json/kyjbgfs/kyjbgfs-guo.json'
 	
 	export default {
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
 		beforeCreate() {
 			uni.request({
@@ -116,9 +124,6 @@
 				},
 				showModalName: null,
 				datajson:'',
-				radio: 'radio1',
-				selected: 'A',
-				shows: 1,
 				explain: [{
 						"id": "1",
 						"title": "项目类别",
@@ -138,15 +143,12 @@
 			}
 		},
 		components: {
-			uniTag,
-			jsxmqqgzzxfGuoHytzxs,
-			explain
+			jsxmqqgzzxfGuoHytzxs
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jsxmqqgzzxfGuo_gczj = val
+			}
 		}
 	}
 </script>

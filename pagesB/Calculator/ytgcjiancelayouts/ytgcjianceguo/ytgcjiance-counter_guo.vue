@@ -67,10 +67,10 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChanges" :value="index"
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="ytgcjianceGuo_qwfjtz" :value="index0"
 				 :range="ytgcjianceGuo_qwfjtz">
 					<view class="picker">
-						{{ytgcjianceGuo_qwfjtz[index]}}
+						{{ytgcjianceGuo_qwfjtz[index0]}}
 					</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[4])">查看说明</button>
@@ -119,6 +119,12 @@
 					this.datajson = res.data
 				}
 			})
+		},
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
 		},
 		data() {
 			return {
@@ -169,7 +175,7 @@
 				title: '勘察费',
 				modalName: 'ytgcjianceGuo_gctz',
 				ytgcjianceGuo_qwfjtz: ['1.0','1.2'],
-				index: 0,
+				index0: 0,
 				showModalName: null,
 				datajson:'',
 				modalData: null,  //查看说明
@@ -216,16 +222,6 @@
 			fzcdGuo,
 			gctz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index = e.detail.value
-				this.needVal.ytgcjianceGuo_qwfjtz = this.ytgcjianceGuo_qwfjtz[this.index]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

@@ -56,7 +56,7 @@
 			</view>
 		</form>
 		<explain></explain>
-		<tzxs-wan :showModalName="showModalName" v-on:hideModal="hideModal"></tzxs-wan>
+		<tzxs :showModalName="showModalName" v-on:hideModal="hideModal"></tzxs>
 	</view>
 </template>
 
@@ -67,10 +67,16 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
+	import tzxs from './fljcfWan_tzxs.vue'
 	// import datajson from '@/common/json/fljcfs/fljcfs-wan.json'
-	import tzxsWan from './fljcfWan_tzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -139,14 +145,8 @@
 				}
 			})
 		},
-		components: {
-			tzxsWan
-		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		components:{
+			tzxs
 		}
 	}
 </script>

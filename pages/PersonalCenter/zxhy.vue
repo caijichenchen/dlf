@@ -169,7 +169,7 @@
 			this.getJudgePay()
 		},
 		onLoad() {
-			$req.request({
+			$req.request({ //获取分类
 				url:'/api/xcx/getStandard'
 			}).then(res=>{
 				this.flList = res.data.filter(item=> item.name != '其他标准')
@@ -211,13 +211,13 @@
 				}else{
 					this.selectList.push(item)
 				}
-				this.money = this.selectList.length >0 ? this.selectList.map(item=> item.price*1).reduce((x,y)=>x+y) : 0
+				this.money = this.selectList.map(item=> item.price*1).reduce((x,y)=>x+y,0)
 				this.getJudgePay()
 			},
 			getOrderStatus(){ //查询是否订单状态
 				$req.request({
 					url:'/api/xcx/pay/query_valid_order'
-				}).then(res=>{
+				},false).then(res=>{
 					if(res.data.msg == '暂无订单'){
 						this.payStatus = true
 						clearInterval(this.timer)

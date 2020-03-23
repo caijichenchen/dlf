@@ -22,7 +22,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="indexfzcd"
+				<picker class="select" @change="pickerChoose" data-index="indexfzcd" data-arr="dsclsfGuo_fzcd" :value="indexfzcd"
 				 :range="dsclsfGuo_fzcd">
 					<view class="picker">
 						{{dsclsfGuo_fzcd[indexfzcd]}}
@@ -37,7 +37,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >气温附加调整</view>
-				<picker class="select" @change="PickerChangess" :value="index0"
+				<picker class="select" @change="pickerChoose" data-arr="dsclsfGuo_qwfjtz" data-index="index0" :value="index0"
 				 :range="dsclsfGuo_qwfjtz">
 					<view class="picker">
 						{{dsclsfGuo_qwfjtz[index0]}}
@@ -82,6 +82,12 @@
 	import gctz from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
@@ -161,20 +167,6 @@
 			tzxsGuo,
 			gctz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.indexfzcd = e.detail.value
-				this.needVal.dsclsfGuo_fzcd = this.dsclsfGuo_fzcd[this.indexfzcd]
-			},
-			PickerChangess(e) {
-				this.index0 = e.detail.value
-				this.needVal.dsclsfGuo_qwfjtz = this.dsclsfGuo_qwfjtz[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

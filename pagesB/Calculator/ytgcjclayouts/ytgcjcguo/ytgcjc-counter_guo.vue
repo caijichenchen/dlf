@@ -47,10 +47,10 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title">气温附加调整</view>
-				<picker class="select" @change="PickerChanges" :value="index"
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="ytgcjcGuo_qwfjtz" :value="index0"
 				 :range="ytgcjcGuo_qwfjtz">
 					<view class="picker">
-						{{ytgcjcGuo_qwfjtz[index]}}
+						{{ytgcjcGuo_qwfjtz[index0]}}
 					</view>
 				</picker>
 				<button type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[3])">查看说明</button>
@@ -90,6 +90,12 @@
 	import gctz from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/ytgcjcs.json',
@@ -146,7 +152,7 @@
 				title: '勘察费',
 				modeName: 'ytgcjcGuo_gctz',
 				ytgcjcGuo_qwfjtz: ['1.0','1.2'],
-				index: 0,
+				index0: 0,
 				showModalName: null,
 				datajson:'',
 				modalData: null,  //查看说明
@@ -187,16 +193,6 @@
 		components: {
 			gctz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index = e.detail.value
-				this.needVal.ytgcjcGuo_qwfjtz = this.ytgcjcGuo_qwfjtz[this.index]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

@@ -519,3 +519,10 @@ export const sjfGuiData = {
 	sjfGui_gckcsjf:{ title:'设计费:', sjfGui_gckcsjf:'' },
 	sjfGui_zhgckcsjf:{ title:'折后设计费:', sjfGui_zhgckcsjf:'' }
 }
+//全国地质灾害治理工程监理费
+export const dzzhzlgcData = {
+	dzzhzlgc_jj:{ title:'监理费基价:', dzzhzlgc_jj:'' },
+	dzzhzlgc_jljzj:{ title:'监理基准价:', dzzhzlgc_jljzj:'' },
+	dzzhzlgc_dzzhzlgc:{ title:'监理基:', dzzhzlgc_dzzhzlgc:'' },
+	dzzhzlgc_zhdzzhzlgc:{ title:'折后监理费:', dzzhzlgc_zhdzzhzlgc:'' },
+}

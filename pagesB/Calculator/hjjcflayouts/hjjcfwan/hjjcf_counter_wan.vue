@@ -76,6 +76,12 @@
 	// import datajson from "@/common/json/hjjcfs/hjjcfs-wan.json"
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/hjjcfs/hjjcfs-wan.json',
@@ -129,8 +135,6 @@
 				datajson:'',
 				modalData: null,  //查看说明
 				showModalName: null,
-				selected: 'A',
-				shows: 1,
 				explain: [
 					{
 							"id": "1",
@@ -140,13 +144,6 @@
 				]
 			}
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

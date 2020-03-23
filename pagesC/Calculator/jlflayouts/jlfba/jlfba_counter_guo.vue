@@ -17,7 +17,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">复杂调整</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="jlfBa_fztz">
+				<picker class="select" @change="pickerChoose" data-arr="jlfBa_fztz" data-index="index0" :value="index0" :range="jlfBa_fztz">
 					<view class="picker" name="sjfGui_fztz">
 						{{jlfBa_fztz[index0]}}
 					</view>
@@ -26,7 +26,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">施工危险等级</view>
-				<picker class="select" @change="PickerChangess" :value="index1" :range="jlfBa_sgwxdj">
+				<picker class="select" @change="pickerChoose" data-arr="jlfBa_sgwxdj" data-index="index1" :value="index1" :range="jlfBa_sgwxdj">
 					<view class="picker" name="sjfGui_fztz">
 						{{jlfBa_sgwxdj[index1]}}
 					</view>
@@ -54,27 +54,35 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import jlfqianFjtz from "./jlfBa_fjtz.vue"
 	import jlfqianFztz from "./jlfBa_fztz.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
 					jlfBa_dzzk: "50",
 					jlfBa_jfe: "",
 					jlfBa_fjtz: '1.0',
-					jlfYu_fl: "0.033|0.030|0.026|0.024|0.023|0.022|0.020|0.018|0.017|0.016|0.015|0.014|0.012|0.011|0.011|0.010",
+					jlfBa_fl: "0.04|0.033|0.03|0.026|0.024|0.023|0.022|0.02|0.018|0.017|0.016|0.015|0.014|0.013|0.012|0.011|0.010",
 					jlfBa_fztz: 'I级',
 					jlfBa_sgwxdj: 'I级',
 					jlfBa_jsyj: "渝监协[2015]44号",
 					type: "jlfBa",
-					jlfYu_nums: "",
+					jlfBa_nums: "",
 					jlfBa_gcfztzdj: 'I级|II级|III级',
 					jlfBa_gcfztzxs: '0.85|1.0|1.15',
-					jlfBa_qjjfe: '0|500|1000|3000|5000|8000|10000|20000|40000|60000|80000|100000|200000|400000|600000|800000|1000000',
+					jlfBa_qjjfe: '500|1000|3000|5000|8000|10000|20000|40000|60000|80000|100000|200000|400000|600000|800000|1000000',
 					jlfBa_sgwxdjs:'I级|II级|III级',
 					jlfBa_sgwxdjxs: '1.10|1.05|1.00'
 				},
@@ -98,24 +106,13 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			jlfqianFjtz,
 			jlfqianFztz,
 		},
-		methods:{
-			PickerChanges(e){
-				this.index0 = e.detail.value
-				this.needVal.jlfBa_fztz = this.jlfBa_fztz[this.index0]
-			},
-			PickerChangess(e){
-				this.index1 = e.detail.value
-				this.needVal.jlfBa_sgwxdj = this.jlfBa_sgwxdj[this.index1]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jlfBa_jfe = val
+			}
 		}
 	}
 </script>

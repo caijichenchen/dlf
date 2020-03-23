@@ -64,6 +64,12 @@
 	// import datajson from '@/common/json/fljcfs/fljcfs-chuan.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -98,7 +104,6 @@
 				pickerIndex: {
 					fljcfChuan1: 0,
 					fljcfChuan_standard: 0,
-					index2: 0,
 					fljcfChuan_sfxm: 0,
 					fljcfChuan_jtfl: 0
 				},
@@ -132,12 +137,6 @@
 				}
 			})
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

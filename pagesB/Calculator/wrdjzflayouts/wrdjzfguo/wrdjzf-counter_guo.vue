@@ -77,6 +77,12 @@
 	import yddb from './wrdjzfGuo_yddb.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/wrdjzfs/wrdjzfs-all.json',
@@ -149,7 +155,6 @@
 				this.needVal.wrdjzfGuo_ydlx = this.wrdjzfGuo_ydlx[this.index3]
 			},
 			changepicker(key) {
-				console.log(key)
 				this.needVal.wrdjzfGuo_ydlx = this.wrdjzfGuo_ydlx[key]
 			},
 			showdzzk(e) {

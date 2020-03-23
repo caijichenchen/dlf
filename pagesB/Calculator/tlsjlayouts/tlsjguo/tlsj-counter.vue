@@ -6,7 +6,7 @@
 		</div>
 		<view class="cu-form-group">
 			<view class="title">工程类别</view>
-			<picker class="select" @change="PickerChanges" :value="index0" :range="tlsjGuo_gclb">
+			<picker class="select" @change="pickerChoose" data-index="index0" data-arr="tlsjGuo_gclb" :value="index0" :range="tlsjGuo_gclb">
 				<view class="picker">
 					{{tlsjGuo_gclb[index0]}}
 				</view>
@@ -25,7 +25,7 @@
 		</view>
 		<view class="cu-form-group" v-if="index0 == 0">
 			<view class="title">细分类型</view>
-			<picker class="select" @change="PickerChangess" :value="index1" :range="tlsjGuo_xflx">
+			<picker class="select" @change="pickerChoose" data-index="index1" data-arr="tlsjGuo_xflx" :value="index1" :range="tlsjGuo_xflx">
 				<view class="picker">
 					{{tlsjGuo_xflx[index1]}}
 				</view>
@@ -43,7 +43,7 @@
 		</view> -->
 		<view class="cu-form-group">
 			<view class="title">设计阶段</view>
-			<picker class="select" @change="PickerChangesss" :value="index2" :range="tlsjGuo_sjjd">
+			<picker class="select" @change="pickerChoose" data-index="index2" data-arr="tlsjGuo_sjjd" :value="index2" :range="tlsjGuo_sjjd">
 				<view class="picker">
 					{{tlsjGuo_sjjd[index2]}}
 				</view>
@@ -78,6 +78,12 @@
 	import fzfz from './tlsjGuo_fzfz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
@@ -126,24 +132,6 @@
 			fjtz,
 			fzfz
 		},
-		methods:{
-			PickerChanges(e){
-				this.index0 = e.detail.value
-				this.needVal.tlsjGuo_gclb = this.tlsjGuo_gclb[this.index0]
-			},
-			PickerChangess(e){
-				this.index1 = e.detail.value
-				this.needVal.tlsjGuo_xflx = this.tlsjGuo_xflx[this.index1]
-			},
-			PickerChangesss(e){
-				this.index2 = e.detail.value
-				this.needVal.tlsjGuo_sjjd = this.tlsjGuo_sjjd[this.index2]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

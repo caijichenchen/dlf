@@ -41,7 +41,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="indexfzcd"
+				<picker class="select" @change="pickerChoose" data-index="indexfzcd" data-arr="gcdmclsfGuo_fzcd" :value="indexfzcd"
 				 :range="gcdmclsfGuo_fzcd">
 					<view class="picker">
 						{{gcdmclsfGuo_fzcd[indexfzcd]}}
@@ -56,7 +56,7 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >气温附加调整</view>
-				<picker class="select" @change="PickerChangess" :value="index0"
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="gcdmclsfGuo_qwfjtz" :value="index0"
 				 :range="gcdmclsfGuo_qwfjtz">
 					<view class="picker">
 						{{gcdmclsfGuo_qwfjtz[index0]}}
@@ -103,6 +103,12 @@
 	import fztz from './gcdmclsfGuo_fzcd.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/dmcls.json',
@@ -191,20 +197,6 @@
 			gctz,
 			fztz
 		},
-		methods:{
-			PickerChanges(e) {
-				this.indexfzcd = e.detail.value
-				this.needVal.gcdmclsfGuo_fzcd = this.gcdmclsfGuo_fzcd[this.indexfzcd]
-			},
-			PickerChangess(e) {
-				this.index0 = e.detail.value
-				this.needVal.gcdmclsfGuo_qwfjtz = this.gcdmclsfGuo_qwfjtz[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

@@ -64,6 +64,12 @@
 	// import datajson from '@/common/json/fljcfs/fljcfs-meng.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -131,12 +137,6 @@
 				}
 			})
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

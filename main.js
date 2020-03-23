@@ -32,6 +32,42 @@ import {uniCollapse,uniCollapseItem} from "@dcloudio/uni-ui"
 Vue.component('uni-collapse',uniCollapse)
 Vue.component('uni-collapse-item',uniCollapseItem)
 
+//区间判断  
+Vue.prototype.$between = (val,parms)=>{
+	if(isNaN(Number(val))){
+		return `输入必须为数字且范围数值一般为:${parms[0]}~${parms[1]}`
+	}
+	const len = parms.length
+	if(len==2){
+		if(Number(val)>parms[0] && Number(val)<=parms[1]){
+			return true
+		}
+	}else{
+		if(Number(val)>=parms[0] && Number(val)<=parms[1]){
+			return true
+		}
+	}
+	return `范围数值一般为:${parms[0]}~${parms[1]}`
+}
+
+//最小值
+Vue.prototype.$min = (val,parms)=>{
+	const len = parms.length
+	if(isNaN(Number(val))){
+		return len==1 ? `输入必须为数字且范围数值应该为:大于${parms[0]}` : `输入必须为数字范围且数值应该为:大于等于${parms[0]}`
+	}
+	if(len == 1){
+		if(Number(val)>parms[0]){
+			return true
+		}
+	}else{
+		if(Number(val)>=parms[0]){
+			return true
+		}
+	}
+	return len==1 ? `范围数值应该为:大于${parms[0]}` : `范围数值应该为:大于等于${parms[0]}`
+}
+
 //提示信息
 Vue.prototype.$msg = (msg='信息提示',icons='none',delayTime=1500) =>{
 	return uni.showToast({

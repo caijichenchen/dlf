@@ -31,48 +31,51 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-		import explain from '@/common/base/explain.vue'
-		export default {
-			mixins: [counterMixin],
-			data() {
-				return {
-					needVal: {
-						jlfGui_dzzk: "100",
-						jlfGui_jfe: "",
-						jlfGui_jsyj: "桂建标[2018]37号",
-						jlfGui_nums: "",
-						type: "jlfGui"
-					},
-					modalData: null,  //查看说明
-					showModalName: null,
-					explain: [{
-							"id": "1",
-							"title": "计费额",
-							"text": "一般建安工程费"
-						},
-						{
-							"id": "2",
-							"title": "打折折扣",
-							"text": "不同地区折扣不同,具体根据实际调整"
-						},
-					]
-				}
+	export default {
+		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
 			},
-			components: {
-				uniTag,
-				explain,
-			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target)
-					this.$bus.emit('modalData', this.modalData )
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		data() {
+			return {
+				needVal: {
+					jlfGui_dzzk: "100",
+					jlfGui_jfe: "",
+					jlfGui_jsyj: "桂建标[2018]37号",
+					jlfGui_nums: "",
+					type: "jlfGui"
 				},
+				modalData: null,  //查看说明
+				showModalName: null,
+				explain: [{
+						"id": "1",
+						"title": "计费额",
+						"text": "一般建安工程费"
+					},
+					{
+						"id": "2",
+						"title": "打折折扣",
+						"text": "不同地区折扣不同,具体根据实际调整"
+					},
+				]
+			}
+		},
+		watch:{
+			inval(val){
+				this.needVal.jlfGui_jfe = val
 			}
 		}
-	</script>
-	
-	<style>
-	
-	</style>
+	}
+</script>
+
+<style>
+
+</style>
 	

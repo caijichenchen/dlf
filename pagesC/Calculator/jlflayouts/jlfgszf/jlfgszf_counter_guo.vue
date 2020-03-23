@@ -50,13 +50,21 @@
 	
 <script>
 	import {counterMixin} from "@/common/base/counterMixin"
-	import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-	import explain from '@/common/base/explain.vue'
 	import jlfgszfFjtz from "./jlfGszf_fjtz.vue"
 	import jlfgszfFztz from "../jlf_fztz.vue"
 	import jlfgszfBlb from "./jlfGszf_blb.vue"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -86,18 +94,14 @@
 			}
 		},
 		components: {
-			uniTag,
-			explain,
 			jlfgszfFjtz,
 			jlfgszfFztz,
 			jlfgszfBlb
 		},
-		methods:{
-			//查看说明
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.jlfGszf_jfe = val
+			}
 		}
 	}
 </script>

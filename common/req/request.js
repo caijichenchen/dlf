@@ -9,7 +9,7 @@ export default {
 		dataType:'json'
 	},
 	//发送请求返回promise
-	request(options = {}) {
+	request(options = {},showModal = true) {
 		// if(!uni.getStorageSync('loginToken')){ //验证当没有token时跳转登录
 		// 	return uni.navigateTo({
 		// 		url: '/pages/login/login.vue'
@@ -26,10 +26,12 @@ export default {
 		options.method = options.method || this.common.method
 		options.dataType = options.dataType || this.common.dataType
 		return new Promise((res,rej)=>{
-			uni.showLoading({
-				title:'加载中',
-				mask:true
-			})
+			if(showModal){
+				uni.showLoading({
+					title:'加载中',
+					mask:true
+				})
+			}
 			uni.request({
 				...options,
 				success:(result) => {

@@ -33,6 +33,16 @@
 	import {counterMixin} from "@/common/base/counterMixin"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -59,11 +69,10 @@
 				]
 			}
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.gcjsjlfgfGuo_gczj = val
+			}
 		}
 	}
 </script>

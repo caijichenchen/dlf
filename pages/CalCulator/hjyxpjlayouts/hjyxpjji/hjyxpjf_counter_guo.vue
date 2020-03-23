@@ -8,7 +8,7 @@
 			<view class="cu-form-group">
 				<view class="title">计算依据</view>
 				<view class="picker" v-model="needVal.hjyxpjf_jsyj">
-					计价格[2002]125号
+					冀建工〔2018〕53号
 				</view>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0]) ">查看说明</button>
 			</view>
@@ -72,7 +72,7 @@
 					hjyxpjJi_gstze: "",
 					hjyxpjJi_hjmgcdtz: "0.8",
 					hjyxpjJi_hytzxs: "1.0",
-					hjyxpjJi_jsyj: "计价格[2002]125号",
+					hjyxpjJi_jsyj: "冀建工〔2018〕53号",
 					hjyxpjJi_nums: "",
 					hjyxpjJi_yhzk: "40",
 					hjyxpjJi_zxfwxm: "评估环境影响报告表",
@@ -112,10 +112,6 @@
 			PickerChange1(e) {
 				this.index0 = e.detail.value
 				this.needVal.hjyxpjJi_zxfwxm = this.hjyxpjJi_zxfwxm[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
 			},
 		}
 	}

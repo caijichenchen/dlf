@@ -56,7 +56,7 @@
 			</view>
 		</form>
 		<explain></explain>
-		<fjtz-tianjin :showModalName="showModalName" v-on:hideModal="hideModal"></fjtz-tianjin>
+		<fjtz :showModalName="showModalName" v-on:hideModal="hideModal"></fjtz>
 	</view>
 </template>
 
@@ -67,10 +67,16 @@
 	import {
 		MultiSelectorsChangeMixin
 	} from "@/common/base/multiSelectorsChange.js"
+	import fjtz from './sgtscfTianjin_fjtz.vue'
 	// import datajson from '@/common/json/sgtscfs/sgtscfs-tianjin.json'
-	import fjtzTianjin from './sgtscfTianjin_fjtz.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -132,6 +138,9 @@
 				]
 			}
 		},
+		components:{
+			fjtz
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/sgtscfs/sgtscfs-tianjin.json',
@@ -140,15 +149,6 @@
 				}
 			})
 		},
-		components: {
-			fjtzTianjin
-		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

@@ -25,7 +25,6 @@ export const MultiSelectorsChangeMixin = {
 			let name = e.target.dataset.name
 			this.pickerIndex[name] = e.target.value	
 			this.multiSelectorChange(this.datajson, name)
-			console.log(this.needVal)
 		},
 		afterPicker(index,name) {
 			this.pickerIndex[name] = index

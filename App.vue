@@ -72,12 +72,6 @@
 		},
 		onShow: function() {
 			// console.log('App Show')
-			let chilren = (pre =>[
-				{
-					name:`${pre}`
-				}
-			])('chen')
-			console.log(chilren)
 		},
 		onHide: function() {
 			// console.log('App Hide') 

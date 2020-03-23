@@ -61,10 +61,10 @@
 			</view>
 			<view class="cu-form-group" >
 				<view class="title" >专题研究</view>
-				<picker class="select" @change="PickerChanges" :value="index"
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="csghYue_ztyj" :value="index0"
 				 :range="csghYue_ztyj">
 					<view class="picker">
-						{{csghYue_ztyj[index]}}
+						{{csghYue_ztyj[index0]}}
 					</view>
 				</picker>
 				<input type="digit" v-model="needVal.csghYue_sl" /></input>
@@ -100,6 +100,16 @@
 	import ghlxYue from './csghYue_ghlx.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -164,7 +174,7 @@
 					csghYue16: false
 				},
 				csghYue_ztyj: ['小城市','中等城市','大城市','特区城市','省域或区域'],
-				index: 0,
+				index0: 0,
 				showModalName: null,
 				datajson:'',
 				modalData: null,  //查看说明
@@ -196,16 +206,6 @@
 			tzxsYue,
 			ghlxYue
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index = e.detail.value
-				this.needVal.csghYue_ztyj = this.csghYue_ztyj[this.index]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

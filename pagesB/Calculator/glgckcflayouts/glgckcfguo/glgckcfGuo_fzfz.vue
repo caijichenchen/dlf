@@ -9,16 +9,13 @@
 				</view>
 			</view>
 			<view class="lt">
-				<uni-collapse animation="outer">
+				<uni-collapse animation="outer" accordion="true" @change="activeIndex">
 					<uni-collapse-item v-for="(item,index) in dataList" :key="index" :title="item.title">
 						<view class="dlf-group lt">
-							<radio-group style="width:100%">
+							<radio-group style="width:100%" @change="radioChange">
 									<label class="w-100 dlf-li font lt border-b" style="width:100%;display: flex;"
 											v-for="(i, k) in item.list"
 											:key="k" 
-											@click="getval" 
-											:data-val="i.val"
-											:data-key="index"
 										>
 											<view>
 													<radio :value="i.val" :checked="k == 0" style="transform:scale(0.5)" />
@@ -60,7 +57,7 @@
 			return {
 				modalName:'glgckcfGuo_fzfz',
 				CustomBar:this.CustomBar,
-				key:0,
+				activeKey:0,
 				resultval: [1,1,1,1,0],
 				lastval: 4,
 				dataList: [
@@ -218,23 +215,13 @@
 			}
 		},
 		methods: {
-			addClass(k) {
-				this.isactive = k
+			activeIndex(e){
+				this.activeKey = e[0] || 0
 			},
-			getval(e) {
-				this.key = e.currentTarget.dataset.key
-				var val = e.currentTarget.dataset.val
-				this.resultval[this.key] = val
-				function sum(arr){
-					var fzval = 0
-					for(var i = 0;i<arr.length;i++){
-						fzval += parseFloat(arr[i])
-					}
-					return fzval
-				}
-				this.lastval = sum(this.resultval)
-				console.log(this.lastval)
-			}
+			radioChange(e){
+				this.resultval[this.activeKey] = e.detail.value
+				this.lastval = this.resultval.reduce((a,b)=>Number(a)+Number(b))
+			},
 		}
 	}
 </script>

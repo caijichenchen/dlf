@@ -55,6 +55,16 @@
 	import qfblBa from './jsjyfwfBa_qfbl.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -99,10 +109,11 @@
 					this.needVal.jsjyfwfJi_fl = '1500|2000|2500'
 				}
 			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		},
+		watch:{
+			inval(val){
+				this.needVal.jsjyfwfJi_zbj = val
+			}
 		}
 	}
 </script>

@@ -96,6 +96,12 @@
 	import fzcd from './ytgckcsfLiao_fzcd.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {

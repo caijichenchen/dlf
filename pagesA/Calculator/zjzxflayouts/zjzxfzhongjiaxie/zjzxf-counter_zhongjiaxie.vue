@@ -62,6 +62,16 @@
 	import tzxsZhongjiaxie from './zjzxfZhongjiaxie_zytzxs.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -121,11 +131,10 @@
 		components: {
 			tzxsZhongjiaxie
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.zjzxfZhongjiaxie_ztz = val
+			}
 		}
 	}
 </script>

@@ -12,7 +12,7 @@
 				</view>
 				<button class="m-r" type="primary" size="mini" @tap="showdzzk" :data-target="JSON.stringify(explain[0])">查看说明</button>
 			</view>
-			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
+			<view class="cu-form-group" >
 				<view class="title">建安设备费</view>
 				<input type="digit" id="sjf" v-model="needVal.gcdebzbzglfgfGuo_gczj"></input>
 				<uni-tag  text="万元" type="defult">万元</uni-tag>
@@ -32,6 +32,16 @@
 	import {counterMixin} from "@/common/base/counterMixin"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			inval:{
+				type:[Number,String],
+				default:0
+			},
+			index:{
+				type: String,
+				required:true
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -56,11 +66,10 @@
 				]
 			}
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.gcdebzbzglfgfGuo_gczj = val
+			}
 		}
 	}
 </script>

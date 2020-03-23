@@ -83,6 +83,12 @@
 	import pjflQiong from './dzaqpjfQiong_pjfl.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/dzaqpjfs/dzaqpjfs-qiong.json',
@@ -177,12 +183,6 @@
 			pjflQiong,
 			pjxmQiong
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

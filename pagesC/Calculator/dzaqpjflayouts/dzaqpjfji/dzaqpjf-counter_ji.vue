@@ -71,6 +71,12 @@
 	// import datajson from '@/common/json/dzaqpjfs/dzaqpjfs-ji.json'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/dzaqpjfs/dzaqpjfs-ji.json',
@@ -139,12 +145,6 @@
 				]
 			}
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

@@ -2,7 +2,7 @@
 	<view>
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">中设协字[2019]7号设计费</text>
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">市政工程设计费</text>
 		</div>
 		<form>
 			<view class="cu-form-group">
@@ -26,7 +26,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="zsxzsjfszGuo_fztz">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="zsxzsjfszGuo_fztz" :value="index0" :range="zsxzsjfszGuo_fztz">
 					<view class="picker" >
 						{{zsxzsjfszGuo_fztz[index0]}}
 					</view>
@@ -73,6 +73,16 @@
 	import zsxzsjfszGuoFwxs from "./zsxzsjfszGuo_qtfjxs"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -110,15 +120,10 @@
 			zsxzsjfszGuoFwxs,
 			zsxzsjfszGuoZytz,
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index0 = e.detail.value
-				this.needVal.zsxzsjfszGuo_fztz = this.zsxzsjfszGuo_fztz[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.zsxzsjfszGuo_gczj = val
+			}
 		}
 	}
 </script>

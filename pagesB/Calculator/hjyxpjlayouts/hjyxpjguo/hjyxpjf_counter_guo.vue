@@ -14,7 +14,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">咨询服务项目</view>
-				<picker class="select" @change="PickerChange1" :value="index0" :range="hjyxpjGuo_zxfwxm">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="hjyxpjGuo_zxfwxm" :value="index0" :range="hjyxpjGuo_zxfwxm">
 					<view class="picker">
 						{{hjyxpjGuo_zxfwxm[index0]}}
 					</view>
@@ -65,6 +65,16 @@
 	
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -108,15 +118,10 @@
 			hjyxpjfGuoHytzxs,
 			hjyxpjfGuoHjmgxs,
 		},
-		methods:{
-			PickerChange1(e) {
-				this.index0 = e.detail.value
-				this.needVal.hjyxpjGuo_zxfwxm = this.hjyxpjGuo_zxfwxm[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.hjyxpjGuo_gstze = val*1/1000
+			}
 		}
 	}
 </script>

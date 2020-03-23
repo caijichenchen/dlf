@@ -63,92 +63,94 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
-		import {counterMixin} from "@/common/base/counterMixin"
-		import {
-			MultiSelectorsChangeMixin
-		} from "@/common/base/multiSelectorsChange.js"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-		import jsxmqqgzzxfZheHytzxs from "./jsxmqqgzzxfZhe_hytzxs.vue"
-		// import datajson from '@/common/json/kyjbgfs/kyjbgfs-zhe.json'
-		
-		export default {
-			mixins: [counterMixin,MultiSelectorsChangeMixin],
-			beforeCreate() {
-				uni.request({
-					url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-zhe.json',
-					success: (res) => {
-						this.datajson = res.data
-					}
-				})
+	import {counterMixin} from "@/common/base/counterMixin"
+	import {
+		MultiSelectorsChangeMixin
+	} from "@/common/base/multiSelectorsChange.js"
+	import jsxmqqgzzxfZheHytzxs from "./jsxmqqgzzxfZhe_hytzxs.vue"
+	// import datajson from '@/common/json/kyjbgfs/kyjbgfs-zhe.json'
+	
+	export default {
+		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
 			},
-			data() {
-				return {
-					needVal: {
-						jsxmqqgzzxfZhe_gczj: "",
-						jsxmqqgzzxfZhe_standard: '',
-						jsxmqqgzzxfZhe_graded: '',
-						jsxmqqgzzxfZhe_category: '',
-						jsxmqqgzzxfZhe_jsxs: '',
-						jsxmqqgzzxfZhe_hytzxs: '1',
-						jsxmqqgzzxfZhe_fztzxs: '1',
-						jsxmqqgzzxfZhe_discount: '40',
-						type: "jsxmqqgzzxfZhe",
-					},
-					multiSelector: {
-						jsxmqqgzzxfZhe1: [],
-						jsxmqqgzzxfZhe_standard: [],
-						jsxmqqgzzxfZhe_graded: '',
-						jsxmqqgzzxfZhe_category: [],
-						jsxmqqgzzxfZhe_jsxs: '',
-					},
-					showSelector: {
-						jsxmqqgzzxfZhe1: true,
-						jsxmqqgzzxfZhe_standard: true,
-						jsxmqqgzzxfZhe_graded: false,
-						jsxmqqgzzxfZhe_category: true,
-						jsxmqqgzzxfZhe_jsxs: false,
-					},
-					pickerIndex: {
-						jsxmqqgzzxfZhe1: 0,
-						jsxmqqgzzxfZhe_standard: 0,
-						jsxmqqgzzxfZhe_category: 0,
-					},
-					showModalName: null,
-					datajson:'',
-					radio: 'radio1',
-					selected: 'A',
-					shows: 1,
-					explain: [{
-							"id": "1",
-							"title": "项目类别",
-							"text": "请确定好计算类别"
-						},
-						{
-							"id": "3",
-							"title": "复杂程度调整系数",
-							"text": "国家标准：0.8 - 1.2"
-						},
-						{
-							"id": "4",
-							"title": "打折折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-zhe.json',
+				success: (res) => {
+					this.datajson = res.data
 				}
-			},
-			components: {
-				uniTag,
-				jsxmqqgzzxfZheHytzxs,
-				explain
-			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
+			})
+		},
+		data() {
+			return {
+				needVal: {
+					jsxmqqgzzxfZhe_gczj: "",
+					jsxmqqgzzxfZhe_standard: '',
+					jsxmqqgzzxfZhe_graded: '',
+					jsxmqqgzzxfZhe_category: '',
+					jsxmqqgzzxfZhe_jsxs: '',
+					jsxmqqgzzxfZhe_hytzxs: '1',
+					jsxmqqgzzxfZhe_fztzxs: '1',
+					jsxmqqgzzxfZhe_discount: '40',
+					type: "jsxmqqgzzxfZhe",
 				},
+				multiSelector: {
+					jsxmqqgzzxfZhe1: [],
+					jsxmqqgzzxfZhe_standard: [],
+					jsxmqqgzzxfZhe_graded: '',
+					jsxmqqgzzxfZhe_category: [],
+					jsxmqqgzzxfZhe_jsxs: '',
+				},
+				showSelector: {
+					jsxmqqgzzxfZhe1: true,
+					jsxmqqgzzxfZhe_standard: true,
+					jsxmqqgzzxfZhe_graded: false,
+					jsxmqqgzzxfZhe_category: true,
+					jsxmqqgzzxfZhe_jsxs: false,
+				},
+				pickerIndex: {
+					jsxmqqgzzxfZhe1: 0,
+					jsxmqqgzzxfZhe_standard: 0,
+					jsxmqqgzzxfZhe_category: 0,
+				},
+				showModalName: null,
+				datajson:'',
+				explain: [{
+						"id": "1",
+						"title": "项目类别",
+						"text": "请确定好计算类别"
+					},
+					{
+						"id": "3",
+						"title": "复杂程度调整系数",
+						"text": "国家标准：0.8 - 1.2"
+					},
+					{
+						"id": "4",
+						"title": "打折折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			jsxmqqgzzxfZheHytzxs
+		},
+		watch:{
+			inval(val){
+				this.needVal.jsxmqqgzzxfZhe_gczj = val
 			}
 		}
-	</script>
+	}
+</script>
 
 	

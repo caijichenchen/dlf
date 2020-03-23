@@ -2,7 +2,7 @@
 	<view>
 		<div class="sjf_title w-100 mt-2" style="height: 60upx;">
 			<img src="/static/img/tel.jpg" style="width: 35upx;height: 45upx;float: left;margin-left: 30upx;">
-			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">云南建设项目前期工作咨询费</text>
+			<text class="text-blue lt pl-2 " style="margin-top: 5upx;">云计价格〔2003〕1047号</text>
 		</div>
 		<form>
 			<view class="cu-form-group" style="border-top: 1upx solid #eee;">
@@ -63,92 +63,93 @@
 </template>
 	
 <script>
-		import explain from '@/common/base/explain.vue'
-		import {counterMixin} from "@/common/base/counterMixin"
-		import {
-			MultiSelectorsChangeMixin
-		} from "@/common/base/multiSelectorsChange.js"
-		import uniTag from "@/components/uni-ui/uni-tag/uni-tag.vue"
-		import jsxmqqgzzxfYunHytzxs from "./jsxmqqgzzxfYun_tzxs.vue"
-		// import datajson from '@/common/json/kyjbgfs/kyjbgfs-yun.json'
-		
-		export default {
-			mixins: [counterMixin,MultiSelectorsChangeMixin],
-			beforeCreate() {
-				uni.request({
-					url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-yun.json',
-					success: (res) => {
-						this.datajson = res.data
-					}
-				})
+	import {counterMixin} from "@/common/base/counterMixin"
+	import {
+		MultiSelectorsChangeMixin
+	} from "@/common/base/multiSelectorsChange.js"
+	import jsxmqqgzzxfYunHytzxs from "./jsxmqqgzzxfYun_tzxs.vue"
+	// import datajson from '@/common/json/kyjbgfs/kyjbgfs-yun.json'
+	
+	export default {
+		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
 			},
-			data() {
-				return {
-					needVal: {
-						jsxmqqgzzxfYun_gzzx: "",
-						jsxmqqgzzxfYun_standard: '',
-						jsxmqqgzzxfYun_graded: '',
-						jsxmqqgzzxfYun_category: '',
-						jsxmqqgzzxfYun_jsxs: '',
-						jsxmqqgzzxfYun_tzxs: '1',
-						jsxmqqgzzxfYun_fzcd: '1',
-						jsxmqqgzzxfYun_discount: '40',
-						type: "jsxmqqgzzxfYun",
-					},
-					multiSelector: {
-						jsxmqqgzzxfYun1: [],
-						jsxmqqgzzxfYun_standard: [],
-						jsxmqqgzzxfYun_graded: '',
-						jsxmqqgzzxfYun_category: [],
-						jsxmqqgzzxfYun_jsxs: '',
-					},
-					showSelector: {
-						jsxmqqgzzxfYun1: true,
-						jsxmqqgzzxfYun_standard: true,
-						jsxmqqgzzxfYun_graded: false,
-						jsxmqqgzzxfYun_category: true,
-						jsxmqqgzzxfYun_jsxs: false,
-					},
-					pickerIndex: {
-						jsxmqqgzzxfYun1: 0,
-						jsxmqqgzzxfYun_standard: 0,
-						jsxmqqgzzxfYun_category: 0,
-					},
-					showModalName: null,
-					datajson:'',
-					radio: 'radio1',
-					selected: 'A',
-					shows: 1,
-					explain: [{
-							"id": "1",
-							"title": "项目类别",
-							"text": "请确定好计算类别"
-						},
-						{
-							"id": "3",
-							"title": "复杂程度调整系数",
-							"text": "国家标准：0.8 - 1.2"
-						},
-						{
-							"id": "4",
-							"title": "打折折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		beforeCreate() {
+			uni.request({
+				url:'https://www.dulifei.com/json/kyjbgfs/kyjbgfs-yun.json',
+				success: (res) => {
+					this.datajson = res.data
 				}
-			},
-			components: {
-				uniTag,
-				jsxmqqgzzxfYunHytzxs,
-				explain
-			},
-			methods:{
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
+			})
+		},
+		data() {
+			return {
+				needVal: {
+					jsxmqqgzzxfYun_gzzx: "",
+					jsxmqqgzzxfYun_standard: '',
+					jsxmqqgzzxfYun_graded: '',
+					jsxmqqgzzxfYun_category: '',
+					jsxmqqgzzxfYun_jsxs: '',
+					jsxmqqgzzxfYun_tzxs: '1',
+					jsxmqqgzzxfYun_fzcd: '1',
+					jsxmqqgzzxfYun_discount: '40',
+					type: "jsxmqqgzzxfYun",
 				},
+				multiSelector: {
+					jsxmqqgzzxfYun1: [],
+					jsxmqqgzzxfYun_standard: [],
+					jsxmqqgzzxfYun_graded: '',
+					jsxmqqgzzxfYun_category: [],
+					jsxmqqgzzxfYun_jsxs: '',
+				},
+				showSelector: {
+					jsxmqqgzzxfYun1: true,
+					jsxmqqgzzxfYun_standard: true,
+					jsxmqqgzzxfYun_graded: false,
+					jsxmqqgzzxfYun_category: true,
+					jsxmqqgzzxfYun_jsxs: false,
+				},
+				pickerIndex: {
+					jsxmqqgzzxfYun1: 0,
+					jsxmqqgzzxfYun_standard: 0,
+					jsxmqqgzzxfYun_category: 0,
+				},
+				showModalName: null,
+				datajson:'',
+				explain: [{
+						"id": "1",
+						"title": "项目类别",
+						"text": "请确定好计算类别"
+					},
+					{
+						"id": "3",
+						"title": "复杂程度调整系数",
+						"text": "国家标准：0.8 - 1.2"
+					},
+					{
+						"id": "4",
+						"title": "打折折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			jsxmqqgzzxfYunHytzxs
+		},
+		watch:{
+			inval(val){
+				this.needVal.jsxmqqgzzxfYun_gzzx =val
 			}
 		}
-	</script>
+	}
+</script>
 
-	

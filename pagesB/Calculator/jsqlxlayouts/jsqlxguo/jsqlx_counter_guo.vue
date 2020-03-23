@@ -53,7 +53,7 @@
 		</view>
 		<view class="cu-form-group" >
 			<view class="title">还款方式</view>
-			<picker class="select" @change="PickerChange1" :value="index0" :range="jsqlxGuo_fkfs">
+			<picker class="select" @change="pickerChoose" data-index="index0" data-arr="jsqlxGuo_fkfs" :value="index0" :range="jsqlxGuo_fkfs">
 				<view class="picker">
 					{{jsqlxGuo_fkfs[index0]}}
 				</view>
@@ -72,6 +72,12 @@
 	import dkll from './jsqlxGuo_dkll.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
@@ -120,16 +126,6 @@
 		components: {
 			dkll
 		},
-		methods:{
-			PickerChange1(e) {
-				this.index0 = e.detail.value
-				this.needVal.jsqlxGuo_fkfs = this.jsqlxGuo_fkfs[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-				this.$bus.emit('modalData', this.modalData )
-			},
-		}
 	}
 </script>
 

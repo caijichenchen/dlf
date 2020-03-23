@@ -5,16 +5,12 @@
 				<view class="content">安徽省防雷设施检测费调整系数</view>
 				<view class="action" @tap="hideModal"><text class="cuIcon-close text-red"></text></view>
 			</view>
-			<view class="padding-xl m-1">
-				<view  class="dlf-group" style="height: 316upx;">
-					<view class="w-100 dlf-li font lt" 
-						v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-val="item.xs"> 
-						<view style="width: 595upx;white-space: pre-wrap;float: left;">
-							{{item.value}}
-						</view>
-						<span class="text-blue lt">
-							{{item.xs}}
-						</span>
+			<view class="num-wrap">
+				<view class="num-wrap-li border-b"
+					v-for="(item, index) in fjxsList" :key="index"  @tap="assignment" :data-val="item.xs">
+					<view class="li-left">{{item.value}}</view>
+					<view class="li-right">
+						<text class="num-box">{{item.xs}}</text>
 					</view>
 				</view>
 			</view>
@@ -35,21 +31,12 @@ export default {
 	data() {
 		return {
 			modalName: 'fljcfWan_tzxs',
-			fjxs: '',
 			fjxsList: [
 				{value:" 默认",xs:"1.0"},
 				{value:" 工业项目减半收取",xs:"0.5"},
 			]
 		};
 	},
-	methods: {
-		clickFjxs(e) {
-			//点击隐藏
-			console.log(e);
-		}
-	},
-	
-
 };
 </script>
 

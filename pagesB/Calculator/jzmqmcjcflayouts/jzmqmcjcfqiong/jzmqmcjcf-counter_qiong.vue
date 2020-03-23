@@ -74,6 +74,12 @@
 	import jsxmQiong  from './jzmqmcjcfQiong_jsxm.vue'
 	export default {
 		mixins: [counterMixin,MultiSelectorsChangeMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		beforeCreate() {
 			uni.request({
 				url:'https://www.dulifei.com/json/jzmqmcjcs.json',
@@ -158,12 +164,6 @@
 		components: {
 			jsxmQiong
 		},
-		methods:{
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			}
-		}
 	}
 </script>
 

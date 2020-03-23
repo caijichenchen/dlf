@@ -13,7 +13,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">建设项目类别</view>
-				<picker class="select" @change="PickerChange1" :value="index0" :range="hjyxpjMeng_category">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="hjyxpjMeng_category" :value="index0" :range="hjyxpjMeng_category">
 					<view class="picker">
 						{{hjyxpjMeng_category[index0]}}
 					</view>
@@ -39,58 +39,63 @@
 </template>
 	
 <script>
-		import {counterMixin} from "@/common/base/counterMixin"
-		import hjyxpjfMengJsxmlb from "./hjyxpjMeng_jsxmlb.vue"
-		
-		export default {
-			mixins: [counterMixin],
-			data() {
-				return {
-					needVal: {
-						hjyxpjMeng_category: "生态类",
-						hjyxpjMeng_discount: "40",
-						hjyxpjMeng_fl: "0.003|0.0025|0.0015|0.00075",
-						hjyxpjMeng_graded: "0|1|10|100",
-						hjyxpjMeng_gtz: "",
-						hjyxpjMeng_jsyj: "内环函〔2012〕88号",
-						type: "hjyxpjMeng",
+	import {counterMixin} from "@/common/base/counterMixin"
+	import hjyxpjfMengJsxmlb from "./hjyxpjMeng_jsxmlb.vue"
+	
+	export default {
+		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[Number,String],
+				default:0
+			}
+		},
+		data() {
+			return {
+				needVal: {
+					hjyxpjMeng_category: "生态类",
+					hjyxpjMeng_discount: "40",
+					hjyxpjMeng_fl: "0.003|0.0025|0.0015|0.00075",
+					hjyxpjMeng_graded: "0|1|10|100",
+					hjyxpjMeng_gtz: "",
+					hjyxpjMeng_jsyj: "内环函〔2012〕88号",
+					type: "hjyxpjMeng",
+				},
+				showModalName: null,
+				hjyxpjMeng_category: ['生态类','工业类'],
+				index0:'0',
+				explain: [
+					{
+						"id": "2",
+						"title": "招标代理费计算类别",
+						"text": "1 生态类项目包括：铁路、公路、石油天然气开采及输送管道、煤矿、矿产、水利水电、风电、尾矿库、垃圾固废（危废）处理场等  2.工业类项目包括：火电、水泥、造纸、生物化工(医药、农药)、冶炼、化工、煤化工等。"
 					},
-					showModalName: null,
-					hjyxpjMeng_category: ['生态类','工业类'],
-					index0:'0',
-					explain: [
-						{
-							"id": "2",
-							"title": "招标代理费计算类别",
-							"text": "1 生态类项目包括：铁路、公路、石油天然气开采及输送管道、煤矿、矿产、水利水电、风电、尾矿库、垃圾固废（危废）处理场等  2.工业类项目包括：火电、水泥、造纸、生物化工(医药、农药)、冶炼、化工、煤化工等。"
-						},
-						{
-							"id": "3",
-							"title": "优惠折扣",
-							"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
-						},
-					]
-				}
-			},
-			components: {
-				// hjyxpjfMengHytzxs,
-				// hjyxpjfMengHjmgxs,
-				hjyxpjfMengJsxmlb,
-			},
-			methods:{
-				PickerChange1(e) {
-					this.index0 = e.detail.value
-					this.needVal.hjyxpjMeng_category = this.hjyxpjMeng_category[this.index0]
-				},
-				showdzzk(e) {
-					this.modalData = JSON.parse(e.currentTarget.dataset.target) 
-					this.$bus.emit('modalData', this.modalData )
-				},
+					{
+						"id": "3",
+						"title": "优惠折扣",
+						"text": "目前市场行情采用较多折扣为40%，各地区取值略有不同"
+					},
+				]
+			}
+		},
+		components: {
+			// hjyxpjfMengHytzxs,
+			// hjyxpjfMengHjmgxs,
+			hjyxpjfMengJsxmlb,
+		},
+		watch:{
+			inval(val){
+				this.needVal.hjyxpjMeng_gtz = val*1/1000
 			}
 		}
-	</script>
-	
-	<style>
-	
-	</style>
+	}
+</script>
+
+<style>
+
+</style>
 	

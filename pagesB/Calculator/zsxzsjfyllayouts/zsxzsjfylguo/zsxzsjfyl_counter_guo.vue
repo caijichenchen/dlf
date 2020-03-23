@@ -26,7 +26,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">工程复杂程度</view>
-				<picker class="select" @change="PickerChanges" :value="index0" :range="zsxzsjfylGuo_fzcd">
+				<picker class="select" @change="pickerChoose" data-index="index0" data-arr="zsxzsjfylGuo_fzcd" :value="index0" :range="zsxzsjfylGuo_fzcd">
 					<view class="picker" >
 						<view class="uni-input">{{zsxzsjfylGuo_fzcd[index0]}}</view>
 					</view>
@@ -59,6 +59,16 @@
 	import zsxzsjfylGuoFzcd from "./zsxzsjfylGuo_fzcd"
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+			inval:{
+				type:[String,Number],
+				default:0
+			}
+		},
 		data() {
 			return {
 				needVal: {
@@ -92,15 +102,10 @@
 			zsxzsjfylGuoBlb,
 			zsxzsjfylGuoFzcd,
 		},
-		methods:{
-			PickerChanges(e) {
-				this.index0 = e.detail.value
-				this.needVal.zsxzsjfylGuo_fzcd = this.zsxzsjfylGuo_fzcd[this.index0]
-			},
-			showdzzk(e) {
-				this.modalData = JSON.parse(e.currentTarget.dataset.target)
-				this.$bus.emit('modalData', this.modalData )
-			},
+		watch:{
+			inval(val){
+				this.needVal.zsxzsjfylGuo_gczj = val
+			}
 		}
 	}
 </script>

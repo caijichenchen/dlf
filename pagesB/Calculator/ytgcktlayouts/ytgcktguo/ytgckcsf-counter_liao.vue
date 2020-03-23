@@ -109,6 +109,12 @@
 	import gctz from '@/common/base/gctz.vue'
 	export default {
 		mixins: [counterMixin],
+		props:{
+			index:{
+				type: String,
+				required:true
+			},
+		},
 		data() {
 			return {
 				needVal: {
